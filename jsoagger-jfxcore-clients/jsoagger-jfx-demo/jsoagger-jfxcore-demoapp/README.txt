@@ -19,7 +19,7 @@
  */
  
  
-This is the demo application of EmaginFX.
+This is the demo application of JSoaggerFX.
 --------------------------------------------------------
 
 This demo application shows a partial view of its capabilities and builtin components including:

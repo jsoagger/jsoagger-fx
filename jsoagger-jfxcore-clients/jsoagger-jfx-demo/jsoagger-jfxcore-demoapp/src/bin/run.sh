@@ -20,5 +20,5 @@ then
 fi
 
 
-java -Dspring.profiles.active=$SPRING_PROFILE --module-path=$PATH_TO_FX -jar $SCRIPT_PATH/bin/jsoagger-jfxcore-demoapp.jar
+java -Dspring.profiles.active=$SPRING_PROFILE --module-path=$PATH_TO_FX -jar $SCRIPT_PATH/bin/jsoagger-jfxcore-demoapp.jar --jsoagger.preloader=true --jsoagger.client.mode=desktop 
 

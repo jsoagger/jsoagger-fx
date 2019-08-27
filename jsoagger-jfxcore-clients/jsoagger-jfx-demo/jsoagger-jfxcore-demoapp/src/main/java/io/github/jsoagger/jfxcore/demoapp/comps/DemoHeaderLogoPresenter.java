@@ -63,7 +63,7 @@ public class DemoHeaderLogoPresenter extends VBox implements IBuildable {
 
     NodeHelper.styleClassAddAll(this, configuration);
 
-    try (InputStream is = ResourceUtils.getStream("/images/logo/EMAGIN_FX_WHITE.png")) {
+    try (InputStream is = ResourceUtils.getStream("/images/logo/JSOAGGER_FX_WHITE.png")) {
       if(is != null) {
         final Image img = new Image(is, 200, 102, true, true);
         final ImageView imgView = new ImageView(img);

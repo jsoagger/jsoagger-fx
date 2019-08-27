@@ -52,7 +52,7 @@ public class WelcomeButtonAction extends AbstractAction implements IAction {
   public void execute(IActionRequest actionRequest, Optional<IActionResult> previousActionResult) {
     new InformationDialog.Builder()
     .title("Welcome")
-    .message("Hi ;-) Welcome to EmaginJFX.")
+    .message("Hi ;-) Welcome to JSoaggerJFX.")
     .buildAccent((AbstractViewController) actionRequest.getController()).show();
   }
 

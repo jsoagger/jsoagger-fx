@@ -20,5 +20,4 @@ java -Dspring.profiles.active=%SPRING_PROFILE% --module-path=%PATH_TO_FX% --add-
 --add-exports javafx.base/com.sun.javafx.binding=ALL-UNNAMED \
 --add-opens javafx.controls/javafx.scene.control.skin=ALL-UNNAMED \
 --add-opens javafx.controls/com.sun.javafx.scene.control.skin=ALL-UNNAMED \
---add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED -jar %DIR%/bin/jsoagger-jfxcore-demoapp.jar
-
+--add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED -jar %DIR%/bin/jsoagger-jfxcore-demoapp.jar --jsoagger.preloader=true --jsoagger.client.mode=desktop

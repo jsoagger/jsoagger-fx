@@ -14,7 +14,7 @@
 	<properties>
 		<spring.boot.version>2.1.2.RELEASE</spring.boot.version>
 
-		<fully.qualified.main.class>io.github.jsoagger.coreview.json.converter.EmaginXMLJsonify</fully.qualified.main.class>
+		<fully.qualified.main.class>io.github.jsoagger.coreview.json.converter.JSoaggerXMLJsonify</fully.qualified.main.class>
 		<java.target.level>11</java.target.level>
 		<java.source.level>1.9</java.source.level>
 		<jsoagger.core.client.home>${project.basedir}/../..</jsoagger.core.client.home>

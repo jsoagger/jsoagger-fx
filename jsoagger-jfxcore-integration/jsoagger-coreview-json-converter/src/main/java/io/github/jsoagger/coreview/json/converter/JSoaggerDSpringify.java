@@ -54,7 +54,7 @@ import io.github.jsoagger.jfxcore.viewdefinition.xml.model.VLViewConfigXML;
  * @author Ramilafananana  VONJISOA
  *
  */
-public class EmaginDSpringify {
+public class JSoaggerDSpringify {
 
   private static boolean debug = false;
   protected static final String CONF_FILE_SUFFIX = ".xml";
@@ -227,7 +227,7 @@ public class EmaginDSpringify {
 
           for(String s: sources) {
             if(s.startsWith("classpath:")) {
-              try(InputStream is = EmaginDSpringify.class.getResourceAsStream(StringUtils.substringAfter(s, "classpath:"))){
+              try(InputStream is = JSoaggerDSpringify.class.getResourceAsStream(StringUtils.substringAfter(s, "classpath:"))){
                 VLViewConfigXML finalResult = (VLViewConfigXML) JC.createUnmarshaller().unmarshal(is);
 
                 String filename = getFilenameFrom(StringUtils.substringAfter(s, "classpath:")) + ".json";
@@ -325,7 +325,7 @@ public class EmaginDSpringify {
       final boolean combine = confiFiles.size() > 0;
       for (final String uri : confiFiles) {
         System.out.println("Loading file : " + uri);
-        InputStream is = ResourceUtils.getStream(EmaginDSpringify.class.getClass(), uri);
+        InputStream is = ResourceUtils.getStream(JSoaggerDSpringify.class.getClass(), uri);
         if (is == null) {
           System.out.println("FATAL ERROR");
         }

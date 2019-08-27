@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>io.github.jsoagger.core.ui.jfx.EmaginTemplateApp</string>
+	<string>io.github.jsoagger.core.ui.jfx.JSoaggerTemplateApp</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleExecutable</key>

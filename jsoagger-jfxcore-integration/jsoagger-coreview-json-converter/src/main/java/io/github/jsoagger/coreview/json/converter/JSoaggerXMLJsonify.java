@@ -46,7 +46,7 @@ import io.github.jsoagger.jfxcore.viewdefinition.xml.model.VLViewConfigXML;
  * @author Ramilafananana  VONJISOA
  *
  */
-public class EmaginXMLJsonify {
+public class JSoaggerXMLJsonify {
 
   private static boolean debug = false;
   protected static final String CONF_FILE_SUFFIX = ".xml";
@@ -191,7 +191,7 @@ public class EmaginXMLJsonify {
 
     for(String s: sources) {
       if(s.startsWith("classpath:")) {
-        try(InputStream is = EmaginDSpringify.class.getResourceAsStream(StringUtils.substringAfter(s, "classpath:"))){
+        try(InputStream is = JSoaggerDSpringify.class.getResourceAsStream(StringUtils.substringAfter(s, "classpath:"))){
           VLViewConfigXML finalResult = (VLViewConfigXML) JC.createUnmarshaller().unmarshal(is);
 
           String filename = getFilenameFrom(StringUtils.substringAfter(s, "classpath:")) + ".json";

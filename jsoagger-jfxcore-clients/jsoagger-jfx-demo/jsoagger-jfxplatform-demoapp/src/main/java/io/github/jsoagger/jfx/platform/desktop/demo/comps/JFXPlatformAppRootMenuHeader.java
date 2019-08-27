@@ -39,7 +39,7 @@ import javafx.scene.layout.VBox;
  */
 public class JFXPlatformAppRootMenuHeader extends VBox implements IBuildable {
 
-  private final Label				label				= new Label("EmaginFX PLATFORM");
+  private final Label				label				= new Label("JSoaggerFX PLATFORM");
   private final HBox				profileActionsPane	= new HBox();
   private AbstractViewController	controller;
   private VLViewComponentXML		configuration;
