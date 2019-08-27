@@ -52,8 +52,8 @@ public class DemoAppMobileViewStructureBeansProvider {
     platformProperties.setProperty("tempFolderPath", "temp");
     platformProperties.setProperty("applicationDataFolderPath", "temp");
     platformProperties.setProperty("localNotificationsFolderPath", "temp");
-    platformProperties.setProperty("applicationWindowName", "Car Repair Manager");
-    platformProperties.setProperty("applicationTitle", "Car Repair Manager");
+    platformProperties.setProperty("applicationWindowName", "DEMO APPLICATION");
+    platformProperties.setProperty("applicationTitle", "DEMO APPLICATION");
     platformProperties.setProperty("fullScreen", "false");
     platformProperties.setProperty("platformRootStructureId", "MobileLayoutRSView");
     platformProperties.setProperty("loginRootStructureId", "LoginRootStructure");
