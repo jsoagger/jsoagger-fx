@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+    default-lazy-init="true">
+
+    <bean id="LoginAction" class="io.github.jsoagger.jfxcore.engine.controller.login.action.LoginAction" scope="prototype" >
+    	<property name="loginOperation" ref="LoginOperation"/>
+    </bean>
+    
+    <bean id="LogoutAction" class="io.github.jsoagger.jfxcore.engine.action.LogoutAction" >
+    	<property name="logoutOperation" ref="LogoutOperation"/>
+    </bean>
+    
+    <bean id="HideWizardAction" class="io.github.jsoagger.jfxcore.engine.components.wizard.action.HideWizardAction" scope="prototype" />
+    <bean id="BackWizardAction" class="io.github.jsoagger.jfxcore.engine.components.wizard.action.BackWizardAction" scope="prototype" />
+    <bean id="NextWizardAction" class="io.github.jsoagger.jfxcore.engine.components.wizard.action.NextWizardAction" scope="prototype" />
+    <bean id="ExpandSecondaryMenuAction" class="io.github.jsoagger.jfxcore.engine.action.ExpandSecondaryMenuAction" scope="prototype" />
+    <bean id="ExpandTernaryMenuAction" class="io.github.jsoagger.jfxcore.engine.action.ExpandTernaryMenuAction" />
+    <bean id="ExpandPrimaryMenuAction" class="io.github.jsoagger.jfxcore.engine.action.ExpandPrimaryMenuAction" />
+    <bean id="CoreSimpleAttributeUpdateAction" class="io.github.jsoagger.jfxcore.engine.components.wizard.editor.controller.CoreSimpleAttributeUpdateAction" scope="prototype" />
+    <bean id="SimpleForwardEditor" class="io.github.jsoagger.jfxcore.engine.components.wizard.editor.components.SimpleForwardEditor" scope="prototype" />
+    <bean id="UpdateAttributeInLineActionHandler" class="io.github.jsoagger.jfxcore.engine.components.wizard.editor.SimpleAttributeInlineEditionHandler" scope="prototype" />
+    <bean id="UpdateAttributeForwardActionHandler" class="io.github.jsoagger.jfxcore.engine.components.wizard.editor.SimpleAttributeForwardEditionHandler" scope="prototype" />
+    <bean id="PersistenceServiceDelegate" class="io.github.jsoagger.jfxcore.engine.delegate.PersistenceServiceDelegate" scope="prototype" />
+    <bean id="SimpleInLineEditor" class="io.github.jsoagger.jfxcore.engine.components.wizard.editor.components.SimpleInLineEditor" scope="prototype" />
+
+	<bean id="PushToViewActionStaticData" class="io.github.jsoagger.jfxcore.components.actions.PushToViewActionStaticData" scope="prototype" />
+
+    <bean id="DeleteAllNotificationsAction" class="io.github.jsoagger.jfxcore.engine.components.notification.action.DeleteAllNotificationsAction" scope="prototype" />
+    <bean id="MarkAllNotificationsReadenAction" class="io.github.jsoagger.jfxcore.engine.components.notification.action.MarkAllNotificationsReadenAction" scope="prototype" />
+    <bean id="PushViewToTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.table.PushViewToTableStructureAction" scope="prototype" />
+    <bean id="ShowWizardAction" class="io.github.jsoagger.jfxcore.engine.action.ShowWizardAction" scope="prototype" />
+    <bean id="CloseWizardAction" class="io.github.jsoagger.jfxcore.engine.action.CloseWizardAction" scope="prototype" />
+    <bean id="RefreshParentTableAction" class="io.github.jsoagger.jfxcore.engine.action.RefreshParentTableAction" scope="prototype" />
+    
+
+    <bean id="TableContextualActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.TableContextualActionPresenter" scope="prototype" />
+    <bean id="DoActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.quickactions.DoActionPresenter" scope="prototype" />
+    <bean id="LoadRootStructureAction" class="io.github.jsoagger.jfxcore.engine.action.LoadRootStructureAction" scope="prototype" />
+    <bean id="DeleteObjectLinkFromTableRowAction" class="io.github.jsoagger.jfxcore.engine.action.table.DeleteObjectLinkFromTableStructureRowAction" scope="prototype" />
+    <bean id="DeleteObjectLinkFromRecursiveStructureTableRowAction" class="io.github.jsoagger.jfxcore.engine.action.table.DeleteObjectLinkFromRecursiveStructureTableRowAction" scope="prototype" />
+    <bean id="CopySelectedElementsFromTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.table.CopySelectedElementsFromTableStructureAction" scope="prototype" />
+    <bean id="DeleteSelectedElementsInTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.table.DeleteSelectedElementsInTableStructureAction" scope="prototype" />
+    <bean id="RefreshTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.table.RefreshTableStructureAction" scope="prototype" />
+    <bean id="PrintSelectedElementsInTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.table.PrintSelectedElementsInTableStructureAction" scope="prototype" />
+    <bean id="PasteElementsToTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.table.PasteElementsToTableStructureAction" scope="prototype" />
+    <bean id="SelectAllElementsInTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.table.SelectAllElementsInTableStructureAction" scope="prototype" />
+    <bean id="ShowWizardFromTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.ShowWizardFromTableStructureAction" scope="prototype" />
+    <bean id="DeleteIterationFromTableStructureAction" class="io.github.jsoagger.jfxcore.engine.action.DeleteIterationFromTableStructureAction" scope="prototype" >
+    	<property name="deleteOperation"  ref="DeleteIterationOperation"/>
+    </bean>
+    
+    <bean id="StructureContentRelatedModelPaginatedDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.StructureContentRelatedModelPaginatedDataLoader" scope="prototype" />
+    <bean id="NotImplementedAction" class="io.github.jsoagger.jfxcore.engine.action.table.NotImplementedAction" scope="prototype" />
+    <bean id="WizardWaitingAction" class="io.github.jsoagger.jfxcore.engine.action.WizardWaitingAction" scope="prototype"/>
+</beans>

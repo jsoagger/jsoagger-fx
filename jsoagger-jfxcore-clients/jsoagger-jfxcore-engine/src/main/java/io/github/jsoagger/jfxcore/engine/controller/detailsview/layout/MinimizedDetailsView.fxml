@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
+
+<StackPane id="epMinimizedDetailsViewRootContainer" fx:id="rootContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-minimized-details-view-root-pane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+
+    <children>
+        <AnchorPane>
+            <StackPane id="epMinimizedDetailsViewContentExternalContainer" fx:id="contentExternalContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-minimized-details-view-content-external-container" 
+                AnchorPane.topAnchor="150.0"
+                AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+                <StackPane fx:id="centerContainer" styleClass="ep-minimized-details-view-center-container" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox id="centerContainerViewLayout" fx:id="centerContainerViewLayout" styleClass="" VBox.vgrow="ALWAYS">
+                            <children>
+                                <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS"  style="" vbarPolicy="ALWAYS">
+                                    <content>
+                                        <StackPane id="contentContainer" fx:id="contentContainer" styleClass="ep-minimized-details-view-content-container" 
+                                            VBox.vgrow="ALWAYS" prefHeight="-1" prefWidth="-1"/>
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </VBox>
+
+                        <AnchorPane id="centerContainerEditLayoutWrapper" fx:id="centerContainerEditLayoutWrapper" visible="false" managed="false" VBox.vgrow="ALWAYS" prefHeight="-1" prefWidth="-1">
+                            <children>
+                                <VBox id="centerContainerEditLayout" fx:id="centerContainerEditLayout" style="" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" VBox.vgrow="ALWAYS"/>
+                                <Button fx:id="donePopContentButton" text="Done" AnchorPane.topAnchor="28" AnchorPane.leftAnchor="32" styleClass="button-small,button-primary" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </StackPane>
+            </StackPane>
+            
+             <StackPane id="epMinimizedDetailsViewHeaderExternalContainer" fx:id="headerExternalContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-minimized-details-view-header-external-container" AnchorPane.topAnchor="0.0"
+                AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                <children>
+                    <StackPane id="epMinimizedDetailsViewHeaderInternalContainer" fx:id="headerInternalContainer" styleClass="ep-minimized-details-view-header-internal-container">
+                        <children>
+
+                            <VBox id="leftSectionContainer" fx:id="leftSectionContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-minimized-details-view-left-container,left-pane-separator">
+                                <children>
+                                    <StackPane id="identityContainer" fx:id="identityContainer" styleClass="ep-minimized-details-view-summary-container" VBox.vgrow="ALWAYS"/>
+                                    
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" hbarPolicy="NEVER">
+                                    	<StackPane id="viewActionsContainer" fx:id="viewActionsContainer" styleClass="ep-minimized-details-view-header-actions-container" />
+                                   	</ScrollPane>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" hbarPolicy="NEVER">
+                                    	<StackPane id="editActionsContainer" fx:id="editActionsContainer" styleClass="ep-minimized-details-view-actions-container" visible="false" managed="false" />
+                                    </ScrollPane>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" hbarPolicy="NEVER">
+                                    	<HBox id="tabsContainer" fx:id="tabsContainer" styleClass="ep-minimized-details-view-tabs-container" />
+                                    </ScrollPane>
+                                </children>
+                            </VBox>
+                        </children>
+                    </StackPane>
+                </children>
+            </StackPane>
+
+        </AnchorPane>
+    </children>
+</StackPane>

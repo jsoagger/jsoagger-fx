@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true">
+
+
+	<bean id="HeaderLessMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="parentMessageSource" ref="CoreGeneralMessageSource" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.jfxcore.demoapp.desktop.headerless.message</value>
+				<value>io.github.jsoagger.jfxcore.demoapp.desktop.dashboard.message</value>
+				<value>io.github.jsoagger.jfxcore.demoapp.desktop.table.message</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="HeaderLessRSContentView" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.content.RootStructureContentController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/HeaderLessRSContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderLessRSView" class="io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/HeaderLessRSView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderLessContentView" class="io.github.jsoagger.jfxcore.engine.controller.HeaderLessTwoPanesViewController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="layoutManager" ref="TwoHPanesWithLeftMenuLayoutManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/HeaderLessContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderLessLeftMenuViewProvider" class="io.github.jsoagger.jfxcore.engine.components.menu.PrimaryMenuProvider">
+		<property name="primaryMenu" value="/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/HeaderLessLeftMenuView.xml" />
+	</bean>
+
+	<bean id="HeaderLessLeftMenuView" class="io.github.jsoagger.jfxcore.engine.controller.SecondaryMenuController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="menuProvider" ref="HeaderLessLeftMenuViewProvider" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+	</bean>
+
+	<bean id="HeaderLessToValidateTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTableViewFixedPaginationLayoutManager" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/common/dashboard/tovalidate/DemoToValidateTableView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/tovalidate/HeaderLessToValidateTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderLessTasksTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTableViewFixedPaginationLayoutManager" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/common/dashboard/tasks/DemoTasksTableView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/tasks/HeaderLessTasksTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="HeaderLessWipTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTableViewFixedPaginationLayoutManager" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/common/dashboard/wip/DemoWipTableView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/wip/HeaderLessWipTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderLessDashboardView" class="io.github.jsoagger.jfxcore.demoapp.comps.DashboardController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/dashboard/DemoDashboardView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/dashboard/HeaderLessDashboardView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderLessDemoAdministrationView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DemoAdministrationMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="CenteredStretchedViewLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/administration/DemoAdministrationView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/administration/HeaderLessDemoAdministrationView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	 <bean id="DemoHeaderLessTableViewView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+        <property name="messageSource" ref="HeaderLessMessageSource" />
+        <property name="modelProvider" ref="RootStructureModelLoader" />
+        <property name="layoutManager" ref="FullTableViewLayoutManager" />
+        <property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+        <property name="viewDefinitions">
+            <list merge="true">
+            	<value>/io/github/jsoagger/jfxcore/demoapp/desktop/table/example2/DemoTableViewExample2View.xml</value>
+                <value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/table/DemoHeaderLessTableViewView.xml</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="HLWizardContentViewWizard" class="io.github.jsoagger.jfxcore.engine.controller.main.WizardViewController" scope="prototype">
+		<property name="messageSource" ref="WizardMessageSource"/>
+		<property name="wizardProperties" ref="wizardProperties"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/wizard/WizardContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/wizard/HeaderLessWizardContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="HLAnotherWizardView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="WizardMessageSource"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/wizard/AnotherWizardView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/wizard/HeaderLessAnotherWizardView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

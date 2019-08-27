@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefViewportHeight="485.0" prefViewportWidth="1028.0">
+         <content>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <ToolBar fx:id="topToolbar" focusTraversable="false">
+                     <items>
+                        <HBox fx:id="leftSideHbox" spacing="5.0" />
+                        <Pane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <HBox spacing="5.0">
+                           <children>
+                              <TextField fx:id="filterTextField" prefWidth="300.0" promptText="Filter" />
+                              <ComboBox fx:id="rowPerPageComboBox" />
+                           </children>
+                        </HBox>
+                     </items>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ToolBar>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="408.0" prefViewportWidth="1028.0" VBox.vgrow="ALWAYS">
+                     <content>
+                        <FlowPane fx:id="centerFlowPane" hgap="30.0" style="-fx-border-width: 1;" vgap="30.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                     </content>
+                  </ScrollPane>
+                  <ToolBar fx:id="paginationToolbar">
+                     <items>
+                        <Pane fx:id="leftSpacer" maxWidth="1.7976931348623157E308" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <Button fx:id="firstPageButton" mnemonicParsing="false" />
+                              <Button fx:id="previousButton" mnemonicParsing="false" />
+                              <HBox fx:id="paginationBarHbox" spacing="2.0" />
+                              <Button fx:id="nextButton" mnemonicParsing="false" />
+                              <Button fx:id="lastPageButton" mnemonicParsing="false" />
+                           </children>
+                        </HBox>
+                        <Pane fx:id="rightSpacer" maxWidth="1.7976931348623157E308" />
+                        <Label fx:id="elementsNumberLabel" text="5 Elements sur 5" />
+                     </items>
+                     <VBox.margin>
+                        <Insets top="1.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ToolBar>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</StackPane>

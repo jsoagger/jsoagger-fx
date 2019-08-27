@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+
+    <component id="Content" combine.keys="id">
+    </component>
+
+    <component id="CurrentContainerLocationViewer">
+        <properties combine.keys="name">
+            <property name="fullPath" value="false" />
+            <!-- <property name="type" value="CurrentContainerLocationViewer"/> -->
+        </properties>
+    </component>
+
+    <component id="CurrentViewLocation">
+        <properties combine.keys="name">
+            <property name="fullPath" value="false" />
+            <property name="type" value="CurrentLocationViewer" />
+        </properties>
+    </component>
+
+    <component id="RootMenuButton">
+        <properties combine.keys="name">
+            <property name="ikonli" value="mdi-menu:32" />
+            <property name="tooltip" value="ROOT_MENU_TOOLTIP_LABEL" />
+            <property name="styleClass" value="app-header-button" />
+            <property name="type" value="SimpleButton" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="ExpandPrimaryMenuAction" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="ProfileButton">
+        <properties combine.keys="name">
+            <property name="label" value="PROFILE_LABEL" />
+            <property name="ikonli" value="mdi-account-circle:24" />
+            <property name="tooltip" value="PROFILE_LABEL" />
+            <property name="styleClass" value="app-header-button" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+            <property name="type" value="UserProfile" />
+        </properties>
+
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="ExpandTernaryMenuAction" />
+                <property name="args" value="menuId:HeaderProfileTernaryMenu" />
+            </properties>
+        </component>
+    </component>
+    
+    <component id="ProfileHubButton">
+        <properties combine.keys="name">
+            <property name="label" value="PROFILE_LABEL" />
+            <property name="ikonli" value="gmi-format-align-right:24" />
+            <property name="tooltip" value="PROFILE_LABEL" />
+            <property name="styleClass" value="app-header-button" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+            <property name="type" value="UserProfile" />
+        </properties>
+
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="ExpandTernaryMenuAction" />
+                <property name="args" value="menuId:HeaderProfileTernaryMenu" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="LogoutButton">
+        <properties combine.keys="name">
+            <property name="label" value="LOGOUT_LABEL" />
+            <property name="tooltip" value="LOGOUT_LABEL" />
+            <property name="ikonli" value="mdi-logout:24" />
+            <property name="iconStyleClass" value="header-icon" />
+            <property name="styleClass" value="app-header-button" />
+            <property name="displayMode" value="RIGHT" />
+            <property name="type" value="SimpleButton" />
+        </properties>
+
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="LogoutAction" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="HubButton">
+        <properties combine.keys="name">
+            <property name="title" value="HISTORY_LABEL" />
+            <property name="tooltip" value="HISTORY_LABEL" />
+            <property name="ikonli" value="mdi-format-align-right:24" />
+            <property name="iconStyleClass" value="header-icon" />
+            <property name="styleClass" value="app-header-button" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+            <property name="type" value="SimpleButton" />
+        </properties>
+
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="ExpandTernaryMenuAction" />
+                <property name="args" value="menuId:HubTernaryMenuView" />
+            </properties>
+        </component>
+    </component>
+</view>

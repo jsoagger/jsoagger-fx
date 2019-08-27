@@ -1,0 +1,249 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+
+.ep-tab-pane-item-m .tab-item-title {
+	-fx-font-size:1em;
+}
+
+.ep-splited-tab-pane{
+	-fx-spacing:0;
+}
+
+.ep-tab-pane-item-xl{
+	-fx-padding: 32;
+	-fx-min-height:64;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* TAB PANE COMMON
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.tab-items-wrapper {
+ 	-fx-background-color: -grey-color-100;
+}
+
+.tab-pane-wrapper{
+	-fx-background-color:transparent;
+}
+
+.tab-content-wrapper{
+	-fx-background-color:transparent;
+}
+
+.tab-item {
+	-fx-alignment: CENTER;
+}
+
+.tab-item:hover {
+	-fx-cursor: hand;
+}
+
+.tab-item:hover> .label {
+}
+
+.tab-item-title {
+	-fx-graphic-text-gap:8.0;
+}
+
+.tab-item:bottom .tab-item-title {
+	-fx-graphic-text-gap:2.0;
+}
+ 
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* TAB PANE POSITION BOTTOM
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.tab-items-wrapper:bottom {
+	-fx-background-color: white;
+ 	-fx-min-height:62;
+	-fx-border-width: 1 0 0 0;
+ 	-fx-border-color: -grey-color-300 transparent transparent transparent;
+ 	-fx-alignment:CENTER;
+}
+
+.tab-items-wrapper .center-tab-items-wrapper{
+	-fx-border-width: 0;
+}
+
+.tab-item:bottom {
+	-fx-border-color: transparent;
+ 	-fx-border-width: 3.0 0 0.0 0;
+ 	-fx-padding:0 32 0 32;
+}
+
+.tab-item:bottom:selected {
+	-fx-border-color: -primary-color transparent transparent transparent;
+ 	-fx-border-width:3.0 0 0.0 0;
+}
+
+
+.tab-item:bottom .tab-item-title{
+	-fx-content-display:TOP;
+	-fx-font-size:1em;
+	-fx-font-family:'Roboto Bold';
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* TAB PANE POSITION TOP
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.tab-item:top {
+	-fx-border-color: transparent -grey-color-200 transparent -grey-color-200;
+ 	-fx-border-width: 0.0 0 3.0 0;
+}
+
+.tab-item:top:selected {
+	-fx-opacity:1.0;
+	-fx-border-color: transparent -grey-color-200 -accent-color -grey-color-200;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* TAB PANE 
+*--------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* PRIMARY TAB PANE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-primary-tab-pane-header{
+	-fx-background-color:-application-header-background-color;
+	-fx-padding:0;	
+}
+
+.ep-primary-tab-pane-header .center-tab-items-wrapper{
+	-fx-spacing:16;
+	-fx-border-width:0;
+	-fx-padding:0 32 0 32;
+}
+
+
+.ep-tab-pane-header-xl{
+	-fx-min-height:92;
+}
+
+.ep-tab-pane-header-m{
+	-fx-min-height:72;
+}
+
+.ep-primary-tab-item{
+	-fx-border-width: 0 0 4 0;
+	-fx-border-color:transparent;
+	-fx-alignment:BOTTOM_CENTER;
+	-fx-opacity:0.47;
+	-fx-padding:0 8 12 8;
+}
+
+.ep-primary-tab-item:selected{
+	-fx-border-width: 0 0 4 0;
+	-fx-border-color:transparent transparent  white transparent;
+	-fx-alignment:BOTTOM_CENTER;
+}
+
+.ep-primary-tab-item-title{
+	-fx-text-fill:white;
+}
+
+.ep-primary-tab-item:selected{
+	-fx-opacity:1;
+}
+
+.ep-primary-tab-item:hover{
+	-fx-cursor:hand;
+}
+
+.ep-primary-tab-item-title .ikonli-font-icon,
+.ep-primary-tab-item-title:selected .ikonli-font-icon{
+	-fx-fill:white;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* WHITE TAB PANE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-white-rounded-tab-pane-header{
+	-fx-background-color:white;
+	-fx-padding:0;	
+	-fx-border-width:1 1 1 0;
+	-fx-border-color:-grey-color-300;
+}
+
+.ep-white-tab-pane-header{
+	-fx-background-color:-grey-color-50;
+	-fx-border-width:1 1 1 1;
+	-fx-border-color:-grey-color-300;
+}
+
+.ep-splited-tab-content{
+	-fx-border-width:0 1 1 1;
+	-fx-border-color:-grey-color-300;
+}
+
+.ep-white-tab-pane-header .center-tab-items-wrapper{
+	-fx-spacing:16;
+	-fx-border-width:10;
+	-fx-padding:0 32 0 32;
+	-fx-border-color:blue;
+}
+
+.ep-white-tab-item{
+	-fx-border-width: 0 0 4 0;
+	-fx-border-color:transparent;
+	-fx-alignment:CENTER;
+	-fx-padding:0 16 0 16;
+	-fx-opacity:0.57;
+}
+
+.ep-white-tab-item:bottom{
+	-fx-border-width: 4 0 0 0;
+	-fx-alignment:CENTER;
+	-fx-border-color:transparent ;
+}
+
+.ep-white-tab-item:selected{
+	-fx-border-width: 0 0 4 0;
+	-fx-border-color:transparent transparent  -fx-link-color transparent;
+	-fx-alignment:CENTER;
+	-fx-opacity:1;
+}
+
+.ep-white-tab-item:bottom:selected{
+	-fx-border-width: 4 0 0 0;
+	-fx-border-color: -primary-color transparent transparent  transparent;
+	-fx-alignment:CENTER;
+}
+
+.ep-white-tab-item-title{
+}
+
+.ep-white-tab-item:selected{
+	-fx-opacity:1;
+}
+
+.ep-white-tab-item:hover{
+	-fx-cursor:hand;
+}
+
+.ep-white-tab-item-title .ikonli-font-icon,
+.ep-white-tab-item-title:selected .ikonli-font-icon{
+	-fx-fill:white;
+}
+
+

@@ -1,0 +1,315 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+ 
+ /*--------------------------------------------------------------------------------------------------------------------------------
+* Root primary colors
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.root {
+	-text-color-50:#eceff1;
+	-text-color-100:#cfd8dc;
+	-text-color-200:#b0bec5;
+	-text-color-300:#90a4ae;
+	-text-color-400:#78909c;
+	-text-color-500:#607d8b;
+	-text-color-600:#546e7a;
+	-text-color-700:#455a64;
+	-text-color-800:#37474f;
+	-text-color-900:#263238;
+	
+	-dark-primary-color: -primary-color-900;
+	-light-primary-color: -primary-color-300;
+	-primary-color: -primary-color-500;
+	-accent-color: -accent-color-500;
+	
+	-primary-text-color: -text-color-900;
+	-secondary-text-color: -text-color-300;
+	
+	-hover-color: derive(-primary-color-50, 5.0%);
+	-hover-text-color: -primary-text-color;
+	
+	-background-color: transparent;
+	-internal-border-color: rgb(204,204,204,0.20);
+	-lighter-internal-border-color: rgb(204,204,204,0.15);
+	-external-border-color: -grey-color-200;
+	-form-border-color: -grey-color-300;
+    -icons-color: -grey-color-700;
+    -input-border-color: -grey-color-400;
+    
+    -fx-default-link-color:  #4285F4;
+    -fx-link-color:   #4285F4;
+    -fx-dark-link-color:#3b5998;
+    -fx-toolbar-link-color:rgb(10,10,0,0.87);
+	
+	 /*label constants */
+	-fx-font-size: 12px;
+	-fx-font-family: 'Roboto Regular';
+	-form-label-color: -text-color-300;
+	-form-value-color:rgb(0,0,0,0.97);
+	-form-label-border-color: -grey-color-200;
+	-form-error-color:#9ccc65;
+	
+	-fx-primary-icon-color: -primary-color;
+	-application-header-background-color: -primary-color;
+	-simple-secondary-menu-background-color:-primary-color-900;
+	-primary-menu-background-color:white;
+	-advanced-secondary-menu-background-color:white;
+	 
+	 -ep-primary-text-color:rgb(0,0,0,0.87);
+	 -ep-secondary-text-color:rgb(0,0,0,0.60);
+	  
+	 -ep-pane-shadow-effect: dropshadow(three-pass-box, -grey-color-300,1.9,0.2,0,1.0);
+	 -ep-extra-pane-shadow-effect: dropshadow(three-pass-box, derive(-grey-color-300,-10%),8.0,0.2,2,0.0);
+	 -ep-tile-shadow-effect: dropshadow(one-pass-box, derive(-grey-color-300,-10%),2.0,0.2,0,0.0);
+	 -ep-pane-footer-shadow-effect: dropshadow(three-pass-box, derive(-grey-color-300,5%),0.0,0.2,0,-4.0);
+	 -ep-pane-header-shadow-effect: dropshadow(three-pass-box,derive(black,20%),8.0,0,0,1.0);
+	 -ep-pane-flat-header-shadow-effect: dropshadow(three-pass-box, derive(-grey-color-300,-15%),1.0,0.1,0,1.0);
+	 -ep-pane-flat-footer-shadow-effect: dropshadow(three-pass-box, derive(-grey-color-300,-1%),1.0,0.1,0,-1.0);
+	 -ep-pane-left-pane-shadow-effect: dropshadow(three-pass-box, -grey-color-500,10.0,0.1,2,1.0);
+	 -ep-pane-right-pane-shadow-effect: dropshadow(three-pass-box, -grey-color-500,10.0,0.1,-2,-1.0);
+	 
+	 -secondary-header-background-color:-grey-color-600;
+	 
+	 /** Title colors in form
+	-fx-primary-form-title-font-color:rgb(5,16,57);
+	-fx-secondary-form-title-font-color:rgb(5,16,57);*/
+	-fx-primary-form-title-font-color:rgb(0, 42, 58, 0.97);
+	-fx-secondary-form-title-font-color:rgb(0, 42, 58, 0.87);
+}
+
+/***********************************************************************************
+ * 						HEADER
+ ***********************************************************************************/
+ .app-header-background{
+	-fx-background-color:-primary-color-a200;
+}
+
+.accent-background{
+	-fx-background-color:-accent-color-a100;
+}
+
+.ep-secondary-root-structure-wrapper{
+	-fx-background-color:white;
+	-fx-border-radius:5;
+	-fx-background-radius:5;
+}
+
+.ep-secondary-root-structure-wrapper .ep-header-all-container{
+	-fx-background-color: white;
+	-fx-border-width:0 0 0.5 0;
+	-fx-border-color:transparent transparent -black-color transparent;
+}
+
+.ep-secondary-root-structure-wrapper .ep-document-management-rs-header .ep-header-all-container{
+	-fx-background-color: -accent-color;
+}
+
+.ep-secondary-root-structure-wrapper .ep-part-management-rs-header,
+.ep-secondary-root-structure-wrapper .ep-part-management-rs-header .ep-header-all-container{
+	-fx-background-color: -accent-color;
+}
+
+.ep-secondary-root-structure-wrapper .ep-object-management-rs-header,
+.ep-secondary-root-structure-wrapper .ep-object-management-rs-header .ep-header-all-container{
+	-fx-background-color: -primary-color-900;
+}
+
+.ep-secondary-root-structure-wrapper .ep-object-search-rs-header,
+.ep-secondary-root-structure-wrapper .ep-object-search-rs-header .ep-header-all-container{
+	-fx-background-color: -primary-color-900;
+}
+
+.ep-secondary-root-structure-wrapper .ep-object-edit-rs-header,
+.ep-secondary-root-structure-wrapper .ep-object-edit-rs-header .ep-header-all-container{
+	-fx-background-color: -accent-color-a100;
+}
+
+.secondary-header-icon{
+	-fx-fill:-fx-link-color;
+}
+
+
+.ep-header-all-container:hideBottom{
+	-fx-max-height: 72;
+	-fx-padding: 0;
+	-fx-border-width: 0;
+}
+
+/*
+* The left section of the header
+*/
+.ep-header-left-toolbar {
+	-fx-alignment: CENTER;
+	-fx-border-width: 0;
+	-fx-border-color: derive(-application-header-background-color, -20%);
+	-fx-padding: 0;
+}
+
+.ep-header-left-toolbar-top {
+	-fx-pref-height: 72;
+	-fx-alignment:CENTER;
+}
+
+.ep-header-left-toolbar-bottom {
+	-fx-pref-height: 72;
+	-fx-alignment:CENTER;
+}
+/**
+* Navigation bar
+*/
+.ep-header-center-area-nav-bar-container {
+	-fx-alignment: CENTER_LEFT;
+	-fx-padding: 0 32 0 8;
+	-fx-spacing: 0;
+}
+
+/**
+* center area
+*/
+.ep-header-center-area-container {
+	-fx-alignment: CENTER_LEFT;
+	-fx-padding: 0 32 0 8;
+	-fx-spacing: 0;
+}
+
+.ep-header-right-area-container {
+	-fx-alignment: CENTER_RIGHT;
+	-fx-padding: 16 16 14 0;
+	-fx-hgap: 8;
+	-fx-spacing: 8;
+}
+
+.current-location-item-label {
+	-fx-text-fill: white;
+	-fx-font-size: 16px;
+	-fx-font-family: 'Segoe UI Bold';
+	-fx-padding: 8 0 0 0;
+}
+
+.done-item-label:hover, 
+.done-item-label:hover:visited,
+.done-item-label:visited,
+.done-item-label {
+	-fx-fill: -grey-color-100;
+	-fx-text-fill: -grey-color-100;
+	-fx-font-family: 'Segoe UI Bold';
+	-fx-font-size: 20pt;
+	-fx-underline: false;
+	-fx-alignment: CENTER;
+	-fx-padding:0;
+}
+
+.done-item-label{
+	-fx-underline: true;
+}
+
+.previous-location-item-label {
+	-fx-padding: 0;
+	-fx-font-size: 12pt;
+	-fx-fill: -grey-color-100;
+	-fx-text-fill: -grey-color-100;
+	-fx-font-family: 'Segoe UI Thin';
+	-fx-alignment: CENTER;
+}
+
+/**************************************************************************************************************************************************************
+ * 						MINIMIZED SECONDARY LEFT MENU
+ *************************************************************************************************************************************************************/
+.ep-menu-minimized-wrapper {
+	-fx-alignment: TOP_CENTER;
+	-fx-spacing:30;
+}
+
+.ep-menu-minimized {
+	-fx-padding: 0 8 0 8;
+	-fx-alignment: TOP_CENTER;
+}
+
+.ep-menu-minimized-row {
+	visibility: hidden;
+}
+
+.ep-menu-minimized-row-label {
+	
+}
+
+.ep-submenu-minimized {
+	
+}
+
+.ep-submenu-minimized-row {
+	-fx-alignment: CENTER;
+	-fx-border-width:0 0 0 4;
+	-fx-border-color:transparent;
+	-fx-opacity: 0.87;
+}
+
+.ep-submenu-minimized-row:hover {
+	-fx-background-color:-ep-secondary-menu-row-hover-color;
+}
+
+.ep-submenu-minimized-row:selected {
+	-fx-background-color: -ep-secondary-menu-row-select-color;
+	-fx-opacity: 1;
+	-fx-cursor: hand;
+	-fx-border-color:-ep-secondary-menu-row-select-border-color;
+}
+
+.ep-submenu-minimized-row:selected >*.ep-submenu-minimized-row-label>*.ep-menu-icon{
+	-fx-fill:-ep-left-menu-minimized-icons-select-bg-color;
+}
+
+.ep-menu-icon {
+	-fx-fill: -ep-left-menu-minimized-icons-bg-color;
+	/*-fx-effect: innershadow(three-pass-box, -grey-color-200, 5.0, 0.2, 0.0, 1.0);*/
+}
+
+.ep-submenu-minimized-row:selected >*.ep-submenu-minimized-row-label{
+	-fx-text-fill:-ep-left-menu-minimized-text-selected-bg-color;
+}
+
+.ep-submenu-minimized-row-label, .ep-submenu-minimized-row-label:hover,
+	.ep-submenu-minimized-row-label:visited,
+	.ep-submenu-minimized-row-label:hover:visited {
+	-fx-underline: false;
+	-fx-text-fill: white;
+	-fx-focus-color: transparent;
+}
+
+.ep-submenu-minimized-row-label:hover,
+.ep-submenu-minimized-row-label:visited:hover,
+.ep-submenu-minimized-row-label:visited,
+.ep-submenu-minimized-row-label {
+	-fx-graphic-text-gap: 4;
+	-fx-font-family: 'Helvetica';
+	-fx-content-display: TOP;
+	-fx-text-fill:-ep-left-menu-minimized-text-bg-color;
+	-fx-text-alignment:CENTER;
+	-fx-font-size:10px;
+}
+
+
+.ep-settings-view-right-area-container {
+	
+}
+
+.ep-settings-view-left-area-container {
+	
+}

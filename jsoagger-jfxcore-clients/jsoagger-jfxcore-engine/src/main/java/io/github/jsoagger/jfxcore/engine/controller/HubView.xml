@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+
+        <component id="Content" combine.keys="id">
+                <properties combine.keys="name">
+                        <property name="MenuPos" value="TERTIARY_MENU"></property>
+                </properties>
+
+                <component id="FirstRowLeftTabs" combine.keys="ref">
+                        <component ref="BookmarkedItemsTab"/>
+                        <component ref="RecentlyAccessedItemsTab"/>
+                        <component ref="WorkingItemsTab"/>
+                </component>
+        </component>
+
+        <component id="BookmarkedItemsTab">
+                <properties combine.keys="name">
+                        <property name="label" value="BOOKMARKED_ITEMS_LABEL"/>
+                        <property name="icon" value="TAGS"/>
+                        <property name="tooltip" value="BOOKMARKED_ITEMS_TOOLTIP"/>
+                </properties>
+
+                <component id="Actions">
+                        <component ref="ClearBookmarkButton"/>
+                </component>
+        </component>
+
+        <component id="RecentlyAccessedItemsTab">
+                <properties combine.keys="name">
+                        <property name="label" value="RECENTLY_ACCESSED_ITEMS_LABEL"/>
+                        <property name="icon" value="CLOCK_ALT"/>
+                        <property name="tooltip" value="RECENTLY_ACCESSED_ITEMS_TOOLTIP"/>
+                </properties>
+
+                <component id="Actions">
+                        <component ref="ClearHistoryButton"/>
+                </component>
+        </component>
+
+        <component id="WorkingItemsTab">
+                <properties combine.keys="name">
+                        <property name="label" value="WORKING_ITEMS_LABEL"/>
+                        <property name="icon" value="LOCK"/>
+                        <property name="tooltip" value="WORKING_ITEMS_TOOLTIP"/>
+                </properties>
+        </component>
+
+        <component id="ClearHistoryButton">
+                <properties combine.keys="name">
+                        <property name="label" value="CLEAR_HISTORY_LABEL"/>
+                        <property name="tooltip" value="CLEAR_HISTORY_LABEL"/>
+                </properties>
+        </component>
+
+        <component id="ClearBookmarkButton">
+                <properties combine.keys="name">
+                        <property name="label" value="CLEAR_BOOKMARKS_LABEL"/>
+                        <property name="tooltip" value="CLEAR_BOOKMARKS_LABEL"/>
+                </properties>
+        </component>
+</view>

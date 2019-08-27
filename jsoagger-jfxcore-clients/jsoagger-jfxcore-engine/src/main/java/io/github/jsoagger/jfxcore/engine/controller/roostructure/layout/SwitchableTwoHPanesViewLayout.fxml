@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+
+<!-- 
+	400 = 400 pref width an input + padding + button in right side of a row.
+	If maw widh is not set to 400, the hscroll bar is displayed.
+	May be change pref width of input to 400 and max width inside this file to 400. 
+ -->
+<AnchorPane fx:id="rootPane" maxHeight="-1.0" maxWidth="-1.0" id="switchableTwoHpanesViewLayout" minHeight="-1.0" style="-fx-background-color:-background-color;" minWidth="-1.0" pickOnBounds="false" snapToPixel="true" xmlns="http://javafx.com/javafx/8"
+    xmlns:fx="http://javafx.com/fxml/1">
+
+    <!--
+        When the orientation is left
+    -->
+    
+    <HBox AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" fx:id="leftFloatingPaneWrapper">
+        <StackPane fx:id="leftFloatingPaneMenuWrapper" styleClass="ep-switchable-pane-lateral-container"
+            alignment="TOP_CENTER">
+            <children>
+                <VBox fx:id="leftFloatingPaneActionsWrapper" alignment="TOP_CENTER" styleClass="ep-switchable-pane-lateral-left" maxHeight="80">
+                    <children>
+                        <Button  fx:id="showLeftPaneButton" styleClass="ep-switchable-pane-action-button"/>
+                        <Button fx:id="hideLeftPaneButton" styleClass="ep-switchable-pane-action-button"/>
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+
+        <StackPane fx:id="leftFloatingPaneContentWrapper" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" minWidth="400" maxWidth="400"
+        		style="-fx-border-width:0 1 0 0;-fx-border-color:-grey-color-100;-fx-padding:8 4 8 4;-fx-background-color:-grey-color-200;">
+       		<ScrollPane fx:id="leftScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                 <content>
+                       <StackPane id="leftFloatingPaneContentWrapperInternalWrapper" style="-fx-padding:0 0 0 0;-fx-background-color:-background-color;" maxWidth="400">
+                           <StackPane fx:id="leftFloatingPaneContent" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-switchable-pane-internal-wrapper" maxWidth="400"/>
+                       </StackPane>
+                </content>
+             </ScrollPane>
+        </StackPane>
+    </HBox>
+
+
+    <!-- The center section -->
+    <HBox fx:id="centerPaneWrapper" VBox.vgrow="ALWAYS" spacing="8" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" HBox.hgrow="ALWAYS"
+    	style="-fx-padding:8 4 8 4;-fx-background-color:-grey-color-200;">
+            <ScrollPane fx:id="centerScrollPaneWrapper" fitToHeight="true" fitToWidth="true" HBox.hgrow="ALWAYS">
+                <content>
+                    <StackPane fx:id="centerStackPane" BorderPane.alignment="CENTER" />
+                </content>
+            </ScrollPane>
+    </HBox>
+
+
+    <!--
+        When orientation is right
+    -->
+    <HBox fx:id="rightFloatingPaneWrapper" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
+        <StackPane fx:id="rightFloatingPaneMenuWrapper" styleClass="ep-switchable-pane-lateral-container" alignment="TOP_CENTER">
+            <VBox fx:id="rightFloatingPaneActionsWrapper" alignment="TOP_CENTER" styleClass="ep-switchable-pane-lateral-left" maxHeight="80">
+                <children>
+                    <Button fx:id="showRightPaneButton" styleClass="ep-switchable-pane-action-button"/>
+                    <Button fx:id="hideRightPaneButton" styleClass="ep-switchable-pane-action-button"/>
+                </children>
+            </VBox>
+        </StackPane>
+
+        <!--
+            WHEN MINIMIZED, THIS IS HIDDEN. THIS IS THE PANE CONTAINING THE LEFT SECTION OF THE VIEW
+            IF ORIENTATION IS RIGHT. OTHERWISE, THIS PANE IS HIDDEN
+        -->
+        <StackPane fx:id="rightFloatingPaneContentWrapper" BorderPane.alignment="CENTER"  minWidth="350" maxWidth="350">
+            <children>
+                <ScrollPane fitToHeight="true" fitToWidth="true" fx:id="rightScrollPane" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                    <content>
+                        <StackPane id="rightFloatingPaneContentWrapperInternalWrapper" style="-fx-padding:0 0 0 0;-fx-background-color:-background-color;">
+                            <children>
+                                <StackPane fx:id="rightFloatingPaneContent" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-switchable-pane-internal-wrapper" />
+                            </children>
+                        </StackPane>
+                    </content>
+                </ScrollPane>
+            </children>
+        </StackPane>
+    </HBox>
+
+    <!-- WHEN MINIMIZED, LEFT/RIGHT content IS SHOWN INSIDE THIS PANE -->
+   	<StackPane fx:id="popOverFloatingScrollPane" minWidth="400" maxWidth="400" HBox.hgrow="ALWAYS" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.bottomAnchor="0.0">
+              <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                  <content>
+                      <StackPane style="-fx-padding:0 0 0 0;-fx-background-color:-background-color;">
+                              <StackPane fx:id="popOverFloatingPane" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"/>
+                      </StackPane>
+                  </content>
+              </ScrollPane>
+        </StackPane>
+</AnchorPane>
+

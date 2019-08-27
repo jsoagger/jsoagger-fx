@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+
+    <component id="Content" combine.keys="id" processor="TableStructureProcessor">
+        <properties combine.keys="name">
+            <property name="contentImpl" value="TableContent" />
+            <property name="leftSectionAreaStyleClass" value="white-background" />
+            <property name="centerSectionAreaStyleClass" value="white-background,padding-22" />
+            <property name="rightSectionAreaStyleClass" value="white-background" />
+            <property name="tableStructureAreaStyleClass" value="ep-full-table-structure,white-background" />
+        </properties>
+
+        <component id="Header" combine.keys="id">
+            <properties combine.keys="id">
+                <property name="styleClass" value="ep-full-table-header" />
+                <property name="titleStyleClass" value="ep-table-title-label,padding-16-0-16-0" />
+                <property name="headerImpl" value="FolderContentTableHeader" />
+                <property name="filtrable" value="false"/>
+                <property name="actionsContainerStyleClass" value="ep-folder-content-actions-container" />
+            </properties>
+        </component>
+
+        <component id="NoContentPane" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="contentImpl" value="GroupedActionsContentPane" />
+            </properties>
+
+            <component id="ActionGroup1">
+                <properties combine.keys="name">
+                    <property name="styleClass" value="white-background" />
+                    <property name="message" value="NO_CONTENT_LABEL" />
+                    <property name="actionNode" value="NewContentForNoContentPaneButton" />
+                </properties>
+            </component>
+        </component>
+
+        <component id="Content" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="showTableHeader" value="false" />
+                <property name="tableRowStyleClass" value="ep-basic-table-row" />
+                <property name="paginateOperation" value="GetFolderElementContentOperation" />
+                <property name="dataLoader" value="StructureContentRelatedModelPaginatedDataLoader" />
+            </properties>
+
+            <component id="Columns" combine.keys="ref">
+                <component ref="CoreCheckboxSelectColumn" responsiveOrder="-1" />
+                <component ref="CoreBlankSpacerColumn" responsiveOrder="-1" />
+                <component ref="CoreWorkStatusColumn" responsiveOrder="-1" />
+                <component ref="CoreBlankSpacerColumn" responsiveOrder="-1" />
+                <component ref="CoreSmallFolderedIconColumn" responsiveOrder="-1" />
+                <component ref="CoreRCMasterNameColumn" responsiveOrder="-1" masterColumn="true" />
+                <component ref="CoreBlankSpacerColumn" responsiveOrder="-1" />
+                <component ref="CoreHEllipsisColumn" responsiveOrder="2" />
+                <component ref="CoreBlankSpacerColumn" responsiveOrder="2" />
+                <component ref="CoreRevisionColumn" responsiveOrder="1" />
+                <component ref="CoreBlankSpacerColumn" responsiveOrder="1" />
+                <component ref="CoreLifecycleStatusColumn" responsiveOrder="1" />
+                <component ref="CoreModificationDateColumn" responsiveOrder="1" />
+                <component ref="CoreRCForwardToDetailsColumn" responsiveOrder="-1" />
+            </component>
+        </component>
+
+        <component id="Pagination" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="styleClass" value="white-background" />
+                <property name="paginationImpl" value="SimplePaginationBar" />
+            </properties>
+        </component>
+
+        <component id="Toolbar" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="styleClass" value="ep-table-toolbar" />
+                <property name="modifyingActionsStyleClass" value="ep-table-toolbar,spacing-8" />
+            </properties>
+
+            <component id="RootMenuActions" combine.keys="id">
+                <component id="CenterActions" combine.keys="ref">
+                    <component ref="CorePrintSelectedElementsButton" separator-after="true" />
+                    <component ref="CoreCopySelectedElementsButton" />
+                    <component ref="CorePasteElementsButton" separator-after="true" />
+                    <component ref="CoreSelectAllItemsButton" />
+                    <component ref="CoreRefreshTableStructureButton" />
+                </component>
+            </component>
+        </component>
+    </component>
+
+    <component id="NewContentForNoContentPaneButton" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="tooltip" value="NEW_FOLDER_CONTENT_LABEL" />
+            <property name="label" value="NEW_FOLDER_CONTENT_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="button-large,button-primary-border-transparent" />
+            <property name="ikonli" value="gmi-add:26" />
+        </properties>
+        <component id="Handler" combine.keys="id">
+            <properties combine.keys="name">
+            </properties>
+        </component>
+    </component>
+
+    <component id="NewContentButton" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="label" value="NEW_FOLDER_CONTENT_LABEL" />
+            <property name="tooltip" value="NEW_FOLDER_CONTENT_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="ikonli" value="gmi-add:26" />
+            <property name="styleClass" value="table-toolbar-action-2" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+        </properties>
+        <component id="Handler" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="args" value="toView:PartCreateViewWizard" />
+                <property name="action" value="ForwardToViewButtonAction" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="NewFolderContextualButton" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="label" value="NEW_FOLDER_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="ikonli" value="mdi-folder-plus:26" />
+            <property name="styleClass" value="table-toolbar-action-2" />
+        </properties>
+    </component>
+
+    <component id="NewContentContextualButton" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="label" value="NEW_FOLDER_CONTENT_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="ikonli" value="gmi-add:26" />
+            <property name="styleClass" value="table-toolbar-action-2" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+        </properties>
+    </component>
+
+    <component id="ListViewButton" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="label" value="VIEW_FLOW_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="ikonli" value="fa-th-list:20" />
+            <property name="styleClass" value="table-toolbar-action-2" />
+        </properties>
+        <component id="Handler" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="action" value="WizardStepNextActionHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="TableViewButton" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="label" value="VIEW_TABLE_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="table-toolbar-action-2" />
+            <property name="ikonli" value="fa-table:20" />
+        </properties>
+        <component id="Handler" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="action" value="WizardStepNextActionHandler" />
+            </properties>
+        </component>
+    </component>
+
+</view>

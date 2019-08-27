@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+
+<StackPane id="structureRootStackPane" fx:id="structureRootStackPane" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/2.2" styleClass="ep-root-structure">
+	<children>
+		<BorderPane prefHeight="-1.0" prefWidth="-1.0">
+			<top>
+				<HBox id="structureHeader" fx:id="structureHeader" styleClass="ep-header-structure" visible="true" managed="true">
+					<children>
+						<HBox id="companyLogoArea" fx:id="companyLogoArea" styleClass="ep-header-structure-wrapper" 
+							alignment="CENTER_LEFT" style="-fx-padding:0 10 0 20">
+						</HBox>
+						<HBox id="headerTabPaneArea" fx:id="headerTabPaneArea" styleClass="ep-header-structure-tab-pane-wrapper" 
+							HBox.hgrow="ALWAYS" alignment="CENTER">
+						</HBox>
+						<HBox id="headerButtonsArea" fx:id="headerButtonsArea" styleClass="ep-header-structure-buttons-wrapper" 
+							style="-fx-padding:0 120 0 0" alignment="CENTER">
+							<Label fx:id="dateLabel" styleClass="ep-header-structure-hour-label"></Label>
+						</HBox>
+					</children>
+				</HBox>
+			</top>
+			<center>
+				<StackPane id="structureContentArea" fx:id="structureContentArea" styleClass="ep-content-structure">
+
+				</StackPane>
+			</center>
+		</BorderPane>
+	</children>
+</StackPane>
+

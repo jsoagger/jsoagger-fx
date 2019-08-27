@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="styleClass" value="grey-background" />
+			<property name="leftSectionAreaStyleClass" value="grey-background" />
+			<property name="centerSectionAreaStyleClass" value="grey-background" />
+			<property name="rightSectionAreaStyleClass" value="grey-background" />
+
+			<property name="mainScrollPaneStyleClass" />
+			<property name="tabsAlignment" value="center" />
+		</properties>
+
+		<component id="HeaderActions" combine.keys="id">
+			<component id="RootMenuActions">
+				<component id="LeftActions">
+					<component ref="ShowHistoryButton" />
+					<component ref="SetCurrentStateButton" />
+					<component ref="ToWorkingListButton" />
+					<component ref="CopyButton" />
+					<component ref="DeleteButton" />
+				</component>
+			</component>
+		</component>
+		<!-- THESE ACTION ARE DISPLAYED ONLY IF THE DETAILS VIEW IS IN VIEW MODE. WHEN SWITCHING IN EDIT MODE, THEY ARE HIDDEN. IF YOU WANT ACTIONS TO BE DISPLAYED WHATEVER THE MODE , USE HEADER ACTIONS -->
+		<component id="Actions" combine.keys="id">
+			<component id="RootMenuActions">
+				<component id="CenterActions">
+					<component ref="ShareButton" />
+					<component ref="SendMessageButton" />
+					<component ref="TagButton" />
+					<component ref="InviteButton" />
+				</component>
+			</component>
+		</component>
+
+		<component id="DetailsViewTabs" combine.keys="id">
+			<component id="TabGroup1">
+				<properties combine.keys="name">
+					<property name="title" value="CONTENT_LABEL" />
+					<property name="titleStyleClass" value="" />
+					<property name="styleClass" value="ep-details-view-maximized-tab-item"/>
+				</properties>
+
+				<component id="InformationTabMenu">
+					<properties combine.keys="name">
+						<property name="title" value="PROPERTIES_LABEL" />
+						<property name="titleStyleClass" value="PROPERTIES_LABEL" />
+						<property name="tootltip" value="PROPERTIES_LABEL" />
+						<property name="styleClass" value="ep-details-view-maximized-tab-item" />
+						<property name="ikonli" value="fa-info:16" />
+					</properties>
+					<component rootview="DemoMaximizedInformationTabView" />
+				</component>
+
+				<component id="StructureTabMenu">
+					<properties combine.keys="name">
+						<property name="titleStyleClass" value="" />
+						<property name="title" value="ILLUSTRATION_LABEL" />
+						<property name="tootltip" value="ILLUSTRATION_LABEL" />
+						<property name="styleClass" value="ep-details-view-maximized-tab-item" />
+						<property name="ikonli" value="fa-file-image-o:16" />
+					</properties>
+					<component rootview="DemoMaximizedIllustrationView" />
+				</component>
+			</component>
+		</component>
+	</component>
+
+	<component id="ShareButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="SHARE_LABEL" />
+			<property name="label" value="SHARE_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="upperCase" value="true" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent,ep-dv-toolbar-button" />
+			<property name="ikonli" value="fa-share-alt:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="SendMessageButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="SEND_MESSAGE_LABEL" />
+			<property name="label" value="SEND_MESSAGE_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="upperCase" value="true" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent,ep-dv-toolbar-button" />
+			<property name="ikonli" value="fa-send-o:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="TagButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="TAG_LABEL" />
+			<property name="label" value="TAG_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent,ep-dv-toolbar-button" />
+			<property name="ikonli" value="fa-tag:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="InviteButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="INVITE_LABEL" />
+			<property name="label" value="INVITE_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent,ep-dv-toolbar-button" />
+			<property name="ikonli" value="fa-comment-o:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="ShowHistoryButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="SHOW_HISTORY_LABEL" />
+			<property name="label" value="SHOW_HISTORY_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+			<property name="ikonli" value="fa-history:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="SetCurrentStateButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="SET_CURRENT_STATE_LABEL" />
+			<property name="label" value="SET_CURRENT_STATE_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+			<property name="ikonli" value="fa-asterisk:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="ToWorkingListButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="TO_WORKING__LABEL" />
+			<property name="label" value="TO_WORKING__LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+			<property name="ikonli" value="fa-mail-forward:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="CopyButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="COPY_LABEL" />
+			<property name="label" value="COPY_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+			<property name="ikonli" value="fa-copy:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+	<component id="DeleteButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="DELETE_LABEL" />
+			<property name="label" value="DELETE_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+			<property name="ikonli" value="fa-archive:18" />
+			<property name="displayMode" value="TOP" />
+		</properties>
+	</component>
+
+</view>
+                   

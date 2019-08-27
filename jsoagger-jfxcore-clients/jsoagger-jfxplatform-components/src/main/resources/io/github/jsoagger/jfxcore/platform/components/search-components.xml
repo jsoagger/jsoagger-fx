@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+<view id="Root" combine.keys="id">
+
+	<component id="CoreSearchStatusAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="TYPE_LABEL"/>
+			<property name="prompt" value="SELECT_A_TYPE_LABEL"/>
+			<property name="labelStyleClass" value="ep-search-form-label"/>
+			<property name="attributeName" value="data.attributes.search_query.extra.lifecycle.status"/>
+			<property name="editUtility" value="InputCombobox"/>
+			<property name="viewUtility" value="MultiValuedInputView"/>
+
+			<property name="enumeratedValuesLoader" value="DefaultLifecyclesStatusToEnumeratedValueLoader"/>
+
+			<property name="editLayout" value="LabelLessFormRowWrapper"/>
+			<property name="viewLayout" value="LabelLessFormRowWrapper"/>
+			<property name="displayType" value="checkbox"/>
+			<property name="viewStyleClass" value="form-multi-input-view-each"/>
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+			</properties>
+		</component>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="CoreSearchUpdateAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+
+	<!-- USED ONLY IF QUERY LATEST ITERATION -->
+	<component id="CoreSearchIncludeWorkingCopy" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="SEARCH_INCLUDE_WORKING_COPY_LABEL"/>
+			<property name="upperCase" value="true"/>
+			<property name="labelStyleClass" value="ep-single-row-as-search-form-bloc-title"/>
+			<property name="attributeName" value="data.attributes.search_query.extra.includeWorkingCopy"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="editLayout" value="HorizontalFormRowLayout"/>
+		</properties>
+	</component>
+
+	<!-- If true query master, else query lastest iteration -->
+	<component id="CoreSearchQueryMasterOrLatestIteration" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="MASTER_LABEL"/>
+			<property name="upperCase" value="true"/>
+			<property name="labelStyleClass" value="ep-single-row-as-search-form-bloc-title"/>
+			<property name="attributeName" value="data.attributes.search_query.extra.queryMaster"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="editLayout" value="HorizontalFormRowLayout"/>
+			<property name="defaultValue" value="true"/>
+		</properties>
+	</component>
+
+
+	<!-- Query master checked by default, TODO HIDE THIS COMPONENT IN VIEW -->
+	<component id="CoreSearchQueryMaster" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="MASTER_LABEL"/>
+			<property name="upperCase" value="true"/>
+			<property name="labelStyleClass" value="ep-single-row-as-search-form-bloc-title"/>
+			<property name="attributeName" value="data.attributes.search_query.extra.queryMaster"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="editLayout" value="HorizontalFormRowLayout"/>
+			<property name="defaultValue" value="true"/>
+		</properties>
+	</component>
+
+	<!-- Query master unchecked by default, TODO HIDE THIS COMPONENT IN VIEW -->
+	<component id="CoreSearchQueryLatestIteration" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="MASTER_LABEL"/>
+			<property name="labelStyleClass" value="ep-single-row-as-search-form-bloc-title"/>
+			<property name="attributeName" value="data.attributes.search_query.extra.queryMaster"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="editLayout" value="HorizontalFormRowLayout"/>
+			<property name="defaultValue" value="false"/>
+		</properties>
+	</component>
+	
+	<component id="SearchBarSaveButton" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="tooltip" value="SAVE_SEARCH_LABEL" />
+            <property name="tooltip" value="SAVE_SEARCH_LABEL" />
+            <property name="type" value="InputSortButton" />
+            <property name="styleClass" value="ep-advanced-search-filter-button" />
+            <property name="ikonli" value="gmi-save:22" />
+        </properties>
+        
+        <component id="Handler">
+        	<properties combine.keys="name">
+        		<property name="action" value="ShowWizardAction"/>
+        		<property name="args" value="viewId:CreateSavedSearchView"/>
+        	</properties>
+        </component>
+    </component>
+</view>

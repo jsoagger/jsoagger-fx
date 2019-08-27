@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="styleClass" value="unshadowed-pane" />
+			<property name="contentImpl" value="FlowContent" />
+			<property name="location" value="VERSION_ITERATIONS_HISTORY"/>
+		</properties>
+		
+		<component id="Content">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+				<property name="flowContentStyleClass" value="default-background,spacing-8,padding-32" />
+
+				<property name="paginateOperation" value="GetAllIterationsOfVersionByMasterOidOperation" />
+				<property name="dataLoader" value="ModelRelatedRCPaginatedDataLoader" />
+				<property name="flowItemImpl" value="MediumIteratedItemPresenter" />
+				<property name="flowMode" value="vbox" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="CellRightActions">
+		<properties combine.keys="name">
+			<property name="styleClass" value="ep-presenter-right-actions-container" />
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="DetailsOfColumn">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-xsmall,button-primary-border" />
+				<property name="type" value="button" />
+				<property name="presenter" value="DoActionPresenter" />
+				<property name="title"  value="DETAILS_LABEL"/>
+				<property name="upperCase" value="true"/>
+			</properties>
+			<component id="Handler">
+                <properties combine.keys="name">
+                    <property name="action" value="PushToViewAction" />
+                </properties>
+            </component>
+		</component>
+	</component>
+</view>
+

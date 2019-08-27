@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" styleClass="login-root-pane">
+        <children>
+                <StackPane fx:id="leftFixedAreaSection" BorderPane.alignment="TOP_LEFT" prefHeight="-1.0"/>
+
+                <StackPane styleClass="login-center-area-wrapper">
+                        <VBox BorderPane.alignment="CENTER" prefHeight="-1.0">
+                                <children>
+                                        <VBox VBox.vgrow="ALWAYS" alignment="CENTER">
+                                                <children>
+                                                        <Text fx:id="platform"
+                                                                fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0x3949abff 0.0%, 0x7986cbff 30.0%, 0x3949abff 100.0%)"
+                                                                scaleX="1.2080760098385968" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JSoagger ">
+                                                                <effect>
+                                                                        <DropShadow color="#606060" height="1.0" offsetX="-1.0" offsetY="-1.0" radius="0.0"
+                                                                                spread="0.0158730158730159" width="0.0">
+                                                                                <input>
+                                                                                        <Reflection fraction="0.8293650793650794" topOffset="-15.0" topOpacity="0.07936507936507939"/>
+                                                                                </input>
+                                                                        </DropShadow>
+                                                                </effect>
+                                                                <font>
+                                                                        <Font name="Copperplate Gothic Bold" size="38.0"/>
+                                                                </font>
+                                                        </Text>
+                                                </children>
+                                        </VBox>
+                                        <VBox fx:id="centerFixedAreaSection" />
+                                        <VBox VBox.vgrow="ALWAYS" opacity="0.45"/>
+                                </children>
+                        </VBox>
+                </StackPane>
+
+                <StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0"/>
+        </children>
+</HBox>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructuresVBoxProcessor">
+		<properties>
+			<property name="rootPaneStyleClass" value="grey-background,shadowed-pane" />
+			<property name="forwardLayoutHeaderStyleClass" value="white-background,shadowed-pane" />
+			<property name="tableStuctureVboxStyleClass" value="white-background,shadowed-pane,ep-preferences-root-table" />
+			<property name="leftSectionAreaStyleClass" value="grey-background" />
+			<property name="centerSectionAreaStyleClass" value="grey-background" />
+			<property name="rightSectionAreaStyleClass" value="grey-background" />
+			<property name="editorStructureAreaSectionStyleClass" value="grey-background" />
+			<property name="location" value="SETTINGS_LOCATION" />
+			<property name="forwardLayoutHeaderTitle" value="REGIONAL_SETTINGS_LABEL" />
+		</properties>
+
+		<component id="RegionalParametersGroupDatas" processor="TableStructureWithLayoutProcessor" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+				<property name="contentImpl" value="ListViewContent" />
+			</properties>
+			<component id="Header">
+				<properties combine.keys="name">
+					<property name="title" value="DATE_TIME_PARAMETERS" />
+					<property name="styleClass" value="white-background" />
+					<property name="titleStyleClass" value="padding-16-16-16-0,ep-headline" />
+				</properties>
+			</component>
+			<component id="Content" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-small,ep-preferences-list-view" />
+					<property name="dataKey" value="RegionalParametersGroupDatas" />
+					<property name="dataLoader" value="StaticListEntryLoader" />
+					<property name="cellFactory" value="PreferencesListCellFactory" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="ExportGroupDatas" processor="TableStructureWithLayoutProcessor" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+				<property name="contentImpl" value="ListViewContent" />
+			</properties>
+			<component id="Header">
+				<properties combine.keys="name">
+					<property name="title" value="EXPORT_LABEL" />
+					<property name="styleClass" value="white-background" />
+					<property name="titleStyleClass" value="padding-16-16-16-0,ep-headline" />
+				</properties>
+			</component>
+			<component id="Content" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-small,ep-preferences-list-view" />
+					<property name="dataKey" value="ExportGroupDatas" />
+					<property name="dataLoader" value="StaticListEntryLoader" />
+					<property name="cellFactory" value="PreferencesListCellFactory" />
+				</properties>
+			</component>
+		</component>
+		
+		<component id="NumberFormatGroupDatas" processor="TableStructureWithLayoutProcessor" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+				<property name="contentImpl" value="ListViewContent" />
+			</properties>
+			<component id="Header">
+				<properties combine.keys="name">
+					<property name="title" value="NUMBER_FORMAT_LABEL" />
+					<property name="styleClass" value="white-background" />
+					<property name="titleStyleClass" value="padding-16-16-16-0,ep-headline" />
+				</properties>
+			</component>
+			<component id="Content" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-small,ep-preferences-list-view" />
+					<property name="dataKey" value="NumberFormatGroupDatas" />
+					<property name="dataLoader" value="StaticListEntryLoader" />
+					<property name="cellFactory" value="PreferencesListCellFactory" />
+				</properties>
+			</component>
+		</component>
+	</component>
+
+
+	<component id="RegionalParametersGroupDatas">
+		<properties>
+			<property name="title" value="DATE_TIME_PARAMETERS" />
+		</properties>
+
+		<component id="LanguageAttribute">
+			<properties>
+				<property name="title" value="LANGUAGE_LABEL" />
+				<property name="key" value="jsoagger.platform.language" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+				<property name="listValueKey" value="serverSupportedLanguage" />
+				<property name="selectionMode" value="single" />
+			</properties>
+		</component>
+		<component id="TimezoneAttribute">
+			<properties>
+				<property name="title" value="TIMEZONE_LABEL" />
+				<property name="key" value="com.jsoagger.timezone" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+				<property name="listValueKey" value="serverTimeZone" />
+			</properties>
+		</component>
+		<component id="ShortDateFormatAttribute">
+			<properties>
+				<property name="title" value="SHORT_DATE_FORMAT_LABEL" />
+				<property name="key" value="com.jsoagger.shortDateFormat" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+				<property name="listValueKey" value="serverShortDateFormat" />
+			</properties>
+		</component>
+		<component id="LongDateFormatAttribute">
+			<properties>
+				<property name="title" value="LONG_DATE_FORMAT_LABEL" />
+				<property name="key" value="com.jsoagger.longDateFormat" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+				<property name="listValueKey" value="serverLongDateFormat" />
+			</properties>
+		</component>
+		<component id="TimeFormatAttribute">
+			<properties>
+				<property name="title" value="TIME_FORMAT_LABEL" />
+				<property name="key" value="com.jsoagger.timeFormat" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+				<property name="listValueKey" value="serverTimeFormat" />
+			</properties>
+		</component>
+		<component id="FirtsWeekDayAttribute">
+			<properties>
+				<property name="title" value="FIRST_WEEK_DAY_LABEL" />
+				<property name="key" value="com.jsoagger.firstDayOfWeek" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+				<property name="listValueKey" value="serverFirstWeekDay" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="NumberFormatGroupDatas">
+		<properties>
+			<property name="title" value="NUMBER_FORMAT_LABEL" />
+		</properties>
+		<component id="AdministratorsAttribute">
+			<properties>
+				<property name="title" value="THOUSAND_SEPARATOR" />
+				<property name="listValueKey" value="serverThousandSeparator" />
+				<property name="key" value="com.jsoagger.thousandSeparator" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+			</properties>
+		</component>
+		<component id="AdministratorsAttribute">
+			<properties>
+				<property name="title" value="DECIMAL_SEPARATOR" />
+				<property name="listValueKey" value="serverDecimalSeparator" />
+				<property name="key" value="com.jsoagger.decimalSeparator" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+			</properties>
+		</component>
+		<component id="AdministratorsAttribute">
+			<properties>
+				<property name="title" value="CURRENCY_LABEL" />
+				<property name="listValueKey" value="serverCurrency" />
+				<property name="key" value="com.jsoagger.currency" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="ExportGroupDatas">
+		<properties>
+			<property name="title" value="EXPORT_LABEL" />
+		</properties>
+		<component id="TextSeparatorAttribute">
+			<properties>
+				<property name="title" value="TEXT_SEPARATOR" />
+				<property name="listValueKey" value="serverTextSeparator" />
+				<property name="key" value="com.jsoagger.export.text.separator" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+			</properties>
+		</component>
+		<component id="ListSeparatorAttribute">
+			<properties>
+				<property name="title" value="LIST_SEPARATOR" />
+				<property name="listValueKey" value="serverListSeparator" />
+				<property name="key" value="com.jsoagger.export.list.separator" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+			</properties>
+		</component>
+	</component>
+</view>

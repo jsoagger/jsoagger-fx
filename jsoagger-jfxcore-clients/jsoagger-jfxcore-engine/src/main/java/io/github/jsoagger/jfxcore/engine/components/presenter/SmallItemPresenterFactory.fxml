@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="rootContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" 
+	styleClass="ep-small-item-presenter-container" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+        <VBox alignment="CENTER_LEFT" prefWidth="-1">
+                <HBox fx:id="internalContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-small-item-presenter-internal-container">
+                        <HBox fx:id="selectionContainer" styleClass="ep-flow-selection-container" visible="false" managed="false"/>
+                        <HBox fx:id="iconContainer" styleClass="ep-small-item-presenter-icon-container" visible="false" managed="false" />
+                        <HBox fx:id="mainLabelContainer" styleClass="ep-small-item-presenter-primarylabel-container" HBox.hgrow="ALWAYS" />
+                        <HBox fx:id="rightActionsContainer" styleClass="ep-small-item-presenter-rightactions-container" alignment="BASELINE_RIGHT" />
+                </HBox>
+                <HBox fx:id="moreActionsContainer" styleClass="ep-small-item-presenter-rightactions-container" alignment="BASELINE_LEFT" />
+        </VBox>
+</StackPane>

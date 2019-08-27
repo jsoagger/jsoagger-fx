@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+     <component id="Content" combine.keys="id">
+          <component id="Wizard" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="dialog" value="true" />
+                    <property name="showSteps" value="false" />
+                    <property name="title" value="CREATE_FOLDER_WIZARD_TITLE_LABEL" />
+                    <property name="dialogWidth" value="400" />
+                    <property name="dialogHeight" value="300" />
+                    <property name="styleClass" value="white-background,wizard" />
+               </properties>
+
+               <component id="WizardSteps" combine.keys="id">
+                    <properties combine.keys="name">
+                         <property name="showSteps" value="false" />
+                         <property name="displaySelector" value="false" />
+                         <property name="stepsWrapperStyleClass" value="white-background" />
+                    </properties>
+
+                    <component id="GeneralAttributesStep" combine.keys="id">
+                         <properties combine.keys="name">
+                              <property name="displayGroupSelector" value="false" />
+                              <property name="displayHeader" value="false" />
+                              <property name="contentLayoutStyleClass" value="white-background" />
+                              <property name="contentStyleClass" value="wizard-content" />
+                         </properties>
+
+                         <component id="ParametersFieldset" combine.keys="id">
+                              <component id="FormBloc">
+                                   <properties combine.keys="name">
+                                        <property name="displayHeader" value="false" />
+                                        <property name="mode" value="EDIT" />
+                                   </properties>
+
+                                   <component id="FormRow" combine.keys="id">
+                                        <component id="Rows" combine.keys="ref">
+                                             <component ref="FolderName" />
+                                        </component>
+                                   </component>
+                              </component>
+                         </component>
+
+                         <component id="Actions" model="CreateFolderActionsModel" />
+                    </component>
+               </component>
+          </component>
+     </component>
+
+     <component id="FolderName" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="NAME_LABEL" />
+               <property name="prompt" value="NAME_LABEL" />
+               <property name="attributeName" value="name" />
+               <property name="editAttributePath" value="attributes.name" />
+               <property name="editUtility" value="InputText" />
+          </properties>
+
+          <component id="ValidationConfig" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="mandatory" value="true" />
+               </properties>
+          </component>
+     </component>
+
+     <component id="CreateFolderActionsModel" combine.keys="id">
+          <component id="RootMenuActions" combine.keys="id">
+               <component id="RightActions" combine.keys="ref">
+                    <component ref="CoreCancelButton" />
+                    <component ref="DoneCreateFolderButton" />
+               </component>
+          </component>
+     </component>
+
+     <component id="DoneCreateFolderButton" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="DONE_LABEL" />
+               <property name="tooltip" value="DONE_LABEL" />
+               <property name="default" value="true" />
+               <property name="upperCase" value="true" />
+               <property name="type" value="SimpleButton" />
+               <property name="styleClass" value="button-medium,button-primary-border-transparent,wizard-button" />
+          </properties>
+          
+          <component id="Handler" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="action" value="CreateFolderButtonActionHandler" />
+               </properties>
+          </component>
+     </component>
+</view>

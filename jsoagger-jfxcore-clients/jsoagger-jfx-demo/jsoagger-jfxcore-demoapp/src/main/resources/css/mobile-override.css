@@ -1,0 +1,527 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+.root {
+	-hover-color: -primary-color-50;
+	-hover-text-color: -primary-text-color;
+	-hover-color-menu: derive(-background-color, 5.0%);
+	/*-background-color: derive(#ECEFF1,2%);*/
+	-background-color: white;
+	
+	-form-border-color: #ccc;
+	-icons-color: -grey-color-700;
+	-fx-default-link-color: -grey-color-600;
+	-fx-link-color: #3949AB;
+	
+	/*label constants */
+	-fx-font-size: 10px;
+	-fx-font-family: 'Arial';
+	
+	/** Wizard title color*/
+	-fx-wizard-title-font-color:linear-gradient(-accent-color-400,-accent-color-600);
+	-ep-full-table-structure-footer-bg-color:transparent;
+}
+
+.ep-flow-item-root-container{
+	-fx-max-width:300;
+	-fx-pref-width:300;
+	-fx-pref-height:320;
+	-fx-border-width:0.5;
+	-fx-border-color:-external-border-color;
+	-fx-background-color:-grey-color-50;
+	-fx-effect:dropshadow(one-pass-box, -grey-color-300,1.0,0.1,0,1.0);	
+}
+.ep-flow-content-wrapper{
+	-fx-hgap:4;
+	-fx-vgap:10;
+	-fx-alignment:TOP_CENTER;	
+}
+.ep-flow-item-icon-wrapper{
+	-fx-alignment:TOP_CENTER;
+}
+
+
+/**************************************************************************************************************************************************************
+ * 						OVERRIDE SCROLLPANE COLORS
+ *************************************************************************************************************************************************************/
+
+/* The main scrollbar **track** CSS class  */
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+	-fx-background-color:transparent;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+}
+
+.scroll-bar .track-background{
+	-fx-background-color:transparent;
+	-fx-background-insets:-1;
+}
+
+
+.ep-list-details-left-pane-container {
+	-fx-background-color: -grey-color-50;
+	-fx-padding: 0;
+}
+
+.ep-list-details-right-pane-container {
+	-fx-background-color: -background-color;
+	-fx-padding: 0 0 0 16;
+}
+
+.ep-list-details-right-pane-container:switched {
+	-fx-padding: 0;
+}
+
+.ep-list-details-left-pane-container:switched {
+	-fx-padding: 0;
+}
+
+/***********************************************************************************
+ *
+ * 						FLOW DETAILS VIEW
+ *
+ ***********************************************************************************/
+.ep-demo-flow-content {
+	-fx-padding: 32;
+}
+
+.ep-demo-list-details-flow-item {
+	-fx-min-height: 62;
+}
+
+.ep-demo-list-details-internal-container {
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color: -grey-color-100;
+}
+
+.ep-demo-list-details-flow-item:last .ep-demo-list-details-internal-container
+	{
+	-fx-border-color: transparent;
+}
+
+.ep-demo-flow-item-label {
+	-fx-fill: #212121;
+}
+
+.ep-demo-list-details-flow-item-icon-container {
+	-fx-alignment: CENTER;
+}
+
+.ep-demo-list-details-flow-item-actions-container {
+	-fx-alignment: CENTER_RIGHT;
+}
+
+/***********************************************************************************
+ *
+ * 						WHITE SCROLLS
+ *
+ ***********************************************************************************/
+.ep-white-scrolls .scroll-bar:horizontal, .ep-white-scrolls .scroll-bar:vertical
+	{
+	-fx-border-color: white;
+	-fx-border-width: 2;
+}
+
+.ep-demo-list-details-flow-item-mainlabel-container,
+	.ep-demo-list-details-flow-item-icon-container {
+	-fx-padding: 0 0 0 16;
+	-fx-alignment: CENTER_LEFT;
+}
+
+/* The main scrollbar **track** CSS class  */
+.ep-white-scrolls .scroll-bar:horizontal .track, .ep-white-scrolls .scroll-bar:vertical .track
+	{
+	-fx-background-color: white;
+	-fx-border-color: white;
+	-fx-border-radius: 2em;
+	-fx-background-insets: -1;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.ep-white-scrolls .scroll-bar:horizontal .increment-button,
+	.ep-white-scrolls .scroll-bar:horizontal .decrement-button {
+	-fx-background-color: white;
+	-fx-background-radius: 0em;
+	-fx-padding: 0 0 10 0;
+	-fx-border-color: white;
+	-fx-background-insets: -1;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.ep-white-scrolls .scroll-bar:vertical .increment-button,
+	.ep-white-scrolls .scroll-bar:vertical .decrement-button {
+	-fx-background-color: white;
+	-fx-padding: 1;
+	-fx-border-color: white;
+	-fx-background-insets: -1;
+}
+
+.ep-white-scrolls .scroll-bar .increment-arrow, .ep-white-scrolls .scroll-bar .decrement-arrow
+	{
+	-fx-shape: "";
+	-fx-padding: 0;
+	visibility: hidden;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.ep-white-scrolls:mousein .scroll-bar:horizontal .thumb,
+	.ep-white-scrolls:mousein .scroll-bar:vertical .thumb {
+	-fx-background-color: -grey-color-300;
+	-fx-background-insets: 1, 1, 0;
+	-fx-background-radius: 2em;
+}
+
+.ep-white-scrolls .scroll-bar:horizontal .thumb, .ep-white-scrolls .scroll-bar:vertical .thumb
+	{
+	-fx-background-color: white;
+	-fx-background-insets: 1, 1, 0;
+	-fx-background-radius: 2em;
+}
+
+.demo-root-menu-header-container {
+	-fx-min-height: 120px;
+	-fx-max-height: 120px;
+	-fx-background-color: -accent-color-a400;
+	-fx-alignment:TOP_RIGHT;
+	-fx-padding:20 4 0 0;
+}
+
+/*******************************************************************************
+ * MINIMIZED
+ ******************************************************************************/
+.headerless-menu-minimized-wrapper {
+	-fx-alignment: TOP_LEFT;
+}
+
+.headerless-menu-minimized {
+	
+}
+
+.headerless-menu-minimized-row {
+	/*visibility: hidden;*/
+	-fx-alignment: CENTER;
+	-fx-pref-height: 48;
+}
+
+.headerless-menu-minimized-row-label {
+	-fx-content-display:GRAPHIC_ONLY;
+}
+
+.headerless-submenu-minimized {
+	
+}
+
+.headerless-menu-minimized-row-label .ikonli-font-icon{
+	-fx-fill:-grey-color-200;
+}
+
+.headerless-submenu-minimized-row {
+	-fx-pref-height: 48;
+	-fx-alignment: CENTER;
+	-fx-opacity: 0.52;
+}
+
+.headerless-submenu-minimized-row:selected,
+	.headerless-submenu-minimized-row:hover {
+	-fx-background-color: -ep-headerless-row-hover-color;
+	-fx-opacity: 1;
+	-fx-cursor: hand;
+}
+
+.headerless-submenu-minimized-row-label,
+	.headerless-submenu-minimized-row-label:hover,
+	.headerless-submenu-minimized-row-label:visited,
+	.headerless-submenu-minimized-row-label:hover:visited {
+	-fx-underline: false;
+	-fx-text-fill: -white-color;
+	-fx-focus-color: transparent;
+}
+
+.headerless-submenu-minimized-row-label {
+	-fx-graphic-text-gap: 16;
+	-fx-font-family: 'Helvetica';
+	-fx-font-size: 1em;
+	-fx-content-display: TOP;
+	-fx-padding: 16 0 16 0;
+}
+
+/*******************************************************************************
+ * MAXIMIZED
+ ******************************************************************************/
+.headerless-menu-wrapper {
+	-fx-background-color: -primary-color;
+}
+
+.headerless-menu {
+	-fx-border-width: 0 1 0 0;
+	-fx-border-color: transparent derive(-primary-color,10%) transparent transparent;
+	-fx-padding: 64 0 0 0;
+}
+
+.headerless-menu-minimized .ep-menu-separator,
+.headerless-menu  .ep-menu-separator {
+	-fx-border-color: derive(-primary-color, 20%);
+}
+
+.headerless-menu-row {
+	/*visibility: hidden;*/
+	-fx-pref-height: 42;
+	-fx-alignment: CENTER_LEFT;
+	-fx-padding: 0 0 0 32;
+}
+
+.headerless-menu-row-label:hover:visited, 
+.headerless-menu-row-label:visited,
+.headerless-menu-row-label {
+	-fx-graphic-text-gap: 32;
+	-fx-text-fill: white;
+	-fx-opacity: 0.87;
+	-fx-underline: false;
+	-fx-focus-color: transparent;
+}
+
+.headerless-menu-row-label:hover {
+	-fx-underline: false;
+	-fx-text-fill: white;
+}
+
+
+.headerless-menu-row-label .ikonli-font-icon {
+	-fx-fill: derive(-primary-color, -30%);
+}
+
+.headerless-menu-row-label:hover .ikonli-font-icon {
+	-fx-fill: derive(-primary-color, -50%);
+}
+
+.headerless-submenu {
+	
+}
+
+.headerless-submenu-row {
+	-fx-pref-height: 42;
+	-fx-alignment: CENTER_LEFT;
+	-fx-padding: 0 0 0 42;
+	-fx-opacity: 0.72;
+}
+
+.headerless-submenu-row:selected, .headerless-submenu-row:hover {
+	-fx-background-color: -ep-headerless-row-hover-color;
+	-fx-opacity: 1;
+	-fx-cursor: hand;
+}
+
+.headerless-submenu-row:hover>*.headerless-submenu-row-label {
+	
+}
+
+.headerless-submenu-row-label, .headerless-submenu-row-label:hover,
+	.headerless-submenu-row-label:visited, .headerless-submenu-row-label:hover:visited
+	{
+	-fx-underline: false;
+	-fx-text-fill: -white-color;
+}
+
+.headerless-submenu-row-label {
+	-fx-graphic-text-gap: 32;
+	-fx-font-family: 'Helvetica';
+	-fx-font-size: 1em;
+	-fx-focus-color: transparent;
+}
+
+.headerless-menu-icon {
+	-fx-fill: -white-color;
+}
+
+.map {
+	-fx-background-color: #666970;
+}
+
+.map-toolbar .button, .map-toolbar .toggle-button, .map-toolbar .label {
+	-fx-text-fill: white;
+	-fx-background-radius: 0;
+}
+
+.map-toolbar {
+	-fx-base: #505359;
+	-fx-background: #505359;
+	-fx-shadow-highlight-color: transparent;
+	-fx-spacing: 5;
+	-fx-padding: 4 4 4 4;
+}
+
+
+
+
+/***********************************************************************************
+ *
+ * 						DEMO 
+ *
+ ***********************************************************************************/
+ .chart {
+ 	-fx-pref-width:300;
+ }
+ 
+.chart-legend {
+   -fx-background-color:  transparent;
+   -fx-padding: 20px;
+}
+
+.chart-title {
+  -fx-text-fill: #4682b4;
+  -fx-font-size: 1.6em;
+  -fx-padding:32 0 32 0;
+}
+
+.ep-dashboard-items-wrapper{
+	-fx-vgap:10;
+	-fx-hgap:20;
+	-fx-alignment:CENTER;
+	-fx-padding:16;
+}
+ 
+.demo-dash-item{
+	-fx-border-width:1 1 1 1;
+	-fx-border-color:-grey-color-100;
+	-fx-padding:8;
+	-fx-pref-height:80;
+	-fx-pref-width:300;	
+	-fx-max-width:300;	
+	-fx-border-radius:5;
+	-fx-background-radius:5;
+}
+
+.demo-dash-item-title{
+	-fx-font-size:14px;
+	-fx-text-fill:-text-color-300;	
+}
+
+.demo-dash-item-count{
+	-fx-font-size:30px;
+}
+
+.demo-dash-item-right{
+	-fx-alignment:CENTER;
+}
+
+.demo-dash-item-right .ikonli-font-icon{
+	-fx-fill:#689F38;
+}
+ 
+.ep-table-status-label .label:in_repair{
+	-fx-text-fill:-white-color;
+	-fx-background-color:#43A047;	
+	-fx-padding:0 4 0 4;
+	-fx-font-size:10px;
+}
+
+.ep-table-status-label .label:delivered{
+	-fx-text-fill:#FF5722;
+	-fx-opacity:0.57;
+	-fx-font-size:12px;
+}
+
+.ep-table-status-label .label:waiting_for_acceptance{
+	-fx-text-fill:white;
+	-fx-background-color:black;	
+	-fx-opacity:0.87;
+	-fx-padding:0 4 0 4;
+	-fx-font-size:10px;
+}
+
+.demo-maquette-message{
+	-fx-font-size:20px;
+	-fx-text-fill:-grey-color-500;
+	-fx-alignment:CENTER;
+}
+
+.demo-maquette-messag-ikonli{
+	-fx-fill:-grey-color-500;
+}
+
+.ep-shadowed-table-row{
+	-fx-padding:4;
+}
+
+.ep-shadowed-table-row .ep-large-item-presenter-container-2{
+	-fx-background-color:white;
+	-fx-border-width:1;
+	-fx-border-color:derive(-internal-border-color,-20%);
+	-fx-border-radius:5;
+}
+
+.grey-background{
+	-fx-background-color:-background-color;
+}
+.item-presenter-vertical-row-root-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:4 0 0 0;
+}
+.item-presenter-vertical-row-container{
+	-fx-spacing:6;
+}
+
+.item-presenter-vertical-row-label{
+	-fx-font-family:'Helvetica';
+	-fx-opacity:0.77;
+}
+.ep-preferences-list-view .list-cell{
+	-fx-pref-height:44;
+}
+
+.ep-list-form-data-value{
+	-fx-font-size:14px;
+	-fx-font-family:'Arial';
+	-fx-text-fill:-grey-color-600;
+}
+
+.ep-view-forward-layout-header-title-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-view-forward-layout-header-title{
+	-fx-font-size:22px;
+	-fx-font-family:'Arial' !important;
+	-fx-font-weight:bold;
+	-fx-text-fill:-black-color;
+	-fx-padding:8 0 0 4;
+}
+
+.shadowed-pane{
+}
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="toolbarImpl" value="BasicToolbar" />
+			<property name="styleClass" value="ep-header-all-container" />
+		</properties>
+
+		<component id="LeftComponents" combine.keys="ref">
+			<properties combine.keys="name">
+				<property name="contentImpl" value="MobileWithBottomTabNavigationBar" />
+			</properties>
+			<component ref="RootMenuButton" />
+		</component>
+
+		<component id="CenterComponents" combine.keys="ref">
+			<component ref="SearchComponent" />
+		</component>
+
+		<component id="RightComponents" combine.keys="ref">
+			<!-- <properties combine.keys="name">
+				<property name="styleClass" value="ep-header-right-area-container" />
+				<property name="ellipsysStyleClass" value="white-icon,transparent-focus" />
+			</properties>
+			<component ref="NotificationsButton" /> -->
+		</component>
+	</component>
+
+	<component id="SearchComponent">
+		<properties combine.keys="name">
+			<property name="type" value="SearchHeaderComponent" />
+			<property name="mode" value="mobile" />
+			<property name="searchViewId" value="SearchAllTypesView" />
+		</properties>
+	</component>
+
+	<component id="NotificationsButton">
+		<properties combine.keys="name">
+			<property name="label" value="NOTIFICATION_LABEL"/>
+			<property name="ikonli" value="fa-bell-o:24" />
+			<property name="tooltip" value="NOTIFICATION_LABEL" />
+			<property name="styleClass" value="app-header-button" />
+			<property name="displayMode" value="GRAPHIC_ONLY" />
+			<property name="type" value="SimpleButton" />
+		</properties>
+	</component>
+</view>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+
+<StackPane fx:id="tableHeaderRootPane" styleClass="ep-table-header-root-container" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+    <children>
+        <VBox prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER" styleClass="ep-table-header-title-external-container">
+            <children>
+                
+                <!-- same style class, they are display in same time but diplayed in same way -->
+                <Label fx:id="headerTitle" styleClass="ep-table-header-title-container"/>
+                <FlowPane alignment="BOTTOM_LEFT" fx:id="titleContainer" minHeight="18" styleClass="ep-table-header-title-container"/>
+                
+                <VBox alignment="CENTER" prefWidth="-1.0" HBox.hgrow="ALWAYS" spacing="8">
+                    <children>
+                        <HBox prefHeight="-1.0" prefWidth="-1.0" alignment="TOP_LEFT" styleClass="ep-table-header-footer-container">
+                            <children>
+                                <StackPane fx:id="filterContainer" styleClass="ep-table-header-footer-filter-container" prefWidth="-1.0" alignment="TOP_LEFT">
+                                    <TextField fx:id="filterTextField" styleClass="ep-table-filter-text-field" />
+                                </StackPane>
+                                <StackPane fx:id="actionsContainer" styleClass="ep-table-header-footer-action-container" prefWidth="-1.0" HBox.hgrow="ALWAYS" alignment="TOP_CENTER" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

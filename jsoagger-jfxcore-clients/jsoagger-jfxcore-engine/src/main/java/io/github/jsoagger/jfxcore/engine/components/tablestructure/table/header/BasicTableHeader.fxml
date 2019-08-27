@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<StackPane fx:id="tableHeaderRootPane" styleClass="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+	<children>
+		<HBox prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER" styleClass="">
+			<children>
+				<StackPane fx:id="iconContainer" />
+				<VBox alignment="CENTER" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+					<children>
+						<HBox prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER" fx:id="titleContainer">
+							<Label fx:id="title" text="Table Title" />
+							<Label fx:id="itemsCount" text="(45)" />
+
+							<StackPane fx:id="actionsContainer" styleClass="" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+						</HBox>
+					</children>
+				</VBox>
+			</children>
+		</HBox>
+	</children>
+</StackPane>

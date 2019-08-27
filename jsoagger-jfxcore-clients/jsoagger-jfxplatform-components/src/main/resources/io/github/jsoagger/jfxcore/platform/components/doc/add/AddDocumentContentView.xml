@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id">
+		<component id="Wizard">
+			<properties combine.keys="name">
+				<property name="dialog" value="true" />
+				<property name="showSteps" value="true" />
+				<property name="dialogWidth" value="500" />
+				<property name="dialogHeight" value="700" />
+				<property name="styleClass" value="white-background,wizard" />
+				<property name="title" value="ADD_DOC_LABEL" />
+				<property name="description" value="ADD_DOC_LABEL" />
+			</properties>
+
+			<!--
+				Wizard steps definition
+			-->
+			<component id="WizardSteps" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="showSteps" value="true" />
+					<property name="displaySelector" value="true" />
+					<property name="stepsWrapperStyleClass" value="white-background" />
+				</properties>
+				<component id="Step1" combine.keys="ref">
+					<properties combine.keys="name">
+						<property name="displayGroupSelector" value="false" />
+						<property name="displayHeader" value="false" />
+						<property name="contentLayoutStyleClass" value="white-background" />
+						<property name="contentStyleClass" value="wizard-content" />
+						<property name="title" value="GENERAL_LABEL" />
+						<property name="layoutImpl" value="FieldsetVerticalLayout" />
+					</properties>
+
+					<component id="ParametersFieldset">
+						<component id="GeneralFormBloc">
+							<properties combine.keys="name">
+								<property name="title" value="GENERAL_LABEL" />
+								<property name="upperCase" value="true" />
+								<property name="displayHeader" value="true" />
+								<property name="mode" value="EDIT" />
+							</properties>
+							
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="DocumentTypeAttribute" />
+								</component>
+							</component>
+
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="DocumentNameAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="DocumentDescriptionAttribute" />
+								</component>
+							</component>
+						</component>
+					</component>
+					<component id="Actions" model="WizardStep1Model" />
+				</component>
+
+				<component id="Step2" combine.keys="ref">
+					<properties combine.keys="name">
+						<property name="displayGroupSelector" value="false" />
+						<property name="displayHeader" value="false" />
+						<property name="contentStyleClass" value="wizard-content" />
+						<property name="title" value="INFORMATION_LABEL" />
+						<property name="layoutImpl" value="FieldsetVerticalLayout" />
+					</properties>
+
+					<component id="ParametersFieldset">
+						<component id="GeneralFormBloc">
+							<properties combine.keys="name">
+								<property name="displayHeader" value="false" />
+								<property name="mode" value="VIEW" />
+							</properties>
+
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="FolderAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="LifecycleAttribute" />
+								</component>
+							</component>
+						</component>
+					</component>
+					<component id="Actions" model="WizardStep2Model" />
+				</component>
+				
+				<component id="Step3" combine.keys="ref">
+					<properties combine.keys="name">
+						<property name="displayGroupSelector" value="false" />
+						<property name="displayHeader" value="false" />
+						<property name="contentStyleClass" value="wizard-content" />
+						<property name="title" value="CONTENT_LABEL" />
+						<property name="layoutImpl" value="FieldsetVerticalLayout" />
+					</properties>
+
+					<component id="ParametersFieldset">
+						<component id="GeneralFormBloc">
+							<properties combine.keys="name">
+								<property name="displayHeader" value="false" />
+								<property name="mode" value="VIEW" />
+							</properties>
+
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="FolderAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="LifecycleAttribute" />
+								</component>
+							</component>
+						</component>
+					</component>
+					<component id="Actions" model="WizardStep2Model" />
+				</component>
+			</component>
+		</component>
+	</component>
+	
+	<component id="DocumentTypeAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="TYPE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="TYPE_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="master.type" />
+			<property name="editAttributePath" value="attributes.masterType" />
+			<property name="editUtility" value="InputCombobox" />
+			<property name="enumeratedValuesLoader" value="InstanciableDocTypeToEnumeratedValueLoader" />
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="converter" value="EnumeratedValueModelConverter"/>
+			</properties>
+		</component>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	
+	<component id="FolderAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="FOLDER_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="FOLDER_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="master.folderPath" />
+			<property name="editAttributePath" value="attributes.masterFolderPath" />
+			<property name="editUtility" value="FolderPicker" />
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+		</properties>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="DocumentAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+	
+	<component id="LifecycleAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LIFECYCLE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="LIFECYCLE_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="master.lifecycle" />
+			<property name="editAttributePath" value="attributes.masterLifecycle" />
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+			<property name="editUtility" value="InputCombobox" />
+			<property name="displayType" value="radio" />
+			<property name="enumeratedValuesLoader" value="LifecycleTemplatesToEnumeratedValueLoader" />
+			<property name="masterEnumeratedAttribute" value="true"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="converter" value="EnumeratedValueModelConverter"/>
+			</properties>
+		</component>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="DocumentAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+	
+	
+	<component id="DocumentNameAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="DOC_NAME_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="DOC_NAME_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="master.name" />
+			<property name="editAttributePath" value="attributes.masterName" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="DocumentDescriptionAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="DOC_DESCRIPTION_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="DOC_DESCRIPTION_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="master.description" />
+			<property name="editAttributePath" value="attributes.masterDescription" />
+			<property name="editUtility" value="InputTextarea" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="maxLenght" value="255" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="WizardStep1Model">
+		<component id="RootMenuActions">
+			<component id="RightActions">
+				<component ref="NextButton" />
+			</component>
+		</component>
+	</component>
+	<component id="NextButton">
+		<properties combine.keys="name">
+			<property name="label" value="NEXT_LABEL" />
+			<property name="tooltip" value="NEXT_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="gmi-chevron-right:20" />
+			<property name="displayMode" value="RIGHT" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepNextActionHandler" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="WizardStep2Model">
+		<component id="RootMenuActions">
+			<component id="RightActions">
+				<component ref="BackButton" />
+				<component ref="NextButton" />
+				<component ref="FinishButton" />
+			</component>
+		</component>
+	</component>
+	<component id="BackButton">
+		<properties combine.keys="name">
+			<property name="label" value="BACK_LABEL" />
+			<property name="tooltip" value="BACK_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="gmi-chevron-left:20" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepBackActionHandler" />
+			</properties>
+		</component>
+	</component>
+	
+	<component id="FinishButton">
+		<properties combine.keys="name">
+			<property name="label" value="CREATE_LABEL" />
+			<property name="tooltip" value="CREATE_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="gmi-save:20" />
+			<property name="displayMode" value="RIGHT" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="CreateDocumentActionHandler" />
+			</properties>
+		</component>
+	</component>
+	
+	<component id="DocumentAttributeForwardAction">
+		<properties combine.keys="name">
+			<property name="ikonli" value="fa-angle-right:20"/>
+			<property name="styleClass" value="form-inline-action"/>
+			<property name="actionHandler" value="SearchFormForwardEditionHandler"/>
+			<property name="forwardEditorImpl" value="SearchAttributeForwardEditor"/>
+			<property name="footerImpl" value="SimpleSearchForwardEditorFooter"/>
+
+			<property name="forwardEditorStyleClass" value="ep-as-forward-editor"/>
+			<property name="forwardEditorContentStyleClass" value="ep-as-forward-editor-content"/>
+		</properties>
+	</component>
+</view>

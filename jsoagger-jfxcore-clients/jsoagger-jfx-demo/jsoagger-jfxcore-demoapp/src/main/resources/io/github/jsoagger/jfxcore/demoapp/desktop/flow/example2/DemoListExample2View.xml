@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="styleClass" value="unshadowed-pane" />
+			<property name="contentImpl" value="FlowTableContent" />
+			<property name="rowPerPage" value="10" />
+
+			<property name="leftSectionAreaStyleClass" value="default-background" />
+			<property name="centerSectionAreaStyleClass" value="default-background" />
+			<property name="rightSectionAreaStyleClass" value="default-background" />
+			<property name="tableStructureAreaStyleClass" value="default-background" />
+			<property name="footerAreaSectionStyleClass" value="ep-load-more-footer-area" />
+			<property name="tableHeaderAreaStyleClass" value="ep-not-shadowed-table-header" />
+		</properties>
+		<component id="Header">
+			<properties combine.keys="name">
+				<property name="title" value="LIST_EXAMPLE2_TITLE_EXAMPLE" />
+				<property name="titleStyleClass" value="ep-table-headline-bold" />
+				<property name="headerImpl" value="FiltrableTableHeaderImpl2" />
+				<property name="filterImpl" value="DemoTableByModelFilter" />
+				<!-- <property name="filterImpl" value="DemoTableByTitleFilter" /> -->
+<!-- 				<property name="styleClass" value="ep-primary-table-header" /> -->
+				<property name="filteringAlwaysShown" value="true" />
+			</properties>
+		</component>
+
+		<component id="NoContentPane">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+				<property name="labelStyleClass" value="no-content-pane-message" />
+				<property name="contentImpl" value="GroupedActionsContentPane" />
+			</properties>
+
+			<component id="ActionGroup1">
+				<properties combine.keys="name">
+					<property name="message" value="EMPTY_LIST_ADD_ELEMENT_MESSAGE" />
+					<property name="actionNode" value="RefreshButton" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="Content">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+				<property name="tableRowStyleClass" value="ep-flow-item-table-row" />
+				<property name="tableMode" value="edit" />
+				<property name="domainClass" value="io.github.jsoagger.core.model.part.Element" />
+				<property name="paginateOperation" value="StubPaginatedTableDataOperation" />
+				<property name="dataLoader" value="GenericEntityPaginatedDataLoader" />
+				<property name="flowItemImpl" value="PaginatedFlowItemPresenter2" />
+			</properties>
+			<component id="IconClickHandler">
+				<properties combine.keys="name">
+					<property name="args" value="viewId:ManageObjectInSecondaryRSView;contentId:DemoSelfIllustrationTabView" />
+					<property name="action" value="PushViewToSecondaryRSContentAction" />
+				</properties>
+			</component>
+			<component id="IdentityClickHandler">
+				<properties combine.keys="name">
+					<property name="args" value="viewId:ManageObjectInSecondaryRSView;contentId:IdentityLessRootDetailsView" />
+					<property name="action" value="PushViewToSecondaryRSContentAction" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="Pagination">
+			<properties combine.keys="name">
+				<!-- <property name="loadMoreButtonStyleClass" value="transparent-hyperlink"/> -->
+				<property name="paginationImpl" value="LoadMorePaginationBar" />
+			</properties>
+		</component>
+
+		<component id="Toolbar">
+			<properties combine.keys="name">
+				<property name="styleClass" value="ep-table-toolbar" />
+				<property name="modifyingActionsStyleClass" value="ep-table-toolbar,spacing-8" />
+			</properties>
+
+			<component id="RootMenuActions">
+				<component id="LeftActions">
+					<component ref="NewElementButton" />
+					<component ref="CorePrintSelectedElementsButton" separator-after="true" />
+					<component ref="CoreCopySelectedElementsButton" />
+					<component ref="CorePasteElementsButton" separator-after="true" />
+					<component ref="CoreRefreshTableStructureButton" />
+				</component>
+			</component>
+		</component>
+	</component>
+
+	<component id="CellMiddleActions">
+		<properties combine.keys="name">
+			<property name="styleClass" value="ep-presenter-right-actions-container" />
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="Exampl1Action">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-transparent-border-transparent-grey-text" />
+				<property name="ikonli" value="mdi-information-outline:18" />
+				<property name="type" value="button" />
+				<property name="title" value="INFOS_LABEL" />
+				<property name="upperCase" value="true" />
+				<property name="presenter" value="FlowItemActionPresenter" />
+			</properties>
+			<component id="Handler">
+				<properties combine.keys="name">
+					<property name="args" value="viewId:ManageObjectInSecondaryRSView;contentId:IdentityLessRootDetailsView" />
+					<property name="action" value="PushViewToSecondaryRSContentAction" />
+				</properties>
+			</component>
+		</component>
+	</component>
+</view>

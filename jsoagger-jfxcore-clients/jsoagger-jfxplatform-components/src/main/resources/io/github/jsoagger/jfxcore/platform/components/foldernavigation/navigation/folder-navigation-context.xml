@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<!-- 
+		APPLICATION CONTAINER ROOT FOLDER
+	 -->
+	<bean id="ApplicationContainerRootFolderNavigationContentView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="layoutManager" ref="FullTabPaneLayoutManager"/>
+		<property name="modelProvider" ref="StructureContentModelReference"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationRootContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/applicationfolder/ApplicationContainerRootFolderNavigationContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ApplicationContainerFolderNavigationContentView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="layoutManager" ref="FullFlowFixedPaginationLayoutManager"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationFolderContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/applicationfolder/ApplicationContainerFolderNavigationContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 
+		USER FOLDER ROOT FOLDER
+	 -->
+	 <bean id="UserRootFolderNavigationContentView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="layoutManager" ref="FullTabPaneLayoutManager"/>
+		<property name="modelProvider" ref="UserRootFolderModelProvider"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationRootContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/userfolder/UserRootFolderNavigationContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="UserFolderNavigationContentView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="modelProvider" ref="UserRootFolderModelProvider"/>
+		<property name="layoutManager" ref="FullFlowFixedPaginationLayoutManager"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationFolderContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/userfolder/UserFolderNavigationContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 
+		CONTAINER FOLDER ROOT FOLDER
+	 -->
+	 <bean id="ContainerRootFolderNavigationContentView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="layoutManager" ref="FullTabPaneLayoutManager"/>
+		<property name="modelProvider" ref="StructureContentModelReference"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationRootContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/containerfolder/ContainerRootFolderNavigationContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ContainerFolderNavigationContentView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="layoutManager" ref="FullFlowFixedPaginationLayoutManager"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationFolderContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/containerfolder/ContainerFolderNavigationContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 
+		OTHER FOLDERS NAVIGATION BEANS
+	 -->
+	<bean id="FolderedNavigationElementContentView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="layoutManager" ref="BasicTableStructureContentLayoutManager"/>
+		<property name="modelProvider" ref="StructureContentModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationElementContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Without not content pane when navigating with folder -->
+	<bean id="FolderedNavigationElementContentView2" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="layoutManager" ref="BasicTableStructureContentLayoutManager"/>
+		<property name="modelProvider" ref="StructureContentModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationElementContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationElementContentView2.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="FolderedNavigationDocumentContentView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="layoutManager" ref="BasicTableStructureContentLayoutManager"/>
+		<property name="modelProvider" ref="StructureContentModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationDocumentContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Without not content pane when navigating with folder -->
+	<bean id="FolderedNavigationDocumentContentView2" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="NavigatorMessageSource"/>
+		<property name="layoutManager" ref="BasicTableStructureContentLayoutManager"/>
+		<property name="modelProvider" ref="StructureContentModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationDocumentContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/foldernavigation/navigation/FolderedNavigationDocumentContentView2.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

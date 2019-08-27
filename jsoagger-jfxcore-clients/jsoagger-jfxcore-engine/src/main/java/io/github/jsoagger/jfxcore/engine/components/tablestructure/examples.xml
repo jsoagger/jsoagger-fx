@@ -1,0 +1,141 @@
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+<!-- 
+     1.
+ -->
+<component id="Content" combine.keys="ref" processor="TableStructuresVBoxProcessor">
+     <properties combine.keys="name">
+          <property name="styleClass" value="unshadowed-pane" />
+     </properties>
+
+     <component id="TypesManagementGroup" processor="TableStructureWithLayoutProcessor">
+          <component>
+               <properties combine.keys="name">
+                    <property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+                    <property name="componentImpl" value="ListViewContent" />
+               </properties>
+          </component>
+
+          <component id="TableStructureContentDefinition">
+               <component id="Header">
+                    <properties combine.keys="name">
+                         <property name="title" value="TYPES_ADMINISTRATION_LABEL" />
+                         <property name="description" value="TYPES_MANAGER_DESCRIPTION" />
+
+                         <property name="styleClass" value="transparent-background,padding-32-32-32-0" />
+                         <property name="titleStyleClass" value="padding-16-16-16-0" />
+                         <property name="descriptionStyleClass" value="" />
+                    </properties>
+               </component>
+
+               <component id="Content">
+                    <properties combine.keys="name">
+                         <property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-medium,ep-admin-list-view" />
+                         <property name="mainLabelStyleClass" value="" />
+
+                         <property name="dataKey" value="TypesManagementGroupData" />
+                         <property name="dataLoader" value="TypeManagerAdminListEntryLoader" />
+
+                         <property name="cellPresenter" value="BusinessAdminListCellPresenter" />
+                         <property name="cellFactory" value="BusinessAdminCellFactory" />
+                    </properties>
+               </component>
+          </component>
+     </component>
+</component>
+
+<!-- 
+     2. instead of using componentProcessor.process(wich return an empty node with TableStructureProcessor), 
+     use componentProcessor.processElement(return AbstractStructure).
+     And use you layout manager to layout AbstractStructure!!like you want!!
+ -->
+<component id="TableStructureContentDefinition" processor="TableStructureProcessor">
+     <properties combine.keys="name">
+          <property name="contentImpl" value="FlowTableContent" /> or
+          <property name="contentImpl" value="ListView" /> or
+          <property name="contentImpl" value="TableView" />
+     </properties>
+     
+     <component id="Header">
+          <properties combine.keys="name">
+               <property name="title" value="TYPES_ADMINISTRATION_LABEL" />
+               <property name="description" value="TYPES_MANAGER_DESCRIPTION" />
+
+               <property name="styleClass" value="transparent-background,padding-32-32-32-0" />
+               <property name="titleStyleClass" value="padding-16-16-16-0" />
+               <property name="descriptionStyleClass" value="" />
+          </properties>
+     </component>
+
+     <component id="Content">
+          <properties combine.keys="name">
+               <property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-medium,ep-admin-list-view" />
+               <property name="mainLabelStyleClass" value="" />
+
+               <property name="dataKey" value="TypesManagementGroupData" />
+               <property name="dataLoader" value="TypeManagerAdminListEntryLoader" />
+
+               <property name="cellPresenter" value="BusinessAdminListCellPresenter" />
+               <property name="cellFactory" value="BusinessAdminCellFactory" />
+          </properties>
+     </component>
+</component>
+
+<!-- 
+     3.With a definied layout managed, use TableStructureWithLayoutProcessor
+ -->
+<component id="TypesManagementGroup" processor="TableStructureWithLayoutProcessor">
+          <component>
+               <properties combine.keys="name">
+                    <property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+                    <property name="componentImpl" value="ListViewContent" />
+               </properties>
+          </component>
+
+          <component id="TableStructureContentDefinition">
+               <component id="Header">
+                    <properties combine.keys="name">
+                         <property name="title" value="TYPES_ADMINISTRATION_LABEL" />
+                         <property name="description" value="TYPES_MANAGER_DESCRIPTION" />
+
+                         <property name="styleClass" value="transparent-background,padding-32-32-32-0" />
+                         <property name="titleStyleClass" value="padding-16-16-16-0" />
+                         <property name="descriptionStyleClass" value="" />
+                    </properties>
+               </component>
+
+               <component id="Content">
+                    <properties combine.keys="name">
+                         <property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-medium,ep-admin-list-view" />
+                         <property name="mainLabelStyleClass" value="" />
+
+                         <property name="dataKey" value="TypesManagementGroupData" />
+                         <property name="dataLoader" value="TypeManagerAdminListEntryLoader" />
+
+                         <property name="cellPresenter" value="BusinessAdminListCellPresenter" />
+                         <property name="cellFactory" value="BusinessAdminCellFactory" />
+                    </properties>
+               </component>
+          </component>
+     </component>
+          

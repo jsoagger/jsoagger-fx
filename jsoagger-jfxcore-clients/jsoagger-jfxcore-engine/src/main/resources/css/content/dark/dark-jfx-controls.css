@@ -1,0 +1,397 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+/*******************************************************************************
+ * THIS FILE CONTAINS ALL OVERRIDEN CSS FROM JAVAX CONTROLS                                                      
+ ******************************************************************************/
+/*--------------------------------------------------------------------------------------------------------------------------------
+* SCROLL PANE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.scroll-pane {
+	-fx-background-color: transparent;
+	-fx-border-width: 0.0;
+	-fx-background-insets: 0.0;
+	-fx-padding: 0;
+}
+
+.scroll-pane>*.viewport {
+	-fx-background-color: transparent;
+	-fx-border-width: 0.0;
+	-fx-padding: 0.0;
+}
+
+.scroll-pane:focused {
+	-fx-background-insets: 0.0;
+	-fx-background-color: transparent;
+}
+
+.scroll-pane .corner {
+	-fx-background-insets: 1.0 0.0 0.0 1.0;
+	-fx-background-color: #f0f0f0;
+}
+
+
+/*******************************************************************************
+ *                                                                             
+ * ScrollBar                                                                   
+ *                                                                             
+ ******************************************************************************/
+.scroll-bar:horizontal,
+.scroll-bar:vertical{
+	-fx-background-color:transparent;
+	-fx-border-color:transparent;
+}
+/* The main scrollbar **track** CSS class  */
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+	-fx-background-color:transparent;
+	-fx-border-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-border-radius:2em;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-padding:0 0 10 0;
+
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-padding:0 0 0 0;
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+	-fx-shape: "";	
+	-fx-padding:0;
+	visibility:hidden;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color:rgb(55, 71, 79,0.5);
+	-fx-background-insets: 3, 0, 0;
+	-fx-background-radius: 2em;
+}
+
+.track-background{
+	-fx-background-color:transparent;
+}
+/*******************************************************************************
+ * TOGGLE BUTTON
+ ******************************************************************************/
+.toggle-button {
+	-fx-text-fill: -fx-link-color;
+	-fx-background-insets: 0.0;
+	-fx-padding: 0.5em;
+	-fx-alignment: CENTER;
+	-fx-border-color: -accent-color;
+	-fx-font-size: 1.0em;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.3), 0.0, 0.3, 1.0,
+		1.0);
+	-fx-border-width: 0.0 2.0 0.0 2.0;
+	-fx-border-color: transparent;
+	-fx-opacity: 0.64;
+}
+
+.toggle-button:selected {
+	-fx-background-radius: 0.0;
+	-fx-background-color: -fx-link-color;
+	-fx-text-fill: -white-color;
+	-fx-graphic-text-gap: 16.0;
+	-icons-color: white;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.6), 5.0, 0.3, 0.0,
+		1.0);
+	-fx-border-width: 0.0 2.0 0.0 2.0;
+	-fx-opacity: 1.0;
+}
+
+.toggle-button:focused:selected {
+	-fx-background-radius: 0.0;
+	-fx-background-color: -fx-link-color;
+	-fx-text-fill: -white-color;
+	-fx-graphic-text-gap: 16.0;
+	-icons-color: -white-color;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.6), 5.0, 0.3, 0.0,
+		1.0);
+	-fx-border-width: 0.0 2.0 0.0 2.0;
+	-fx-opacity: 1.0;
+}
+
+.toggle-button:hover {
+	-fx-cursor: hand;
+}
+
+/*******************************************************************************
+ * SPLIT MENU BUTTON
+ ******************************************************************************/
+.split-menu-button .label, .split-menu-button .arrow-button,
+	.split-menu-button:focused .label, .split-menu-button:focused .arrow-button
+	{
+	-fx-background-color: -white-color;
+}
+
+.split-menu-button {
+	-fx-pref-height: 32.0;
+	-fx-background-color: -grey-color-300;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* HIDE SPLIT PANE DIVIDER
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.split-pane *.split-pane-divider {
+	-fx-padding: 0.0 0.0 0.0 0.0;
+	-fx-background-color: -internal-border-color;
+	-fx-border-color: -internal-border-color;
+	-fx-border-width: 0.0 0.15 0.0 0.0;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* PROGRESS INDICATOR
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.progress-indicator:disabled,
+.progress-indicator{
+	-fx-opacity:1.0;
+	-fx-progress-color: -primary-color;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* INPUT TEXT TEXT FIELD & TEXT AREA 
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.text-area .text, .text-field>*>.text {
+	-fx-effect: null;
+	-fx-fill: -primary-text-color;
+}
+
+.text-area,
+.text-area *.viewport ,
+.text-area *.content {
+	-fx-border-width: 0;
+	-fx-background-color: transparent;
+	-fx-padding:0;
+}
+
+.text-area:focused,
+.text-area:focused *.content {
+	-fx-background-color: transparent;
+}
+
+.date-picker {
+	-fx-pref-width:400;
+}
+
+.date-picker:error,
+.text-area:error, 
+.text-field:error, 
+.text-input:error {
+	-fx-border-width: 0.5;
+	-fx-border-color: red;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* FORM COMBO BOX
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.combo-box:focused {
+	-fx-background-color: transparent;
+}
+
+.combo-box-base, .choice-box {
+	-fx-background-color: transparent;
+	-fx-prompt-text-fill: -grey-color-300;
+}
+
+.combo-box-base .list-cell .text,
+.choice-box .list-cell .text{
+	-fx-fill: -text-color-800;
+    -fx-font-family: 'Robot Regular';
+}
+
+.combo-box:focused, .choice-box:focused {
+	-fx-border-color: -primary-color;
+}
+
+.combo-box-base>.label, .choice-box>.label {
+}
+
+.combo-box-base>.arrow-button, .choice-box>.open-button {
+	-fx-padding: 1.2em 0.7em 1.2em 0.5em;
+	-fx-background-radius: 0.0 2.0 2.0 0.0;
+}
+
+.combo-box-base>.arrow-button>.arrow, .choice-box>.open-button>.arrow {
+	-fx-background-color: -black-color;
+}
+
+.combo-box-base .arrow-button:hover .arrow, .spinner .increment-arrow-button:hover .increment-arrow,
+	.spinner .decrement-arrow-button:hover .decrement-arrow {
+	-fx-background-color: -black-color;
+}
+
+.menu-item:focused {
+	-fx-background-color: -accent-color;
+}
+
+.combo-box .list-cell:selected {
+	-fx-padding:0;
+}
+
+.popup-overlay {
+	-fx-background-color: white;
+	-fx-border-color: -internal-border-color;
+	-fx-border-width: 1.0 1.0 1.0 1.0;
+	-fx-background-radius: 0.0;
+	-fx-border-radius: 0.0;
+}
+
+.title-bar {
+	-fx-padding: 10.0;
+}
+
+.title-bar .icon {
+	-fx-alignment: center-left;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.2), 0.0, 0.0, 0.0,
+		1.0);
+}
+
+.title-bar .title-label {
+	-fx-padding: 0.0 10.0 0.0 10.0;
+	-fx-alignment: center;
+	-fx-font-size: 36.0;
+	-fx-font-weight: bolder;
+}
+
+.content-area {
+	-fx-background-color: transparent;
+}
+
+.content-background {
+	-fx-background-color: white;
+	-fx-background-radius: 0.0 0.0 11.0 11.0;
+	-fx-padding: 0.0 10.0 10.0 10.0;
+}
+
+
+/*******************************************************************************
+ * CHECKBOX
+ ******************************************************************************/
+.check-box {
+	/*aavoid apdding */
+	-fx-padding: 0;
+	-fx-background-color: transparent;
+}
+
+.check-box:focused {
+	-fx-background-color: transparent;
+}
+
+.check-box>.box, .check-box>.box.unfocused, .check-box:disabled>.box,
+	.check-box:indeterminate>.box {
+	-fx-border-color: -grey-color-500;
+	-fx-border-width: 1.0;
+	-fx-background-color: transparent;
+	-fx-padding: 2.0 2.0 4.0 4.0;
+}
+
+.check-box:selected>.box {
+	-fx-border-color: transparent;
+	-fx-background-color: #1E88E5;
+}
+
+.check-box:selected>.box>.mark {
+	-fx-background-color: white;
+}
+
+.check-box:indeterminate>.box>.mark {
+	-fx-background-color: transparent;
+	-fx-padding: 0.45em;
+}
+
+.list-view{
+	-fx-border-width:0;
+	-fx-border-color:transparent;
+	-fx-background-color:-white-color;
+}
+
+
+/*******************************************************************************
+ * CONTEXT MENU
+ ******************************************************************************/
+.context-menu {
+    -fx-background-color: rgb(10,10,10,0.87);
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+    -fx-padding: 0.333333em 0em 0.333333em 0em; /* 4 1 4 1 */
+    
+    /* TODO: the border color below is not being respected - it appears as gray instead of black. After this gets fixed remove the comments so that
+       the border will become black.
+    */
+/*    -fx-border-color: #212121;
+    -fx-border-style: solid;*/
+}
+
+.context-menu .separator .line{
+    -fx-padding: 0.0em;  /*0 4 0 4 */
+    -fx-border-style: solid;
+    -fx-background-color: -white-color;
+    -fx-border-width: 0.25px;
+}
+
+/* TODO: try to scope the menu-item style to the contextmenu */
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 0.666666em 0.999999em 0.4999995em 0.999999em;   /*6 12 6 12 */
+}
+
+.menu-item .label {
+    -fx-padding: 0em 0.5em 0em 0em;
+    -fx-text-fill: rgb(240,240,240,0.87);
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+}
+
+
+.menu-item:focused {
+     -fx-background: -fx-accent;
+     -fx-background-color: derive(black,-10%);
+}
+
+.menu-item:pressed
+{
+    -fx-background-color: #212121;
+    -fx-text-fill: -white-color;
+}
+
+.menu-item:pressed .label
+{
+    -fx-text-fill: -white-color;
+}
+
+.preference-form-intra-pane-padding{
+	-fx-padding:32;
+}
+
+

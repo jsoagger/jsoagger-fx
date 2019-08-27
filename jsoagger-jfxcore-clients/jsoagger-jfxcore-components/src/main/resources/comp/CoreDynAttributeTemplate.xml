@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+
+     <component id="FormRow">
+          <properties combine.keys="name">
+               <property name="styleClass" value="borderless-form-fieldset-row-layout" />
+          </properties>
+          <component id="Rows">
+               <component ref="ElementQuantityUnitAttribute" />
+          </component>
+     </component>
+
+     <component id="DynAttributeTemplateTextArea" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="%s" />
+               <property name="prompt" value="%s" />
+               <property name="attributeName" value="%s" />
+               <property name="editUtility" value="InputTextarea" />
+               <property name="defaultValue" value="%s" />
+
+               <property name="enumeratedDataLoader" value="%s" />
+               <property name="enumeratedKey" value="%s" />
+          </properties>
+          <component id="ValidationConfig">
+               <properties combine.keys="name">
+                    <property name="mandatory" value="%s" />
+                    <property name="maxLength" value="%s" />
+                    <property name="minLength" value="%s" />
+                    <property name="blankAllowed" value="%s" />
+               </properties>
+          </component>
+     </component>
+
+     <component id="DynAttributeTemplateTextField" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="%s" />
+               <property name="prompt" value="%s" />
+               <property name="attributeName" value="%s" />
+               <property name="editUtility" value="InputText" />
+               <property name="defaultValue" value="%s" />
+
+               <property name="enumeratedDataLoader" value="%s" />
+               <property name="enumeratedKey" value="%s" />
+          </properties>
+          <component id="ValidationConfig">
+               <properties combine.keys="name">
+                    <property name="mandatory" value="%s" />
+                    <property name="maxLength" value="%s" />
+                    <property name="minLength" value="%s" />
+                    <property name="blankAllowed" value="%s" />
+               </properties>
+          </component>
+     </component>
+</view>

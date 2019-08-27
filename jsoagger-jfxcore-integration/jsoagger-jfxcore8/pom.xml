@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.github.jsoagger</groupId>
+		<artifactId>jsoagger-jfxcore-integration</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<name>JSoagger jfx core integration jdk8</name>
+	<description>JSoagger jfx core integration with JDK 8</description>
+	<artifactId>jsoagger-jfxcore8</artifactId>
+	<version>8.0.1</version>
+
+	<properties>
+		<javafx.version>8</javafx.version>
+		<ikonli.version>2.4.0</ikonli.version>
+		<ikonli.kordamp.version>2.4.0</ikonli.kordamp.version>
+		<jphoenix.version>8.0.3</jphoenix.version>
+		<controlfx.version>8.40.12</controlfx.version>
+		<jfxetras.version>8.0-r6</jfxetras.version>
+		<commons.lang.version>2.3</commons.lang.version>
+
+		<jsoagger.core.client.home>${project.basedir}/../../</jsoagger.core.client.home>
+
+		<java.source.level>1.8</java.source.level>
+		<java.target.level>1.8</java.target.level>
+		<jdk>/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/</jdk>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.0</version>
+					<configuration>
+						<source>11</source>
+						<target>1.8</target>
+						<showWarnings>true</showWarnings>
+						<showDeprecation>true</showDeprecation>
+						<fork>true</fork>
+						<executable>${jdk}/bin/javac</executable>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<classpathContainers>
+						<classpathContainer>
+							org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8
+						</classpathContainer>
+					</classpathContainers>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.9</target>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+					<fork>true</fork>
+					<executable>${jdk}/bin/javac</executable>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+
+    <component id="Content" combine.keys="id" processor="TableStructureProcessor">
+        <properties combine.keys="name">
+            <property name="contentImpl" value="TableContent" />
+           <property name="leftSectionAreaStyleClass" value="default-background,ep-full-table-structure-left"/>
+			<property name="centerSectionAreaStyleClass" value="default-background,padding-8-0-8-0"/>
+			<property name="rightSectionAreaStyleClass" value="default-background,ep-full-table-structure-right"/>
+			<property name="tableStructureAreaStyleClass" value="default-background"/>
+        </properties>
+
+        <component id="Header" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="displayHeader" value="true" />
+                <property name="headerImpl" value="FiltrableTableHeaderImpl" />
+                <property name="title" value="DESCRIBED_DOCUMENTATION_TABLE_HEADER_LABEL" />
+                <property name="titleStyleClass" value="ep-table-headline" />
+                <property name="styleClass" value="ep-full-table-structure-header" />
+                <property name="filteringAlwaysShown" value="true"/>
+                <property name="filterImpl" value=""/>
+            </properties>
+        </component>
+
+        <component id="NoContentPane" combine.keys="id">
+            <properties combine.keys="name">
+                <property name="noContentMessage" value="NO_CONTENT_LABEL" />
+            </properties>
+        </component>
+
+        <component id="Content">
+            <properties combine.keys="name">
+                <property name="loadFirstPage" value="true" />
+
+				<property name="linkConstraintName" value="elementToDocumentLinkConstraint"/>
+				<property name="linkType" value="io.github.jsoagger.objectLink.ElementToDocumentLink"/>
+                <property name="linkClass" value="io.github.jsoagger.core.model.part.ElementToDocumentLink" />
+                <property name="paginateOperation" value="GetPaginatedRoleBsWithLinksOperation" />
+                <property name="dataLoader" value="DefaultLinkPaginatedDataLoader" />
+            </properties>
+
+            <component id="Columns">
+                <component ref="CoreCheckboxSelectColumn" responsiveOrder="-1" />
+                <component ref="CoreSmallFolderedIconColumn" responsiveOrder="-1" />
+                <component ref="CoreRCMasterNameColumn" responsiveOrder="-1" masterColumn="true" />
+                <component ref="CoreCreationDateColumn" responsiveOrder="-1"/>
+                <component ref="DeleteElementTableRowColumn" responsiveOrder="-1" />
+            </component>
+        </component>
+
+        <component id="Toolbar">
+            <properties combine.keys="name">
+                <property name="styleClass" value="ep-table-toolbar" />
+                <property name="modifyingActionsStyleClass" value="ep-table-toolbar,spacing-8" />
+            </properties>
+
+            <component id="RootMenuActions">
+                <component id="LeftActions">
+                	<component ref="CoreSelectAllItemsButton" />
+                    <component ref="CoreCopySelectedElementsButton" />
+                    <component ref="CorePasteElementsButton" separator-after="true" />
+                    <component ref="DeleteSelectedElementsButton" separator-after="true" />
+                    <component ref="CoreRefreshTableStructureButton" />
+                </component>
+            </component>
+        </component>
+    </component>
+
+    <component id="DeleteSelectedElementsButton">
+        <properties combine.keys="name">
+            <property name="tooltip" value="DELETE_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="table-toolbar-action" />
+            <property name="label" value="DELETE_LABEL" />
+            <property name="upperCase" value="true" />
+            <property name="displayMode" value="LEFT" />
+            <property name="ikonli" value="hws-trash-can-2:18"/>
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:DeleteLinkOperation;linkClass:io.github.jsoagger.core.model.part.ElementToDocumentLink" />
+                <property name="action" value="DeleteSelectedElementsInTableStructureAction" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="DeleteElementTableRowColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="TableRowActionPresenter" />
+            <property name="responsiveOrder" value="-1" />
+            <property name="prefWidth" value="60" />
+            <property name="tableCellStyleClass" value="ep-table-delete-row-column" />
+            <property name="iconStyleClass" value="ep-table-forward-to-structure-actions" />
+            <property name="ikonli" value="hws-trash-can-2:22"/>
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:DeleteLinkOperation;linkClass:io.github.jsoagger.core.model.part.ElementToDocumentLink" />
+                <property name="action" value="DeleteObjectLinkFromTableRowAction" />
+            </properties>
+        </component>
+    </component>
+</view>

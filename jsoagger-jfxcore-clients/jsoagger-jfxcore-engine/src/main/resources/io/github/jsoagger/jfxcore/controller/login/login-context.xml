@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+     xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+     default-lazy-init="true">
+
+     <bean id="LoginMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+          <property name="useCodeAsDefaultMessage" value="true" />
+          <property name="defaultEncoding" value="UTF-8" />
+          <property name="basenames">
+               <list>
+                    <value>io.github.jsoagger.jfxcore.controller.login.message</value>
+               </list>
+          </property>
+     </bean>
+
+     <bean id="LoginRootStructure" class="io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController" scope="prototype">
+          <property name="messageSource" ref="LoginMessageSource" />
+          <property name="viewDefinitions">
+               <list merge="false">
+                    <value>/io/github/jsoagger/jfxcore/controller/login/LoginRS.xml</value>
+               </list>
+          </property>
+     </bean>
+
+     <bean id="LoginRSContent" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.content.RootStructureContentController" scope="prototype">
+          <property name="messageSource" ref="LoginMessageSource" />
+          <property name="viewDefinitions">
+               <list merge="false">
+                    <value>/io/github/jsoagger/jfxcore/controller/login/LoginRSContent.xml</value>
+               </list>
+          </property>
+     </bean>
+
+     <bean id="LoginWizard" class="io.github.jsoagger.jfxcore.engine.controller.main.WizardViewController" scope="prototype">
+          <property name="wizardProperties"  ref="wizardProperties" />
+          <property name="layoutManager"     ref="CenteredStretchedViewLayoutManager" />
+          <property name="messageSource"     ref="LoginMessageSource" />
+          <property name="viewDefinitions">
+               <list merge="false">
+                    <value>/io/github/jsoagger/jfxcore/controller/login/LoginWizardView.xml</value>
+               </list>
+          </property>
+     </bean>
+     
+
+     <bean id="corePlatformLoginRecoverView" class="io.github.jsoagger.jfxcore.engine.controller.main.WizardViewController" scope="prototype">
+          <property name="wizardProperties" ref="wizardProperties" />
+          <property name="messageSource" ref="LoginMessageSource" />
+          <property name="viewDefinitions">
+               <list merge="false">
+                    <value>/io/github/jsoagger/jfxcore/controller/login/LoginRecoverView.xml</value>
+               </list>
+          </property>
+     </bean>
+
+     <bean id="corePlatformLoginRecoverySummaryView" class="io.github.jsoagger.jfxcore.engine.controller.main.WizardViewController" scope="prototype">
+          <property name="wizardProperties" ref="wizardProperties" />
+          <property name="messageSource" ref="LoginMessageSource" />
+          <property name="viewDefinitions">
+               <list merge="false">
+                    <value>/io/github/jsoagger/jfxcore/controller/login/LoginRecoverySummaryView.xml</value>
+               </list>
+          </property>
+     </bean>
+</beans>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructuresVBoxProcessor">
+		<properties>
+			<property name="rootPaneStyleClass" value="grey-background,shadowed-pane" />
+			<property name="forwardLayoutHeaderStyleClass" value="white-background,shadowed-pane" />
+			<property name="tableStuctureVboxStyleClass" value="white-background,shadowed-pane,ep-preferences-root-table" />
+			<property name="leftSectionAreaStyleClass" value="grey-background" />
+			<property name="centerSectionAreaStyleClass" value="grey-background" />
+			<property name="rightSectionAreaStyleClass" value="grey-background" />
+			<property name="editorStructureAreaSectionStyleClass" value="grey-background" />
+			<property name="location" value="SETTINGS_LOCATION" />
+			<property name="forwardLayoutHeaderTitle" value="DATASET_PARAMETERS_SETTING_LABEL" />
+		</properties>
+
+
+		<component id="DatasetSettings" processor="TableStructureWithLayoutProcessor" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+				<property name="contentImpl" value="ListViewContent" />
+			</properties>
+			<component id="Header">
+				<properties combine.keys="name">
+					<property name="title" value="DATASET_PARAMETERS_LABEL" />
+					<property name="styleClass" value="white-background" />
+					<property name="titleStyleClass" value="padding-16-16-16-0,ep-headline" />
+				</properties>
+			</component>
+			<component id="Content" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-small,ep-preferences-list-view" />
+					<property name="dataKey" value="DatasetSettingDatas" />
+					<property name="dataLoader" value="StaticListEntryLoader" />
+					<property name="cellFactory" value="PreferencesListCellFactory" />
+
+					<property name="extra_param_mode" value="single" />
+				</properties>
+			</component>
+		</component>
+	</component>
+
+	<component id="DatasetSettingDatas">
+		<properties>
+			<property name="title" value="DATASET_PARAMETERS_LABEL" />
+		</properties>
+
+		<component id="DatasetAttribute">
+			<properties>
+				<property name="title" value="DATASET_LABEL" />
+				<property name="key" value="com.jsoagger.demoapp.dataset" />
+				<property name="listValueKey" value="dataset" />
+				<property name="presenter" value="defaultMultiSelectionPreferenceValuePresenter" />
+			</properties>
+		</component>
+
+		<component id="TmpDirAttribute">
+			<properties>
+				<property name="title" value="TMP_DIR_LABEL" />
+				<property name="buttonTitle" value="SELECT_LABEL" />
+				<property name="buttonStyleClass" value="button-primary" />
+				<property name="key" value="com.jsoagger.demoapp.dataset.tmp.dir.location" />
+				<property name="presenter" value="PreferenceDoActionPresenterFactory" />
+			</properties>
+			<component id="Handler" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="action" value="DoSelectFolderFromPreferencesAction" />
+					<property name="args" value="prefKey:com.jsoagger.demoapp.dataset.tmp.dir.location" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="ImageLocationAttribute">
+			<properties>
+				<property name="title" value="IMAGE_LOCATION_LABEL" />
+				<property name="buttonTitle" value="SELECT_LABEL" />
+				<property name="buttonStyleClass" value="button-primary" />
+				<property name="key" value="com.jsoagger.demoapp.dataset.image.location" />
+				<property name="presenter" value="PreferenceDoActionPresenterFactory" />
+			</properties>
+			<component id="Handler" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="action" value="DoSelectFolderFromPreferencesAction" />
+					<property name="args" value="prefKey:com.jsoagger.demoapp.dataset.image.location" />
+				</properties>
+			</component>
+		</component>
+	</component>
+</view>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-destroy-method="destroy">
+
+
+	<util:list id="NavigationBarResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0:830#0.50:fixed|500:0.50#:minimize:</value>
+		<value>830:1000#0.30:0.30:0.40#minimize::</value>
+		<value>1000#0.40:0.20:0.40#::</value>
+	</util:list>
+
+	<bean id="NavigationBarResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="NavigationBarResponsiveMatrixDefinition" />
+	</bean>
+
+	<import resource="classpath:/io/github/jsoagger/jfxcore/components/welcome/welcome-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/rootstructure/rootStructure-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/table/table-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/flow/flow-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/headerless/headerless-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/map/map-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/search/search-all-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/dashboard/demo-dashboard-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/dialog/dialog-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/details/details-view-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/preferences/preferences-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/wizard/wizard-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/administration/demo-administration-context.xml" />
+
+	<bean id="DemoAppRootMenuHeader" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoAppRootMenuHeader" scope="prototype" />
+	<bean id="DemoSmallTableIconPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoSmallTableIconPresenter" scope="prototype" />
+	<bean id="DemoHeaderLogoPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoHeaderLogoPresenter" scope="prototype" />
+
+	<bean id="CopyButtonDemoAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.CopyButtonDemoAction" scope="prototype" />
+	<bean id="CloseTaskFromTableRowAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.CloseTaskFromTableRowAction" scope="prototype" />
+	<bean id="CloseTasksButtonDemoAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.CloseTasksButtonDemoAction" scope="prototype" />
+	<bean id="DeleteButtonDemoAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.DeleteButtonDemoAction" scope="prototype" />
+	<bean id="ExportButtonDemoAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.ExportButtonDemoAction" scope="prototype" />
+	<bean id="PrintButtonDemoAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.PrintButtonDemoAction" scope="prototype" />
+	<bean id="RefreshButtonDemoAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.RefreshButtonDemoAction" scope="prototype" />
+	<bean id="CreateSavedSearchAction" class="io.github.jsoagger.jfxcore.demoapp.action.CreateDemoSavedSearchAction" scope="prototype"/>
+	
+	<bean id="BeginTaskFromTableRowAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.BeginTaskFromTableRowAction" scope="prototype" />
+	<bean id="ReopenTaskFromTableRowAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.ReopenTaskFromTableRowAction" scope="prototype" />
+	<bean id="ValidateTaskFromTableRowAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.ValidateTaskFromTableRowAction" scope="prototype" />
+	<bean id="ValidateTasksButtonDemoAction" class="io.github.jsoagger.jfxcore.demoapp.tableaction.ValidateTasksButtonDemoAction" scope="prototype" />
+
+	<bean id="SearchCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/search-components.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/element-components.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="AllDemoCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/search-components.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/element-components.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/common-components.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+
+	<bean id="ElementCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/search-components.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="CommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/common-components.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoTableByTitleFilter" class="io.github.jsoagger.jfxcore.engine.components.table.TableStructureFilter" scope="prototype">
+		<property name="masterAttributePath" value="attributes.title" />
+	</bean>
+
+	<bean id="DemoTableByModelFilter" class="io.github.jsoagger.jfxcore.engine.components.table.TableStructureFilter" scope="prototype">
+		<property name="masterAttributePath" value="attributes.model" />
+	</bean>
+
+	<bean id="DemoModelStatusPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoModelStatusPresenter" scope="prototype" />
+	<bean id="DemoTablesRowCriteriaSetter" class="io.github.jsoagger.jfxcore.demoapp.DemoTablesRowCriteriaSetter" scope="prototype"/>
+</beans>

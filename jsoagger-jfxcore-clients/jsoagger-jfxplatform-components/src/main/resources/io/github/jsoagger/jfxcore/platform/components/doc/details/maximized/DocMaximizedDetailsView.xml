@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="styleClass" value="grey-background" />
+			<property name="leftSectionAreaStyleClass" value="grey-background" />
+			<property name="centerSectionAreaStyleClass" value="grey-background" />
+			<property name="rightSectionAreaStyleClass" value="grey-background" />
+
+			<property name="tabsAlignment" value="center" />
+		</properties>
+
+		<component id="HeaderActions" combine.keys="id">
+			<component id="RootMenuActions">
+				<component id="LeftActions">
+				</component>
+			</component>
+		</component>
+		<!-- THESE ACTION ARE DISPLAYED ONLY IF THE DETAILS VIEW IS IN VIEW MODE. 
+			WHEN SWITCHING IN EDIT MODE, THEY ARE HIDDEN. IF YOU WANT ACTIONS TO BE DISPLAYED 
+			WHATEVER THE MODE , USE HEADER ACTIONS -->
+		<component id="Actions" combine.keys="id">
+			<component id="RootMenuActions">
+				<component id="CenterActions">
+					<component ref="CoreDocumentRcCheckoutButton" />
+					<component ref="CoreDocumentRcCheckinButton" />
+					<component ref="CoreDocumentRcReviseButton" />
+					<component ref="CoreDocumentLmPromoteButton" />
+					<component ref="CoreDocumentLmDenoteButton" />
+					<component ref="CoreDocumentDeleteWCButton" />
+					<component ref="CoreDocumentForwardToWCButton" />
+					<component ref="CoreDocumentForwardToOriginalCopyButton" />
+					<component ref="CoreDocumentPreviousIterationButton" />
+					<component ref="CoreDocumentNextIterationButton" />
+					<component ref="CoreDocumentLastIterationButton" />
+				</component>
+			</component>
+		</component>
+
+		<component id="DetailsViewTabs" combine.keys="id">
+			<component id="TabGroup1">
+				<properties combine.keys="name">
+					<property name="title" value="CONTENT_LABEL" />
+					<property name="titleStyleClass" value="" />
+					<property name="styleClass" value="ep-details-view-maximized-tab-item" />
+				</properties>
+
+				<component id="ContentTabMenu">
+					<properties combine.keys="name">
+						<property name="title" value="CONTENT_LABEL" />
+						<property name="tootltip" value="CONTENT_LABEL" />
+						<property name="ikonli" value="mdi-attachment:20" />
+						<property name="styleClass" value="ep-details-view-maximized-tab-item" />
+					</properties>
+
+					<component rootview="DocMaximizedContentTabView" />
+				</component>
+
+				<component id="InformationTabMenu">
+					<properties combine.keys="name">
+						<property name="title" value="INFOS_LABEL" />
+						<property name="tootltip" value="INFOS_LABEL" />
+						<property name="titleStyleClass" value="" />
+						<property name="styleClass" value="ep-details-view-maximized-tab-item" />
+						<property name="ikonli" value="mdi-information-outline:20" />
+					</properties>
+					<component rootview="DocMaximizedInformationTabView" />
+				</component>
+				<component id="TimelineTabMenu">
+					<properties combine.keys="name">
+						<property name="titleStyleClass" value="" />
+						<property name="title" value="TIMELINE_LABEL" />
+						<property name="tootltip" value="TIMELINE_LABEL" />
+						<property name="styleClass" value="ep-details-view-maximized-tab-item" />
+						<property name="ikonli" value="gmi-timeline:20" />
+					</properties>
+
+					<component rootview="DocumentTimelineView" />
+				</component>
+				<component id="TabMenu">
+					<properties combine.keys="name">
+						<property name="title" value="LINKS_LABEL" />
+						<property name="tootltip" value="LINKS_LABEL" />
+						<property name="ikonli" value="fa-link:20" />
+						<property name="styleClass" value="ep-details-view-maximized-tab-item" />
+					</properties>
+
+					<component rootview="DocMaximizedLinks" />
+				</component>
+			</component>
+		</component>
+	</component>
+
+
+	<context-filter-group>
+		<context-filter handler="RCFiltersContext" />
+		<context-filter handler="LifecycleManagedFiltersContext" />
+	</context-filter-group>
+
+	<view-filter name="NotWorkingCopy">
+		<not>
+			<view-filter name="WorkingCopy" />
+		</not>
+	</view-filter>
+
+	<view-filter name="NotLatestIteration">
+		<not>
+			<view-filter name="LatestIteration" />
+		</not>
+	</view-filter>
+
+	<view-filter name="CanNotCheckout">
+		<not>
+			<view-filter name="WorkingCopy" />
+		</not>
+	</view-filter>
+
+	<view-filter name="CanRevise">
+		<param name="can_revise" value="true" />
+	</view-filter>
+
+	<view-filter name="HasWorkingCopy">
+		<param name="has_working_copy" value="true" />
+	</view-filter>
+
+	<view-filter name="WorkingCopy">
+		<param name="is_working_copy" value="true" />
+	</view-filter>
+
+	<view-filter name="CanCheckout">
+		<param name="can_checkout" value="true" />
+	</view-filter>
+
+	<view-filter name="LatestIteration">
+		<param name="latest_iteration" value="true" />
+	</view-filter>
+
+	<view-filter name="CanPromote">
+		<param name="can_promote" value="true" />
+	</view-filter>
+
+	<view-filter name="CanDenote">
+		<param name="can_denote" value="true" />
+	</view-filter>
+
+	<component id="InitialisationRuleAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="INITIALISATION_RULE_LABEL" />
+			<property name="viewUtility" value="BasicAttributeInputView" />
+			<property name="editUtility" value="InputText" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.displayName" />
+		</properties>
+	</component>
+
+	<component id="LifecycleAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LIFECYCLE_LABEL" />
+			<property name="viewUtility" value="BasicAttributeInputView" />
+			<property name="editUtility" value="InputText" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.displayName" />
+		</properties>
+	</component>
+
+	<component id="DescriptionAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="DESCRIPTION_LABEL" />
+			<property name="viewUtility" value="TextInputView" />
+			<property name="editUtility" value="InputTextarea" />
+			<property name="attributeName" value="description" />
+			<property name="attributePath" value="data.attributes.description" />
+			<property name="viewLayout" value="VerticalFormRowLayout" />
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="false" />
+				<property name="maxLength" value="255" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="LogicalPathAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LOGICAL_PATH_LABEL" />
+			<property name="viewUtility" value="BasicAttributeInputView" />
+			<property name="editUtility" value="InputText" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.logicalPath" />
+		</properties>
+	</component>
+
+	<component id="IsEnabledAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ENBLED_LABEL" />
+			<property name="viewUtility" value="CheckboxInputView" />
+			<property name="editUtility" value="InputCheckbox" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.isEnabled" />
+		</properties>
+	</component>
+
+	<component id="IsInstanciableAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="INSTANCIABLE_LABEL" />
+			<property name="viewUtility" value="CheckboxInputView" />
+			<property name="editUtility" value="InputCheckbox" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.isInstanciable" />
+		</properties>
+	</component>
+
+	<component id="IconNameAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ICON_NAME_LABEL" />
+			<property name="viewUtility" value="BasicAttributeInputView" />
+			<property name="editUtility" value="InputText" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.iconName" />
+		</properties>
+	</component>
+
+	<component id="IconPathAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ICON_PATH_LABEL" />
+			<property name="viewUtility" value="BasicAttributeInputView" />
+			<property name="editUtility" value="InputText" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.iconPath" />
+		</properties>
+	</component>
+
+	<component id="I18nKeyAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="I18N_LABEL" />
+			<property name="viewUtility" value="BasicAttributeInputView" />
+			<property name="editUtility" value="InputText" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="data.attributes.i18nKey" />
+		</properties>
+	</component>
+
+	<component id="AddChildTypeButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="ADD_CHILD_TYPE_LABEL" />
+			<property name="label" value="ADD_CHILD_TYPE_LABEL" />
+			<property name="icon" value="PLUS" />
+			<property name="styleClass" value="flat-button,button-xl" />
+			<property name="iconStyleClass" value="white-icon" />
+			<property name="iconSize" value="icon-small" />
+			<property name="type" value="SimpleButton" />
+		</properties>
+	</component>
+
+	<component id="CoreLifecycleAllStatesAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ALL_STATES_LABEL" />
+			<property name="viewUtility" value="LifecycleAllStatesInputView" />
+			<property name="attributeName" value="lifecycleInfo.allStates" />
+			<property name="attributePath" value="data.links.lifecycleStates.allStates" />
+		</properties>
+	</component>
+
+	<component id="DeleteElementTableRowColumn">
+		<properties combine.keys="name">
+			<property name="presenter" value="TableRowActionPresenter" />
+			<property name="responsiveOrder" value="-1" />
+			<property name="prefWidth" value="60" />
+			<property name="tableCellStyleClass" value="ep-table-delete-row-column" />
+			<property name="iconStyleClass" value="ep-table-forward-to-structure-actions" />
+			<property name="ikonli" value="fa-trash-o:28" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="operation:DeleteLinkOperation" />
+				<property name="action" value="DeleteTableRowAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="AddReferencedDocButton" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="tooltip" value="ADD_REFERENCES_DOC_LABEL" />
+			<property name="label" value="ADD_REFERENCES_DOC_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-large,button-transparent-border" />
+			<property name="ikonli" value="fa-mail-forward:28" />
+		</properties>
+
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="ForwardToViewButtonAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="EditStructureActionButton" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="tooltip" value="ADD_REFERENCES_DOC_LABEL" />
+			<property name="label" value="ADD_REFERENCES_DOC_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-large,button-transparent-border" />
+			<property name="ikonli" value="fa-mail-forward:28" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="ForwardToViewButtonAction" />
+			</properties>
+		</component>
+	</component>
+</view>
+                   

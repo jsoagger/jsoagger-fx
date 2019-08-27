@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	profile="desktop">
+
+
+	<bean id="RooStructureMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.core.ui.jfx.platform.rootstructure.message</value>
+				<value>io.github.jsoagger.jfxcore.engine.controller.localization</value>
+				<value>i18n.generalBundle</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- TERNARY MENU -->
+	<bean id="NotificationsTernaryMenuView" class="io.github.jsoagger.jfxcore.engine.controller.TernaryMenuController" scope="prototype">
+		<property name="messageSource" ref="RooStructureMessageSource"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/rootstructure/NotificationsTernaryMenuView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderHubTernaryMenu" class="io.github.jsoagger.jfxcore.engine.controller.TernaryMenuController" scope="prototype">
+		<property name="messageSource" ref="RooStructureMessageSource"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/rootstructure/HeaderHubTernaryMenu.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="HeaderProfileTernaryMenu" class="io.github.jsoagger.jfxcore.engine.controller.TernaryMenuController" scope="prototype">
+		<property name="messageSource" ref="RooStructureMessageSource"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/rootstructure/HeaderProfileTernaryMenu.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="HeaderNotificationButtonView" class="io.github.jsoagger.jfxcore.engine.controller.NotifiableButtonController" scope="prototype">
+		<property name="messageSource" ref="RooStructureMessageSource"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/rootstructure/HeaderNotificationButtonView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="ManageObjectInSecondaryRSContentView" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.content.RootStructureContentController" scope="prototype">
+        <property name="messageSource" ref="DocMessageSource" />
+        <property name="viewDefinitions">
+            <list merge="true">
+                <value>/io/github/jsoagger/jfxcore/platform/components/rootstructure/ManageObjectInSecondaryRSContentView.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="ManageObjectInSecondaryRSView" class="io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController" scope="prototype">
+        <property name="messageSource" ref="DocMessageSource" />
+        <property name="modelProvider" ref="RootStructureModelLoader" />
+        <property name="commonComponents" ref="SearchCommonComponents"/>
+        <property name="viewDefinitions">
+            <list merge="true">
+                <value>/io/github/jsoagger/jfxcore/platform/components/rootstructure/ManageObjectInSecondaryRSView.xml</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="SingleSearchFormAndResultLayoutManager" class="io.github.jsoagger.jfxcore.components.search.comps.SingleSearchFormAndResultLayoutManager" scope="prototype" />
+</beans>

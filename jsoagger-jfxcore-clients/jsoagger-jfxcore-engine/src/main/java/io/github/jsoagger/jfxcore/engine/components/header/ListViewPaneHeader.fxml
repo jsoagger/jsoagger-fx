@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.TextFlow?>
+
+<HBox fx:id="rootContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0"
+     styleClass="listview-pane-header-container">
+
+     <children>
+          <VBox fx:id="leftContainer" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+               <children>
+                    <HBox fx:id="mailLabelContainer" alignment="CENTER_LEFT">
+                         <children>
+                              <Label fx:id="mainLabel"/>
+                              <Label fx:id="totalElementsCountLabel"/>
+                         </children>
+                    </HBox>
+                    <TextFlow fx:id="secondaryLabelFlow" styleClass="listview-pane-header-secondary-label-flow" />
+               </children>
+          </VBox>
+
+          <HBox fx:id="rightActionsContainer"/>
+     </children>
+</HBox>

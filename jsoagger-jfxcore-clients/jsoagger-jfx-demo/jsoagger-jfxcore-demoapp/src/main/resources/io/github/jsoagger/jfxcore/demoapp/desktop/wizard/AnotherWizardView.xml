@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="NoContentPaneProcessor">
+		<component id="NoContentPane">
+			<properties combine.keys="name">
+				<property name="styleClass" value="white-background" />
+				<property name="contentImpl" value="GroupedActionsContentPane" />
+			</properties>
+
+			<component id="ActionGroup1">
+				<properties combine.keys="name">
+					<property name="ikonli" value="gmi-cloud-done:40" />
+					<property name="message" value="ITEM_CREATED_LABEL" />
+					<property name="actionNode" value="AnotherOneButton" />
+				</properties>
+			</component>
+		</component>
+	</component>
+
+	<component id="AnotherOneButton">
+		<properties combine.keys="name">
+			<property name="title" value="ANOTHER_ONE_LABEL" />
+			<property name="label" value="ANOTHER_ONE_LABEL" />
+			<property name="tooltip" value="ANOTHER_ONE_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="fa-plus:24" />
+			<property name="styleClass" value="button-medium,button-transparent" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:WizardContentViewWizard;replace:true" />
+				<property name="action" value="PushToViewAction" />
+			</properties>
+		</component>
+	</component>
+
+</view>

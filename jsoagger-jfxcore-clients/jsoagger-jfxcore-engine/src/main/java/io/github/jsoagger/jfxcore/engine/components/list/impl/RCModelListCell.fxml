@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<StackPane fx:id="rootContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="rc-list-cellpresenter-external-container" xmlns:fx="http://javafx.com/fxml/1"
+     xmlns="http://javafx.com/javafx/2.2">
+     <children>
+          <HBox fx:id="rootContainer2" prefWidth="-1.0" styleClass="rc-list-cellpresenter-internal-container" >
+               <children>
+                    <HBox fx:id="iconContainer" styleClass="rc-list-cellpresenter-icon-container">
+                    </HBox>
+
+
+                    <HBox fx:id="centerExternalContainer"  styleClass="rc-list-cellpresenter-center-external-container" HBox.hgrow="ALWAYS">
+                         <children>
+                              <VBox fx:id="centerContainer" styleClass="rc-list-cellpresenter-center-container" HBox.hgrow="ALWAYS">
+                                   <children>
+                                        <HBox fx:id="mainLabelContainer" styleClass="rc-list-cellpresenter-primarylabel-container" HBox.hgrow="ALWAYS" />
+                                        <HBox fx:id="secondaryLabelContainer" styleClass="rc-list-cellpresenter-secondarylabel-container" HBox.hgrow="ALWAYS" />
+                                        <HBox fx:id="quickActionsContainer" styleClass="rc-list-cellpresenter-quickactions-container" HBox.hgrow="ALWAYS" />
+                                   </children>
+                              </VBox>
+
+                              <HBox fx:id="ternaryLabelContainer" styleClass="rc-list-cellpresenter-ternarylabel-container" />
+                              <HBox fx:id="rightActionsContainer" styleClass="rc-list-cellpresenter-rightactions-container" />
+                         </children>
+                    </HBox>
+               </children>
+          </HBox>
+     </children>
+</StackPane>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="contentImpl" value="FlowTableContent" />
+			<property name="rowPerPage" value="10" />
+			<property name="leftSectionAreaStyleClass" value="default-background" />
+			<property name="centerSectionAreaStyleClass" value="default-background" />
+			<property name="rightSectionAreaStyleClass" value="default-background" />
+			<property name="tableFooterAreaStyleClass" value="default-background,padding-0-4-0-8" />
+			<property name="layoutInternalWrapperStyleClass" value="padding-32-0-32-0" />
+		</properties>
+		<component id="Header">
+			<properties combine.keys="name">
+				<property name="title" value="LIST_EXAMPLE1_TITLE_EXAMPLE" />
+				<property name="styleClass" value="default-background" />
+				<property name="titleStyleClass" value="ep-table-headline-bold," />
+				<property name="headerImpl" value="FiltrableTableHeaderImpl" />
+				<property name="filteringAlwaysShown" value="true" />
+				<property name="filterImpl" value="DemoTableByModelFilter" />
+			</properties>
+		</component>
+
+		<component id="NoContentPane">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+				<property name="labelStyleClass" value="no-content-pane-message" />
+				<property name="contentImpl" value="GroupedActionsContentPane" />
+			</properties>
+
+			<component id="ActionGroup1">
+				<properties combine.keys="name">
+					<property name="message" value="EMPTY_LIST_ADD_ELEMENT_MESSAGE" />
+					<property name="actionNode" value="RefreshButton" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="Content">
+			<properties combine.keys="name">
+				<property name="styleClass" value="default-background" />
+				<property name="tableRowStyleClass" value="ep-flow-item-table-row" />
+				<property name="domainClass" value="io.github.jsoagger.core.model.part.Element" />
+				<property name="paginateOperation" value="StubPaginatedTableDataOperation" />
+				<property name="dataLoader" value="GenericEntityPaginatedDataLoader" />
+
+				<property name="selectable" value="true" />
+				<property name="flowItemImpl" value="PaginatedFlowItemPresenter1" />
+			</properties>
+			<component id="IconClickHandler">
+				<properties combine.keys="name">
+					<property name="args" value="viewId:ManageObjectInSecondaryRSView;contentId:DemoSelfIllustrationTabView" />
+					<property name="action" value="PushViewToSecondaryRSContentAction" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="Toolbar">
+			<properties combine.keys="name">
+				<property name="toolbarImpl" value="ModifiableHToolbar" />
+				<property name="styleClass" value="ep-table-toolbar" />
+				<property name="modifyingActionsStyleClass" value="ep-table-toolbar,spacing-8" />
+			</properties>
+
+			<component id="ModifyMenuActions">
+				<component id="CenterActions">
+					<component ref="NewElementButton" />
+					<component ref="CoreSelectAllItemsButton" />
+					<component ref="CorePrintSelectedElementsButton" separator-after="true" />
+					<component ref="CoreCopySelectedElementsButton" />
+					<component ref="CorePasteElementsButton" separator-after="true" />
+					<component ref="CoreRefreshTableStructureButton" />
+				</component>
+			</component>
+		</component>
+
+		<component id="Pagination">
+			<properties combine.keys="name">
+				<property name="paginationImpl" value="SimplePaginationBar" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="RefreshButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="REFRESH_LABEL" />
+			<property name="label" value="REFRESH_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="styleClass" value="button-xl,button-primary-border-transparent" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="fa-refresh:20" />
+			<property name="iconStyleClass" value="primary-ikonli" />
+			<property name="iconSize" value="icon-small" />
+		</properties>
+
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:EmptyListViewAddElement" />
+				<property name="action" value="ShowWizardAction" />
+			</properties>
+		</component>
+	</component>
+	
+	<!-- 
+	<component id="CellRightActions">
+		<properties combine.keys="name">
+			<property name="styleClass" value="ep-presenter-right-actions-container" />
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="LoadChildrenAction">
+			<properties combine.keys="name">
+				<property name="title" value="SHOW_DETAILS_LABEL" />
+				<property name="type" value="button" />
+				<property name="styleClass" value="button-primary-border-transparent" />
+				<property name="presenter" value="DoActionPresenter" />
+			</properties>
+			<component id="Handler">
+				<properties combine.keys="name">
+					<property name="action" value="PushToViewAction" />
+					<property name="args" value="viewId:RootDetailsView" />
+				</properties>
+			</component>
+		</component>
+	</component>
+ 	-->
+ 
+	<component id="CellMiddleActions">
+		<properties combine.keys="name">
+			<property name="orientation" value="horizontal" />
+			<property name="styleClass" value="ep-presenter-middle-actions-container" />
+		</properties>
+		<component id="Exampl1Action">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-transparent-border-transparent-grey-text" />
+				<property name="ikonli" value="mdi-information-outline:18" />
+				<property name="type" value="button" />
+				<property name="title" value="INFO_LABEL" />
+				<property name="upperCase" value="true" />
+				<property name="presenter" value="FlowItemActionPresenter" />
+			</properties>
+			<component id="Handler">
+				<properties combine.keys="name">
+					<property name="args" value="viewId:ManageObjectInSecondaryRSView;contentId:DemoSelfInformationTabView" />
+					<property name="action" value="PushViewToSecondaryRSContentAction" />
+				</properties>
+			</component>
+		</component>
+		<component id="Exampl2Action">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-transparent-border-transparent-grey-text" />
+				<property name="ikonli" value="mdi-image:18" />
+				<property name="type" value="button" />
+				<property name="title" value="ALBUM_LABEL" />
+				<property name="upperCase" value="true" />
+				<property name="presenter" value="FlowItemActionPresenter" />
+			</properties>
+			<component id="Handler">
+				<properties combine.keys="name">
+					<property name="args" value="viewId:ManageObjectInSecondaryRSView;contentId:DemoSelfIllustrationTabView" />
+					<property name="action" value="PushViewToSecondaryRSContentAction" />
+				</properties>
+			</component>
+		</component>
+	</component>
+
+	<component id="ForwardToDetailsColumn">
+		<properties combine.keys="name">
+			<property name="presenter" value="TableRowActionPresenter" />
+			<property name="responsiveOrder" value="-1" />
+			<property name="prefWidth" value="40" />
+			<property name="tableCellStyleClass" value="align-right" />
+			<property name="ikonli" value="fa-angle-right:22" />
+			<property name="iconStyleClass" value="" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:FullMaximizedRootDetailsView" />
+				<property name="action" value="PushToViewAction" />
+			</properties>
+		</component>
+	</component>
+</view>

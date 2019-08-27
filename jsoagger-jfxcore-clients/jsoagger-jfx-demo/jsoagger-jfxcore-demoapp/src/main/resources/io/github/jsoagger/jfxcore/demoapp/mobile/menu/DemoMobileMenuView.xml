@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+
+	<component id="Content" combine.keys="id" processor="TableStructuresVBoxProcessor">
+		<properties combine.keys="name">
+			<property name="styleClass" value="unshadowed-pane" />
+			<property name="location" value="BUSINESS_ADMINISTRATION_LABEL" />
+			<property name="leftSectionAreaStyleClass" value="default-background" />
+			<property name="centerSectionAreaStyleClass" value="default-background,padding-32-0-32-0" />
+			<property name="rightSectionAreaStyleClass" value="default-background" />
+		</properties>
+
+		<component id="ListMenuGroup" processor="TableStructureWithLayoutProcessor" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+				<property name="contentImpl" value="FlowContent" />
+			</properties>
+			<component id="Header" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="title" value="LISTS_LABEL" />
+					<property name="styleClass" value="transparent-background,padding-16" />
+					<property name="titleStyleClass" value="headline" />
+				</properties>
+			</component>
+			<component id="Content" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-small,ep-admin-mobile-listview" />
+					<property name="dataKey" value="ListManagementGroupData" />
+					<property name="dataLoader" value="StaticListEntryLoader" />
+
+					<property name="flowItemImpl" value="DemoStaticModelFlowCell" />
+					<property name="cellFactory" value="DemoAdminItemCellFactory" />
+					<property name="flowMode" value="vbox" />
+				</properties>
+			</component>
+			<component id="CellRightActions" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="styleClass" value="" />
+					<property name="orientation" value="horizontal" />
+				</properties>
+				<component id="ManageAction" combine.keys="id">
+					<properties combine.keys="name">
+						<property name="type" value="button" />
+						<property name="ikonli" value="mdi-chevron-right:22" />
+						<property name="styleClass" value="button-transparent-border-transparent-grey-text" />
+						<property name="presenter" value="DoActionPresenter" />
+					</properties>
+					<component id="Handler" combine.keys="id">
+						<properties combine.keys="name">
+							<property name="action" value="PushToViewAction" />
+						</properties>
+					</component>
+				</component>
+			</component>
+			<component id="RowClickHandler">
+				<properties combine.keys="name">
+					<property name="action" value="PushToViewActionStaticData" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="DialogsGroup" processor="TableStructureWithLayoutProcessor" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+				<property name="contentImpl" value="ListViewContent" />
+			</properties>
+			<component id="Header" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="title" value="DIALOGS_TITLE" />
+					<property name="styleClass" value="transparent-background,padding-16" />
+					<property name="titleStyleClass" value="headline" />
+				</properties>
+			</component>
+			<component id="Content" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-small,ep-admin-mobile-listview" />
+					<property name="dataKey" value="DialogManagementGroupData" />
+					<property name="dataLoader" value="StaticListEntryLoader" />
+
+					<property name="cellPresenter" value="DemoAdminItemListCellPresenter" />
+					<property name="cellFactory" value="DemoAdminItemCellFactory" />
+				</properties>
+			</component>
+			<component id="CellRightActions" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="styleClass" value="" />
+					<property name="orientation" value="horizontal" />
+				</properties>
+				<component id="ManageAction" combine.keys="id">
+					<properties combine.keys="name">
+						<property name="type" value="button" />
+						<property name="ikonli" value="mdi-chevron-right:22" />
+						<property name="styleClass" value="button-transparent-border-transparent-grey-text" />
+						<property name="presenter" value="DoActionPresenter" />
+					</properties>
+					<component id="Handler" combine.keys="id">
+						<properties combine.keys="name">
+							<property name="action" value="PushToViewAction" />
+						</properties>
+					</component>
+				</component>
+			</component>
+			<component id="RowClickHandler">
+				<properties combine.keys="name">
+					<property name="action" value="PushToViewActionStaticData" />
+				</properties>
+			</component>
+		</component>
+	</component>
+
+	<component id="DialogManagementGroupData">
+		<component id="ListTemplate">
+			<properties combine.keys="name">
+				<property name="title" value="DIALOGS_LABEL" />
+				<property name="location" value="DIALOGS_LABEL" />
+				<property name="viewId" value="DialogContentView" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="ListManagementGroupData">
+		<component id="LifecyclesTemplateManager">
+			<properties combine.keys="name">
+				<property name="title" value="LIST_TEMPLATE_3_LABEL" />
+				<property name="location" value="LIST_TEMPLATE_3_LABEL" />
+				<property name="viewId" value="DemoMobileListExample3View" />
+			</properties>
+		</component>
+
+		<component id="ListTemplate4">
+			<properties combine.keys="name">
+				<property name="title" value="LIST_TEMPLATE_4_LABEL" />
+				<property name="location" value="LIST_TEMPLATE_4_LABEL" />
+				<property name="viewId" value="DemoMobileListExample4View" />
+			</properties>
+		</component>
+
+		<component id="ListTemplate5">
+			<properties combine.keys="name">
+				<property name="title" value="LIST_TEMPLATE_5_LABEL" />
+				<property name="location" value="LIST_TEMPLATE_5_LABEL" />
+				<property name="detailsViewId" value="ReportsTemplatesManagerListViewSC" />
+				<property name="viewId" value="DemoMobileListExample5View" />
+			</properties>
+		</component>
+	</component>
+
+</view>

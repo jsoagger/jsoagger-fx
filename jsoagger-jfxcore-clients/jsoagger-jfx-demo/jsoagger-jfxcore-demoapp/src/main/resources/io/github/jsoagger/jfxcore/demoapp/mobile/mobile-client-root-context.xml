@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	profile="mobile" default-destroy-method="destroy">
+
+
+	<util:list id="NavigationBarResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>830#0.50:fixed|500:0.50#::</value>
+	</util:list>
+
+	<bean id="NavigationBarResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="NavigationBarResponsiveMatrixDefinition" />
+	</bean>
+
+	<bean id="SingleSearchFormAndResultLayoutManager" class="io.github.jsoagger.jfxcore.components.search.comps.SingleSearchFormAndResultLayoutManager" scope="prototype" />
+	<bean id="SearchCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/search-components.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/element-components.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ElementCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/search-components.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="CommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/common-components.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="SearchAllTypesFormViewResolver" class="io.github.jsoagger.jfxcore.components.search.comps.SearchAllTypesFormViewResolver" init-method="init">
+		<property name="definitionFile" value="/io/github/jsoagger/jfxcore/demoapp/mobile/searchViews.properties"/>
+	</bean>
+
+	<bean id="SearchAllTypesResultViewResolver" class="io.github.jsoagger.jfxcore.components.search.comps.SearchAllTypesResultViewResolver" init-method="init">
+		<property name="definitionFile" value="/io/github/jsoagger/jfxcore/demoapp/mobile/searchViews.properties"/>
+	</bean>
+	
+
+	<bean id="DemoTableByTitleFilter" class="io.github.jsoagger.jfxcore.engine.components.table.TableStructureFilter" scope="prototype">
+		<property name="masterAttributePath" value="attributes.title" />
+	</bean>
+
+	<bean id="DemoTableByModelFilter" class="io.github.jsoagger.jfxcore.engine.components.table.TableStructureFilter" scope="prototype">
+		<property name="masterAttributePath" value="attributes.model" />
+	</bean>
+
+	<bean id="DemoModelStatusPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoModelStatusPresenter" scope="prototype" />
+
+	<bean id="DemoMobileHorizontalFlowItemPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.HorizontalFlowItemPresenterFactory" scope="prototype"
+		init-method="init">
+		<property name="iconPresenter" ref="DemoMobileModelFlowThumbPresenter" />
+		<property name="identityPresenter" ref="DemoFlowItemIdentityPresenter" />
+		<property name="secondaryLabelPresenter" ref="ModelDescriptionPresenter" />
+	</bean>
+	
+	<bean id="DemoMobileModelFlowThumbPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoMobileModelFlowThumbPresenter"  scope="prototype"/>
+	<bean id="DemoMobileModelLargeFlowThumbPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.j"  scope="prototype">
+		<property name="width"  value="320"/>
+		<property name="height"  value="200"/>
+	</bean>
+	
+	<bean id="DemoMobileLargeFlowItemPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.FlowItemPresenterFactory" scope="prototype" init-method="init">
+		<property name="iconPresenter" ref="DemoMobileModelLargeFlowThumbPresenter" />
+		<property name="identityPresenter" ref="DemoFlowItemIdentityPresenter" />
+		<property name="secondaryLabelPresenter" ref="ModelDescriptionPresenter" />
+	</bean>	
+</beans>

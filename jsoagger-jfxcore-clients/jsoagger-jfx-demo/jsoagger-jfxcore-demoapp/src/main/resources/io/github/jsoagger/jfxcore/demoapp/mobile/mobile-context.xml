@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true">
+
+
+	<bean id="DemoMobileContentFlowView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="FlowMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="DemoMobileContentFlowViewLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/list/DemoMobileListView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMobileContentFlowViewLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.FullFlowContentLayoutManager" scope="prototype">
+		<property name="responsiveMatrix" ref="DemoMobileContentFlowViewLayoutManagerResponsiveMatrix" />
+	</bean>
+
+	<bean id="DemoMobileContentFlowViewLayoutManagerResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="DemoMobileContentFlowViewLayoutManagerResponsiveMatrixDefinition" />
+	</bean>
+
+	<util:list id="DemoMobileContentFlowViewLayoutManagerResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0:0.98:0#hide::hide</value>
+	</util:list>
+
+
+	<bean id="DemoMobileAdministrationView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DemoAdministrationMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="CenteredStretchedViewLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/administration/DemoAdministrationView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/administration/DemoMobileAdministrationView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMobilePreferencesRSContentView" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.content.RootStructureContentController" scope="prototype">
+		<property name="messageSource" ref="PreferencesMessageSource" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/preferences/DemoMobilePreferencesRSContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMobilePreferencesRSView" class="io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController" scope="prototype">
+		<property name="messageSource" ref="PreferencesMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/preferences/DemoMobilePreferencesRSView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMobilePreferencesRootGroupListView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="PreferencesMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="CenteredStretchedViewLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/preferences/DemoPreferencesRootGroupListView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/preferences/DemoMobilePreferencesRootGroupListView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MobilePrimaryHeaderToolbarView" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.header.ToolbarController" scope="prototype">
+		<property name="messageSource" ref="RooStructureMessageSource" />
+		<property name="responsiveMatrix" ref="MobilePrimaryHeaderToolbarResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/rootstructure/MobilePrimaryHeaderToolbarView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/engine/controller/HeaderToolbar.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="MobilePrimaryHeaderToolbarResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="MobilePrimaryHeaderToolbarResponsiveMatrixDefinition" />
+	</bean>
+	<util:list id="MobilePrimaryHeaderToolbarResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String" scope="prototype">
+		<value>0#0.15:0.85:0.0#::hide</value>
+	</util:list>
+	
+	<bean id="MobileMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.jfxcore.demoapp.mobile.message</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MobileLayoutRSContentView" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.content.RootStructureContentController" scope="prototype">
+		<property name="messageSource" ref="MobileMessageSource" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/MobileLayoutRSContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MobileLayoutRSView" class="io.github.jsoagger.jfxcore.engine.controller.main.DoubleHeaderRootStructureController" scope="prototype">
+		<property name="messageSource" ref="MobileMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/MobileLayoutRSView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MobileRootTabPaneView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardTabPaneController" scope="prototype">
+		<property name="messageSource" ref="MobileMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTabPaneLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/MobileRootTabPaneView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MobilePrimaryMenuView" class="io.github.jsoagger.jfxcore.engine.controller.PrimaryMenuController" scope="prototype">
+		<property name="messageSource" ref="MobileMessageSource" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/rootstructure/MobilePrimaryMenuView.xml</value>
+			</list>
+		</property>
+		<property name="menuProvider" ref="MobilePrimaryMenuProvider" />
+	</bean>
+
+	<bean id="MobilePrimaryMenuProvider" class="io.github.jsoagger.jfxcore.engine.components.menu.PrimaryMenuProvider">
+		<property name="primaryMenu" value="/io/github/jsoagger/jfxcore/demoapp/mobile/rootstructure/MobilePrimaryMenuDefinition.xml" />
+	</bean>
+
+	<bean id="MobileDashboardView" class="io.github.jsoagger.jfxcore.demoapp.comps.DashboardController" scope="prototype">
+		<property name="messageSource" ref="HeaderLessMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/dashboard/DemoDashboardView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/dashboard/MobileDashboardView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="DemoMobileToValidateTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="DemoDashboardMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTableViewFixedPaginationLayoutManager" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/dashboard/DemoMobileToValidateTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMobileTasksTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="DemoDashboardMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTableViewFixedPaginationLayoutManager" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/dashboard/DemoMobileTasksTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="DemoMobileWipTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="DemoDashboardMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTableViewFixedPaginationLayoutManager" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/dashboard/DemoMobileWipTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="DemoMobileMenuView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="MobileMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/menu/DemoMobileMenuView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- MANOMBOKA ETO INDRAY !!!!!!-->
+	<bean id="MobileIdentityLessRootDetailsView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.DetailsViewController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="MaximizedDetailsViewRootLayoutManager" />
+		<property name="modelProvider" ref="StubStructureContentModelReferenceProvider" />
+		<property name="hideIdentity" value="true" />
+		<property name="minimizedDetailsView" value="MinimizedDetailsViewController" />
+		<property name="maximizedDetailsView" value="MobileMaximizedDetailsViewController" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/DetailsView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="MobileRootDetailsView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.DetailsViewController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="MaximizedDetailsViewRootLayoutManager" />
+		<property name="modelProvider" ref="StubStructureContentModelReferenceProvider" />
+
+		<property name="minimizedDetailsView" value="MinimizedDetailsViewController" />
+		<property name="maximizedDetailsView" value="MobileMaximizedDetailsViewController" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/DetailsView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="MobileMaximizedDetailsViewController" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.MaximizedDetailsViewController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="detailsView" ref="DemoMaximizedDetailsViewImpl" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="layoutManager" ref="MaximizedDetailsViewLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/details/maximized/MobileMaximizedDetailsView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="DemoMobileMaximizedInformationTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="FullTabPaneLayoutManager" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/details/maximized/DemoMobileMaximizedInformationTabView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- FLOW LIST VIEW -->
+	<bean id="DemoMobileListExample4View" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="FlowMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="Example4FlowLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/flow/DemoMobileListExample4View.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMobileListExample5View" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="FlowMessageSource" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="Example4FlowLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/flow/DemoMobileListExample5View.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="DemoMobileListExample3View" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="FlowMessageSource"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="layoutManager" ref="DemoScrolLessCenteredFullFlowLayoutManager"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/mobile/flow/DemoMobileListExample3View.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Preferences -->
+	<util:list id="CenteredStretchedForwardViewLayoutResponsiveMatrixMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0.:0.98:0.0#hide::hide</value>
+	</util:list>
+	<util:list id="CenteredStretchedViewLayoutResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0.:0.98:0.0#hide::hide</value>
+	</util:list>
+	<util:list id="SearchResultLayoutManagerResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+        <value>0#0.:0.98:0.0#hide::hide</value>
+    </util:list>
+    <util:list id="SearchFiltersToolbarResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0.80:0:fixed|240#:hide:</value>
+	</util:list>
+	
+	
+	<bean id="ModelVisualisationBlocContent" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.ModelVisualisationBlocContent" scope="prototype">
+		<property name="platformProperties" ref="platformProperties"/>
+		<property name="width" value="300"/>
+		<property name="height" value="300"/>
+	</bean>
+</beans>

@@ -1,0 +1,493 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+/*******************************************************************************
+ * EMPTY DETAILS VIEW PANE                                                                   *
+ ******************************************************************************/
+.ep-empty-details-view-root-pane{
+	-fx-background-color:white;
+	-fx-border-width:1.0;
+	-fx-border-color:-grey-color-300;
+}
+
+
+.ep-empty-details-view-no-content-label{
+	
+}
+
+/*******************************************************************************
+ * 
+ * 
+ * FULL MAXIMIZED                                                                   
+ * 
+ * 
+ ******************************************************************************/
+ .ep-full-maximized-details-view-header-container{
+ 	-fx-padding:32 32 32 32;	
+ }
+ 
+ .ep-maximized-full-details-view-header-internal-container{
+ 	-fx-padding:0 0 0 0;
+ 	-fx-background-color:white;
+ 	-fx-effect:-ep-pane-flat-header-shadow-effect;
+ }
+ 
+ .ep-maximized-full-details-view-header-container{
+ 	
+ }
+ 
+ .ep-full-maximized-details-view-header-attribute-type-container,
+ .ep-full-maximized-details-view-header-attribute-root-container,
+ .ep-full-maximized-details-view-header-identity-container{
+ 	-fx-alignment:CENTER_LEFT;
+ }
+ 
+ .ep-full-maximized-details-view-header-attribute-version-container,
+ .ep-full-maximized-details-view-header-attribute-status-container,
+ .ep-full-maximized-details-view-header-attribute-lifecyclestatus-container{
+ 	-fx-alignment:CENTER_RIGHT;
+ }
+ 
+.ep-full-maximized-details-view-header-attribute-type-container .label{
+	-fx-font-size:16px;
+	-fx-text-fill:-text-color-100;
+	-fx-alignment:CENTER_LEFT;
+ }
+ 
+ .ep-full-maximized-details-view-header-identity-container .ep-rc-master-identity-label{
+	-fx-font-size:22px;
+	-fx-fill:-fx-primary-form-title-font-color;
+	-fx-text-fill:-fx-primary-form-title-font-color;
+	-fx-padding:0 0 16 0;
+}
+
+
+.ep-full-maximized-details-view-header-attribute-version-container .ep-rc-revision-label{
+	-fx-font-family:'Roboto Bold';
+	-fx-font-size:18px;
+	-fx-fill:-accent-color;
+	-fx-text-fill:-accent-color;
+}
+
+
+/*******************************************************************************
+ * 
+ * 
+ * MAXIMIZED                                                                   
+ * 
+ * 
+ ******************************************************************************/
+ .ep-maximized-details-view-header-external-container{
+ 	-fx-background-color:white;	
+ }
+ 
+ .ep-maximized-details-view-header-container{
+ 	-fx-padding:0 0 8 0;
+ }
+ 
+ .ep-maximized-details-view-header-internal-container{
+ 	-fx-padding:8 0 0 0;
+ }
+ 
+.ep-maximized-details-view-header-internal-container:wc{
+ 	-fx-background-color:#FFFF8D;
+}
+ 
+.ep-maximized-details-view-root-pane{
+}
+
+.ep-maximized-details-view-left-section-container{
+	
+}
+
+.ep-maximized-details-view-header-container{
+}
+
+.ep-maximized-details-view-header-identity-external-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:0 16 0 16;
+}
+
+.ep-maximized-details-view-header-view-actions-external-container{
+	-fx-alignment:CENTER;
+	-fx-pref-height:52;
+	-fx-padding:0 16 0 16;
+}
+
+.ep-maximized-details-view-header-edit-actions-external-container{
+	-fx-alignment:CENTER;
+	-fx-background-color:white;	
+}
+
+.ep-maximized-details-view-header-identity-container{
+	-fx-alignment:CENTER;
+	-fx-padding:16 0 0 0;
+}
+
+.ep-maximized-details-view-header-summary-container{
+	-fx-alignment:CENTER;
+}
+
+.ep-maximized-details-view-header-tabs-external-container{
+	-fx-alignment:CENTER;
+	-fx-padding:0 0;
+	-fx-min-height:62;
+	-fx-pref-height:62;
+	-fx-max-height:62;
+	-fx-border-width:1 0 0 0;
+	-fx-border-color:-grey-color-200;
+}
+
+.ep-maximized-details-view-header-thumb-root-container{
+	-fx-alignment:CENTER;
+	-fx-min-width:220;
+	-fx-max-width:220;
+	-fx-pref-width:220;
+	-fx-min-height:180;
+	-fx-pref-height:180;
+	-fx-max-height:180;
+	-fx-border-width:1;
+	-fx-border-color:-external-border-color;
+	-fx-background-color:white;	
+	-fx-border-radius:20;
+	-fx-background-radius:20;
+}
+
+.ep-maximized-details-view-header-actions-root-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-maximized-details-view-header-identity-container{
+	-fx-min-height:42;
+}
+
+.ep-maximized-details-view-header-attribute-root-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding: 0 32 0 32;
+}
+
+
+.ep-maximized-details-view-header-identity-container .ep-rc-master-identity-label{
+	-fx-font-size:22px;
+	-fx-fill:-fx-primary-form-title-font-color;
+	-fx-text-fill:-fx-primary-form-title-font-color;
+}
+
+
+.ep-maximized-details-view-header-attribute-root-container .ep-rc-revision-label{
+	-fx-font-family:'Roboto Bold';
+	-fx-font-size:14px;
+	-fx-fill:-accent-color;
+	-fx-text-fill:-accent-color;
+}
+
+.ep-maximized-details-view-header-context-actions-root-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-min-height:52;
+}
+
+
+.ep-maximized-details-view-left-container{
+	-fx-padding:0 ;
+	-fx-min-width:350;
+	-fx-pref-width:350;
+	-fx-spacing:16;	
+}
+
+
+.ep-maximized-details-view-summary-container{
+}
+
+.ep-maximized-details-view-header-actions-container *.h-toolbar-extra-wrapper *.h-toolbar-wrapper *.h-toolbar{
+	-fx-alignment:CENTER;	
+}
+
+.ep-maximized-details-view-header-actions-container{
+	-fx-alignment:CENTER;
+	-fx-padding:12 32 22 32;
+	-fx-border-width:0 0 1 0;
+	-fx-border-color:-lighter-internal-border-color;
+}
+
+.ep-maximized-details-view-tabs-container{
+	-fx-min-height:52;
+	-fx-alignment:CENTER;
+}
+
+.ep-maximized-details-view-content-container{
+}
+
+
+.ep-maximized-details-view-center-container{
+	-fx-padding: 0 16 0 16;
+	/*-fx-min-width:600;*/
+}
+
+.ep-maximized-details-view-center-container .ep-maximized-details-view-center-internal-container{
+}
+
+.ep-details-view-maximized-tab-item{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding: 8 16 8 16;
+	-fx-border-width:0 0 4 0;
+	-fx-border-color:transparent;
+	-fx-opacity:0.57;
+}
+
+.ep-details-view-maximized-tab-item .label{
+	-fx-font-family:'Helvetica';
+	-fx-font-size:14px;
+}
+
+
+.ep-details-view-maximized-tab-item:selected{
+	-fx-border-color: -fx-link-color;
+	-fx-opacity:1;
+}
+
+.ep-details-view-maximized-tab-item:hover{
+	-fx-cursor:hand;
+}
+
+
+/*******************************************************************************
+ * 
+ * MINIMIZED                                                                   
+ * 
+ ******************************************************************************/
+.ep-minimized-details-view-root-pane{
+ 	-fx-background-color: transparent;
+}
+
+.ep-minimized-details-view-header-external-container{
+	-fx-padding:0 0 8 0;
+}
+ 
+.ep-minimized-details-view-header-internal-container{
+} 
+ 
+.ep-minimized-details-view-content-external-container{
+ 	-fx-padding:0;
+ }
+ 
+.ep-minimized-details-view-summary-container{
+ 	-fx-pref-height:80;
+ 	-fx-background-color:white;
+ 	-fx-padding:0 8 0 0;
+ }
+ 
+
+.ep-minimized-details-view-header-thumb-root-container{
+	-fx-pref-width:200;
+}
+
+.ep-minimized-details-view-header-location-root-container{
+	
+}
+
+.ep-minimized-details-view-header-content-root-container{
+	-fx-padding:0 16 0 16;
+}
+
+.ep-minimized-details-view-header-attribute-root-container .ep-rc-revision-label{
+	-fx-font-family:'Roboto Bold';
+	-fx-font-size:14px;
+	-fx-fill:-accent-color;
+	-fx-text-fill:-accent-color;
+}
+
+
+.ep-minimized-details-view-header-identity-root-container .ep-rc-master-identity-label{
+	-fx-font-size:22px;
+	-fx-fill:-fx-primary-form-title-font-color;
+	-fx-text-fill:-fx-primary-form-title-font-color;
+}
+
+
+.ep-minimized-details-view-header-workstatus-root-container{
+	
+}
+
+.ep-minimized-details-view-header-type-root-container .label{
+	-fx-font-family:'Roboto Bold';
+	-fx-fill:-grey-color-400;
+	-fx-text-fill:-grey-color-400;
+	-fx-padding:4 0 0 4;	
+}
+
+.ep-minimized-details-view-header-actions-container{
+	-fx-background-color:white;
+	-fx-padding:8 16 16 16;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-minimized-details-view-header-actions-container,
+.ep-minimized-details-view-header-actions-container *.h-toolbar-extra-wrapper,
+.ep-minimized-details-view-header-actions-container .h-toolbar-extra-wrapper .h-toolbar-wrapper{
+}
+
+.ep-minimized-details-view-tabs-container{
+	-fx-background-color:white;
+	-fx-spacing:8;
+	-fx-padding: 16 16 0 8;
+	-fx-effect:dropshadow(three-pass-box, derive(-background-color,-10%),10.0,0.1,0,4.0);
+}
+
+.ep-details-view-minimized-tab-item{
+	-fx-padding:0 8 4 8;
+	-fx-border-width:0 0 4 0;
+	-fx-alignment:CENTER;
+}
+
+.ep-details-view-minimized-tab-item:hover{
+	-fx-cursor:hand;
+}
+
+.ep-details-view-minimized-tab-item >*.label{
+	-fx-text-fill:-fx-secondary-form-title-font-color;
+	-fx-font-family:'Roboto Medium';
+	-fx-font-size:1em;
+}
+
+.ep-details-view-minimized-tab-item:selected >*.label {
+	-fx-text-fill:-fx-secondary-form-title-font-color;
+}
+
+.ep-details-view-minimized-tab-item:selected {
+	-fx-border-color: -primary-color;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* 
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-details-view-top-tabed-pane{
+	-fx-background-color:-dark-primary-color;
+	-fx-pref-height:42;
+	-fx-padding:0 0 0 32;
+}
+
+.ep-details-view-content-tabed-pane{
+	-fx-translate-y:10;/**needed to display shadow of header */
+}
+
+.ep-details-view-top-tab-item-pane{
+	-fx-background-color:-dark-primary-color;
+}
+
+
+.ep-details-view-top-tab-item-pane{
+	
+}
+
+.ep-details-view-top-tab-item-pane{
+	-fx-background-color:-dark-primary-color;
+}
+
+.ep-details-view-top-tab-item-pane >*.label{
+	-fx-text-fill:-grey-color-50;
+	-fx-font-family:'Roboto Medium';
+}
+
+.ep-details-view-top-tab-item-pane:selected >*.label {
+	-fx-text-fill:-grey-color-50;
+}
+
+.ep-details-view-top-tab-item-pane:selected {
+	-fx-border-color: -accent-color-200;
+}
+
+.ep-details-view-top-tab-item-pane{
+	
+}
+
+.details-view-header-action{
+	-fx-background-color:-primary-color-300;
+	-fx-opacity:0.87;
+	-fx-text-fill:-text-color-100;
+	-fx-content-display:TEXT_ONLY;
+}
+
+ 
+.ep-details-view-table-editing-toolbar{
+ 	-fx-background-color:-application-header-background-color;
+ 	-fx-pref-height:82;
+ 	-fx-padding:0 32 0 32;
+ 	-fx-border-width:1 0 0 0;
+ 	-fx-border-color:-grey-color-300;
+}
+
+
+.ep-maximized-details-view-header-icon-container{
+	-fx-padding:16 0 0 0;	
+}
+
+
+/***----------------------------- */
+.ep-form-row-xxxlarge{
+	-fx-pref-height:112.0;
+	-fx-min-height:112.0;
+}
+
+.ep-form-row-xxlarge{
+	-fx-pref-height:102.0;
+	-fx-min-height:102.0;
+}
+
+.ep-form-row-xlarge{
+	-fx-pref-height:62.0;
+	-fx-min-height:62.0;
+}
+
+.ep-form-row-large{
+	-fx-pref-height:52.0;
+	-fx-min-height:52.0;
+}
+
+.ep-form-row-medium{
+	-fx-pref-height:42.0;
+	-fx-min-height:42.0;
+}
+
+.ep-form-row-small{
+	-fx-pref-height:32.0;
+	-fx-min-height:32.0;
+}
+
+.ep-details-view-header{
+	-fx-max-height:160;
+	-fx-effect: dropshadow(three-pass-box,derive(-grey-color-400,40%),10.0,0,0,1.0);	
+}
+
+.ep-details-view-actions-container{
+	-fx-alignment:CENTER;
+	-fx-min-height:62;
+}
+
+.ep-view-forward-layout-header-title-container{
+	-fx-alignment:CENTER;
+}
+
+.ep-view-forward-layout-header-title{
+	-fx-font-size:32px;
+	-fx-font-family:'Roboto Light' !important;
+	-fx-text-fill:-text-color-100;
+	-fx-padding:16 0 0 0;
+}

@@ -1,0 +1,49 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+.root {
+	-primary-color-900: #1B5E20;
+	-primary-color-800: #2E7D32;
+	-primary-color-700: #388E3C;
+	-primary-color-600: #43A047;
+	-primary-color-500: #4CAF50;
+	-primary-color-400: #66BB6A;
+	-primary-color-300: #81C784;
+	-primary-color-200: #A5D6A7;
+	-primary-color-100: #C8E6C9;
+	-primary-color-50: #E8F5E9;
+	-primary-color-a100: #B9F6CA;
+	-primary-color-a200: #69F0AE;
+	-primary-color-a400: #00E676;
+	-primary-color-a700: #00C853;
+	
+	-application-header-background-color:-primary-color-500;
+	
+	-ep-left-menu-minimized-wrapper-bg-color:rgb(255, 255, 255,0.47);
+	-ep-left-menu-minimized-icons-bg-color:derive(-grey-color-300,-5%);
+	-ep-left-menu-minimized-text-bg-color:linear-gradient(-grey-color-400,-grey-color-500);
+	-ep-left-menu-minimized-text-selected-bg-color:-primary-color;
+	-ep-left-menu-minimized-icons-select-bg-color:linear-gradient(-primary-color-400,-primary-color-500);
+	-ep-left-menu-minimized-icons-effet:'';
+	-ep-secondary-menu-row-hover-color: transparent;
+	-ep-secondary-menu-row-select-color: transparent;
+	-ep-secondary-menu-row-select-border-color:transparent;
+}

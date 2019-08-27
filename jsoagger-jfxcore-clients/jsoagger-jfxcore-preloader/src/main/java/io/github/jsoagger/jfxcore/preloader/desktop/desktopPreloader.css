@@ -1,0 +1,50 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+.ep-spring-preloader-root-pane-wrapper{
+	-fx-padding:0;
+}
+
+.ep-spring-preloader-wrapper{
+	-fx-background-color:white;
+	-fx-effect: innershadow(three-pass-box, derive(#303F9F, -55.0%), 3.0, 0.2, 0.0, 0.0);
+}
+
+.closeButton:armed,
+.closeButton:visited,
+.closeButton:hover:visited,
+.closeButton:hover,
+.closeButton{
+	-fx-underline:false;
+	-fx-font-size:10px;
+}
+
+.ep-spring-preloader-header-wrapper {
+	-fx-pref-height:52;
+	-fx-alignment:CENTER_RIGHT;
+	-fx-padding:0 32 0 0;
+}
+
+.ep-spring-preloader-footer-wrapper {
+	-fx-pref-height:52;
+	-fx-padding:0 32 32 0;
+	-fx-opacity:0.67;
+}

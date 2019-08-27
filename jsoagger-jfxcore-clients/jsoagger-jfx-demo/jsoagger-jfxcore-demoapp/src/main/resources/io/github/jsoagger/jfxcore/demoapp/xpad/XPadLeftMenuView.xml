@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+	<menuGroup id="Minimized">
+		<properties combine.keys="name">
+			<property name="maxItems" value="8" />
+
+			<property name="styleClass" value="headerless-menu-minimized-wrapper" />
+			<property name="menuStyleClass" value="headerless-menu-minimized" />
+			<property name="menuRowsStyleClass" value="headerless-menu-minimized-row" />
+			<property name="menuLabelStyleClass" value="headerless-menu-minimized-row-label" />
+
+			<property name="subMenuStyleClass" value="headerless-submenu-minimized" />
+			<property name="subMenuRowsStyleClass" value="headerless-submenu-minimized-row" />
+			<property name="subMenuLabelStyleClass" value="headerless-submenu-minimized-row-label" />
+		</properties>
+	</menuGroup>
+
+	<menuGroup id="Maximized">
+		<properties combine.keys="name">
+			<property name="collapsible" value="false" />
+			<property name="styleClass" value="headerless-menu-wrapper" />
+			<property name="menuStyleClass" value="headerless-menu" />
+			<property name="menuRowsStyleClass" value="headerless-menu-row" />
+			<property name="menuLabelStyleClass" value="headerless-menu-row-label" />
+
+			<property name="subMenuStyleClass" value="headerless-submenu" />
+			<property name="subMenuRowsStyleClass" value="headerless-submenu-row" />
+			<property name="subMenuLabelStyleClass" value="headerless-submenu-row-label" />
+		</properties>
+	</menuGroup>
+
+	<menuRows>
+		<menuRow id="DASHBOARD">
+			<properties combine.keys="name">
+				<property name="label" value="DASHBOARD_LABEL" />
+				<property name="tooltip" value="DASHBOARD_LABEL" />
+				<property name="setRootviewContent" value="HeaderLessDashboardView" />
+				<property name="icon" value="mdi-view-dashboard:24" />
+				<property name="separator-after" value="true" />
+			</properties>
+		</menuRow>
+
+		<menuRow id="HEADERLESS_TABLE">
+			<properties combine.keys="name">
+				<property name="label" value="HEADERLESS_TABLE" />
+				<property name="tooltip" value="HEADERLESS_TABLE" />
+				<property name="setRootviewContent" value="DemoHeaderLessTableViewView" />
+				<property name="icon" value="mdi-table:28" />
+				<property name="separator-after" value="true" />
+			</properties>
+		</menuRow>
+
+		<menuRow id="HEADERLESS_FLOW">
+			<properties combine.keys="name">
+				<property name="label" value="HEADERLESS_LIST" />
+				<property name="tooltip" value="HEADERLESS_LIST" />
+				<property name="setRootviewContent" value="DemoListExample5View" />
+				<property name="icon" value="mdi-format-list-bulleted:28" />
+				<property name="separator-after" value="true" />
+			</properties>
+		</menuRow>
+
+		<menuRow id="MAP">
+			<properties combine.keys="name">
+				<property name="label" value="MAP_LABEL" />
+				<property name="tooltip" value="MAP_LABEL" />
+				<property name="setRootviewContent" value="DemoMapView" />
+				<property name="icon" value="gmi-map:28" />
+				<property name="separator-after" value="true" />
+			</properties>
+		</menuRow>
+
+		<menuRow id="WIZARD">
+			<properties combine.keys="name">
+				<property name="label" value="WIZARD_LABEL" />
+				<property name="tooltip" value="WIZARD_LABEL" />
+				<property name="setRootviewContent" value="WizardContentViewWizard" />
+				<property name="icon" value="fa-plus:28" />
+				<property name="separator-after" value="true" />
+			</properties>
+		</menuRow>
+
+		<menuRow id="ADMINISTRATION">
+			<properties combine.keys="name">
+				<property name="label" value="ADMINISTRATION_LABEL" />
+				<property name="tooltip" value="ADMINISTRATION_LABEL" />
+				<property name="setRootviewContent" value="HeaderLessDemoAdministrationView" />
+				<property name="icon" value="mdi-wrench:24" />
+				<property name="separator-after" value="true" />
+			</properties>
+		</menuRow>
+	</menuRows>
+</view>

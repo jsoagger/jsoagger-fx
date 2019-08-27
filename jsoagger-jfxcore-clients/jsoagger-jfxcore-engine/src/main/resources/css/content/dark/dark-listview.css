@@ -1,0 +1,493 @@
+
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* COMMON FIXED SIZE LISTVIEW STYLING
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-fixed-size-listview:focused,
+.ep-fixed-size-listview {
+	-fx-border-color: transparent;
+	-fx-padding:0.0;
+	-fx-focus-color:transparent;
+	-fx-background-color: transparent;
+}
+
+.ep-fixed-size-listview-shadowed:focused,
+.ep-fixed-size-listview-shadowed {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-padding:-1.0;
+	-fx-focus-color:transparent;
+	-fx-effect: dropshadow(one-pass-box, -grey-color-400, 1.0, 0.2, 1.0, 1.0);
+}
+
+.ep-fixed-size-listview .scroll-bar:vertical {
+    -fx-scale-x: 0.0;
+}
+
+.ep-fixed-size-listview  .list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-width:0.0;
+    visibility:hidden;
+}
+
+.ep-fixed-size-listview .list-cell:odd:empty {
+   -fx-background-color: transparent;
+   -fx-border-width:0.0;
+   visibility:hidden;
+}
+
+.ep-fixed-size-listview .list-cell {
+	-fx-border-width: 0.0;
+	-fx-padding:0.0;
+}
+
+.ep-fixed-size-listview .list-cell .label{
+	-fx-text-fill:-text-color-100;
+}
+
+.ep-fixed-size-listview .list-cell:odd {
+    -fx-background-color: transparent;
+}
+
+.ep-fixed-size-listview .list-cell:filled:odd,
+.ep-fixed-size-listview .list-cell:filled:hover {
+   -fx-background-color: transparent;
+   -fx-border-width: 0.0;
+}
+
+.list-details-listview .list-cell:filled:odd,
+.list-details-listview .list-cell:filled:even{
+	-fx-background-color:black;
+}
+
+.ep-fixed-size-listview > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.ep-fixed-size-listview:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused {
+    -fx-background-color: -hover-color;
+    -fx-text-background-color:black;
+}
+
+.list-details-listview > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.list-details-listview:focused > .virtual-flow > .clipped-container > .sheet > .list-cell {
+	-fx-border-width:0 0 0 0;
+	-fx-border-color:transparent;
+}
+
+.list-details-listview > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.list-details-listview:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused {
+    -fx-background-color: derive(-primary-color-50,0%);
+    -fx-border-color:-primary-color-500;
+    -fx-border-width:0 0 0 0;
+} 
+
+.ep-fixed-size-listview-root-item-presenter-secondary-label{
+	-fx-text-fill:-text-color-100;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* SMALL
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-fixed-size-listview-small .list-cell {
+	-fx-pref-height: 44.0;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* MEDIUM
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-fixed-size-listview-medium .list-cell {
+	-fx-pref-height: 72.0;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* LARGE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-fixed-size-listview-large .list-cell {
+	-fx-pref-height: 92.0;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* XL
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-fixed-size-listview-extra .list-cell {
+	-fx-pref-height: 112.0;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* CELL MAIN LABEL FONT SIZE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.list-cell  .ep-fixed-size-listview-root-item-presenter-main-label{
+	-fx-font-size:1.0em;
+}
+
+.list-cell  .ep-fixed-size-listview-root-item-presenter-main-label-small{
+	-fx-font-size:1.0em;
+}
+
+.list-cell  .ep-fixed-size-listview-root-item-presenter-main-label-medium{
+	-fx-font-size:1.4em;
+}
+
+.list-cell  .ep-fixed-size-listview-root-item-presenter-main-label-large{
+	-fx-font-size:2.0em;
+}
+
+.list-cell  .ep-fixed-size-listview-root-item-presenter-main-label-extra{
+	-fx-font-size:2.2em;
+}
+/*--------------------------------------------------------------------------------------------------------------------------------
+* EACH ITEM OF LISTVIEW
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-fixed-size-listview-root-item-presenter {
+	/*each row */
+	-fx-alignment: CENTER_LEFT;
+	-fx-background-color: black;
+	-fx-padding: 0.0 0.0 0.0 0.0;
+}
+
+.ep-fixed-size-listview-root-item-presenter:hover {
+	/*each row when hover*/
+	-fx-cursor: hand;
+}
+
+.ep-fixed-size-listview-root-item-presenter:last>*.ep-fixed-size-listview-root-item-presenter-label-container{
+	-fx-border-width: 0.0;
+}
+
+.ep-fixed-size-listview-root-item-presenter-icon-container {
+	-fx-alignment: CENTER;
+	-fx-padding: 0.0 0.0 0.0 32.0;
+	-fx-border-width: 0.0 0.0 1.0 0.0;
+	-fx-border-color: -grey-color-100;
+}
+
+.ep-fixed-size-listview-root-item-presenter-label-container {
+	-fx-alignment: CENTER;
+	-fx-border-width: 0.0 0.0 1.0 0.0;
+	-fx-border-color: -grey-color-100;
+	-fx-padding: 0.0 16.0 0.0 4.0;
+}
+
+
+.ep-fixed-size-listview-root-item-presenter-main-label{
+	-fx-text-fill: -text-color-100;
+	-fx-font-family:'Roboto Regular';
+	-fx-padding:0.0 0.0 0.0 32.0;
+	-fx-opacity:0.87;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* WHEN ITEMS ARE SEPARATED
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-separated-items-listview .list-cell >*.default-list-cellpresenter-external-container{
+	-fx-border-width: 0.0;
+	-fx-padding:0.0 0.0 0.0 0.0;
+	-fx-background-color: -background-color;
+}
+
+.ep-separated-items-listview .list-cell:odd {
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* LISTVIEW USED IN ADMIN PAGE, WITH LEFT BORDER
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-preferences-list-view:focused,
+.ep-preferences-list-view,
+.ep-admin-listview:focused,
+.ep-admin-list-view {
+}
+
+.ep-admin-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.ep-admin-list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-background-color: black;
+    -fx-border-color: -grey-color-500 transparent transparent transparent;
+	-fx-border-width:1 1 1 4;
+	-fx-padding:0.0;
+}
+
+.ep-admin-list-view .list-cell:focused:selected,
+.ep-admin-list-view .list-cell:selected,
+.ep-admin-list-view .list-cell:last:selected,
+.ep-admin-list-view .list-cell:first:selected{
+	-fx-background-color: black;
+}
+
+.ep-admin-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:first,
+.ep-admin-list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:first {
+    -fx-background-color: black;
+    -fx-border-color:transparent transparent;
+	-fx-border-width:1 1 1 4;
+} 
+
+.ep-admin-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.ep-admin-list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused {
+    -fx-background-color: black;
+    -fx-border-color: -grey-color-500 transparent transparent transparent;
+	-fx-border-width:1 1 1 4;
+}
+
+.ep-admin-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:first:focused,
+.ep-admin-list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:first:focused {
+    -fx-border-color: transparent;
+    -fx-background-color: black;
+}
+
+.ep-admin-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:last:focused,
+.ep-admin-list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:last:focused {
+    -fx-border-color: -grey-color-500 transparent transparent transparent;
+}
+
+
+.ep-preferences-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.ep-preferences-list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused {
+    -fx-background-color: black;
+    -fx-border-color: -grey-color-500 transparent -grey-color-500 transparent;
+	-fx-border-width:0.5 4 0.5 4;
+}
+
+.ep-preferences-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.ep-preferences-list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-background-color: black;
+    -fx-border-color: -grey-color-500 transparent -grey-color-500 transparent;
+	-fx-border-width:0.5 4 0.5 4;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* LISTVIEW USED IN ADMIN MOBILE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-admin-mobile-listview > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.ep-admin-mobile-listview:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused {
+    -fx-background-color: black;
+    -fx-border-color: -grey-color-500 transparent -grey-color-500 transparent;
+	-fx-border-width:0.5;
+}
+
+.ep-admin-mobile-listview > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.ep-admin-mobile-listview:focused > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-background-color: black;
+    -fx-border-color: -grey-color-500 transparent -grey-color-500 transparent;
+	-fx-border-width:0.5;
+} 
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* DEFAULT LISTCELL FACTORY CSS
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.default-list-cellpresenter-external-container{
+	-fx-border-width:0.0;
+	-fx-padding:0.0;
+	-fx-background-color: transparent;
+}
+
+.default-list-cellpresenter-internal-container{
+	-fx-border-width: 0.0;
+	-fx-background-color: transparent;
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding: 0.0 8 0.0 8;
+	-fx-spacing:16;
+}
+
+.default-list-cellpresenter-icon-container{
+	-fx-min-width:45;
+	-fx-alignment:CENTER;
+}
+
+.default-list-cellpresenter-center-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.default-list-cellpresenter-primarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:8.0 0.0 0.0 0.0;/*set left padding in icon container, so if icon not displayed, the label shift left */
+}
+
+.default-list-cellpresenter-primarylabel-container .label{
+	-fx-font-family:'Roboto Light';
+}
+
+.default-list-cellpresenter-secondarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:8.0 0.0 0.0 32.0;
+	-fx-opacity:0.37;
+}
+
+.default-list-cellpresenter-ternarylabel-container{
+	-fx-alignment:CENTER;
+}
+
+.default-list-cellpresenter-quickactions-container{
+	
+}
+
+.default-list-cellpresenter-rightactions-container{
+	-fx-alignment:CENTER;
+}
+
+
+.ep-item-presenter-secondary-label-small{
+	-fx-text-fill:-grey-color-500;
+	-fx-fill:-grey-color-500;
+	-fx-font-size:1.0em;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* REVISION CONTROLLER LIST VIEW
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.rc-list-cellpresenter-external-container{
+	-fx-padding:0.0 0.0 0.0 0;
+}
+
+.rc-list-cellpresenter-external-container-small{
+	-fx-max-height:42.0;
+	
+}
+
+.rc-list-cellpresenter-external-container-medium{
+	-fx-max-height:62.0;
+}
+
+.rc-list-cellpresenter-external-container-large{
+	-fx-max-height:92.0;
+	
+}
+
+.rc-list-cellpresenter-internal-container{
+	-fx-spacing:32.0;
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:0.0 0 0 32;
+	-fx-border-width: 0.0 0.0 1.0 0.0;
+	-fx-border-color:-grey-color-50;
+}
+
+
+.rc-list-cellpresenter-icon-container{
+	-fx-alignment:CENTER;
+	-fx-border-color:transparent;
+}
+
+.rc-list-cellpresenter-center-external-container{
+}
+
+
+.rc-list-cellpresenter-center-container{
+	-fx-spacing:4.0;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.rc-list-cellpresenter-center-container:last{
+	-fx-border-color:transparent;
+}
+
+.rc-list-cellpresenter-primarylabel-container{
+	
+}
+
+.rc-list-cellpresenter-secondarylabel-container{
+	
+}
+
+.rc-list-cellpresenter-quickactions-container{
+	
+}
+
+.rc-list-cellpresenter-ternarylabel-container{
+	
+}
+
+
+.rc-list-cellpresenter-rightactions-container{
+	
+}
+
+
+.ep-advanced-list-view-pane-header-container{
+	-fx-min-height:82.0;
+	-fx-padding:0.0 8 0.0 8;
+	-fx-background-color:transparent;
+}
+
+.list-details-translated-content{
+	/*-fx-translate-y:-8;*/
+}
+
+.list-details-view-content-external-container{
+}
+
+.list-details-view-list-container{
+	-fx-background-color:-background-color;
+}
+
+
+.list-details-view-menu-container{
+	/*-fx-background-color:white;
+	-fx-effect: dropshadow(three-pass-box, -grey-color-400, 4.0, 0.2, 0.0, 4.0);
+	-fx-border-width: 0 0;
+	-fx-border-color:-primary-color-50;*/
+}
+
+
+.ep-advanced-list-view-pane{
+	-fx-padding:0 8 0 8;
+}
+
+.ep-advanced-list-view-pane-content-container{
+	-fx-background-color:red;
+	-fx-padding:0;
+}
+
+
+.ep-advanced-list-view-pane-bottom-tabs-container{
+	-fx-border-width:1.0 0.0 0.0 0;
+	-fx-border-color:-primary-color-50 transparent transparent -primary-color-50;
+	-fx-min-height:62.0;
+	-fx-background-color:-white-color;
+	-fx-padding:0.0 16.0 0.0 16.0;
+	-fx-alignment:CENTER_RIGHT;
+}
+
+
+.list-view-header-search-field {
+	-fx-background-color:-grey-color-200;
+	-fx-padding:8 32 16 8;
+	-fx-text-fill:-accent-color-900;
+	-fx-highlight-fill:#212121;
+	-fx-highlight-text-fill:#212121;
+	-fx-pref-width:400.0;
+	-fx-max-height:22;
+	-fx-font-family:'Helvetica';
+	-fx-prompt-text-fill:-grey-color-500;
+	-fx-border-color:transparent;
+	-fx-font-size:16px;
+	-fx-font-family:'Roboto Medium';
+}
+
+.list-view-header-search-field:focused{
+	-fx-focus-color:-accent-color-900;
+	-fx-background-color:-grey-color-200;
+}
+

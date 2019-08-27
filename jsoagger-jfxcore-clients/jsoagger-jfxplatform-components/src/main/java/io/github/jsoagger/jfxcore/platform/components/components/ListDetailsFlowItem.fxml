@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<StackPane fx:id="rootContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-demo-list-details-flow-item" xmlns:fx="http://javafx.com/fxml/1"
+     xmlns="http://javafx.com/javafx/2.2">
+     <children>
+          <HBox fx:id="internalContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-demo-list-details-internal-container">
+               <children>
+                    <HBox fx:id="iconContainer" styleClass="ep-demo-list-details-flow-item-icon-container" />
+                    <HBox fx:id="mainLabelContainer" styleClass="ep-demo-list-details-flow-item-mainlabel-container" HBox.hgrow="ALWAYS"/>
+                    <HBox fx:id="rightActionsContainer" styleClass="ep-demo-list-details-flow-item-actions-container" alignment="CENTER" />
+               </children>
+          </HBox>
+     </children>
+</StackPane>

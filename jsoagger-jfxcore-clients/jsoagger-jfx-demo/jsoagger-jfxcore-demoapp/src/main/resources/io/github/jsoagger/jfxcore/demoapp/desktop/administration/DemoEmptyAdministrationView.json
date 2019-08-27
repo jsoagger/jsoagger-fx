@@ -1,0 +1,1 @@
+{"id":"Root","components":[{"id":"Content","processor":"NoContentPaneProcessor","subcomponents":[{"id":"NoContentPane","properties":{"noContentMessage":"ADMINISTRATED_DATA_SHOULD_GO_HERE","labelStyleClass":"no-content-pane-message","styleClass":"transparent-background"}}],"properties":{}}],"menus":[],"properties":{}}

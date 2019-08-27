@@ -1,0 +1,181 @@
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+<component id="ContentDefinition">
+     <properties combine.keys="name">
+          <property name="styleClass" value="padding-0-32-16-32" />
+          <property name="rowPerPage" value="10" />
+     </properties>
+
+     <component id="Content" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="contentImpl" value="" FlowContent />
+               <property name="styleClass" value="" />
+               <property name="dataLoader" value="" />
+               <property name="itemsFactory" value="" />
+          </properties>
+     </component>
+
+     <component id="Pagination">
+          <properties combine.keys="name">
+               <property name="paginationImpl" value="" />
+               <property name="position" value="right" />
+               <property name="maxItems" value="5" />
+          </properties>
+     </component>
+
+     <component id="Toolbar" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="styleClass" value="transparent-background" />
+               <property name="toolbarImpl" value="BasicHToolbar" />
+          </properties>
+
+          <component id="RootMenuActions">
+               <component id="LeftActions">
+                    <component ref="SearchAndAddTeamMember" />
+               </component>
+               <component id="CenterActions" />
+               <component id="RightActions">
+                    <component ref="AddTeamMemberButton" />
+               </component>
+          </component>
+     </component>
+
+     <component id="Header" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="styleClass" value="white-background,light-border" />
+               <property name="labelStyleClass" value="h4" />
+               <property name="message" value="TEAM_MEMBERS_COUNT_LABEL" />
+               <property name="headerImpl" value="FlowContentHeader" />
+          </properties>
+     </component>
+
+     <component id="NoContentPane">
+          <properties combine.keys="name">
+               <property name="noContentMessage" value="NO_TEAM_MEMBER_LABEL" />
+               <property name="styleClass" value="" />
+          </properties>
+
+          <component id="MaterialButton">
+               <component ref="AddTeamMemberButton" />
+          </component>
+     </component>
+</component>
+
+
+
+<component id="SubComponentsList" processor="FormFieldsetProcessor">
+     <properties combine.keys="name">
+          <property name="mode" value="view" />
+          <property name="title" value="SUBCONTAINERS_LABEL" />
+          <property name="displayFieldsetTitle" value="true" />
+          <property name="layoutImpl" value="FieldsetFlowPaneLayout" />
+          <property name="contentImpl" value="FlowContentPane" />
+
+          <property name="styleClass" value="white-background,shadowed-pane" />
+          <property name="headerStyleClass" value="padding-32-32-16-32" />
+          <property name="titleStyleClass" value="h5,ep-form-group-info-title" />
+     </properties>
+
+     <component id="ContentDefinition">
+          <properties combine.keys="name">
+               <property name="styleClass" value="white-background" />
+               <property name="rowPerPage" value="2" />
+          </properties>
+
+          <component id="NoContentPane">
+               <properties combine.keys="name">
+                    <property name="contentImpl" value="GroupedActionsContentPane" />
+               </properties>
+
+               <component id="ActionGroup1">
+                    <properties combine.keys="name">
+                         <property name="message" value="NO_SUBCONTAINERS_LABEL" />
+                         <property name="actionNode" value="CreateNewSubContainerButton" />
+                    </properties>
+               </component>
+          </component>
+
+          <component id="Content">
+               <properties combine.keys="name">
+                    <property name="flowItemImpl" value="ContainerBigChips" />
+                    <property name="dataLoader" value="TypedRoleBsPaginatedDataLoader" />
+               </properties>
+          </component>
+
+          <component id="Pagination">
+               <properties combine.keys="name">
+                    <property name="paginationImpl" value="SimplePaginationBar" />
+                    <property name="position" value="right" />
+               </properties>
+          </component>
+     </component>
+</component>
+
+
+<component id="Children" processor="FormFieldsetProcessor">
+     <properties combine.keys="name">
+          <property name="headerImpl" value="FormFieldsetHeader" />
+          <property name="contentImpl" value="FlowContentPane" />
+          <property name="title" value="CHILDREN_LABEL" />
+          <property name="styleClass" value="default-background" />
+          <property name="contentStyleClass" value="transparent-background" />
+     </properties>
+
+     <component id="ContentDefinition">
+          <properties combine.keys="name">
+               <property name="styleClass" value="transparent-background" />
+               <property name="rowPerPage" value="10" />
+          </properties>
+
+          <component id="Header" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="styleClass" value="transparent-background" />
+                    <property name="titleStyleClass" value="" />
+                    <property name="title" value="CHILDREN_LABEL" />
+                    <property name="displayHeader" value="true" />
+               </properties>
+          </component>
+
+          <component id="NoContentPane">
+               <properties combine.keys="name">
+                    <property name="styleClass" value="transparent-background" />
+                    <property name="noContentMessage" value="NO_CHILDREN_CONTAINER_LABEL" />
+               </properties>
+          </component>
+
+          <component id="Content">
+               <properties combine.keys="name">
+                    <property name="paginateOperation" value="GetAllRootTypesOperation" />
+                    <property name="dataLoader" value="DefaultEntityPaginatedDataLoader" />
+                    <property name="flowItemImpl" value="SoftTypeItemChipsPresenter" />
+               </properties>
+          </component>
+
+          <component id="Pagination">
+               <properties combine.keys="name">
+                    <property name="paginationImpl" value="SimplePaginationBar" />
+                    <property name="position" value="right" />
+               </properties>
+          </component>
+     </component>
+</component>

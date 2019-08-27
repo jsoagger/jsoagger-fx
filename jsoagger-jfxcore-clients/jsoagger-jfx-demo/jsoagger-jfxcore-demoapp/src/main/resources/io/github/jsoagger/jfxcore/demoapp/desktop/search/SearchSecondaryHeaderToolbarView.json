@@ -1,0 +1,1 @@
+{"id":"Root","components":[{"id":"Content","subcomponents":[{"id":"LeftComponents","properties":{"contentImpl":"SingleLocationPrimaryMenuWithNavigationBar","backIconStyleClass":"secondary-app-header-button"}}],"properties":{"styleClass":"ep-header-all-container","toolbarImpl":"BasicToolbar"}}],"menus":[],"properties":{}}

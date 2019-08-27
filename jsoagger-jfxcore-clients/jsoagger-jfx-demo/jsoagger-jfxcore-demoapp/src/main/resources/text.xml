@@ -1,0 +1,231 @@
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<div class="side-bar active">
+	<p class="palette-title">Palettes de couleurs premade</p>
+	<div class="color-palette-block">
+		<div class="title">Lady Pink</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(245, 98, 166); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(255, 181, 204); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(245, 98, 166); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(254, 237, 242); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Juno</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(26, 83, 92); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(87, 137, 144); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(26, 83, 92); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(255, 230, 108); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Patriot</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(51, 77, 136); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(169, 0, 1); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(230, 230, 230); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(13, 37, 94); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Ocean Wave</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(25, 123, 189); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(105, 102, 102); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(25, 123, 189); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(98, 167, 211); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">The River</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(62, 114, 175); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(141, 177, 221); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(62, 114, 175); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(219, 226, 240); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Apple</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(255, 20, 52); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(41, 41, 41); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(242, 242, 242); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(255, 20, 52); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Tropical</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(25, 71, 2); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(87, 87, 87); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(25, 71, 2); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(78, 142, 48); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Good Old Days</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(139, 129, 56); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(64, 64, 64); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(139, 129, 56); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(214, 205, 140); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Mystery</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(165, 66, 124); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(133, 23, 86); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(165, 66, 124); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(252, 204, 232); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Smartie</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(46, 197, 182); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(1, 22, 40); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(255, 159, 28); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(1, 22, 40); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Reliable</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(74, 47, 124); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(46, 43, 43); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(204, 185, 238); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(74, 47, 124); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Calmness</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(216, 167, 148); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(129, 117, 113); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(216, 167, 148); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(255, 201, 181); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Fresh</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(79, 135, 62); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(67, 75, 38); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(79, 135, 62); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(207, 255, 192); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Jujube</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(111, 19, 20); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(66, 2, 2); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(111, 19, 20); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(196, 62, 62); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Red Rock</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(191, 77, 49); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(56, 19, 8); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(191, 77, 49); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(205, 183, 177); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Curious</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(72, 75, 180); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(255, 209, 76); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(147, 149, 223); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(72, 75, 180); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Carrot</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(239, 138, 7); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(165, 93, 0); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(239, 216, 186); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(239, 138, 7); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Golden Age</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(221, 191, 126); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(147, 122, 68); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(221, 191, 126); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(252, 237, 201); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Rainforest</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(24, 112, 0); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(69, 169, 43); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(228, 233, 195); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(40, 40, 40); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Wonderland</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(230, 57, 70); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(251, 137, 145); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(69, 122, 156); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(168, 218, 221); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Marshmallow</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(170, 149, 218); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(252, 186, 211); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(255, 255, 210); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(170, 149, 218); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Lychee</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(239, 36, 60); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(141, 153, 174); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(237, 242, 244); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(239, 36, 60); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+	<div class="color-palette-block">
+		<div class="title">Vinyl Records</div>
+		<div class="color-preview-wrapper">
+			<div class="color-preview" style="background-color: rgb(101, 60, 0); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(28, 20, 6); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(200, 149, 66); background-position: initial initial; background-repeat: initial initial;"></div>
+			<div class="color-preview" style="background-color: rgb(28, 20, 6); background-position: initial initial; background-repeat: initial initial;"></div>
+		</div>
+	</div>
+</div>

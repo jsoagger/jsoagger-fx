@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Hyperlink?>
+
+<StackPane fx:id="rootContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-folder-flow-small-switchable-item-presenter-container" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+    <children>
+        <HBox fx:id="internalContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-folder-flow-small-item-presenter-internal-container">
+            <children>
+                <HBox fx:id="selectionContainer" styleClass="ep-flow-selection-container" />
+                <HBox fx:id="iconContainer" styleClass="ep-folder-flow-small-item-presenter-icon-container" />
+                <VBox fx:id="centerContainer" styleClass="ep-folder-flow-small-item-presenter-center-container" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <children>
+                        <HBox fx:id="mainLabelContainer" styleClass="ep-folder-flow-small-item-main-label" />
+                    </children>
+                </VBox>
+
+                <VBox fx:id="rightActionsContainer" styleClass="ep-folder-small-item-presenter-rightactions-container" VBox.vgrow="ALWAYS" alignment="CENTER" />
+            </children>
+        </HBox>
+    </children>
+</StackPane>

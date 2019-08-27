@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<StackPane fx:id="rootContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-chips-container" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+    <children>
+        <HBox fx:id="internalContainer" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-chips-internal-container">
+            <children>
+                <HBox fx:id="selectionContainer" styleClass="ep-flow-selection-container" />
+                <HBox fx:id="iconContainer" styleClass="ep-chips-icon-container" />
+                <VBox fx:id="centerContainer" styleClass="ep-chips-center-container" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox fx:id="mainLabelContainer" styleClass="ep-chips-primarylabel-container" />
+                        <HBox fx:id="secondaryLabelContainer" styleClass="ep-chips-secondarylabel-container" />
+                        <HBox fx:id="quickActionsContainer" styleClass="ep-chips-quickactions-container" />
+                    </children>
+                </VBox>
+
+                <HBox fx:id="rightActionsContainer" styleClass="ep-chips-rightactions-container" />
+            </children>
+        </HBox>
+    </children>
+</StackPane>

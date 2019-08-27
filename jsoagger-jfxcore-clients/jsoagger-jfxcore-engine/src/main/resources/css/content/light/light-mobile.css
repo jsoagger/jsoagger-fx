@@ -1,0 +1,247 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+/* IMPORTANT, MOBILE DOT NOT IMPORT TABLE.CSS, ALL CLASS USED INSIDE IT SHOULD BE COPIED HERE */
+@IMPORT "/css/content/common/common-colors.css";
+@IMPORT "/css/content/light/light.css";
+@IMPORT "/css/content/light/mobile/jmetroLightTheme.css";
+@IMPORT "/css/content/common/common.css";
+@IMPORT "/css/content/light/mobile/jfx-controls.css";
+@IMPORT "jsoagger-controls.css";
+@IMPORT "/css/content/light/mobile/menu.css";
+@IMPORT "/css/content/light/mobile/chips.css";
+@IMPORT "/css/content/light/mobile/search.css";
+@IMPORT "/css/content/light/mobile/detailsView.css";
+@IMPORT "/css/content/light/mobile/tabpane.css";
+@IMPORT "/css/content/light/mobile/listview.css";
+
+.ep-double-header-root-structure {
+	
+}
+
+.ep-primary-menu-with-navbar-top-toolbar{
+	-fx-alignment: CENTER;
+	-fx-spacing:4;
+	-fx-padding:0;
+}
+
+.ep-navbar-top-toolbar-back-icon-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:16 0 14 0;
+}
+
+.ep-primary-menu-with-navbar-bottom-toolbar{
+	-fx-alignment: CENTER_LEFT;
+	-fx-spacing:4;
+	-fx-padding:16 0 0 4;
+}
+
+/*No background button, used  in header of application */
+.secondary-app-header-button,
+.app-header-profile-button,
+.app-header-button{
+	-fx-background-color: transparent;
+	-fx-text-fill: -white-color;
+	-fx-padding:0 2 0 2;
+	-fx-focus-color:transparent;
+	-jfx-button-type:RAISED;	
+}
+
+.app-header-profile-button{
+	-fx-content-display:RIGHT;
+}
+
+.app-header-profile-button .text{
+	-fx-font-family:'Helvetica';
+	-fx-text-fill:-white-color;
+	-fx-fill:-white-color;
+}
+
+.app-header-button-bordered{
+	-fx-background-color: transparent;
+	-fx-border-color:-white-color;
+	-fx-border-width:0.0 1.0 0.0 0.0;
+	-fx-padding:0.0 8.0 0.0 0.0;
+}
+
+
+.app-header-profile-button *.ikonli-font-icon,
+.app-header-button-bordered *.ikonli-font-icon,
+.app-header-button>*.ikonli-font-icon{
+	-fx-fill: -white-color;
+}
+
+.secondary-app-header-button >*.ikonli-font-icon{
+	-fx-fill: -black-color;
+}
+
+.secondary-app-header-button,
+.app-header-button:hover{
+	/*-fx-effect: dropshadow(one-pass-box, -primary-color-900, 15.0, 0.0, 1.0,1.0);*/
+}
+
+.secondary-app-header-button:armed,
+.secondary-app-header-button:focused,
+.app-header-profile-button:focused,
+.app-header-profile-button:armed,
+.app-header-button:focused,
+.app-header-button:armed{
+	-fx-background-color: transparent;
+	-fx-effect:null;
+	-fx-border-color:transparent;
+}
+
+.headline,
+.ep-headline{
+	-fx-font-size:22px;
+	-fx-font-family:'Helvetica' !important;
+	-fx-text-fill:-fx-link-color;
+	-fx-font-weight:bold;
+}
+
+.listview-pane-header-secondary-label-flow{
+	-fx-font-size:12px;
+	-fx-font-family:'Helvetica';
+}
+
+
+.ep-header-all-container {
+	-fx-alignment: CENTER;
+	-fx-pref-height: 72;
+	-fx-padding: 18 0 0 0;
+	-fx-background-color: -application-header-background-color;
+	-fx-spacing: 0;
+	-fx-border-width:0 0 2 0;
+	-fx-border-color: transparent transparent derive(-application-header-background-color,-5%) transparent;
+}
+
+.ep-header-static-location {
+	-fx-font-size:14px;
+	-fx-text-fill:white;
+}
+
+
+/*******************************************************************************
+ * THIS FILE CONTAINS CSS SPECIFIC TO MOBILE                                                   
+ ******************************************************************************/
+.button-xsmall {
+	-fx-min-width:32.0px;
+	-fx-padding:8;
+}
+
+.button-small {
+	-fx-min-width:64.0px;
+	-fx-padding:8;
+}
+
+.button-medium {
+	-fx-min-width:128.0px;
+	-fx-padding:4.0;
+}
+
+.button-xlarge {
+	-fx-min-width:200.0px;
+	-fx-padding:4;
+}
+
+.button-large {
+	-fx-min-width:128.0px;
+	-fx-padding:4.0;
+} 
+ 
+.header-center-toolbar{
+	-fx-alignment:CENTER_LEFT;
+}
+ 
+.ep-table-headline-bold{
+	-fx-font-weight:Bold;
+	-fx-font-size:30.0px;
+	-fx-font-family:'Arial' !important;
+}
+
+.ep-table-headline-bold-white{
+	-fx-text-fill:white;
+	-fx-fill:white;
+	-fx-font-weight:Bold;
+	-fx-font-size:30.0px;
+	-fx-font-family:'Arial' !important;
+}
+
+.ep-table-filter-text-field {
+ 	-fx-padding: 0.3em 0.3em 0.3em 0.3em;
+	-fx-prompt-text-fill: -grey-color-300;
+	-fx-pref-width:300.0;
+	-fx-max-width:300.0;
+	-fx-text-fill:-text-color-400;
+	-fx-font-weight:bold;
+	-fx-font-family:'Roboto Bold';
+	-fx-border-color:  -grey-color-50;
+	-fx-background-color:-grey-color-50;
+	-fx-border-width:0 0 2 0;
+	-fx-border-radius:20;
+	-fx-background-radius:20;
+ }
+ 
+.ep-table-filter-text-field:focused{
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-background-color:-grey-color-50;
+	-fx-border-color:  -grey-color-200;
+	-fx-border-radius:20;
+	-fx-background-radius:20;
+}
+
+.load-more-pagination-button{
+	-fx-padding:4 8 4 8;
+}
+
+
+.radio-buttons-internal-wrapper{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:20.0 0.0 20 10.0;
+	-fx-border-width: 0.0 0 1 0;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-internal-checkbox-buttons-wrapper-each{
+	-fx-border-width: 0.0 0 1 0;
+	-fx-border-color:-internal-border-color;
+	-fx-padding:0 0.0 12 0;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-preferences-root-table{
+	-fx-padding:8;
+	-fx-spacing:16;
+}
+
+.ep-parent-item-presenter{
+	-fx-padding:12 2 12 2;
+	-fx-border-width:0 0 1 0;
+	-fx-border-color:-internal-border-color;
+}
+
+.item-presenter-row-container:hover,
+.item-presenter-row-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:12 2 12 2;
+	-fx-border-width:0 0 1 0;
+	-fx-border-color:-internal-border-color;
+}

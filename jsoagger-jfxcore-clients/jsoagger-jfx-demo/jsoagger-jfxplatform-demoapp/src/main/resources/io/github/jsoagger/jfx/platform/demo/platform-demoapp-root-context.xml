@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	profile="desktop" default-destroy-method="destroy">
+
+	<!-- override values defined in core xml configuration -->
+	<util:properties id="platformProperties" value-type="java.lang.String">
+		<prop key="tempFolderPath">${application.root.dir}\temp</prop>
+		<prop key="applicationDataFolderPath">${application.root.dir}\datas</prop>
+		<prop key="localNotificationsFolderPath">${application.root.dir}\datas\notifications</prop>
+		<prop key="applicationWindowName">${application.name}</prop>
+		<prop key="applicationTitle">${application.name}</prop>
+		<prop key="fullScreen">${application.launch.in.fullScreen.mode}</prop>
+
+		<prop key="platformRootStructureId">WelcomeRSView</prop>
+		<prop key="loginRootStructureId">LoginRootStructure</prop>
+
+		<prop key="platformType">desktop</prop>
+		<prop key="applicationViewConfigMode">offline</prop>
+
+		<!-- Connection mode on the application: if allow allow_anonymous, the login form is show only if the user decides to connect to application -->
+		<!-- If connection mode is disallow_anonymous, the login form is show to the user and welcome view after success connection -->
+		<prop key="applicationConnexionMode">allow_anonymous</prop>
+
+		<!-- This parameter must be tru in order to dipslay fullscreen button in teh header of application in desktop mode only -->
+		<prop key="full.screen.support">false</prop>
+	</util:properties>
+
+	<util:list id="customStyleSheetsPath" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<!-- <value>classpath:/css/jfoenix-design.css</value> -->
+		<value>classpath:/css/desktop-override.css</value>
+	</util:list>
+
+	<!-- Size of screen on startup -->
+	<util:properties id="screenProperties" value-type="java.lang.String">
+		<!-- We block the scene minimum width to this size to avoid some troubles on scrolling data -->
+		<prop key="width">1000</prop>
+		<prop key="height">1200</prop>
+
+		<!-- Do no go under 600x500 in desktop. All UI components are matrix relative to these min -->
+		<prop key="minWidth">610</prop>
+		<prop key="minHeight">500</prop>
+	</util:properties>
+
+
+	<util:list id="NavigationBarResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>830#0.50:fixed|500:0.50#::</value>
+	</util:list>
+
+	<bean id="NavigationBarResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="NavigationBarResponsiveMatrixDefinition" />
+	</bean>
+
+	<import resource="classpath:/io/github/jsoagger/jfx/platform/demo/rootstructure/rootStructure-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfx/platform/demo/foldernavigation/folder-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/components/welcome/welcome-context.xml" />
+
+	<import resource="classpath:/io/github/jsoagger/jfxcore/components/layout/core-components-layout-context.xml" />
+	
+	<import resource="classpath:/io/github/jsoagger/jfx/platform/demo/doc/demo-doc-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfx/platform/demo/element/demo-element-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfx/platform/demo/people/people-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfx/platform/demo/search/searchall-settings-context.xml" />
+
+	<bean id="JFXPlatformAppRootMenuHeader" class="io.github.jsoagger.jfx.platform.desktop.demo.comps.JFXPlatformAppRootMenuHeader" scope="prototype" />
+	<bean id="styleSheetManager"
+		class="io.github.jsoagger.jfxcore.engine.components.css.StyleSheetsManager">
+		<property name="styleSheetsPath">
+			<list>
+				<value>classpath:/css/color/accent/deep-orange.css</value>
+				<value>classpath:/css/color/primary/indigo.css</value>
+				<value>classpath:/css/content/light/light-desktop.css</value>
+				<value>classpath:/css/undecorator/undecorator.css</value>
+				<value>classpath:/io/github/jsoagger/core/jfx/controller/login/login.css</value>
+			</list>
+		</property>
+	</bean>
+</beans>

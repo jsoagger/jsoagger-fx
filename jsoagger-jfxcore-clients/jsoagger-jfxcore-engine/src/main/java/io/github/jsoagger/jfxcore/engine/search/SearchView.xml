@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<!-- Quick search controller -->
+<view id="Root">
+
+	<!-- Content of quick search -->
+	<component id="Content" combine.keys="ref">
+
+		<!-- The name and search type fields -->
+		<component id="SearchForm">
+			<component ref="SearchNameField" />
+			<component ref="IdNumberField" />
+			<component ref="SearchTypeField" />
+		</component>
+
+		<!-- Other tabs -->
+		<component id="Tabs">
+
+			<!-- This tab has no children: {singleLineCheckBox} checkbox -->
+			<component id="WorkInfoTab">
+				<properties combine.keys="name">
+					<property name="title" value="WORKING_COPY_ONLY_LABEL" />
+					<property name="singleLineCheckBox" value="true" />
+					<property name="name" value="name" />
+				</properties>
+			</component>
+
+			<!-- The root and child context -->
+			<component id="SearchContextTab">
+				<properties combine.keys="name">
+					<property name="title" value="CONTEXT_LABEL" />
+				</properties>
+
+				<component id="WizardFormRowGroup">
+					<component id="WizardFormRow">
+						<component ref="RootContextField" />
+					</component>
+					<component id="WizardFormRow">
+						<component ref="ChildContextField" />
+					</component>
+				</component>
+			</component>
+
+
+			<!-- GeneralInfoTab tab -->
+			<component id="GeneralInfoTab">
+				<properties combine.keys="name">
+					<property name="title" value="GENERAL_SEARCH_CRITERIA_LABEL" />
+				</properties>
+
+				<component id="WizardFormRowGroup1">
+					<properties combine.keys="name">
+						<property name="title" value="CREATED_LABEL" />
+					</properties>
+
+					<component id="WizardFormRow1">
+						<component ref="CreationDatePeriodField" />
+					</component>
+					<component id="WizardFormRow2">
+						<component ref="CreateByField" />
+					</component>
+				</component>
+
+				<component id="WizardFormRowGroup2">
+					<properties combine.keys="name">
+						<property name="title" value="MODIFIED_LABEL" />
+					</properties>
+
+					<component id="WizardFormRow1">
+						<component ref="ModificationDatePeriodField" />
+					</component>
+					<component id="WizardFormRow2">
+						<component ref="ModifiedByField" />
+					</component>
+				</component>
+			</component>
+		</component>
+
+		<!-- Actions -->
+		<component id="Actions" combine.keys="ref">
+			<component ref="clearAllButton" />
+			<component ref="saveSearchAsButton" />
+			<component ref="runSearchButton" />
+		</component>
+	</component>
+
+
+	<!-- SearchForm Attributes list -->
+	<component id="SearchNameField" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="name" value="name" />
+			<property name="prompt" value="NAME_LABEL" />
+			<property name="type" value="text" />
+			<property name="focused" value="true" />
+		</properties>
+	</component>
+
+	<component id="SearchTypeField" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="name" value="typeLogicalPath" />
+			<property name="prompt" value="TYPE_LABEL" />
+			<property name="type" value="typePicker" />
+		</properties>
+	</component>
+
+
+	<component id="IdNumberField">
+		<properties combine.keys="name">
+			<property name="name" value="identification" />
+			<property name="prompt" value="IDENTIFICATION_LABEL" />
+			<property name="type" value="text" />
+			<property name="focused" value="true" />
+		</properties>
+	</component>
+
+	<component id="StatusField">
+		<properties combine.keys="name">
+			<property name="name" value="name" />
+			<property name="prompt" value="STATUS_LABEL" />
+			<property name="type" value="choicebox" />
+		</properties>
+	</component>
+
+	<component id="WorkingCopyField">
+		<properties combine.keys="name">
+			<property name="name" value="name" />
+			<property name="prompt" value="WORKING_COPY_LABEL" />
+			<property name="type" value="text" />
+		</properties>
+	</component>
+
+	<component id="LockedByField">
+		<properties combine.keys="name">
+			<property name="name" value="name" />
+			<property name="prompt" value="LOCKED_BY_LABEL" />
+			<property name="type" value="userPicker" />
+		</properties>
+	</component>
+
+	<component id="CreationDatePeriodField">
+		<properties combine.keys="name">
+			<property name="name" value="persistenceInfoContext.creationDateAfter#persistenceInfoContext.creationDateBefore" />
+			<property name="type" value="period" />
+		</properties>
+	</component>
+
+	<component id="CreateByField">
+		<properties combine.keys="name">
+			<property name="name" value="persistenceInfoContext.createdBy" />
+			<property name="prompt" value="BY_LABEL" />
+			<property name="type" value="userPicker" />
+		</properties>
+	</component>
+
+	<component id="ModificationDatePeriodField">
+		<properties combine.keys="name">
+			<property name="name" value="persistenceInfoContext.modificationDateAfter#persistenceInfoContext.modificationDateBefore" />
+			<property name="type" value="period" />
+		</properties>
+	</component>
+
+	<component id="ModifiedByField">
+		<properties combine.keys="name">
+			<property name="name" value="persistenceInfoContext.modifiedBy" />
+			<property name="prompt" value="BY_LABEL" />
+			<property name="type" value="userPicker" />
+		</properties>
+	</component>
+
+	<component id="RootContextField" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="name" value="searchContext.siteContext" />
+			<property name="type" value="rootContextPicker" />
+		</properties>
+	</component>
+
+	<component id="ChildContextField" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="name" value="searchContext.containerContext" />
+			<property name="prompt" value="IN_ALL_CONTAINER_LABEL" />
+			<property name="type" value="childContextPicker" />
+		</properties>
+	</component>
+
+	<!-- Actions button -->
+	<component id="clearAllButton">
+		<properties combine.keys="name">
+			<property name="label" value="RESET_LABEL" />
+		</properties>
+
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="procedure" value="resetForm" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="saveSearchAsButton">
+		<properties combine.keys="name">
+			<property name="label" value="SAVE_LABEL"/>
+		</properties>
+		
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="procedure" value="saveSearchAs"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="runSearchButton">
+		<properties combine.keys="name">
+			<property name="label" value="GO_LABEL"/>
+			<property name="default" value="true"/>
+		</properties>
+		
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="procedure" value="runSearch"/>
+			</properties>
+		</component>
+	</component>
+</view>

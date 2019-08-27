@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="styleClass" value="unshadowed-pane" />
+			<property name="contentImpl" value="TableContent" />
+			<property name="rowPerPage" value="20" />
+
+			<property name="leftSectionAreaStyleClass" value="default-background" />
+			<property name="centerSectionAreaStyleClass" value="default-background" />
+			<property name="rightSectionAreaStyleClass" value="default-background" />
+			<property name="tableStructureAreaStyleClass" value="default-background" />
+		</properties>
+
+		<component id="Header">
+			<properties combine.keys="name">
+				<property name="title" value="DOCUMENTS_TABLE_TITLE" />
+				<property name="titleStyleClass" value="ep-table-headline-bold" />
+				<property name="headerImpl" value="FiltrableTableHeaderImpl" />
+				<property name="filteringAlwaysShown" value="true"/>
+				<!-- <property name="styleClass" value="ep-primary-table-header" /> -->
+			</properties>
+		</component>
+
+		<component id="NoContentPane">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+				<property name="ikonli" value="hws-face-open-mouth-2:72" />
+				<property name="iconStyleClass" value="grey-flat-ikonli" />
+				<property name="labelStyleClass" value="no-content-pane-message" />
+				<property name="noContentMessage" value="EMPTY_LIST_ADD_DOCUMENT_MESSAGE" />
+			</properties>
+		</component>
+
+		<component id="Content">
+			<properties combine.keys="name">
+				<property name="showTableHeader" value="false" />
+				<property name="styleClass" value="transparent-background" />
+				<property name="tableRowStyleClass" value="ep-shadowed-table-row" />
+				
+				<property name="queryPredicate" value="isLatestVersion.eq(true)"/>
+				<property name="domainClass" value="io.github.jsoagger.core.model.document.Document" />
+				<property name="paginateOperation" value="PersistablePaginateRcOperation" />
+				<property name="dataLoader" value="GenericEntityPaginatedDataLoader" />
+			</properties>
+
+			<component id="Columns" combine.keys="ref">
+				<component ref="CoreCheckboxSelectColumn" responsiveOrder="-1" />
+				<component ref="CoreSmallFolderedIconColumn" responsiveOrder="-1" />
+				<component ref="CoreWorkStatusColumn" responsiveOrder="-1" />
+				<component ref="CoreDocumentMasterNameColumn" responsiveOrder="-1" masterColumn="true" />
+				<component ref="CoreRevisionColumn" responsiveOrder="-1" />
+				<component ref="CorePrimaryContentColumn" responsiveOrder="-1" />
+				<component ref="CoreLifecycleStatusColumn" responsiveOrder="1" />
+				<component ref="CoreModificationDateColumn" responsiveOrder="2" />
+				<component ref="CoreBlankSpacerColumn" responsiveOrder="2" />
+				<component ref="CoreForwardToDocumentDetailsColumn" responsiveOrder="-1" />
+			</component>
+		</component>
+
+		<component id="Toolbar">
+			<properties combine.keys="name">
+				<property name="toolbarImpl" value="ModifiableHToolbar" />
+				<property name="styleClass" value="ep-table-toolbar" />
+				<property name="modifyingActionsStyleClass" value="ep-table-toolbar,spacing-8" />
+			</properties>
+
+			<component id="RootMenuActions">
+				<component id="CenterActions">
+					<component ref="NewDocumentFromTableButton" separatot-after="true" />
+					<component ref="CorePasteElementsButton" separator-after="true" />
+					<component ref="CoreRefreshTableStructureButton" />
+				</component>
+			</component>
+
+			<component id="ModifyMenuActions">
+				<component id="CenterActions">
+					<component ref="CoreSelectAllItemsButton" />
+					<component ref="NewDocumentFromTableButton" />
+					<component ref="DeleteIterationFromTableButton" separatot-after="true" />
+					<component ref="CoreCopySelectedElementsButton" />
+					<component ref="CorePasteElementsButton" separator-after="true" />
+					<component ref="CoreRefreshTableStructureButton" />
+				</component>
+			</component>
+		</component>
+
+		<component id="Pagination">
+			<properties combine.keys="name">
+				<property name="paginationImpl" value="SimplePaginationBar" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="CellRightActions">
+		<properties combine.keys="name">
+			<property name="styleClass" value="ep-presenter-right-actions-container" />
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="LoadChildrenAction">
+			<properties combine.keys="name">
+				<property name="title" value="USES_LABEL" />
+				<property name="styleClass" value="simple-button,button-small,button-primary-border" />
+				<property name="type" value="button" />
+				<property name="presenter" value="PushToViewActionPresenter" />
+				<property name="pushToView" value="" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="CellMiddleActions">
+		<properties combine.keys="name">
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="MoreInfoAction">
+			<properties combine.keys="name">
+				<property name="title" value="DETAILS_LABEL" />
+				<property name="styleClass" value="link-primary" />
+				<property name="ikonli" value="fa-info-circle:16" />
+				<property name="iconStyleClass" value="accent-ikonli" />
+				<property name="presenter" value="PushToViewActionPresenter" />
+				<property name="pushToView" value="" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="DeleteSelectedElementsButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="DELETE_LABEL" />
+			<property name="label" value="DELETE_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="displayMode" value="GRAPHIC_ONLY" />
+			<property name="ikonli" value="gmi-delete-forever:18" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="table-toolbar-action" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="DeleteButtonDemoAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="NewDocumentFromTableButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="NEW_DOCUMENT_LABEL" />
+			<property name="label" value="NEW_DOCUMENT_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="displayMode" value="GRAPHIC_ONLY" />
+			<property name="ikonli" value="gmi-add:18" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="ShowWizardFromTableStructureAction" />
+				<property name="args" value="viewId:AddDocumentFromTableContentViewWizard" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="DeleteIterationFromTableButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="NEW_DOCUMENT_LABEL" />
+			<property name="label" value="NEW_DOCUMENT_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="displayMode" value="GRAPHIC_ONLY" />
+			<property name="ikonli" value="gmi-delete-forever:18" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="DeleteIterationFromTableStructureAction" />
+			</properties>
+		</component>
+	</component>
+</view>
+	

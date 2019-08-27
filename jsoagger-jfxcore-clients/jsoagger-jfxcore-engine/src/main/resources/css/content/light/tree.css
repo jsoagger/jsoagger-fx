@@ -1,0 +1,162 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+
+
+
+
+.ep-medium-tree-item-presenter-container{
+}
+
+.ep-small-tree-item-presenter-container{
+	-fx-alignment:CENTER;
+	-fx-spacing:8;
+}
+
+.ep-small-folder-tree-item-presenter-internal-container{
+	-fx-alignment:CENTER;
+	-fx-spacing:8;
+	-fx-padding:0 8 0 8;
+}
+
+.ep-small-folder-tree-item-presenter-primarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-small-folder-tree-item-presenter-primarylabel-container .label{
+	-fx-font-size:14px;
+	-fx-font-family:'Roboto Regular';
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* 	TREE VIEW
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.folder-tree-view:focused,
+.folder-tree-view{
+	-fx-selection-bar:-accent-color;
+	-fx-background-color:white;
+}
+
+.folder-tree-view .tree-cell:empty,
+.folder-tree-view .tree-cell:filled,
+.folder-tree-view .tree-cell{
+	-fx-background-color:transparent;
+	-fx-indent:25.0;
+}
+
+.folder-tree-view .tree-cell:empty{
+	visibility:hidden;
+}
+
+.ep-small-tree-item-presenter-icon-container{
+	-fx-padding:0.0 0.0 0.0 8.0;
+}
+
+.ep-small-tree-item-presenter-primarylabel-container{
+	-fx-padding:0.0 0.0 0.0 4.0;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-small-tree-item-presenter-icon-container .ikonli-font-icon{
+	-fx-fill:-grey-color-500;
+}
+
+.ep-small-tree-item-presenter-primarylabel-container .label{
+	-fx-text-fill:#212121;
+	-fx-font-family:'Roboto Regular';
+	-fx-underline:false;	
+	-fx-font-size:12.0px;
+}
+
+.ep-small-tree-item-presenter-icon-container .item-initial-circle-icon-label-wrapper-primary{
+	-fx-background-color:-grey-color-400;
+}
+
+
+.tree-view-title{
+	-fx-padding:2.0 0.0 2.0 16.0;
+	-fx-text-fill:-grey-color-900;
+	-fx-font-size:26.0px;
+	-fx-font-family:'Roboto Medium';
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* TREE TABLE VIEW
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.folder-tree-table-view:focused,
+.folder-tree-table-view{
+	-fx-background-color:white;
+}
+
+.folder-tree-table-view .tree-table-row-cell:empty,
+.folder-tree-table-view .tree-table-row-cell:filled,
+.folder-tree-table-view .tree-table-row-cell{
+	-fx-background-color:transparent;
+}
+
+
+.ep-small-folder-tree-item-presenter-internal-container{
+	
+}
+
+.ep-small-folder-tree-item-presenter-icon-container{
+	
+}
+
+.ep-small-folder-tree-item-presenter-primarylabel-container{
+	
+}
+
+.ep-small-folder-itemtree-presenter-rightactions-container{
+	
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* PART USAGE LINK TREE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-part-structure-tree-view:focused,
+.ep-part-structure-tree-view{
+	-fx-padding:16.0 0.0 16.0 0.0;
+	-fx-background-color:white;
+	-fx-selection-bar:-primary-color-200;
+}
+
+.ep-part-structure-tree-view .tree-cell:empty,
+.ep-part-structure-tree-view .tree-cell:filled,
+.ep-part-structure-tree-view .tree-cell{
+	-fx-background-color:white;
+	-fx-indent:20.0;
+}
+
+.ep-part-structure-tree-view .tree-cell:empty{
+	visibility:hidden;
+}
+
+.ep-part-structure-tree-header{
+	-fx-pref-height:90.0;
+	-fx-alignment:CENTER_LEFT;
+}
+
+
+.folder-with-table-tree-view{
+	-fx-padding:0.0;
+}

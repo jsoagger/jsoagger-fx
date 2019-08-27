@@ -1,0 +1,128 @@
+/*
+    The Stage background.
+    Currently a Rectangle node
+*/
+.decoration-background{
+    -fx-fill: white;
+    -fx-stroke-width: 0;
+    -fx-arc-width:20px;
+    -fx-arc-height:20px;
+}
+/*
+    Defines the rectangle responsible for the shadow
+*/
+.decoration-shadow{
+    -fx-fill: red;
+    -fx-stroke-width: 0;
+    -fx-arc-width:20px;
+    -fx-arc-height:20px;
+}
+/*
+ Used to declare the definition of stage resize zone
+*/
+.decoration-resize{
+    -fx-fill:null;  /* avoid mouse events in the middle*/
+    -fx-border-color: transparent;
+    -fx-border-width: 7;
+    -fx-border-insets: 0;
+}
+/*
+    The title bar label
+*/
+.undecorator-label-titlebar{
+    -fx-text-fill: linear-gradient(-grey-color-500,-grey-color-700);
+    -fx-font-family:'Copperplate Gothic Light';
+    -fx-alignment:CENTER;
+}
+/**
+ * Header window bar button
+ */
+ .ep-window-bar-decoration-button:focused,
+ .ep-window-bar-decoration-button{
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-opacity:0.57;
+}
+.ep-window-bar-decoration-button:hover{
+    -fx-background-color: -accent-color;
+	-fx-opacity:0.87;
+	-fx-effect:null;
+}
+
+.ep-window-bar-decoration-button-close:hover{
+    -fx-background-color: red;
+	-fx-opacity:0.87;
+	-fx-effect:null;
+}
+
+/*
+*	Menu button
+*/
+.decoration-button-menu{
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+
+.decoration-button-menu:hover{
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+/*
+*	Resize button
+*/
+.ep-window-bar-decoration-button-resize{
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-image:url("/images/undecorator/resizeSE.png");
+    -fx-background-repeat:no-repeat;
+}
+
+
+
+.ep-window-bar-decoration-button{
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-opacity:0.47;
+}
+.ep-window-bar-decoration-button:hover{
+    -fx-background-color: -accent-color;
+	-fx-opacity:0.87;
+	-fx-effect:null;
+}
+
+.ep-window-bar-decoration-button-close:hover{
+    -fx-background-color: red;
+	-fx-opacity:0.87;
+	-fx-effect:null;
+}
+
+/*
+*	Menu button
+*/
+.decoration-button-menu{
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+
+.decoration-button-menu:hover{
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+/*
+*	Resize button
+*/
+.ep-window-bar-decoration-button-resize{
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-image:url("/images/undecorator/resizeSE.png");
+    -fx-background-repeat:no-repeat;
+}
+

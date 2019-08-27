@@ -1,0 +1,596 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+/*******************************************************************************
+ * TABLE VIEW HEADER                                                           *
+ ******************************************************************************/
+ .ep-table-filter-text-field {
+ 	-fx-padding: 0.3em 0.3em 0.3em 0.3em;
+	-fx-prompt-text-fill: -grey-color-300;
+	-fx-pref-width:300.0;
+	-fx-max-width:300.0;
+	-fx-text-fill:-text-color-400;
+	-fx-font-weight:bold;
+	-fx-font-family:'Roboto Bold';
+	-fx-border-color:  -grey-color-50;
+	-fx-background-color:-grey-color-50;
+	-fx-border-width:0 0 2 0;
+	-fx-border-radius:20;
+	-fx-background-radius:20;
+ }
+ 
+.ep-table-filter-text-field:focused{
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-background-color:-grey-color-50;
+	-fx-border-color:  -grey-color-200;
+	-fx-border-radius:20;
+	-fx-background-radius:20;
+}
+ 
+.ep-table-header-root-container{
+	-fx-pref-height:140.0;
+	-fx-min-height:140.0;
+	-fx-padding:16 0 8 16;
+}
+
+.ep-table-header-internal-container{
+}
+
+.ep-table-header-icon-container{
+}
+
+.ep-table-header-main-label{
+	-fx-fill:-fx-dark-link-color;
+	-fx-text-fill:-fx-dark-link-color;
+	-fx-font-family:'Roboto Medium';
+	-fx-font-size:22.0px;	
+}
+
+.ep-table-header-count-label{
+}
+
+.ep-table-header-footer-container{
+	-fx-alignment:TOP_LEFT;
+	-fx-padding:0.0 16 0 0;
+	-fx-background-color:transparent;
+}
+
+.ep-shadowed-table-header{
+	-fx-border-width:0 0 1 0;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-not-shadowed-table-header{
+	-fx-effect:'';
+	-fx-border-width:0 0 1 0;
+	-fx-border-color:-internal-border-color;
+}
+
+/*******************************************************************************
+ * TableView                                                                   *
+ ******************************************************************************/
+ .table-view {
+    /* Constants used throughout the tableview. */
+    -fx-table-header-border-color: -fx-box-border;
+    -fx-table-cell-border-color: transparent;
+    
+    -ep-table-columns-header-background:-grey-color-50;
+    -ep-table-columns-header-text-fill:-grey-color-600;
+    -ep-table-rows-background-color:white;
+    -ep-table-rows-border-color:-background;
+    -ep-table-rows-selected-border-color:derive(#FFF9C4,30.0%);
+    -ep-table-row-hover-background-color:derive(#FFF9C4,50.0%);
+    -ep-table-row-selected-background-color:-grey-color-100;
+    /*-fx-selection-bar:derive(#F9FBE7,40.0%);
+    -fx-selection-bar-non-focused:derive(#F9FBE7,40.0%);*/
+    -fx-padding:-1.0;
+    -fx-font-family:'Roboto Regular';
+    -fx-epselected-selection-bar:-grey-color-100;/*#448AFF;*/
+    -fx-selection-bar:-grey-color-100;/*#82B1FF*/
+    -fx-selection-bar-non-focused:-grey-color-100;
+    -table-row-selected-background-color:-grey-color-100;
+}
+
+.table-view  .placeholder .label{
+	-fx-font-family:'Roboto Thin';
+	-fx-font-size:20px;
+	-fx-opacity:0.87;
+}
+
+.table-view:master-column-resize,
+.table-view:focused:constrained-resize,
+.table-view:focused {
+	-fx-padding: -1.0;
+    -fx-background-color: white;
+    -fx-border-color:transparent;
+}
+
+.table-view:row-selection{
+	-fx-border-color:white;
+}
+.table-view:row-selection:nocontent{
+	-fx-background-color: transparent;
+	-fx-border-color:transparent;	
+}
+
+/***** ROW CELLS **************************************************************/
+/* Each row in the table is a table-row-cell. Inside a table-row-cell is any
+   number of table-cell. */
+
+.table-row-cell {
+    -fx-background-color: null;
+    /*-fx-background-insets: 0, 0 0 1 0;-fx-background-insets: 0,1,2;*/
+    -fx-padding: 0.0em; /* 0 */
+    -fx-border-width: 0;
+    /**ep-table-row style has focus 
+    -fx-selection-bar:transparent;*/
+}
+
+.table-row-cell:even:filled,
+.table-row-cell:odd:filled,
+.table-row-cell:filled {
+    -fx-background-color:-ep-table-rows-background-color;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding:0;
+}
+
+.table-row-cell:even:filled:selected,
+.table-row-cell:even:filled:selected:focused,
+.table-row-cell:odd:filled:selected:focused,
+.table-row-cell:odd:filled:selected{
+	-fx-background-color:-table-row-selected-background-color;
+}
+
+.table-row-cell:last-row{
+}
+
+.table-row-cell:empty{
+	 -fx-background-color: -background-color;
+	 -fx-background-insets:-1;
+}
+
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0;
+    -fx-border-color:-background-color;
+}
+
+/***** INDIVIDUAL CELLS ********************************************************/
+.table-cell {
+    /*-fx-padding: 0.166667em;  2px, plus border adds 1px */
+    -fx-background-color: null;
+    -fx-border-width:0;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding:0.0;
+}
+
+/* When in constrained resize mode, the right-most visible cell should not have
+   a right-border, as it is not possible to get this cleanly out of view without
+   introducing horizontal scrollbars (see RT-14886). */
+.table-view:constrained-resize > .virtual-flow > .clipped-container > .sheet > .table-row-cell > .table-cell:last-visible,
+.tree-table-view:constrained-resize > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell:last-visible {
+    -fx-border-color: transparent;
+    -fx-border-width:0;
+}
+
+/***** HEADER **********************************************************************/
+/* The column-resize-line is shown when the user is attempting to resize a column. */
+.table-view .column-resize-line,
+.tree-table-view .column-resize-line {
+    -fx-background: -primary-color;
+    -fx-background-color: -primary-color;
+    -fx-padding: 0.0em 0.0416667em 0.0em 0.0416667em; /* 0 0.571429 0 0.571429 */
+}
+
+.table-view:nocontent  .column-header-background{
+	/*visibility:hidden;*/
+}
+
+/* This is the area behind the column headers. An ideal place to specify background
+   and border colors for the whole area (not individual column-header's). */
+.table-view .column-header-background,
+.tree-table-view > .column-header-background {
+    -fx-background-color: -ep-table-columns-header-background;
+    -fx-background-insets: 0, 1;
+    -fx-border-width:2.0 0.0 3.0 0.0;
+    -fx-border-color:-grey-color-50 -grey-color-100 -grey-color-100 -grey-color-100;
+}
+
+.table-view .column-header-background .nested-column-header{
+	-fx-border-width:0;
+}
+
+
+/* The column header row is made up of a number of column-header, one for each
+   TableColumn, and a 'filler' area that extends from the right-most column
+   to the edge of the tableview, or up to the 'column control' button. */
+.table-view .column-header,
+.tree-table-view .column-header,
+.table-view .filler,
+.tree-table-view .filler,
+.table-view > .column-header-background > .show-hide-columns-button,
+.tree-table-view > .column-header-background > .show-hide-columns-button,
+.table-view:constrained-resize .filler,
+.tree-table-view:constrained-resize .filler {
+    -fx-background-color: -ep-table-columns-header-background;
+    -fx-background-insets: 0.0;
+    -fx-size: 52.0;
+}
+
+.table-view .column-header .context-menu,
+.tree-table-view .column-header .context-menu,
+.table-view > .column-header-background > .show-hide-columns-button .context-menu,
+.tree-table-view > .column-header-background > .show-hide-columns-button .context-menu {
+    -fx-font-weight: null;
+}
+.table-view .filler,
+.tree-table-view .filler,
+.table-view:constrained-resize .filler,
+.tree-table-view:constrained-resize .filler {
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0, 1.0 1.0 2.0 1.0;
+}
+.table-view > .column-header-background > .show-hide-columns-button,
+.tree-table-view > .column-header-background > .show-hide-columns-button {
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 1.0, 1.0 1.0 2.0 2.0;
+}
+.table-view .column-header .sort-order-dots-container,
+.tree-table-view .column-header .sort-order-dots-container{
+    -fx-padding: 2.0 0.0 2.0 0.0;
+}
+.table-view .column-header .sort-order,
+.tree-table-view .column-header .sort-order{
+    -fx-font-size: 0.916667em; /* 11pt - 1 less than the default font */
+}
+.table-view .column-header .sort-order-dot,
+.tree-table-view .column-header .sort-order-dot {
+    -fx-background-color: -fx-mark-color;
+    -fx-padding: 0.115em;
+    -fx-background-radius: 0.115em;
+}
+.table-view .column-header .label,
+.tree-table-view .column-header .label {
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: -ep-table-columns-header-text-fill;
+    -fx-fill: -ep-table-columns-header-text-fill;
+    -fx-font-family:'Arial';
+    -fx-font-weight:bold;
+    -fx-font-size:12.0px;
+}
+
+/* Plus Symbol */
+.table-view .show-hide-column-image,
+.tree-table-view .show-hide-column-image {
+    -fx-background-color: -fx-mark-color;
+    -fx-padding: 0.25em; /* 3px */
+    -fx-shape: "M398.902,298.045c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c-0.667,0-1.333,0-2,0c0,0.666,0,1.332,0,1.999c-0.667,0-1.333,0-2,0c0-0.667,0-1.333,0-1.999c-0.666,0-1.333,0-1.999,0c0-0.667,0-1.334,0-2c0.666,0,1.333,0,1.999,0C398.902,299.378,398.902,298.711,398.902,298.045z";
+}
+/* When a column is being 'dragged' to be placed in a different position, there
+   is a region that follows along the column header area to indicate where the
+   column will be dropped. This region can be styled using the .column-drag-header
+   name. */
+.table-view .column-drag-header,
+.tree-table-view .column-drag-header {
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-border-color: transparent;
+    -fx-opacity: 0.6;
+}
+/* Semi-transparent overlay to indicate the column that is currently being moved */
+.table-view .column-overlay,
+.tree-table-view .column-overlay {
+    -fx-background-color: darkgray;
+    -fx-opacity: 0.3;
+}
+/* Header Sort Arrows */
+.table-view /*> column-header-background > nested-column-header >*/ .arrow,
+.tree-table-view /*> column-header-background > nested-column-header >*/ .arrow {
+    -fx-background-color: -fx-mark-color;
+    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+/* This is shown when the table has no rows and/or no columns. */
+.table-view .empty-table,
+.tree-table-view .empty-table {
+    -fx-background-color: white;
+    -fx-font-size: 1.166667em; /* 14pt - 2 more than the default font */
+}
+
+.table-view .placeholder {
+	-fx-background-color: white;
+}
+
+.table-view .placeholder .label{
+	-fx-opacity: 0.44;
+}
+
+
+.ep-table-blank-spacer{
+	-fx-border-width:0.0 0.0 0.0 4.0;
+}
+
+.ep-full-table-structure{
+	
+}
+
+.ep-full-table-structure-internal-wrapper{
+		
+}
+
+
+.ep-full-table-structure-header{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-table-primary-label{
+	-fx-font-family:'Roboto Medium';
+    -fx-text-fill:#212121;
+}
+
+.ep-full-table-structure-header-title{
+	-fx-font-family:'Roboto Bold';
+	-fx-font-size:16.0px;
+	-fx-text-fill:white;
+	-fx-fill:white;
+}
+
+.vl-table-cell{
+}
+
+.ep-table-to-details-actions{
+	
+}
+
+.ep-table-to-details-actions .ikonli-font-icon{
+	-fx-fill: -grey-color-400;
+}
+
+
+.ep-table-ellipsis-h-actions{
+	-fx-background-color:-grey-color-50;
+	-fx-background-radius:20.0;
+	-fx-padding:4.0;
+}
+
+.ep-table-ellipsis-h-actions:hover{
+	-fx-cursor:hand;
+}
+
+.ep-table-ellipsis-h-actions .ikonli-font-icon{
+	-fx-fill: -grey-color-400;
+}
+
+
+.ep-table-master-name:visited,
+.ep-table-master-name:hover:visited,
+.ep-table-master-name:hover,
+.ep-table-master-name{
+	-fx-text-fill:#212121;
+	-fx-font-family:'Roboto Regular';
+	-fx-underline:false;	
+	-fx-font-size:12.0px;
+}
+
+.ep-model-current-status{
+	-fx-padding:4;
+}
+
+.ep-model-current-status .text{
+	-fx-fill:black;
+	-fx-opacity:0.47;
+	-fx-font-size:12px;
+}
+
+.ep-description-presenter{
+	-fx-font-family:'Roboto Light';	
+	-fx-font-size:12.0px;
+	-fx-text-fill:#212121;
+	-fx-opacity:0.37;
+}
+
+
+.ep-table-quantity-unit-label{
+	
+}
+
+.ep-table-quantity-unit-label .label{
+	-fx-font-family:'Roboto Light';
+	-fx-font-size:14.0px;
+}
+
+.table-view .ep-table-quantity-col-header .label{
+	-fx-alignment:CENTER_RIGHT;
+	-fx-padding:0.0 16.0 0.0 0.0;
+}
+
+.ep-table-quantity-label{
+	-fx-alignment:CENTER_RIGHT;
+}
+
+.ep-table-quantity-label .label {
+	-fx-font-family:'Roboto Bold';
+	-fx-font-size:14.0px;
+}
+
+.ep-table-uses-primary-label{
+	-fx-font-family:'Roboto Regular';
+	-fx-text-fill:-fx-primary-form-title-font-color;
+}
+
+.ep-table-single-action .ikonli-font-icon{
+	-fx-fill: -grey-color-500;
+}
+
+.ep-table-single-action{
+	-fx-background-color:rgb(184.0,184.0,184.0,0.2);
+	-fx-background-radius:2.0;
+	-fx-padding:4.0;
+	-fx-border-width:1.0;
+	-fx-border-color:-grey-color-300;
+}
+
+
+.ep-full-table-editor-pane{
+	
+}
+
+.ep-full-table-editor-pane-header{
+	-fx-min-height:52.0;
+}
+
+.ep-table-selector{
+	-fx-alignment:CENTER;
+	-fx-padding:4.0 8.0 4.0 4.0;
+}
+
+.ep-table-toolbar{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-shadowed-table-row,
+.ep-table-row{
+	-fx-padding:0.0;
+	-fx-border-color:-internal-border-color;
+	-fx-background-insets:1.0;
+	-fx-pref-height:42;
+}
+
+.ep-shadowed-table-row:empty,
+.ep-table-row:empty{
+	-fx-border-color:transparent;
+}
+
+.ep-shadowed-table-row:filled:selected .ep-table-column-indicator,
+.ep-table-row:filled:selected .ep-table-column-indicator{
+	-fx-background-color:-primary-color;
+} 
+
+.ep-table-row:filled:even:selected,
+.ep-table-row:filled:odd:selected,
+.ep-shadowed-table-row:filled:even:selected,
+.ep-shadowed-table-row:filled:odd:selected{
+	-fx-text-background-color: -fx-link-color;
+}
+
+.ep-shadowed-table-row:filled:odd:selected,
+.ep-shadowed-table-row:filled:even:selected{
+	/*-fx-effect: dropshadow(three-pass-box, -grey-color-200, 4.0, 0.4, 0.0, 1.0);*/
+}
+
+.ep-shadowed-table-row:filled:hover{
+	/*-fx-effect: dropshadow(three-pass-box, -grey-color-200, 4.0, 0.4, 0.0, 1.0);*/	
+}
+
+.ep-shadowed-table-row:filled:odd:ep-selected,
+.ep-shadowed-table-row:filled:even:ep-selected,
+.ep-table-row:filled:odd:ep-selected,
+.ep-table-row:filled:even:ep-selected{
+	-fx-background-color:-fx-epselected-selection-bar;
+}
+
+.ep-basic-table-row:filled:selected:odd,
+.ep-basic-table-row:filled:selected:even,
+.ep-basic-table-row:filled:selected,
+.ep-basic-table-row:filled,
+.ep-basic-table-row{
+	-fx-padding:0.0;
+	-fx-border-width:0.0 0.0 1.0 0.0;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-basic-table-row:filled:selected .ep-table-column-indicator{
+	-fx-background-color:-primary-color;
+}
+
+.ep-table-column-indicator{
+	-fx-background-color:-grey-color-50;
+	-fx-pref-width:5.0;
+	-fx-max-width:5.0;
+}
+
+.ep-flow-item-table-row{
+}
+
+.ep-flow-item-table-row:filled:selected:odd,
+.ep-flow-item-table-row:filled:selected:even,
+.ep-flow-item-table-row:filled:selected,
+.ep-flow-item-table-row:filled,
+.ep-flow-item-table-row{
+	-fx-border-color:transparent transparent transparent transparent;
+	-fx-background-insets:1.0;
+}
+
+.ep-flow-item-table-row:filled:selected .ep-table-column-indicator{
+	-fx-background-color:-primary-color;
+} 
+
+.ep-switchable-flow-item-table-row{
+	-fx-max-width:200;
+	-fx-pref-width:200;	
+}
+
+.ep-table-header-title-external-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:0 8 0 8;
+	-fx-spacing:16;
+}
+
+.ep-table-header-title-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:8 0 4 0;
+/* 	-fx-max-height:52;
+	-fx-min-height:52;*/
+	-fx-hgap:4;
+}
+
+.ep-switchable-flow-item-table-row:filled:selected:odd,
+.ep-switchable-flow-item-table-row:filled:selected:even,
+.ep-switchable-flow-item-table-row:filled:selected,
+.ep-switchable-flow-item-table-row:filled,
+.ep-switchable-flow-item-table-row{
+	-fx-border-width:1.0 0.0 1.0 0.0;
+	-fx-border-color:transparent transparent -grey-color-200 transparent;
+	-fx-background-insets:1.0;
+	-fx-max-width:450;
+	-fx-min-width:450;
+	-fx-pref-width:450;
+}
+
+.ep-flow-table-cell{
+}
+
+.ep-flow-item-table-row:selected{
+	-fx-text-background-color: black;
+}
+
+
+.ep-primary-table-header{
+	-fx-background-color:-primary-color;
+}
+
+
+.ep-primary-table-header .ep-table-header-title-external-container{
+	-fx-background-color:-primary-color;
+}
+
+.ep-primary-table-header .ep-table-headline,
+.ep-primary-table-header .headline {
+	-fx-text-fill:white;
+	-fx-fill:white;
+}

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ========================LICENSE_START================================= 
+	JSoagger  %% Copyright (C) 2019 JSOAGGER %% Licensed under the Apache 
+	License, Version 2.0 (the "License"); you may not use this file except in 
+	compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. 
+	=========================LICENSE_END================================== -->
+	
+	
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-destroy-method="destroy" profile="mobile">
+
+	<!-- override values defined in core xml configuration -->
+	<util:properties id="platformProperties"
+		value-type="java.lang.String">
+		<prop key="tempFolderPath">${application.root.dir}\temp</prop>
+		<prop key="applicationDataFolderPath">${application.root.dir}\datas</prop>
+		<prop key="localNotificationsFolderPath">${application.root.dir}\datas\notifications</prop>
+		<prop key="applicationWindowName">${application.name}</prop>
+		<prop key="applicationTitle">${application.name}</prop>
+		<prop key="fullScreen">${application.launch.in.fullScreen.mode}</prop>
+
+		<prop key="platformRootStructureId">MobileLayoutRSView</prop>
+		<prop key="loginRootStructureId">LoginRootStructure</prop>
+
+		<prop key="platformType">SIMUL_MOBILE</prop>
+		<prop key="applicationViewConfigMode">offline</prop>
+
+		<!-- Connection mode on the application: if allow allow_anonymous, the 
+			login form is show only if the user decides to connect to application -->
+		<!-- If connection mode is disallow_anonymous, the login form is show to 
+			the user and welcome view after success connection -->
+		<prop key="applicationConnexionMode">allow_anonymous</prop>
+
+		<!-- This parameter must be tru in order to dipslay fullscreen button in 
+			teh header of application in desktop mode only -->
+		<prop key="full.screen.support">false</prop>
+	</util:properties>
+
+	<util:list id="customStyleSheetsPath"
+		list-class="java.util.ArrayList" value-type="java.lang.String">
+		<!-- <value>classpath:/css/jfoenix-design.css</value> -->
+		<value>classpath:/css/mobile-override.css</value>
+	</util:list>
+
+	<!-- Size of screen on startup -->
+	<util:properties id="screenProperties"
+		value-type="java.lang.String">
+		<prop key="width">340</prop>
+		<prop key="height">600</prop>
+
+		<!-- We block the scene minimum width to this size to avoid some troubles 
+			on scrolling data -->
+		<!-- Do no go under 600x500 in desktop. All UI components are matrix relative 
+			to these min -->
+		<prop key="minWidth">340</prop>
+		<prop key="minHeight">600</prop>
+
+		<prop key="maxWidth">340</prop>
+		<prop key="maxHeight">600</prop>
+	</util:properties>
+
+	<bean id="styleSheetManager"
+		class="io.github.jsoagger.jfxcore.engine.components.css.StyleSheetsManager">
+		<property name="styleSheetsPath">
+			<list>
+				<value>classpath:/css/color/accent/deep-orange.css</value>
+				<value>classpath:/css/color/primary/indigo.css</value>
+				<value>classpath:/css/content/light/light-mobile.css</value>
+				<value>classpath:/css/undecorator/undecorator.css</value>
+				<value>classpath:/io/github/jsoagger/core/jfx/controller/login/login.css
+				</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="platformViewStructure" class="io.github.jsoagger.jfxcore.engine.controller.main.layout.BottomTabPaneViewStructure" scope="singleton">
+          <property name="screenProperties" ref="screenProperties" />
+          <property name="stylesheetManager" ref="styleSheetManager" />
+          <property name="platformProperties" ref="platformProperties" />
+     </bean>
+     
+     <!-- MAXIMIZED: WHEN THE DETAILS VIEW IS DISPLAYED ALONE. BECAUSE OF THE FIXED HEADER WHEN MAXIMIZED, THE ROOT LAYOUT HIDE LEFT AND RIGHT PANE -->
+	<bean id="MaximizedDetailsViewRootLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.FixedLeftRightThreeHPanesViewLayoutManager" scope="prototype">
+		<property name="responsiveMatrix" ref="MaximizedDetailsViewRootLayoutManagerMatrix" />
+		<property name="verticalScroll" value="false" />
+	</bean>
+
+	<bean id="MaximizedDetailsViewRootLayoutManagerMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="MaximizedDetailsViewRootLayoutManagerMatrixDefinition" />
+	</bean>
+
+	<util:list id="MaximizedDetailsViewRootLayoutManagerMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0:1:0#hide::hide</value>
+	</util:list>
+
+
+	<bean id="MaximizedDetailsViewLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.MaximizedDetailsViewLayoutManager" scope="prototype">
+		<property name="responsiveMatrix" ref="MaximizedDetailsViewLayoutManagerResponsiveMatrix" />
+		<property name="verticalScroll" value="true" />
+	</bean>
+
+	<bean id="MaximizedDetailsViewLayoutManagerResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="MaximizedDetailsViewLayoutManagerResponsiveMatrixDefinition" />
+	</bean>
+
+	<util:list id="MaximizedDetailsViewLayoutManagerResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0:0:1:0#hide:hide::hide</value>
+	</util:list>
+	
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/mobile/mobile-client-root-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/mobile/mobile-context.xml" />
+</beans>

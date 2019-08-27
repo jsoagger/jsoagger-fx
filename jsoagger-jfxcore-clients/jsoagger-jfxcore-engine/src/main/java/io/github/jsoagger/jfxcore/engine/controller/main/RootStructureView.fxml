@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane id="rootStructurex" fx:id="rootStructurex" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" style="-fx-background-color:-background-color;" minWidth="-1.0" pickOnBounds="false" snapToPixel="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<HBox id="rootStructureWrapper" fx:id="rootStructureWrapper" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-root-structure-wrapper">
+			<StackPane id="rootStructure" fx:id="rootStructure" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+				<ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" hbarPolicy="NEVER">
+				<content>
+				<VBox id="rootStructureContent" fx:id="rootStructureContent" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+					<StackPane id="" fx:id="contentStack" styleClass="rootStructure-content-stack" VBox.vgrow="ALWAYS" />
+					<StackPane id="" fx:id="footerStack" styleClass="rootStructure-footer-stack" VBox.vgrow="NEVER" visible="false" managed="false" />
+				</VBox>
+				</content>
+				</ScrollPane>
+			</StackPane>
+		</HBox>
+
+		<StackPane fx:id="rootStructureLeftMenuPane" prefHeight="-1.0" maxWidth="80" minWidth="80" styleClass="" style="-fx-background-color:white;-fx-effect:-ep-pane-left-pane-shadow-effect;" />
+		<StackPane AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" >
+			<ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" hbarPolicy="NEVER">
+				<StackPane id="" fx:id="headerStack" styleClass="rootStructure-header-stack" />
+			</ScrollPane>
+		</StackPane>
+
+		<!-- THIS IS A PANE FULLY COVERING ALL THE VIEW, THIS CAN BE USED TO DISPLAY SOMETHING LIKE SEARCH FILTERS -->
+		<StackPane id="secondaryRootStructureWrapper" fx:id="secondaryRootStructureWrapper" styleClass="ep-secondary-root-structure-wrapper" visible="false" managed="false" translateY="2000">
+			<AnchorPane pickOnBounds="false" snapToPixel="true">
+				<StackPane id="secondaryRSWrapperScrollpane" fx:id="secondaryRSWrapperScrollpane" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" />
+				<HBox AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="30.0" style="-fx-spacing:16;-fx-alignment:CENTER_LEFT">
+					<StackPane alignment="CENTER" id="secondaryRSTitleContainer" fx:id="secondaryRSTitleContainer" HBox.hgrow="ALWAYS" />
+				</HBox>
+
+				<HBox id="secondaryRSActionsWrapper" fx:id="secondaryRSActionsWrapper" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="30.0" style="-fx-spacing:8;-fx-alignment:CENTER_RIGHT" />
+			</AnchorPane>
+		</StackPane>
+
+		<!-- THIS IS A PANE THAT CAN BE USED TO DISPLAY PUSHED CONTENT ON THE ROOT STRUCTURE -->
+		<StackPane id="pushedContentWrapper" fx:id="pushedContentWrapper" styleClass="ep-rs-pushed-content-wrapper" visible="false" managed="false" translateX="400" AnchorPane.topAnchor="50" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.bottomAnchor="0.0">
+			<AnchorPane>
+				<ScrollPane id="pushedContentScrollpane" fx:id="pushedContentScrollpane" fitToHeight="true" fitToWidth="true" 
+				AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="80" AnchorPane.rightAnchor="0" />
+				<Hyperlink fx:id="closePushedContentButton" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10" text="CLOSE" styleClass="button-xl,button-primary-border"/>
+			</AnchorPane>
+		</StackPane>
+
+		<StackPane fx:id="rootStructurePrimaryPane" prefHeight="-1.0" maxWidth="300" style="-fx-background-color:transparent;" translateX="-400" />
+		<StackPane fx:id="rootStructureTernaryPane" prefHeight="-1.0" prefWidth="300" style="-fx-background-color:transparent;" translateX="400" />
+		
+		<StackPane fx:id="headerMessagePane" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" style="-fx-effect: dropshadow(three-pass-box,derive(black,40%),10.0,0,0,1.0);-fx-background-color:white;-fx-background-color:-accent-color"
+        	minHeight="72" maxHeight="72" prefHeight="72" visible=" false" managed="false" alignment="CENTER">
+        </StackPane>
+	</children>
+</AnchorPane>

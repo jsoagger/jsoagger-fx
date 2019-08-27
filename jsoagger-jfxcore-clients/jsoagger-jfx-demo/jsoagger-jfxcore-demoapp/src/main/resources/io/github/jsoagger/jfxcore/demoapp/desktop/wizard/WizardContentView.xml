@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id">
+		<component id="Wizard">
+			<properties combine.keys="name">
+				<property name="dialog" value="false" />
+				<property name="showSteps" value="true" />
+				<property name="dialogWidth" value="400" />
+				<property name="dialogWidth" value="500" />
+				<property name="styleClass" value="ep-non-dialog-wizard,padding-32"/>
+				<property name="title" value="WIZARD_LABEL" />
+				<property name="description" value="WIZARD_LABEL" />
+			</properties>
+
+			<!--
+				Wizard steps definition
+			-->
+			<component id="WizardSteps" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="showSteps" value="true" />
+					<property name="displaySelector" value="true" />
+					<property name="stepsWrapperStyleClass" value="white-background" />
+				</properties>
+				<component id="Step1" combine.keys="ref">
+					<properties combine.keys="name">
+						<property name="displayGroupSelector" value="false" />
+						<property name="displayHeader" value="false" />
+						<property name="contentLayoutStyleClass" value="white-background" />
+						<property name="contentStyleClass" value="wizard-content" />
+						<property name="title" value="STEP1_LABEL" />
+						<property name="layoutImpl" value="FieldsetVerticalLayout" />
+					</properties>
+
+					<component id="ParametersFieldset">
+						<component id="GeneralFormBloc">
+							<properties combine.keys="name">
+								<property name="title" value="GENERAL_LABEL" />
+								<property name="upperCase" value="true" />
+								<property name="displayHeader" value="true" />
+								<property name="mode" value="EDIT" />
+							</properties>
+
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="GenderAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="FirstName" />
+									<component ref="LastName" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="BirthDate" />
+									<component ref="BirthPlace" />
+								</component>
+							</component>
+							<!-- <component ref="InputText3" visible-if="SelectTwoAttribute,0" /> -->
+						</component>
+
+						<component id="AddressFormBloc">
+							<properties combine.keys="name">
+								<property name="title" value="LOCATION_LABEL" />
+								<property name="upperCase" value="true" />
+								<property name="displayHeader" value="true" />
+								<property name="mode" value="EDIT" />
+							</properties>
+
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="AddressStreetAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="AddressCityAttribute" />
+									<component ref="AddressCountryAttribute" />
+								</component>
+							</component>
+						</component>
+					</component>
+
+					<component id="Actions" model="WizardStep1Model" />
+				</component>
+
+				<component id="Step2" combine.keys="ref">
+					<properties combine.keys="name">
+						<property name="displayGroupSelector" value="false" />
+						<property name="displayHeader" value="false" />
+						<property name="contentStyleClass" value="wizard-content" />
+						<property name="title" value="STEP2_LABEL" />
+						<property name="layoutImpl" value="FieldsetVerticalLayout" />
+					</properties>
+
+					<component id="ParametersFieldset">
+						<component id="GeneralFormBloc">
+							<properties combine.keys="name">
+								<property name="title" value="PERSONAL_CONTACT_LABEL" />
+								<property name="upperCase" value="true" />
+								<property name="displayHeader" value="true" />
+								<property name="mode" value="EDIT" />
+							</properties>
+
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="HomeMobilePhoneAttribute" />
+									<component ref="HomePhoneAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="EmailAttribute" />
+									<component ref="WebSiteAttribute" />
+								</component>
+							</component>
+						</component>
+
+						<component id="FormBloc">
+							<properties combine.keys="name">
+								<property name="title" value="PROFESIONAL_CONTACT_LABEL" />
+								<property name="upperCase" value="true" />
+								<property name="displayHeader" value="true" />
+								<property name="mode" value="EDIT" />
+							</properties>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="ProHomeMobilePhoneAttribute" />
+									<component ref="ProHomePhoneAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="ProEmailAttribute" />
+									<component ref="ProWebSiteAttribute" />
+								</component>
+							</component>
+						</component>
+
+						<component id="FormBloc">
+							<properties combine.keys="name">
+								<property name="title" value="CONTACT_PREFERENCES_LABEL" />
+								<property name="upperCase" value="true" />
+								<property name="displayHeader" value="true" />
+								<property name="mode" value="EDIT" />
+							</properties>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="ContactPreferenceAttribute" />
+								</component>
+							</component>
+						</component>
+					</component>
+					<component id="Actions" model="WizardStep2Model" />
+				</component>
+<!-- 
+				<component id="Step3" combine.keys="ref">
+					<properties combine.keys="name">
+						<property name="displayGroupSelector" value="false" />
+						<property name="displayHeader" value="false" />
+						<property name="contentLayoutStyleClass" value="white-background" />
+						<property name="contentStyleClass" value="wizard-content" />
+						<property name="title" value="STEP3_LABEL" />
+						<property name="mode" value="VIEW" />
+					</properties>
+
+					<component id="ParametersFieldset">
+						<component id="GeneralFormBloc">
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="GenderAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="FirstName" />
+									<component ref="LastName" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="BirthDate" />
+									<component ref="BirthPlace" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="AddressStreetAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="AddressCityAttribute" />
+									<component ref="AddressCountryAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="HomeMobilePhoneAttribute" />
+									<component ref="HomePhoneAttribute" />
+								</component>
+							</component>
+							<component id="FormRow">
+								<component id="Rows">
+									<component ref="EmailAttribute" />
+									<component ref="WebSiteAttribute" />
+								</component>
+							</component>
+						</component>
+					</component>
+
+					<component id="Actions" model="WizardStep3Model" />
+				</component>
+				 -->
+			</component>
+		</component>
+	</component>
+
+	<component id="GenderAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="GENDER_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="GENDER_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="gender" />
+			<property name="editAttributePath" value="attributes.gender" />
+			<property name="editUtility" value="InputCombobox" />
+			<property name="enumeratedValuesLoader" value="DefaultEnumeratedValueLoader" />
+			<property name="enumerationKey" value="gender" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="FirstName" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="FIRSTNAME_LABEL" />
+			<property name="prompt" value="FIRSTNAME_LABEL" />
+			<property name="attributeName" value="firstname" />
+			<property name="editAttributePath" value="attributes.firstname" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="LastName" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LASTNAME_LABEL" />
+			<property name="prompt" value="LASTNAME_LABEL" />
+			<property name="attributeName" value="lastname" />
+			<property name="editAttributePath" value="attributes.lastname" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="BirthDate" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="BIRTHDATE_LABEL" />
+			<property name="prompt" value="BIRTHDATE_LABEL" />
+			<property name="attributeName" value="birthDate" />
+			<property name="editAttributePath" value="attributes.birthDate" />
+			<property name="editUtility" value="InputDatePicker" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="BirthPlace" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="BIRTHPLACE_LABEL" />
+			<property name="prompt" value="BIRTHPLACE_LABEL" />
+			<property name="attributeName" value="birthPlace" />
+			<property name="editAttributePath" value="attributes.birthPlace" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+
+
+	<component id="AddressStreetAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="STREET_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="STREET_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="address.street" />
+			<property name="editAttributePath" value="attributes.address.street" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="AddressCityAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="CITY_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="CITY_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="address.gender" />
+			<property name="editAttributePath" value="attributes.address.city" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="AddressCountryAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="COUNTRY_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="COUNTRY_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="address.country" />
+			<property name="editAttributePath" value="attributes.address.country" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+
+
+	<component id="HomeMobilePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="MOBILE_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="MOBILE_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.mobile" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.mobile" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="HomePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="HOME_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="HOME_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.home" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.home" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="EmailAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="EMAIL_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="EMAIL_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.email" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.email" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="WebSiteAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="WEBSITE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="WEBSITE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.website" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.website" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+
+
+	<component id="ProHomeMobilePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_MOBILE_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_MOBILE_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.mobile" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.mobile" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="ProHomePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_HOME_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_HOME_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.home" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.home" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="ProEmailAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_EMAIL_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_EMAIL_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.email" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.email" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="ProWebSiteAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_WEBSITE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_WEBSITE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.website" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.website" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="ContactPreferenceAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="CONTACT_PREF_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="CONTACT_PREF_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="gender" />
+			<property name="editAttributePath" value="attributes.contact.contact.preferences" />
+			<property name="editUtility" value="InputCombobox" />
+			<property name="enumeratedValuesLoader" value="DefaultEnumeratedValueLoader" />
+			<property name="enumerationKey" value="contactPref" />
+			<property name="displayType" value="checkbox" />
+			<property name="radioLayout" value="tiles" />
+		</properties>
+	</component>
+
+
+	<component id="WizardStep1Model">
+		<component id="RootMenuActions">
+			<component id="CenterActions">
+				<component ref="NextToContactButton" />
+			</component>
+		</component>
+	</component>
+	<component id="NextToContactButton">
+		<properties combine.keys="name">
+			<property name="label" value="NEXT_LABEL" />
+			<property name="tooltip" value="NEXT_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="fa-angle-right:20" />
+			<property name="displayMode" value="RIGHT" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepNextActionHandler" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="WizardStep2Model">
+		<component id="RootMenuActions">
+			<component id="CenterActions">
+				<component ref="BackToInfosButton" />
+				<component ref="FinishButton" />
+<!-- 				<component ref="NextToSummaryButton" /> -->
+			</component>
+		</component>
+	</component>
+	<component id="BackToInfosButton">
+		<properties combine.keys="name">
+			<property name="label" value="BACK_LABEL" />
+			<property name="tooltip" value="BACK_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="fa-angle-left:20" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepBackActionHandler" />
+			</properties>
+		</component>
+	</component>
+	<component id="NextToSummaryButton">
+		<properties combine.keys="name">
+			<property name="label" value="NEXT_LABEL" />
+			<property name="tooltip" value="NEXT_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="fa-angle-right:20" />
+			<property name="displayMode" value="RIGHT" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepNextActionHandler" />
+			</properties>
+		</component>
+	</component>
+	<component id="FinishButton">
+		<properties combine.keys="name">
+			<property name="label" value="CREATE_LABEL" />
+			<property name="tooltip" value="CREATE_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="CreateDemoElementActionHandler" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="WizardStep3Model">
+		<component id="RootMenuActions">
+			<component id="CenterActions" combine.keys="ref">
+				<component ref="BackButton" />
+				<component ref="FinishButton" />
+			</component>
+		</component>
+	</component>
+	<component id="BackButton">
+		<properties combine.keys="name">
+			<property name="label" value="BACK_LABEL" />
+			<property name="tooltip" value="BACK_LABEL" />
+			<property name="default" value="true" />
+			<property name="ikonli" value="fa-angle-left:20" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepBackActionHandler" />
+			</properties>
+		</component>
+	</component>
+</view>

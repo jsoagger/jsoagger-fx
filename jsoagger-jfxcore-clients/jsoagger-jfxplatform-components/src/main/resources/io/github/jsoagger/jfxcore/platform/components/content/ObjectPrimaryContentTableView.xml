@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="styleClass" value="unshadowed-pane" />
+			<property name="contentImpl" value="FlowContent" />
+		</properties>
+
+		<component id="NoContentPane" criteria="CanUploadPrimaryContent">
+			<properties combine.keys="name">
+				<property name="styleClass" value="ep-primary-content-upload" />
+				<property name="contentImpl" value="GroupedActionsContentPane" />
+			</properties>
+			<component id="ActionGroup1">
+				<properties combine.keys="name">
+					<property name="iconStyleClass" value="grey-flat-ikonli" />
+					<property name="ikonli" value="hws-cloud-upload:42" />
+					<property name="labelStyleClass" value="no-content-pane-message" />
+					<property name="message" value="UPLOAD_FILE_PRIMARY_CONTENT" />
+					<property name="actionNode" value="UploadButton" />
+				</properties>
+			</component>
+		</component>
+		<component id="NoContentPane" criteria="CanNotUploadPrimaryContent">
+			<properties combine.keys="name">
+				<property name="styleClass" value="ep-not-content-pane-toolbar-empty" />
+				<property name="noContentMessage" value="EMPTY_PRIMARY_LABEL" />
+			</properties>
+		</component>
+
+		<component id="Content">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+				<property name="flowContentStyleClass" value="default-background,spacing-4" />
+				<property name="flowMode" value="vbox" />
+
+				<property name="dataLoader" value="ModelRelatedPrimaryContentDataLoader" />
+				<property name="flowItemImpl" value="HSmallContentItemPresenter" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="CellRightActions">
+		<properties combine.keys="name">
+			<property name="styleClass" value="ep-presenter-right-actions-container" />
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="EditPrimaryContentColumn">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-xsmall,button-transparent-border-black-text" />
+				<property name="type" value="button" />
+				<property name="presenter" value="PushToViewActionPresenter" />
+				<property name="visibilityResolver" value="VisualiseBlobContentItemViewVisibilityResolver" />
+				<property name="ikonli" value="fa-edit:18" />
+			</properties>
+		</component>
+		<component id="DownloadContentColumn">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-xsmall,button-transparent-border-black-text" />
+				<property name="type" value="button" />
+				<property name="presenter" value="PushToViewActionPresenter" />
+				<property name="visibilityResolver" value="VisualiseBlobContentItemViewVisibilityResolver" />
+				<property name="ikonli" value="fa-download:18" />
+			</properties>
+		</component>
+		<component id="DeletePrimaryContent" criteria="CanDeletePrimaryContent">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-xsmall,button-transparent-border-black-text" />
+				<property name="type" value="button" />
+				<property name="presenter" value="DoActionPresenter" />
+				<property name="ikonli" value="mdi-delete:18" />
+			</properties>
+			<component id="Handler">
+				<properties combine.keys="name">
+					<property name="action" value="DeleteContentItemFromTableRowAction" />
+					<property name="args" value="contentRole:primary" />
+				</properties>
+			</component>
+		</component>
+		<component id="VisualiseAttachmentFileContent">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-xsmall,button-transparent-border-black-text" />
+				<property name="type" value="button" />
+				<property name="presenter" value="DoActionPresenter" />
+				<property name="visibilityResolver" value="VisualiseBlobContentItemViewVisibilityResolver" />
+				<property name="ikonli" value="fa-external-link:20" />
+			</properties>
+			<component id="Handler">
+				<properties combine.keys="name">
+					<property name="action" value="PushToViewAction" />
+					<property name="args" value="viewId:FileContentView" />
+				</properties>
+			</component>
+		</component>
+		<component id="VisualiseAttachmentURLContent">
+			<properties combine.keys="name">
+				<property name="styleClass" value="button-xsmall,button-transparent-border-black-text" />
+				<property name="type" value="button" />
+				<property name="presenter" value="DoActionPresenter" />
+				<property name="visibilityResolver" value="VisualiseURLContentItemViewVisibilityResolver" />
+				<property name="ikonli" value="fa-external-link:20" />
+			</properties>
+			<component id="Handler">
+				<properties combine.keys="name">
+					<property name="action" value="PushToViewAction" />
+					<property name="args" value="viewId:URLContentView" />
+				</properties>
+			</component>
+		</component>
+	</component>
+
+	<component id="UploadButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="SET_PRIMARY_CONTENT_LABEL" />
+			<property name="label" value="SET_PRIMARY_CONTENT_LABEL" />
+			<property name="upperCase" value="true" />
+			<property name="styleClass" value="button,button-transparent-border-transparent" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="gmi-file-upload:20" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:SelectPrimaryContentViewWizard" />
+				<property name="action" value="ShowWizardAction" />
+			</properties>
+		</component>
+	</component>
+
+	<context-filter-group>
+		<context-filter handler="RCFiltersContext" />
+	</context-filter-group>
+
+	<view-filter name="CanDeletePrimaryContent">
+		<param name="can_delete_primary_content_item" value="true" />
+	</view-filter>
+	<view-filter name="CanUploadPrimaryContent">
+		<param name="can_upload_primary_content_item" value="true" />
+	</view-filter>
+
+	<view-filter name="CanNotUploadPrimaryContent">
+		<not>
+			<view-filter name="CanUploadPrimaryContent"/>
+		</not>
+	</view-filter>
+
+
+</view>
+

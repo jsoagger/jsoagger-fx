@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+<view id="Root" combine.keys="id">
+	<menuGroup id="Maximized">
+		<properties combine.keys="name">
+			<property name="collapsible" value="false" />
+			<property name="menuWrapperStyleClass" value="ep-primary-menu-wrapper" />
+			<property name="menuStyleClass" value="ep-primary-menu-container" />
+			<property name="menuRowsStyleClass" value="ep-menu-row" />
+			<property name="menuLabelStyleClass" value="menu-row-label" />
+		</properties>
+	</menuGroup>
+
+	<menuRows>
+		<menuRow id="ELEMENT_MANAGEMENT">
+			<properties combine.keys="name">
+				<property name="label" value="ELEMENT_MANAGEMENT" />
+				<property name="tooltip" value="ELEMENT_MANAGEMENT" />
+				<property name="icon" value="mdi-puzzle:24" />
+				<property name="separator-after" value="true" />
+			</properties>
+			<menuRow id="ELEMENT_SEARCH">
+				<properties combine.keys="name">
+					<property name="label" value="ELEMENT_SEARCH" />
+					<property name="tooltip" value="ELEMENT_SEARCH" />
+					<property name="separator-after" value="true" />
+					<property name="setRootStructure" value="SearchElementRSView" />
+				</properties>
+			</menuRow>
+			<menuRow id="ELEMENT_CREATE">
+				<properties combine.keys="name">
+					<property name="label" value="ELEMENT_CREATE" />
+					<property name="tooltip" value="ELEMENT_CREATE" />
+					<property name="separator-after" value="true" />
+					<property name="showWizardAction" value="AddElementContentViewWizard" />
+				</properties>
+			</menuRow>
+			<menuRow id="ELEMENT_TABLE">
+				<properties combine.keys="name">
+					<property name="label" value="ELEMENT_TABLE" />
+					<property name="tooltip" value="ELEMENT_TABLE" />
+					<property name="separator-after" value="true" />
+					<property name="setRootStructure" value="ElementsTableRSView" />
+				</properties>
+			</menuRow>
+		</menuRow>
+
+		<menuRow id="DOCUMENT_MANAGEMENT">
+			<properties combine.keys="name">
+				<property name="label" value="DOCUMENT_MANAGEMENT_LABEL" />
+				<property name="tooltip" value="DOCUMENT_MANAGEMENT_LABEL" />
+				<property name="icon" value="mdi-file-outline:24" />
+				<property name="separator-after" value="true" />
+			</properties>
+			<menuRow id="DOCUMENT_SEARCH">
+				<properties combine.keys="name">
+					<property name="label" value="DOCUMENT_SEARCH" />
+					<property name="tooltip" value="DOCUMENT_SEARCH" />
+					<property name="separator-after" value="true" />
+					<property name="setRootStructure" value="SearchDocumentRSView" />
+				</properties>
+			</menuRow>
+			<menuRow id="DOCUMENT_CREATE">
+				<properties combine.keys="name">
+					<property name="label" value="DOCUMENT_CREATE" />
+					<property name="tooltip" value="DOCUMENT_CREATE" />
+					<property name="separator-after" value="true" />
+					<property name="showWizardAction" value="AddDocumentContentViewWizard" />
+				</properties>
+			</menuRow>
+			<menuRow id="DOCUMENT_TABLE">
+				<properties combine.keys="name">
+					<property name="label" value="DOCUMENT_TABLE" />
+					<property name="tooltip" value="DOCUMENT_TABLE" />
+					<property name="separator-after" value="true" />
+					<property name="setRootStructure" value="DocumentsTableRSView" />
+				</properties>
+			</menuRow>
+		</menuRow>
+
+		<menuRow id="FOLDERNAVIGATION">
+			<properties combine.keys="name">
+				<property name="label" value="FOLDER_LABEL" />
+				<property name="tooltip" value="FOLDER_LABEL" />
+				<property name="icon" value="mdi-folder-outline:24" />
+				<property name="separator-after" value="true" />
+			</properties>
+
+			<menuRow id="APPLICATION_ROOT_FOLDER_NAVIGATION">
+				<properties combine.keys="name">
+					<property name="label" value="APPLICATION_ROOT_FOLDER_NAVIGATION" />
+					<property name="tooltip" value="APPLICATION_ROOT_FOLDER_NAVIGATION" />
+					<property name="setRootStructure" value="ApplicationContainerFolderNavigationRSView" />
+					<property name="icon" value="fa-folder-o:24" />
+					<property name="separator-after" value="true" />
+				</properties>
+			</menuRow>
+			<menuRow id="USER_ROOT_FOLDER_NAVIGATION">
+				<properties combine.keys="name">
+					<property name="label" value="USER_ROOT_FOLDER_NAVIGATION" />
+					<property name="tooltip" value="USER_ROOT_FOLDER_NAVIGATION" />
+					<property name="setRootStructure" value="UserFolderNavigationRSView" />
+					<property name="icon" value="fa-folder-o:24" />
+					<property name="separator-after" value="true" />
+				</properties>
+			</menuRow>
+			<menuRow id="MANAGEMENT">
+				<properties combine.keys="name">
+					<property name="label" value="FOLDER_MANAGEMENT" />
+					<property name="tooltip" value="FOLDER_MANAGEMENT" />
+					<property name="setRootStructure" value="FolderManagementRSView" />
+					<property name="icon" value="fa-folder-o:24" />
+					<property name="separator-after" value="true" />
+				</properties>
+			</menuRow>
+		</menuRow>
+
+		<menuRow id="PEOPLE">
+			<properties combine.keys="name">
+				<property name="label" value="PEOPLE_LABEL" />
+				<property name="tooltip" value="PEOPLE_LABEL" />
+				<property name="setRootStructure" value="" />
+				<property name="icon" value="gmi-perm-identity:24" />
+				<property name="separator-after" value="true" />
+			</properties>
+			<menuRow id="PEOPLE_CREATE_LABEL">
+				<properties combine.keys="name">
+					<property name="label" value="PEOPLE_CREATE_LABEL" />
+					<property name="tooltip" value="PEOPLE_CREATE_LABEL" />
+					<property name="setRootStructure" value="PeopleWizardRSView" />
+					<property name="icon" value="gmi-perm-identity:24" />
+					<property name="separator-after" value="true" />
+				</properties>
+			</menuRow>
+			<menuRow id="PEOPLE_SEARCH_LABEL">
+				<properties combine.keys="name">
+					<property name="label" value="PEOPLE_SEARCH_LABEL" />
+					<property name="tooltip" value="PEOPLE_SEARCH_LABEL" />
+					<property name="setRootStructure" value="SearchPeopleRSView" />
+					<property name="icon" value="gmi-perm-identity:24" />
+					<property name="separator-after" value="true" />
+				</properties>
+			</menuRow>
+		</menuRow>
+
+		<menuRow id="GLOBAL_SEARCH_LABEL">
+			<properties combine.keys="name">
+				<property name="label" value="GLOBAL_SEARCH_LABEL" />
+				<property name="description" value="GLOBAL_SEARCH_LABEL" />
+				<property name="tooltip" value="GLOBAL_SEARCH_LABEL" />
+				<property name="separator-after" value="true" />
+				<property name="icon" value="fa-cogs:24" />
+				<property name="setRootStructure" value="SearchAllRSView" />
+			</properties>
+		</menuRow>
+
+		<!-- 
+		<menuRow id="ADMINISTRATION">
+			<properties combine.keys="name">
+				<property name="label" value="ADMINISTRATION_LABEL" />
+				<property name="description" value="ADMINISTRATION_LABEL" />
+				<property name="tooltip" value="ADMINISTRATION_LABEL" />
+				<property name="separator-after" value="true" />
+				<property name="icon" value="fa-cogs:24" />
+				<property name="setRootStructure" value="SystemSettingsRSView" />
+			</properties>
+		</menuRow>
+ 		-->
+ 
+		<menuRow id="LOGOUT">
+			<properties combine.keys="name">
+				<property name="label" value="LOGOUT_LABEL" />
+				<property name="description" value="LOGOUT_LABEL" />
+				<property name="tooltip" value="LOGOUT_LABEL" />
+				<property name="separator-after" value="true" />
+				<property name="icon" value="mdi-logout-variant:24" />
+				<property name="action" value="LogoutAction" />
+			</properties>
+			<accessRules>
+				<ruleResolver name="logoutButtonAccessRuleResolver" />
+			</accessRules>
+		</menuRow>
+	</menuRows>
+</view>

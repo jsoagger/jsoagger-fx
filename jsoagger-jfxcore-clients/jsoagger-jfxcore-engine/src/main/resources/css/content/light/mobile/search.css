@@ -1,0 +1,731 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+/****************************************************************************************** 
+ *
+ *       ADVANCED SEARCH 
+ *
+ ********************************************************************************************/
+.ep-search-result-pagination-wrapper{
+	-fx-padding:0.0 32.0 32.0 32.0;
+	-fx-background-color:white;
+}
+
+.ep-search-pagination {
+	-fx-effect: dropshadow(three-pass-box, -grey-color-400,1.0,0.2,0.0,0.0);
+	-fx-padding:32.0;
+	-fx-background-color:-accent-color-50;
+	-fx-border-radius:5.0 5.0 5.0 5.0;
+	-fx-background-radius: 5.0 5.0 5.0 5.0;
+}
+
+.ep-as-forward-editor-header{
+	-fx-background-color:white;
+}
+ 
+.ep-as-forward-editor{
+ 	-fx-padding:0;
+ }
+ 
+ .ep-as-forward-editor-content{
+ 	-fx-background-color:white;
+	-fx-padding:0.0 0.0 0.0 2.0;
+	-fx-spacing:16.0;
+ }
+ 
+.ep-search-form-root-layout{
+	-fx-padding:8 0 32 0;
+	-fx-spacing:8.0;
+	-fx-alignment:TOP_LEFT;
+}
+
+.ep-search-form-child-layout{
+	-fx-padding:8 0 0 0;
+	-fx-spacing:8.0;
+	-fx-alignment:TOP_LEFT;
+}
+ 
+.ep-as-master-search-form{
+}
+
+.ep-quick-s-master-search-form {
+	-fx-padding:32.0;
+}
+
+.ep-as-master-search-form-bloc {
+	-fx-padding:0.0 32.0 32.0 32.0;
+	-fx-background-color:white;
+}
+
+.ep-as-search-form-bloc-title:hover{
+	-fx-cursor:hand;
+}
+
+.ep-as-search-form-bloc-title {
+	-fx-background-color:transparent;
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:16.0 0.0 16.0 8;
+	-fx-border-width: 1.0 0.0 0.0 0.0;
+	-fx-border-color:-internal-border-color;
+	-fx-font-weight:bold;
+}
+
+.ep-as-search-form-bloc-title:collapsed{
+}
+
+.ep-quick-s-search-form-bloc-title{
+	-fx-background-color: rgb(12.0,12.0,12.0,0.82);/*-grey-color-800*/
+}
+
+.ep-as-search-form-bloc-title:collapsed{
+}
+
+.ep-as-search-form-bloc-content {
+	-fx-padding:0.0 0.0 0.0 8;
+	-fx-background-color:white;
+}
+
+.ep-as-search-form-bloc-header{
+	-fx-fill:-fx-link-color;
+	-fx-text-fill:-fx-link-color;
+	-fx-font-size:14px;
+}
+
+.ep-single-row-as-search-form-bloc-title {
+	-fx-alignment:CENTER_LEFT;
+	-fx-fill:-fx-link-color;
+	-fx-text-fill:-fx-link-color;
+	-fx-font-size:14px;
+}
+
+
+.ep-quick-s-search-form-bloc-header{
+	-fx-fill:white;
+	-fx-text-fill:white;
+}
+
+.ep-single-row-as-search-form-bloc-content {
+	-fx-padding:0.0;
+	-fx-background-color:white;
+	-fx-alignment:CENTER_LEFT;
+	-fx-fill:black;
+	-fx-text-fill:black;
+	-fx-border-width: 1.0 0.0 0.0 0.0;
+	-fx-font-weight:bold;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-as-search-form-bloc-content-wrapper {
+	-fx-background-color:white;
+}
+
+.ep-as-search-form-bloc-title-pane {
+/* 	-fx-effect:dropshadow(three-pass-box, derive(-background-color,-19%),4.0,0.1,0,1.0);*/
+}
+
+.ep-as-search-result-header-pane-wrapper{
+	-fx-padding:0.0;
+	-fx-min-height:72.0;
+	-fx-background-color:white;
+	-fx-border-width:0 0 0.5 0;
+	-fx-border-color:-grey-color-300;
+}
+
+.ep-search-result-header-tab:selected:hover,
+.ep-search-result-header-tab:selected{
+	-fx-border-color:-fx-link-color;
+}
+.ep-search-result-header-tab:hover{
+	-fx-cursor:hand;
+}
+
+.ep-search-result-header-tab:hover,
+.ep-search-result-header-tab{
+	-fx-focus-color:transparent;
+	-fx-background-radius:20.0;
+	-fx-alignment:BOTTOM_CENTER;
+	-fx-max-height:42.0;
+	-fx-padding:16;
+	-fx-spacing:8.0;
+	-fx-border-width:0 0 4 0;
+	-fx-border-color:transparent;
+}
+
+.ep-search-result-header-tab-item-name{
+	-fx-fill:-fx-link-color;
+	-fx-text-fill:-fx-link-color;
+	-fx-focus-color:transparent;
+	-fx-underline:false;
+	-fx-font-size:14.0px;
+	-fx-font-weight:bold;
+}
+
+.ep-search-result-header-tab-item-count{
+	-fx-fill:black;
+	-fx-text-fill:white;
+	-fx-focus-color:transparent;
+	-fx-underline:false;
+	-fx-background-color:linear-gradient(#F4511E,#FF8A65);
+	-fx-padding:2;
+	-fx-font-weight:bold;
+	-fx-font-size:9px;
+	-fx-background-radius:5;
+}
+
+
+
+.ep-as-search-result-header-pane-internal-wrapper{
+	-fx-alignment:BOTTOM_CENTER;
+	-fx-padding:0.0 8.0 0.0 8;
+	-fx-spacing:16.0;
+}
+
+.ep-as-search-result-header-pane{
+	-fx-alignment:CENTER;
+}
+
+.ep-as-search-result-header-sorting-actions-wrapper,
+.ep-as-search-result-header-actions-wrapper{
+	-fx-alignment:CENTER_RIGHT;
+	-fx-spacing:16.0;
+	-fx-padding:0.0 16.0 0.0 8.0;
+}
+
+.ep-advanced-search-filter-button{
+	-fx-padding:8.0;
+	-fx-focus-color:transparent;
+	-fx-border-radius:30.0;
+	-fx-background-radius:30.0;
+}
+
+.ep-advanced-search-filter-button:none:hover:visited,
+.ep-advanced-search-filter-button:none:visited,
+.ep-advanced-search-filter-button:none:hover,
+.ep-advanced-search-filter-button:none{
+	-fx-background-color:transparent;
+}
+
+.ep-advanced-search-filter-button .ikonli-font-icon{
+	-fx-fill:white;
+}
+
+.ep-advanced-search-filter-button:up:hover:visited,
+.ep-advanced-search-filter-button:up:visited,
+.ep-advanced-search-filter-button:up:hover,
+.ep-advanced-search-filter-button:up{
+	-fx-background-color:-primary-color-a100;
+}
+
+.ep-advanced-search-filter-button:down:hover:visited,
+.ep-advanced-search-filter-button:down:visited,
+.ep-advanced-search-filter-button:down:hover,
+.ep-advanced-search-filter-button:down{
+	-fx-background-color:-primary-color-50;
+}
+
+.ep-as-actions-form-bloc{
+	-fx-background-color:transparent;
+}
+
+.ep-as-actions-form-bloc-row{
+	-fx-background-color:transparent;
+	-fx-alignment:CENTER_RIGHT;
+}
+
+
+.ep-as-actions-form-bloc-row .ep-form-hrow .form-fieldset-row-layout-wrapper{
+	-fx-alignment:CENTER_RIGHT;
+	-fx-padding:8.0 0.0 8.0 0.0;
+}
+
+.ep-as-actions-form-bloc-row .ep-form-vrow{
+	-fx-spacing:16.0;
+	-fx-alignment:CENTER_RIGHT;
+}
+
+.ep-as-actions-form-bloc-row .ep-form-vrow .form-fieldset-row-layout-wrapper{
+	-fx-alignment:CENTER_RIGHT;
+}
+
+/****************************************************************************************** 
+ *
+ *       ADVANCED SEARCH FORM EDITOR 
+ *
+ ********************************************************************************************/
+
+
+
+/****************************************************************************************** 
+ *
+ *       QUICK SEARCH
+ *
+ ******************************************************************************************* */
+.ep-qs-search-form-scroll-pane{
+	
+}
+
+.ep-swithable-left-menu .ep-qs-search-form-scroll-pane{
+	-fx-effect:'';
+}
+
+.ep-search-form-left-pane-container:switched {
+	-fx-padding:0.0;
+}
+
+.ep-search-form-left-pane-container:switched .ep-qs-search-form-scroll-pane{
+	-fx-padding:0.0;
+	-fx-effect:'';
+}
+
+.ep-search-form-left-pane-container{
+	-fx-background-color:transparent;
+	-fx-padding: 16.0 0.0 16.0 0.0;
+}
+
+.ep-searchresult-right-pane-container{
+	-fx-background-color:-background-color;
+	-fx-padding: 16.0;
+}
+
+.ep-search-result-root-pane{
+	-fx-background-color:-grey-color-50;
+	-fx-effect: -ep-pane-shadow-effect;
+}
+
+.ep-search-left-form-wrapper{
+	-fx-background-color:transparent;
+}
+
+.ep-search-form{
+	-fx-background-color:transparent;
+}
+
+.ep-search-form-left-pane-container:switched .ep-search-form{
+	-fx-border-radius:0.0;
+	-fx-background-radius:0.0;
+}
+
+
+.ep-search-form .form-bloc-title-pane:last{
+	-fx-border-color:-internal-border-color;
+	-fx-border-width: 0.0 0.0 1.0 0.0;	
+}
+
+.ep-quick-search-root-pane{
+	-fx-background-color:transparent;
+}
+
+.ep-quick-search-root-pane-internal-wrapper{
+	-fx-background-color:white;
+}
+
+.ep-search-form-bloc-content-wrapper{
+	-fx-padding:0.0;
+}
+
+.ep-search-form-bloc-title-pane{
+}
+
+.ep-quick-search-header-pane{
+}
+
+.ep-quick-search-content-pane{
+	-fx-background-color:white;
+	-fx-border-color:-grey-color-300;
+	-fx-border-width: 0.0 0.0 1.0 0.0;
+	-fx-padding: 0.0 16.0 0.0 16.0;
+}
+
+.ep-quick-search-footer-pane{
+	-fx-alignment:CENTER;
+	-fx-background-color:-primary-color;
+	-fx-min-height:62.0;
+}
+
+
+.ep-quick-search-row{
+	-fx-padding:0.0;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-quick-search-row .ep-form-vrow{
+	-fx-spacing:16.0;
+}
+
+.ep-quick-search-row .ep-form-vrow .ep-form-row-each{
+	-fx-border-width:0.0 0.0 0.5 0.0;
+	-fx-border-color:-internal-border-color;
+	-fx-padding:0.0 0.0 16.0 0.0;
+}
+.ep-quick-search-row .ep-form-vrow .ep-form-row-each:last{
+	-fx-border-width:0.0;
+	-fx-padding:0.0;
+}
+
+.ep-quick-search-row .form-fieldset-row-layout-wrapper .vertical-form-row-container{
+	-fx-padding:0.0;
+}
+
+.ep-search-form-label{
+	-fx-text-fill:-grey-color-500;
+	-fx-opacity:0.87;
+}
+
+.ep-full-search-form-left-pane{
+}
+
+.ep-full-search-form-right-pane{
+}
+
+.ep-full-search-button-wrapper{
+	-fx-alignment:CENTER_RIGHT;
+	-fx-padding:0.0 50.0 0.0 0.0;
+	-fx-pref-width:300.0;
+	-fx-min-width:300.0;
+	-fx-max-width:300.0;
+}
+
+.ep-full-search-button{
+	-fx-border-width:1.0;
+	-fx-border-color:-accent-color-700;
+}
+
+.ep-full-search-button:focused{
+	-fx-background-color:-accent-color;	
+}
+
+.ep-full-search-button .ikonli-font-icon{
+	-fx-fill:white;
+}
+
+
+.ep-master-search-form-bloc{
+	-fx-padding:8.0;
+	-fx-background-color:white;	
+}
+
+.ep-search-form-bloc-content{
+	-fx-padding:16.0 0.0 12.0 16.0;
+	-fx-background-color:white;
+	-fx-border-width:0.0;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-search-form-bloc-content-full{
+	-fx-padding:16.0 0.0 8.0 16.0;
+}
+
+.ep-search-form-bloc .wizard-rows-wrapper{
+	-fx-spacing:22.0;
+}
+
+.ep-search-result-pagination-result-style{
+	 -fx-text-fill: -grey-color-800;
+	 -fx-font-size:16.0px;
+	 -fx-font-weight:bold;
+}
+
+.ep-search-result-no-content{
+}
+
+.ep-search-form-bloc-title{
+	-fx-background-color:white;
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:16.0 0.0 16.0 16.0;
+	-fx-border-width:1.0;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-search-form-bloc-title-full{
+	-fx-background-color:white;
+	-fx-alignment:CENTER_LEFT;	
+	-fx-padding:16.0;
+	-fx-border-width:0.0 0.0 1.0 0.0;
+	-fx-border-color:-internal-border-color;
+}
+
+
+.ep-search-form-bloc-header{
+	-fx-fill:black;
+	-fx-text-fill:black;
+	-fx-font-weight:bold;
+}
+
+.ep-search-form-bloc-header-full{
+	-fx-fill:black;
+	-fx-text-fill:black;
+	-fx-font-size:14.0px;
+	-fx-font-weight:bold;
+}
+
+.ep-search-tab-pane-header{
+	-fx-padding:32.0;
+	-fx-alignment:CENTER;
+}
+
+.center-tab-items-wrapper{
+	-fx-border-width:1.0;
+	-fx-pref-height:32.0;	
+}
+
+.ep-search-tab-pane{
+	-fx-background-color:white;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-search-tab-pane .vertical-spacer,
+.ep-search-tab-pane .tab-content-wrapper{
+	/*-fx-background-color:white;*/
+}
+
+.ep-search-tab-pane-filler{
+}
+
+.ep-search-tab-item:hover{
+	-fx-cursor:hand;
+}
+
+.ep-search-tab-item{
+	-fx-alignment:CENTER;
+	-fx-padding:8.0 16.0 8.0 16.0;
+	-fx-min-width:122.0;
+}
+
+.ep-search-tab-item .tab-item-title{
+	-fx-text-fill:-primary-color;
+}
+
+.ep-search-tab-item:selected{
+	-fx-background-color:-primary-color;
+}
+
+.ep-search-tab-item:selected .tab-item-title{
+	-fx-text-fill:white;
+}
+
+
+.ep-primary-search-result-header-pane,
+.ep-search-result-header-pane{
+	-fx-padding:8.0 32.0 8.0 32.0;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-search-result-header-pane{
+	-fx-background-color:transparent;
+	-fx-min-height:72.0;
+}
+
+.ep-primary-search-result-header-pane{
+	-fx-background-color:-text-color-200;
+}
+
+.ep-search-result-minimized-pane{
+	-fx-background-color:-text-color-900;
+}
+
+.ep-search-result-minimized-pane{
+	-fx-min-width:320.0;
+	-fx-min-height:52.0;
+	-fx-effect: dropshadow(three-pass-box, -grey-color-300, 5.0, 0.1, 0.0, -1.0);
+	-fx-alignment:CENTER;
+	-fx-padding:0.0 8.0 0.0 8.0;
+}
+
+.ep-search-result-minimized-pane-label,
+.ep-search-result-header-search-result-label{
+	-fx-fill:white;
+	-fx-text-fill:white;
+	-fx-font-size:18.0px;
+	-fx-font-weight:bold;	
+}
+
+.ep-search-form-info-value{
+	-fx-fill:black;
+	-fx-text-fill:black;
+	-fx-text-alignment:LEFT;
+	-fx-font-size:18.0px;
+}
+
+
+.ep-primary-search-textfield{
+	-fx-background-color: white;
+}
+
+.ep-header-search-textfield{
+	-fx-background-color: derive(-application-header-background-color, 20.0%);
+	-fx-pref-width:250.0;
+	-fx-pref-height:32;
+	/*-fx-max-width:250.0;*/
+	-fx-padding:5.0;
+	-fx-border-radius:20;
+	-fx-background-radius:20;
+	-fx-font-size:14px;
+	-fx-fill:-grey-color-800;
+	-fx-text-fill:-grey-color-700;
+}
+
+.ep-header-search-textfield:focused,
+.ep-header-search-textfield:hover{
+	-fx-border-width:0.0;
+	-fx-border-color:transparent;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-effect: dropshadow(three-pass-box, derive(-application-header-background-color, -20.0%),1.0,0.1,0.0,2.0);
+	-fx-background-color: -grey-color-100;
+	-fx-font-size:14px;
+}
+
+.ep-header-search-textfield:notEmptyText{
+	-fx-background-color: -grey-color-100;
+	-fx-font-size:14px;
+}
+
+
+.ep-search-input-comp-textfield{
+	-fx-background-color: white;
+	-fx-pref-width:250.0;
+	-fx-max-width:250.0;
+	-fx-padding:5.0 5.0 5.0 5.0;
+	-fx-border-color:-primary-color-50;
+	-fx-border-width:1.0;
+}
+
+.ep-search-form-bloc-full{
+	-fx-spacing:16.0;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* Search field
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.searchField-small{
+	-fx-pref-width: 300.0;
+	-fx-padding:8.0 0.0 8.0 0.0;
+	-fx-focus-color:transparent;
+	-fx-padding: 10.0 10.0 10.0 10.0;
+	-fx-border-width:0.3 0.5 0.5 0.5;
+	-fx-border-color:-grey-color-200;
+	-fx-background-color:-grey-color-50;
+}
+
+.searchBoxLabelIcon {
+    -glyph-size: 13.0;
+    -glyph-name: SEARCH;
+}
+
+.header-search-field {
+	-fx-background-color:derive(-application-header-background-color,10.0%);
+	-fx-padding:8.0 32.0 16.0 8.0;
+	-fx-text-fill:-white-color;
+	-fx-highlight-fill:-white-color;
+	-fx-highlight-text-fill:-white-color;
+	-fx-pref-width:400.0;
+	-fx-max-height:22.0;
+	-fx-font-family:'Helvetica';
+	-fx-prompt-text-fill:-grey-color-500;
+	-fx-border-color:transparent;
+}
+
+.header-search-field:focused{
+	-fx-focus-color:transparent;
+	-fx-background-color:derive(-application-header-background-color,10.0%)	;
+}
+
+.header-search-field-button-filter:focused,
+.header-search-field-button-filter{
+	-fx-effect:null;
+	-fx-background-color:transparent;
+	-fx-padding:0.0 16.0 0.0 16.0;
+	-fx-focus-color:transparent;
+}
+
+.header-search-field-search-icon{
+	-fx-padding:0.0 0.0 0.0 16.0;
+}
+
+
+.header-search-field-button-filter:hover{
+	-fx-effect:null;
+}
+
+.ep-fixed-search-form-wrapper{
+	-fx-alignment:CENTER;	
+	-fx-background-color:white;
+}
+
+.ep-fixed-search-pane-wrapper{
+	-fx-alignment:CENTER;
+}
+
+.ep-fixed-search-pane-input-wrapper{
+	-fx-alignment:CENTER;
+	-fx-padding:16.0 8.0 8.0 8.0;
+	-fx-spacing:8.0;
+}
+
+
+.ep-single-row-as-form-row{
+	-fx-padding:0.0 0.0 0.0 8.0;
+}
+
+
+.ep-as-forward-editor-search-button:focused,
+.ep-as-forward-editor-search-button{
+	-fx-text-fill:white;
+	-fx-background-color:-primary-color;
+	-fx-pref-height:52.0;
+	-fx-alignment:CENTER;
+}
+
+.ep-as-forward-editor-search-button-wrapper{
+	-fx-alignment:CENTER;
+	-fx-background-color:transparent;
+	-fx-padding:16.0 8.0 0.0 8.0;
+}
+
+.ep-as-search-result-count-label{
+	-fx-text-fill:black;
+	-fx-padding:0 0 0 4;
+	-fx-font-size:1.2em;
+	-fx-alignment:CENTER;
+}
+
+.ep-as-search-result-type-item-label{
+	-fx-text-fill:-fx-link-color;
+	-fx-opacity:0.77;
+	-fx-border-color:-fx-link-color;
+	-fx-border-width:0.0 0.0 1.0 0.0;
+	-fx-padding:0.0;
+	-fx-border-style:dashed;
+}
+
+.ep-as-search-result-type-item-label:hover{
+	-fx-cursor:hand;
+}
+
+.ep-header-search-comp-wrapper{
+	-fx-alignment:CENTER;
+	-fx-spacing:8;
+}
+
+.ep-header-search-comp-wrapper .right-pane{
+	-fx-padding:0 4 0 4;
+}
+

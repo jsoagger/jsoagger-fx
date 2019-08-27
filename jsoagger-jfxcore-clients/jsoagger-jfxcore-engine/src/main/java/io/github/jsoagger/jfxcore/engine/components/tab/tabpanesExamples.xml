@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<!--
+    Example of top tab paned.
+    Todo handle tab pane style class
+-->
+
+<view id="Root" combine.keys="id">
+    <component id="Content" combine.keys="id">
+        <properties combine.keys="name">
+            <property name="styleClass" value="" />
+            <property name="contentImpl" value="VLTabPane" />
+            <property name="tabsPosition" value="top" />
+        </properties>
+
+        <component id="CenterTabs">
+
+            <component id="ContainerDashboardTab">
+                <properties combine.keys="name">
+                    <property name="title" value="DASHBOARD_LABEL" />
+                    <property name="upperCase" value="true" />
+                    <property name="tootltip" value="DASHBOARD_LABEL" />
+                    <property name="location" value="DASHBOARD_LABEL" />
+                    <property name="ikonli" value="gmi-dashboard:32" />
+                    <property name="iconStyleClass" value="grey-ikonli" />
+                </properties>
+                <component id="Content" rootview="ContainerInstanceDashboarView" />
+            </component>
+
+            <component id="ContainerRootFolderNavigationTab">
+                <properties combine.keys="name">
+                    <property name="title" value="NAVIGATION_LABEL" />
+                    <property name="upperCase" value="true" />
+                    <property name="tootltip" value="NAVIGATION_LABEL" />
+                    <property name="location" value="NAVIGATION_LABEL" />
+                    <property name="ikonli" value="gmi-folder-open:32" />
+                    <property name="iconStyleClass" value="grey-ikonli" />
+                </properties>
+
+                <component id="Content" rootview="ContainerInstanceBrowserView" />
+            </component>
+
+            <component id="ContainerInstancesParametersTab">
+                <properties combine.keys="name">
+                    <property name="title" value="PREFERENCES_LABEL" />
+                    <property name="location" value="PREFERENCES_LABEL" />
+                    <property name="upperCase" value="true" />
+                    <property name="tootltip" value="PREFERENCES_LABEL" />
+                    <property name="ikonli" value="gmi-tune:32" />
+                    <property name="iconStyleClass" value="grey-ikonli" />
+                </properties>
+                <component id="Content" rootview="ContainerInstanceDashboarView" />
+            </component>
+
+            <component id="ContainerInstancesAdministrationTab">
+                <properties combine.keys="name">
+                    <property name="title" value="ADMINISTRATION_LABEL" />
+                    <property name="location" value="ADMINISTRATION_LABEL" />
+                    <property name="upperCase" value="true" />
+                    <property name="tootltip" value="ADMINISTRATION_LABEL" />
+                    <property name="ikonli" value="fa-gears:32" />
+                    <property name="iconStyleClass" value="grey-ikonli" />
+                </properties>
+                <component id="Content" rootview="ContainerInstanceAdministrationView" />
+            </component>
+        </component>
+    </component>
+</view>

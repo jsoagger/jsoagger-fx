@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true">
+
+
+	<bean id="DetailsViewMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="parentMessageSource" ref="CoreGeneralMessageSource" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.jfxcore.demoapp.desktop.details.message</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DetailsViewCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/DetailsViewComponents.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="RootDetailsView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.DetailsViewController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="MaximizedDetailsViewRootLayoutManager" />
+		<property name="modelProvider" ref="StubStructureContentModelReferenceProvider" />
+
+		<property name="minimizedDetailsView" value="MinimizedDetailsViewController" />
+		<property name="maximizedDetailsView" value="MaximizedDetailsViewController" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/DetailsView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="IdentityLessRootDetailsView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.DetailsViewController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="MaximizedDetailsViewRootLayoutManager" />
+		<property name="modelProvider" ref="StubStructureContentModelReferenceProvider" />
+		<property name="hideIdentity" value="true" />
+		<property name="minimizedDetailsView" value="MinimizedDetailsViewController" />
+		<property name="maximizedDetailsView" value="MaximizedDetailsViewController" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/DetailsView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- MAXIMIZE DETAILS VIEW -->
+	<bean id="MaximizedDetailsViewController" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.MaximizedDetailsViewController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="detailsView" ref="DemoMaximizedDetailsViewImpl" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="layoutManager" ref="MaximizedDetailsViewLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/MaximizedDetailsView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMaximizedDetailsViewImpl" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.MaximizedDetailsView" scope="prototype">
+		<property name="header" ref="DemoMaximizedDetailsViewHeader" />
+		<!-- <property name="iconProvider" ref="ModelSoftTypeIconPresenter" /> -->
+	</bean>
+
+	<bean id="DemoMaximizedDetailsViewHeader" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoMaximizedDetailsViewHeader" scope="prototype">
+		<property name="presenter" ref="DemoDetailsViewHeaderPresenter" />
+	</bean>
+
+
+	<!-- MINIMIZED DETAILS VIEW -->
+	<bean id="MinimizedDetailsViewController" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.MinimizeDetailsViewController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="detailsView" ref="DemoMinimizedDetailsViewImpl" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="layoutManager" ref="AlwaysHideLeftAndRightLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/minimized/MinimizedDetailsView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMinimizedDetailsViewImpl" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.MinimizedDetailsView" scope="prototype">
+		<property name="header" ref="DemoMinimizedDetailsViewHeader" />
+	</bean>
+
+	<bean id="DemoMinimizedDetailsViewHeader" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoMaximizedDetailsViewHeader" scope="prototype">
+		<property name="presenter" ref="DemoDetailsViewHeaderPresenter" />
+	</bean>
+
+	<bean id="DemoDetailsViewHeaderPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoDetailsViewHeaderPresenter" scope="prototype">
+		<property name="identityPresenter" ref="FullIdentityPresenter" />
+		<property name="headerIdentityProvider" ref="FullIdentityHeaderPresenter" />
+	</bean>
+
+	<bean id="FullIdentityHeaderPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.details.FullIdentityHeaderPresenter" scope="prototype" />
+	<bean id="FullIdentityPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.details.FullIdentityPresenter" scope="prototype" />
+	<bean id="StubStructureContentModelReferenceProvider" class="io.github.jsoagger.jfxcore.demoapp.comps.details.StubStructureContentModelReferenceProvider" scope="prototype" />
+
+	<bean id="DemoMaximizedInformationTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="FullTabPaneLayoutManager" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaximizedInformationTabView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoSelfInformationTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+<!-- 		<property name="layoutManager" ref="CenteredTabViewLayoutManager" /> -->
+		<property name="layoutManager" ref="CenteredStretchedForwardViewLayoutManager" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaximizedInformationTabView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/self/DemoSelfInformationTabView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMaximizedIllustrationView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="FullTabPaneLayoutManager" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaximizedIllustrationView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoSelfIllustrationTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="CenteredTabViewLayoutManager" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaximizedIllustrationView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/self/DemoSelfIllustrationTabView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMaquette3DContentView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaquette3DContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoSelfMaquette3DTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaquette3DContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/self/DemoSelfMaquette3DTabView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoMaquette2DContentView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaquette2DContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoSelfMaquette2DTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="commonComponents" ref="DetailsViewCommonComponents" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/maximized/DemoMaquette2DContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/details/self/DemoSelfMaquette2DTabView.xml</value>
+			</list>
+		</property>
+	</bean>
+</beans>
+

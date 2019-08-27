@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<HBox fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" style="padding:4 0 0 0">
+	<StackPane fx:id="searchFormLeftSection" prefHeight="-1" prefWidth="-1" id="searchFormLeftSection"/>
+	<VBox fx:id="searchFormCenterSection"  id="searchFormCenterSection" HBox.hgrow="ALWAYS">
+			<VBox fx:id="searchFormSection"  id="searchFormSection" VBox.vgrow="ALWAYS">
+				<StackPane fx:id="headerActions" prefHeight="-1.0" prefWidth="-1.0"  id="searchFormHeaderSection"/>
+				<ScrollPane fx:id="searchFormContentSection" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS"  id="searchFormContentSection">
+					<HBox>
+						<!-- For displaying each editing row of the form -->
+						<VBox fx:id="editorStructureAreaSection"  VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" style="-fx-padding:16 2 16 2"/>
+						
+						<StackPane fx:id="centerSection" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" style="-fx-padding:16 2 16 2"/>
+						<StackPane fx:id="searchFormRightSection" prefHeight="-1" prefWidth="-1" />
+					</HBox>
+				</ScrollPane>
+				<StackPane fx:id="footerActions" prefHeight="-1.0"  id="searchFormFooterSection"/>
+			</VBox>
+	</VBox>
+</HBox>
+

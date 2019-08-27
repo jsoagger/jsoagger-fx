@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Text?>
+
+
+<!-- <AnchorPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"> -->
+<StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+		<VBox styleClass="ep-search-result-root-pane">
+			<HBox fx:id="srHeaderSection" id="srHeaderSection" prefHeight="-1.0" style="-fx-min-height:64;-fx-alignment:CENTER;" visible="false" managed="false">
+				<Text fx:id="srResultCount" styleClass="ep-as-search-result-count-label" />
+				<HBox fx:id="srSearchSummary" styleClass="ep-as-search-request-summary-label" />
+			</HBox>
+			
+			<HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+				<StackPane fx:id="srCenterAreaSection" id="srCenterAreaSection" HBox.hgrow="ALWAYS" alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
+					<AnchorPane fx:id="srCenterSection" id="srCenterSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+							<ScrollPane fitToWidth="true" fitToHeight="true" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" 
+							AnchorPane.bottomAnchor="30.0" >
+								<HBox>
+								<StackPane fx:id="srLeftFixedAreaSection" id="srLeftFixedAreaSection" prefHeight="-1" prefWidth="-1" />
+								<StackPane fx:id="srCenterFixedAreaSection" id="srCenterFixedAreaSection" HBox.hgrow="ALWAYS" >
+									<StackPane fx:id="srCenter" id="srCenter" />
+								</StackPane>
+								<StackPane fx:id="srRightFixedAreaSection" prefHeight="-1" prefWidth="-1" />
+								</HBox>
+							</ScrollPane>
+							
+							<StackPane fx:id="srFooter" id="srFooter" BorderPane.alignment="CENTER" style="-fx-border-width: 1 0 0 0;-fx-border-color:-internal-border-color;-fx-background-color:white;-fx-min-height:80" 
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="25.0" />
+					</AnchorPane>
+				</StackPane>
+			</HBox>
+		</VBox>
+		
+		<!-- What is the role of this pane? -->
+		<StackPane fx:id="srSearchResultHeader" id="srSearchResultHeader" BorderPane.alignment="CENTER" prefHeight="-1.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" visible="false" managed="false"/>
+</StackPane>

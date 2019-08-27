@@ -1,0 +1,153 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+.login-root-pane{
+	-fx-background-size:auto ;
+	-fx-background-color:transparent;
+}
+
+.login-wizard{
+	-fx-background-color:transparent;
+	-fx-padding:32 32 64 32;
+	-fx-max-width:500;
+	-fx-max-height:700;
+	-fx-effect:dropshadow(three-pass-box, -grey-color-200,10.9,0.2,0,1.0);
+	-fx-translate-y:-80;
+}
+
+.login-wizard-step{
+	-fx-border-width:1;
+	-fx-border-color:-grey-color-300;	
+	-fx-background-color:white;
+}
+
+.login-left-area{
+	-fx-background-color:transparent;
+	-fx-border-width:0;
+}
+
+.login-center-area-wrapper {
+	-fx-background-color:white;
+	-fx-padding:16;
+}
+
+.login-center-area{
+	-fx-alignment:CENTER;
+	-fx-background-color:white;
+}
+
+.login-wizard *.wizard-center-content-wrapper{
+	-fx-alignment:CENTER;
+	-fx-padding:16;
+}
+
+.login-right-area{
+	-fx-border-color:-primary-color-700;
+	-fx-border-width:0.0 0.0 0.0 0.0;
+	-fx-opacity:0.45;
+}
+
+.login-wizard-header{
+	-fx-min-height:82.0;
+	-fx-background-color:white;
+	-fx-alignment:CENTER;
+	-fx-padding:32 0 32 0;
+}
+
+.login-navigation-bar{
+	-fx-background-color:-accent-color-400;
+	-fx-pref-height:98.0;
+	-fx-alignment:BOTTOM_CENTER;
+}
+
+.login-navigation-bar>*.header-left-toolbar>*.current-location-item-label{
+	-fx-font-family:'Roboto Light';
+	-fx-fill:-grey-color-200;
+	-fx-font-size:3.0em;
+}
+
+.login-fieldset-row {
+	-fx-alignment:CENTER;
+	-fx-pref-height: 62.0;
+	-fx-border-width:0.0 ;
+	-fx-padding:0.0;
+}
+
+.login-wizard-footer{
+	-fx-background-color:transparent;
+	-fx-pref-height:82.0;
+	-fx-border-width: 0;
+}
+
+.login-wizard-action-bar{
+	-fx-spacing:8.0;
+	-fx-alignment:CENTER_RIGHT;
+}
+
+.login-fieldset-content,
+.login-form-bloc{
+	-fx-border-color:transparent;
+	-fx-background-color:white;
+}
+
+.login-wizard-step-content-layout,
+.login-wizard-step-content{
+	-fx-background-color:white;
+}
+
+.login-button:focused,
+.login-button{
+	-fx-pref-width:200.0;
+	-fx-min-height:42.0;
+	-fx-background-color:-accent-color-400;
+	-fx-text-fill:white;
+	-fx-effect: dropshadow(three-pass-box, -grey-color-300,4.9,0.2,0,1.0);
+}
+
+.login-button:focused:armed,
+.login-button:armed{
+	-fx-effect:'';
+}
+
+.login-button:hover{
+	-fx-cursor:hand;
+}
+
+ .login-welcome-message {
+	-fx-font-weight:bold;
+	-fx-font-family:'Arial';
+	-fx-font-size:1.3em;
+}
+
+.login-connexion-text{
+	-fx-font-family:'Roboto Light';
+	-fx-font-size:4em;
+	 -fx-fill: -primary-color;
+}
+
+.login-wizardstep-listViewPaneHeader{
+	-fx-alignment:CENTER_RIGHT;
+}
+
+.wizard-step-footer{
+	-fx-background-color:white;
+	-fx-border-width:0;
+}

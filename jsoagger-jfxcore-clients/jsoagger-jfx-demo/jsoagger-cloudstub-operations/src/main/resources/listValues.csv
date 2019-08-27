@@ -1,0 +1,185 @@
+carMark,Toyota
+carMark,Mercedes
+carMark,Audi
+carMark,Mazda
+carMark,Subaru
+carMark,Suziki
+carMark,Honda
+carMark,Isuzu
+carMark,Tata
+carMark,Rover
+carMark,Renault
+carMark,Peugeot
+carMark,Citroen
+carMark,Fiat
+carMark,Chevrolet
+carMark,Ford
+carMark,Nissan
+carMark,Volkwagen
+carMark,Karenjy
+carMark,Chintong
+carMark,Taipoi
+
+pricing,100
+pricing,200
+pricing,400
+pricing,600
+pricing,800
+pricing,1000
+pricing,1500
+pricing,2000
+pricing,3000
+pricing,4000
+pricing,8000
+pricing,10000
+pricing,15000
+pricing,20000
+pricing,30000
+
+fileSize,1 (ko)
+fileSize,10 (ko)
+fileSize,20 (ko)
+fileSize,40 (ko)
+fileSize,80 (ko)
+fileSize,100 (ko)
+fileSize,200 (ko)
+fileSize,400 (ko)
+fileSize,800 (ko)
+fileSize,1 (Mo)
+fileSize,10 (Mo)
+fileSize,100 (Mo)
+fileSize,500 (Mo)
+fileSize,1 (Go)
+
+docType,jpg
+docType,png
+docType,pdf
+docType,docx
+docType,xls
+docType,3ds
+docType,xml
+docType,ppt
+docType,odt
+docType,txt
+docType,csv
+
+
+year,2010
+year,2011
+year,2012
+year,2013
+year,2014
+year,2015
+year,2016
+year,2017
+year,2018
+
+engineGasoline,Gasoil
+engineGasoline,Essence
+engineGasoline,Hybrid
+engineGasoline,GPL
+engineGasoline,Electic
+
+gearBox,Manual
+gearBox,Automatic
+
+pediodLessThan,Past half hour
+pediodLessThan,Past one hour
+pediodLessThan,Past two hours
+pediodLessThan,Past 12 hours
+pediodLessThan,Past 24 hours
+pediodLessThan,Past month
+pediodLessThan,Past Year
+
+personCategory,Single
+personCategory,Maried
+personCategory,Divorced
+personCategory,Veuf
+
+country,France
+city,Paris
+city,Toulouse
+city,Marseille
+city,Lyon
+city,Nice
+city,Montpellier
+
+personStatus,Waiting for call
+personStatus,Working
+personStatus,Free
+personStatus,Message sent
+
+gender,Female
+gender,Male
+
+serverListMaxRowSelection,5
+serverListMaxRowSelection,10
+serverListMaxRowSelection,15
+serverListMaxRowSelection,20
+
+searchItemsPerPageSelectableItems,5
+searchItemsPerPageSelectableItems,10
+searchItemsPerPageSelectableItems,15
+searchItemsPerPageSelectableItems,20
+
+searchItemsSortAttribute,Creation
+searchItemsSortAttribute,Modification
+
+serverListSort,Creation
+serverListSort,Modification
+
+
+serverTimeZone,Fr
+serverTimeZone,Tr
+serverTimeZone,Fd
+serverTimeZone,Az
+serverTimeZone,Mp
+
+serverShortDateFormat,dd/mm/yy
+serverShortDateFormat,dd-mm-yy
+
+serverLongDateFormat,dd/mm/yyyy HH:MM
+serverLongDateFormat,dd-mm-yyyy HH:MM:SS
+
+serverTimeFormat,hh:mm
+serverTimeFormat,hh:mm Z
+
+serverFirstWeekDay,Monday
+serverFirstWeekDay,Tuesday
+serverFirstWeekDay,Thursday
+serverFirstWeekDay,Wedensday
+serverFirstWeekDay,Friday
+
+serverThousandSeparator,.(Dot)
+serverThousandSeparator, (Blank)
+
+serverDecimalSeparator,.(Dot)
+serverDecimalSeparator, (Blank)
+
+serverCurrency,$(Dollar)
+serverCurrency,Yen(¥)
+serverCurrency,Ariary(Ar)
+
+serverTextSeparator,;()
+serverTextSeparator,|(Pipe)
+
+serverListSeparator,;
+serverListSeparator,|(Pipe)
+
+dataset,people,People
+dataset,parts,Parts
+dataset,military,Military
+dataset,foods,Foods
+
+
+contactPref,betwee7and12,Between 7h and 12h
+contactPref,betwee12and14,Between 12h and 14h
+contactPref,betwee14and18,Between 14h and 18h
+contactPref,betwee18and20,Between 18h and 20h
+contactPref,betweeSaturday,Saturday (If urgent)
+contactPref,betweeSaturday,Sunday (If very urgent)
+
+
+
+
+

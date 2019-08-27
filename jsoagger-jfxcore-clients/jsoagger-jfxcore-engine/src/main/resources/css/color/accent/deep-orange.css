@@ -1,0 +1,47 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+.root {
+	-accent-color-900: #BF360C;
+	-accent-color-900-rgb: rgb(26, 35, 126, 0.8);
+	-accent-color-800: #D84315;
+	-accent-color-800-rgb: rgb(40, 53, 147, 0.8);
+	-accent-color-700: #E64A19;
+	-accent-color-700-rgb: rgb(48, 63, 159, 0.8);
+	-accent-color-600: #F4511E;
+	-accent-color-600-rgb: rgb(57, 73, 171, 0.8);
+	-accent-color-500: #FF5722;
+	-accent-color-500-rgb: rgb(63, 81, 181, 0.80);
+	-accent-color-400: #FF7043;
+	-accent-color-400-rgb: rgb(92, 107, 192, 0.8);
+	-accent-color-300: #FF8A65;
+	-accent-color-300-rgb: rgb(121, 134, 203, 0.80);
+	-accent-color-200: #FFAB91;
+	-accent-color-200-rgb: rgb(159, 168, 218, 0.8);
+	-accent-color-100: #FFCCBC;
+	-accent-color-100-rgb: rgb(197, 202, 233, 0.80);
+	-accent-color-50: #FBE9E7;
+	-accent-color-50-rgb: rgb(232, 234, 246, 0.80);
+	-accent-color-a100: #FF9E80;
+	-accent-color-a200: #FF6E40;
+	-accent-color-a400: #FF3D00;
+	-accent-color-a700: #DD2C00;
+}

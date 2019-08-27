@@ -1,0 +1,56 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+.root {
+	-primary-color-900: #01579B;
+	-primary-color-900-rgb: rgb(26, 35, 126, 0.8);
+	-primary-color-800: #0277BD;
+	-primary-color-800-rgb: rgb(40, 53, 147, 0.8);
+	-primary-color-700: #0288D1;
+	-primary-color-700-rgb: rgb(48, 63, 159, 0.8);
+	-primary-color-600: #039BE5;
+	-primary-color-600-rgb: rgb(57, 73, 171, 0.8);
+	-primary-color-500: #03A9F4;
+	-primary-color-500-rgb: rgb(63, 81, 181, 0.80);
+	-primary-color-400: #29B6F6;
+	-primary-color-400-rgb: rgb(92, 107, 192, 0.8);
+	-primary-color-300: #4FC3F7;
+	-primary-color-300: rgb(121, 134, 203, 0.80);
+	-primary-color-200: #81D4FA;
+	-primary-color-200-rgb: rgb(159, 168, 218, 0.8);
+	-primary-color-100: #B3E5FC;
+	-primary-color-100: rgb(197, 202, 233, 0.80);
+	-primary-color-50: #E1F5FE;
+	-primary-color-50-rgb: rgb(232, 234, 246, 0.80);
+	-primary-color-a100: #80D8FF;
+	-primary-color-a200: #40C4FF;
+	-primary-color-a400: #00B0FF;
+	-primary-color-a700: #0091EA;
+	
+	-application-top-header-bg-color:-primary-color-500;
+	-application-bottom-header-bg-color:linear-gradient(-primary-color-500, derive(-primary-color-500,10%));
+	
+	-ep-secondary-menu-color:-grey-color-400;
+	
+	-ep-left-menu-minimized-wrapper-bg-color:rgb(12,12,12,0.72);
+	-ep-left-menu-minimized-icons-bg-color:rgb(10,10,10,0.87);
+	-ep-secondary-menu-row-hover-color: derive(-grey-color-500,20%);
+}

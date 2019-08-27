@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<view id="Root" combine.keys="id">
+	<component id="AnotherOneButton">
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:HLWizardContentViewWizard;replace:true" />
+				<property name="action" value="BuildRSContentEventAction" />
+			</properties>
+		</component>
+	</component>
+</view>

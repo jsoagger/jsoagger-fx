@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+
+     <component id="Content" combine.keys="id">
+          <properties combine.keys="name">
+          </properties>
+
+          <component combine.keys="ref" id="SearchFormHeader">
+               <component id="FormBloc">
+                    <properties combine.keys="name">
+                         <property name="displayHeader" value="false" />
+                         <property name="mode" value="EDIT" />
+                    </properties>
+
+                    <component id="FormRow">
+                         <component id="Rows">
+                              <component ref="GoButton" />
+                              <component ref="SearchNameAttribute" />
+                         </component>
+                    </component>
+               </component>
+          </component>
+
+          <component combine.keys="ref" id="SearchForm">
+               <component id="FormBloc">
+                    <properties combine.keys="name">
+                         <property name="displayHeader" value="false" />
+                         <property name="mode" value="EDIT" />
+                    </properties>
+
+                    <component id="FormRow">
+                         <component id="Rows">
+                              <component ref="SearchNameAttribute" />
+                              <component ref="SearchNumberAttribute" />
+                         </component>
+                    </component>
+                    <component id="FormRow">
+                         <component id="Rows">
+                              <component ref="SearchTypeAttribute" />
+                              <component ref="SearchCreationDateAttribute" />
+                              <component ref="SearchModificationDateAttribute" />
+                         </component>
+                    </component>
+               </component>
+          </component>
+
+          <component combine.keys="ref" id="SearchFormActions">
+               <component ref="ExportResultsButton" />
+               <component ref="SaveSearchButton" />
+               <component ref="GoButton" />
+          </component>
+     </component>
+
+     <component id="SearchModificationDateAttribute" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="NAME_LABEL" />
+               <property name="prompt" value="NAME_LABEL" />
+               <property name="attributeName" value="master.name" />
+               <property name="editUtility" value="InputText" />
+          </properties>
+     </component>
+
+     <component id="SearchCreationDateAttribute" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="NAME_LABEL" />
+               <property name="prompt" value="NAME_LABEL" />
+               <property name="attributeName" value="master.name" />
+               <property name="editUtility" value="InputText" />
+          </properties>
+     </component>
+
+     <component id="SearchNumberAttribute" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="NAME_LABEL" />
+               <property name="prompt" value="NAME_LABEL" />
+               <property name="attributeName" value="master.name" />
+               <property name="editUtility" value="InputText" />
+          </properties>
+     </component>
+
+     <component id="SearchNameAttribute" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="NAME_LABEL" />
+               <property name="prompt" value="NAME_LABEL" />
+               <property name="attributeName" value="master.name" />
+               <property name="editUtility" value="InputText" />
+          </properties>
+     </component>
+
+     <component id="SearchTypeAttribute" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="TYPE_LABEL" />
+               <property name="attributeName" value="master.type" />
+               <property name="editUtility" value="InputCombobox" />
+               <property name="enumeratedValuesLoader" value="InstanciablePartTypeToEnumeratedValueLoader" />
+          </properties>
+          <component id="ValidationConfig">
+               <properties combine.keys="name">
+                    <property name="mandatory" value="true" />
+               </properties>
+          </component>
+     </component>
+</view>

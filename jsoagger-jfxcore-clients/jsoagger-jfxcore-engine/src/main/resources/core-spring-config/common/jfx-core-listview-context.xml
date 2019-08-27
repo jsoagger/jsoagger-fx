@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true">
+
+	<bean id="ListViewConfigurationTab" class="io.github.jsoagger.jfxcore.engine.components.list.comps.ListViewConfigurationTab" lazy-init="true" scope="prototype" />
+	<bean id="ListViewFilterTab" class="io.github.jsoagger.jfxcore.engine.components.list.comps.ListViewFilterTab" lazy-init="true" scope="prototype" />
+	<bean id="ListViewItemsListTab" class="io.github.jsoagger.jfxcore.engine.components.list.comps.ListViewItemsListTab" lazy-init="true" scope="prototype" />
+	<bean id="StaticListEntryLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.StaticListEntryLoader" lazy-init="true" scope="prototype" />
+
+	<bean id="ModelTypePresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.ModelTypePresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelDescriptionPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.descriptionprovider.ModelDescriptionPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelRoleBsCountPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.descriptionprovider.ModelRoleBsCountPresenter" lazy-init="true" scope="prototype" />
+	<bean id="UserModelDescriptionPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.descriptionprovider.UserModelDescriptionPresenter" lazy-init="true" scope="prototype" />
+	<bean id="EmptyIconPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.EmptyIconPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ItemInitialCircleIconPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.ItemInitialCircleIconPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelSoftTypeIconPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.ModelSoftTypeIconPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelSoftTypeSmallIconPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.ModelSoftTypeSmallIconPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelSoftTypeMediumIconPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.ModelSoftTypeMediumIconPresenter" lazy-init="true" scope="prototype" />
+	<bean id="AdminStaticIconPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.AdminStaticIconPresenter" lazy-init="true" scope="prototype" />
+
+	<bean id="SoftTypeIconPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.SoftTypeIconPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelDisplayNameIdentityPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.identityprovider.ModelDisplayNameIdentityPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelNameIdentityPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.identityprovider.ModelNameIdentityPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelIteratedNameIdentityPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.identityprovider.ModelIteratedNameIdentityPresenter" lazy-init="true" scope="prototype" />
+	<bean id="ModelMasterNameIdentityPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.identityprovider.ModelMasterNameIdentityPresenter" lazy-init="true" scope="prototype" />
+
+	<!-- CONFIGURATION OF LIST OF ROLES DISPLAYED IN LISTS VIEW. CLICK ON THE ROLE WITH SEND TO PAGE OF LIST OF ITS MEMBER -->
+	<bean id="RoleListCellFactory" class="io.github.jsoagger.jfxcore.engine.components.list.impl.DefaultModelListCell" lazy-init="true" scope="prototype" />
+	<util:map id="RoleListCellFactoryExtraParameters">
+		<entry key="roleB" value="roleMembers" />
+		<entry key="noRoleBLabel" value="NO_MEMBER_LABEL_CORE_MSG" />
+		<entry key="withRoleBLabel" value="NO_ROLE_MEMBER_CORE_MSG" />
+	</util:map>
+
+	<!-- CONFIGURATION OF LIST OF TYPE DISPLAYED IN LISTS VIEW. CLICK ON THE ROLE WITH SEND TO PAGE OF LIST OF ITS MEMBER -->
+	<bean id="SoftTypeCellFactory" class="io.github.jsoagger.jfxcore.engine.components.list.impl.DefaultModelListCell" lazy-init="true" scope="prototype" />
+
+	<!-- CONFIGURATION OF LIST OF GROUPS DISPLAYED IN LISTS VIEW. CLICK ON THE ROLE WITH SEND TO PAGE OF LIST OF ITS MEMBER -->
+	<bean id="GroupListCellFactory" class="io.github.jsoagger.jfxcore.engine.components.list.impl.DefaultModelListCell" lazy-init="true" scope="prototype" />
+	<util:map id="GroupListCellFactoryExtraParameters">
+		<entry key="roleB" value="groupMembers" />
+		<entry key="noRoleBLabel" value="NO_MEMBER_LABEL_CORE_MSG" />
+		<entry key="withRoleBLabel" value="NO_GROUP_MEMBER_CORE_MSG" />
+	</util:map>
+
+
+	<!-- BUSINESS MANAGER EACH MANAGED ITEM -->
+	<bean id="BusinessAdminCellFactory" class="io.github.jsoagger.jfxcore.engine.components.list.impl.DefaultModelListCell" lazy-init="true" scope="prototype" />
+
+	<!-- SOFT ATTRIBUTES CELL FACTORY -->
+	<bean id="SoftAttributeCellFactory" class="io.github.jsoagger.jfxcore.engine.components.list.impl.DefaultModelListCell" lazy-init="true" scope="prototype" />
+	<bean id="SoftAttributeItemFactory" class="io.github.jsoagger.jfxcore.engine.components.presenter.SmallItemPresenterFactory" lazy-init="true" scope="prototype" />
+</beans>

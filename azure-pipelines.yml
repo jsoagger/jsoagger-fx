@@ -1,0 +1,150 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+- stable
+
+jobs:
+
+#--------
+#-------- Build task on windows
+#--------
+- job: windows
+  displayName: Build on windows (vs2017-win2016)
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - powershell: |
+      [xml]$XmlDocument = Get-Content ./pom.xml
+      Set-Variable -Name EPPROJECTVERSION -Value $XmlDocument.project.version
+      Write-Host "##vso[task.setvariable variable=EP_PROJECTVERSION]$EPPROJECTVERSION"
+    displayName: 'Extract and export maven project version'
+
+  - powershell: |
+      mkdir build
+      $ProgressPreference = 'SilentlyContinue'
+      wget "https://download.java.net/java/ga/jdk11/openjdk-11_windows-x64_bin.zip" -O "build\jdk.zip"
+    displayName: 'Download JDK 11'
+
+  - task: JavaToolInstaller@0
+    inputs:
+      jdkSourceOption: localDirectory
+      jdkFile: 'build/jdk.zip'
+      jdkDestinationDirectory: 'build/jdkinst'
+      jdkArchitectureOption: x64
+
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      jdkVersion: '1.11'
+      publishJUnitResults: false
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      goals: 'install'
+      options: -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+      displayName: 'Maven install on Windows'
+
+  - task: CopyFiles@2
+    inputs:
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+      Contents: |
+        jsoagger-jfxcore-clients/jsoagger-jfx-demo/jsoagger-jfxcore-demoapp/target/jsoagger-jfxcore-demoapp-windows-$(EP_PROJECTVERSION).zip
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+      cleanTargetFolder: false
+      flattenFolders: true
+      overWrite: true
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: $(EP_PROJECTVERSION)
+
+
+#--------
+#-------- Build task on macos
+#--------
+- job: macos
+  displayName: Build on Macos (macOS 10.13)
+  pool:
+    vmImage: 'macOS 10.13'
+  steps:  
+  - script: |
+      mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+      export EPPROJECTVERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+      echo "##vso[task.setvariable variable=EP_PROJECTVERSION]$EPPROJECTVERSION"
+    displayName: 'Extract and export maven project version'
+
+  - script: |
+      echo The project version is $(EP_PROJECTVERSION)
+
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      jdkVersion: '1.11'
+      publishJUnitResults: false
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      goals: 'install'
+      options: -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+      displayName: 'Maven install on macos'
+
+  - task: CopyFiles@2
+    inputs:
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+      Contents: |
+        jsoagger-jfxcore-clients/jsoagger-jfx-demo/jsoagger-jfxcore-demoapp/target/jsoagger-jfxcore-demoapp-macos-$(EP_PROJECTVERSION).zip
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+      cleanTargetFolder: false
+      flattenFolders: true
+      overWrite: true
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: $(EP_PROJECTVERSION)
+
+
+#--------
+#-------- Build task on linux
+#--------
+- job: linux
+  displayName: Build on linux (ubuntu-16.04)
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:  
+  - script: |
+      mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+      export EPPROJECTVERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+      echo "##vso[task.setvariable variable=EP_PROJECTVERSION]$EPPROJECTVERSION"
+    displayName: 'Extract and export maven project version'
+
+  - script: |
+      echo The project version is $(EP_PROJECTVERSION)
+
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      jdkVersion: '1.11'
+      publishJUnitResults: false
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      goals: 'install'
+      options: -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+      displayName: 'Maven install on linux'
+
+  - task: CopyFiles@2
+    inputs:
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+      Contents: |
+        jsoagger-jfxcore-clients/jsoagger-jfx-demo/jsoagger-jfxcore-demoapp/target/jsoagger-jfxcore-demoapp-linux-$(EP_PROJECTVERSION).zip
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+      cleanTargetFolder: false
+      flattenFolders: true
+      overWrite: true
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: $(EP_PROJECTVERSION)
+
+

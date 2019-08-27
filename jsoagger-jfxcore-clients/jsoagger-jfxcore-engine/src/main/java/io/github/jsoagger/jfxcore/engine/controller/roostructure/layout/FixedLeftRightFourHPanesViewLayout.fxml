@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.HBox?>
+
+<StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" prefHeight="-1.0" prefWidth="-1.0">
+    <children>
+        <HBox VBox.vgrow="ALWAYS">
+            <children>
+                <StackPane fx:id="leftLeftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
+                <StackPane fx:id="leftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
+
+                <ScrollPane fitToHeight="true" fitToWidth="true" fx:id="mainScrollPane" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
+                    <content>
+                        <HBox VBox.vgrow="ALWAYS">
+                            <children>
+                                <StackPane fx:id="centerFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
+                                <StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0" />
+                                <StackPane fx:id="rightRightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0" />
+                            </children>
+                        </HBox>
+                    </content>
+                </ScrollPane>
+            </children>
+        </HBox>
+    </children>
+</StackPane>
+

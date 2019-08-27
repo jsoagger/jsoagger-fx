@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+<view id="Root" combine.keys="id">
+
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="contentImpl" value="FlowContent" />
+			<property name="leftSectionAreaStyleClass" value="default-background,ep-full-table-structure-left" />
+			<property name="centerSectionAreaStyleClass" value="default-background,padding-8-0-8-0" />
+			<property name="rightSectionAreaStyleClass" value="default-background,ep-full-table-structure-right" />
+			<property name="tableStructureAreaStyleClass" value="default-background" />
+		</properties>
+
+		<component id="Header" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="styleClass" value="ep-full-table-structure-header" />
+				<property name="filtrable" value="false" />
+				<property name="title" value="MASTER_REFERENCE_LABEL" />
+			</properties>
+		</component>
+
+		<component id="NoContentPane" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+                <property name="ikonli" value="hws-face-open-mouth-2:72" />
+                <property name="iconStyleClass" value="grey-flat-ikonli" />
+                <property name="noContentMessage" value="NO_ITEMS" />
+			</properties>
+		</component>
+
+		<component id="Content">
+			<properties combine.keys="name">
+				<property name="loadFirstPage" value="true" />
+				<property name="styleClass" value="white-background" />
+				<property name="flowContentStyleClass" value="spacing-4,white-background" />
+				<property name="flowMode" value="vbox" />
+
+				<property name="linkClass" value="io.github.jsoagger.core.model.document.DocumentDocMasterLink" />
+				<property name="paginateOperation" value="GetPaginatedRoleBsWithLinksOperation" />
+				<property name="dataLoader" value="DefaultLinkPaginatedDataLoader" />
+				<property name="flowItemImpl" value="HContentHolderSmallIteratedSearchResultItemPresenter" />
+			</properties>
+		</component>
+
+		<component id="Toolbar">
+			<properties combine.keys="name">
+				<property name="styleClass" value="ep-table-toolbar" />
+				<property name="modifyingActionsStyleClass" value="ep-table-toolbar,spacing-8" />
+			</properties>
+
+			<component id="RootMenuActions">
+				<component id="LeftActions">
+					<component ref="GoHomeButton" />
+					<component ref="GoBackButton" />
+				</component>
+			</component>
+		</component>
+	</component>
+
+	<component id="GoBackButton">
+		<properties combine.keys="name">
+			<property name="label" value="BACK_LABEL" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="upperCase" value="true" />
+			<property name="ikonli" value="mdi-backup-restore:22" />
+			<property name="type" value="SimpleButton" />
+			<property name="presenter" value="DoActionPresenter" />
+			<property name="displayMode" value="GRAPHIC_ONLY" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="LoadPreviousItemChildrenAndUpdateTableAction" />
+				<property name="args" value="operation:GetDocUsagesOperation;relativeToRootModel:false" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="GoHomeButton">
+		<properties combine.keys="name">
+			<property name="label" value="HOME_LABEL" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="upperCase" value="true" />
+			<property name="ikonli" value="mdi-home-outline:22" />
+			<property name="type" value="SimpleButton" />
+			<property name="presenter" value="DoActionPresenter" />
+			<property name="displayMode" value="GRAPHIC_ONLY" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="LoadPreviousItemChildrenAndUpdateTableAction" />
+				<property name="args" value="operation:GetDocUsagesOperation;relativeToRootModel:true" />
+			</properties>
+		</component>
+	</component>
+	
+	<component id="CellRightActions">
+		<properties combine.keys="name">
+			<property name="styleClass" value="ep-presenter-right-actions-container" />
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="LoadChildrenAction">
+			<properties combine.keys="name">
+				<property name="tooltip" value="CHILDREN_LABEL" />
+				<property name="ikonli" value="fa-angle-right:22" />
+				<property name="styleClass" value="button,button-transparent-border" />
+				<property name="type" value="button" />
+				<property name="presenter" value="DoActionPresenter" />
+			</properties>
+			<component id="Handler" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="action" value="LoadItemChildrenAndUpdateTableAction" />
+					<property name="args" value="operation:GetDocUsagesOperation" />
+				</properties>
+			</component>
+		</component>
+	</component>
+</view>

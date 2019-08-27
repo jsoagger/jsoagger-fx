@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Button?>
+
+<StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+	<AnchorPane>
+		<HBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" fx:id="internalWrapper">
+			<BorderPane HBox.hgrow="ALWAYS">
+				<left>
+					<StackPane fx:id="leftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"/>
+				</left>
+				<top>
+					<StackPane fx:id="headerAreaExternalSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" visible="false" managed="false">
+						<children>
+							<StackPane fx:id="headerAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"/>
+						</children>
+					</StackPane>
+				</top>
+				<center>
+					<VBox HBox.hgrow="ALWAYS" fx:id="centerFixedAreaSection" spacing="16">
+						<StackPane fx:id="externalWrapper" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" style="">
+							<VBox fx:id="internalWrapperSection" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+								<StackPane fx:id="centerAreaSection" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" alignment="TOP_CENTER"/>
+							</VBox>
+						</StackPane>
+						<StackPane fx:id="footerAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-full-table-structure-footer"/>
+					</VBox>
+				</center>
+				<right>
+					<StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0"/>
+				</right>
+			</BorderPane>
+		</HBox>
+
+		<!-- Pane containing material button -->
+		<StackPane fx:id="floatingDefaultActionsWrapper" id="floatingDefaultActionsWrapper" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="350" visible="false"
+			managed="false"/>
+	</AnchorPane>
+</StackPane>
+

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="styleClass" value=""/>
+			<property name="leftSectionAreaStyleClass" value="default-background"/>
+			<property name="centerSectionAreaStyleClass" value="default-background"/>
+			<property name="rightSectionAreaStyleClass" value="default-background"/>
+
+			<property name="tabsAlignment" value="center"/>
+		</properties>
+
+		<component id="HeaderActions" combine.keys="id">
+			<component id="RootMenuActions">
+				<component id="LeftActions">
+				</component>
+			</component>
+		</component>
+		
+		<!-- THESE ACTION ARE DISPLAYED ONLY IF THE DETAILS VIEW IS IN VIEW MODE. WHEN SWITCHING IN EDIT MODE, THEY ARE HIDDEN. IF YOU WANT ACTIONS TO BE DISPLAYED WHATEVER THE MODE 
+			, USE HEADER ACTIONS -->
+		<component id="Actions" combine.keys="id">
+			<component id="RootMenuActions">
+				<component id="CenterActions">
+					<component ref="CorePersonShareButton"/>
+					<component ref="CoreAccountLockButton"/>
+					<component ref="CoreAccountResetPassButton"/>
+					<component ref="CoreAccountSendEmailButton"/>
+				</component>
+			</component>
+		</component>
+
+		<component id="DetailsViewTabs" combine.keys="id">
+			<component id="TabGroup1">
+				<properties combine.keys="name">
+					<property name="title" value="CONTENT_LABEL"/>
+					<property name="titleStyleClass" value=""/>
+					<property name="styleClass" value="ep-details-view-maximized-tab-item"/>
+				</properties>
+
+				<component id="InformationTabMenu">
+					<properties combine.keys="name">
+						<property name="title" value="INFOS_LABEL"/>
+						<property name="tootltip" value="INFOS_LABEL"/>
+						<property name="titleStyleClass" value=""/>
+						<property name="styleClass" value="ep-details-view-maximized-tab-item"/>
+						<property name="ikonli" value="mdi-information-outline:20"/>
+					</properties>
+					<component rootview="PeopleMaximizedInformationTabView"/>
+				</component>
+				
+				<component id="AccountTabMenu">
+					<properties combine.keys="name">
+						<property name="titleStyleClass" value=""/>
+						<property name="title" value="ACCOUNT_LABEL"/>
+						<property name="tootltip" value="ACCOUNT_LABEL"/>
+						<property name="styleClass" value="ep-details-view-maximized-tab-item"/>
+						<property name="ikonli" value="mdi-account-box-outline:20"/>
+					</properties>
+
+					<component rootview="PeopleMaximizedAccountTabView"/>
+				</component>
+				<component id="LinksTabMenu">
+					<properties combine.keys="name">
+						<property name="titleStyleClass" value=""/>
+						<property name="title" value="LINKS_LABEL"/>
+						<property name="tootltip" value="LINKS_LABEL"/>
+						<property name="styleClass" value="ep-details-view-maximized-tab-item"/>
+						<property name="ikonli" value="gmi-insert-link:20"/>
+					</properties>
+
+					<component rootview="PeopleMaximizedLinksTabView"/>
+				</component>
+			</component>
+		</component>
+	</component>
+
+
+	<component id="CorePersonShareButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="SHARE_LABEL"/>
+			<property name="label" value="SHARE_LABEL"/>
+			<property name="type" value="SimpleButton"/>
+			<property name="upperCase" value="true"/>
+			<property name="ikonli" value="mdi-share-variant:18"/>
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent"/>
+		</properties>
+	</component>
+
+	<component id="CoreAccountLockButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="LOCK_LABEL"/>
+			<property name="label" value="LOCK_LABEL"/>
+			<property name="type" value="SimpleButton"/>
+			<property name="upperCase" value="true"/>
+			<property name="ikonli" value="mdi-lock-outline:18"/>
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent"/>
+		</properties>
+	</component>
+
+	<component id="CoreAccountResetPassButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="RESET_PASS_LABEL"/>
+			<property name="label" value="RESET_PASS_LABEL"/>
+			<property name="type" value="SimpleButton"/>
+			<property name="upperCase" value="true"/>
+			<property name="ikonli" value="mdi-rotate-90:18"/>
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent"/>
+		</properties>
+	</component>
+
+	<component id="CoreAccountSendEmailButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="SEND_LABEL"/>
+			<property name="label" value="SEND_LABEL"/>
+			<property name="type" value="SimpleButton"/>
+			<property name="upperCase" value="true"/>
+			<property name="ikonli" value="mdi-mail-ru:18"/>
+			<property name="styleClass" value="button-xsmall,button-transparent-border-transparent"/>
+		</properties>
+	</component>
+	
+	<component id="CoreMoreActionButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="MORE_LABEL"/>
+			<property name="label" value="MORE_LABEL"/>
+			<property name="type" value="SimpleButton"/>
+			<property name="displayMode" value="GRAPHIC_ONLY"/>
+			<property name="ikonli" value="fa-ellipsis-h:18"/>
+			<property name="styleClass" value="table-toolbar-action-2"/>
+		</properties>
+	</component>
+</view>
+                   

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+    default-lazy-init="true" profile="desktop">
+
+    <import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/part/details/maximized/maximized-details-view-context.xml" />
+    <import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/part/details/minimized/minimized-details-view-context.xml" />
+
+    <bean id="ElementDetailsViewMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+        <property name="useCodeAsDefaultMessage" value="true" />
+        <property name="parentMessageSource" ref="CoreGeneralMessageSource" />
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="basenames">
+            <list>
+                <value>io.github.jsoagger.core.ui.jfx.platform.part.structure.message</value>
+                <value>io.github.jsoagger.core.ui.jfx.platform.part.details.message</value>
+                <value>io.github.jsoagger.core.ui.jfx.platform.part.message</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="ElementDetailsViewCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+        <property name="configurationFiles">
+            <list>
+                <value>/io/github/jsoagger/jfxcore/platform/components/part/details/ElementDetailsViewComponents.xml</value>
+            </list>
+        </property>
+    </bean>
+</beans>

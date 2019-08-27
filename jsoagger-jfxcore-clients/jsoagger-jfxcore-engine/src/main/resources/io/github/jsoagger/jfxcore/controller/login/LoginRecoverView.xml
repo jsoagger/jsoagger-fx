@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+
+     <component id="Content" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="title" value="RECOVER_LABEL" />
+          </properties>
+
+          <component id="Wizard" combine.keys="id">
+               <component id="WizardSteps" combine.keys="id">
+                    <component id="LoginStep" combine.keys="id" processor="FormFieldsetListProcessor">
+                         <properties combine.keys="name">
+                              <property name="displayGroupSelector" value="false" />
+                              <property name="titleStyleClass" value="titleStyleClass" />
+                              <property name="layoutImpl" value="FieldsetTopTabedLayout" />
+                         </properties>
+
+                         <component id="LoginFieldset" combine.keys="id">
+                              <properties combine.keys="name">
+                                   <property name="contentStyleClass" value="login-fieldset-content" />
+                                   <property name="titleStyleClass" value="login-fieldset-header" />
+                              </properties>
+
+                              <component id="FormBloc" combine.keys="id">
+                                   <properties combine.keys="name">
+                                        <property name="displayBlocTitle" value="false" />
+                                        <property name="expanded" value="true" />
+                                        <property name="contentStyleClass" value="login-form-bloc" />
+                                   </properties>
+
+                                   <component id="FormRow0" combine.keys="ref">
+                                        <component ref="WebViewField" layoutProcessor="LabelLessInputLayoutProcessor" />
+                                   </component>
+
+                                   <component id="FormRow0" combine.keys="ref">
+                                        <component ref="UserNameOrEmailField" layoutProcessor="LabelLessInputLayoutProcessor" />
+                                   </component>
+                              </component>
+                         </component>
+
+                         <component id="Actions" combine.keys="id">
+                              <component id="leftActions" combine.keys="ref">
+                              </component>
+                              <component id="centerActions" combine.keys="id">
+                                   <component ref="ContinueButton" />
+                              </component>
+                              <component id="rightActions" combine.keys="ref">
+                              </component>
+                         </component>
+                    </component>
+               </component>
+          </component>
+
+          <component id="BottomActions" combine.keys="id">
+               <component id="leftActions" combine.keys="ref" />
+               <component id="centerActions" combine.keys="ref">
+                    <component ref="TermsButton" />
+                    <component ref="HelpButton" />
+                    <component ref="CopyrightButton" />
+               </component>
+               <component id="rightActions" combine.keys="ref" />
+          </component>
+     </component>
+
+
+     <component id="WebViewField">
+          <properties combine.keys="name">
+               <property name="url" value="recover.html" />
+               <property name="editUtility" value="InputWebView" />
+               <property name="minHeight" value="110" />
+          </properties>
+     </component>
+
+     <component id="UserNameOrEmailField" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="USER_OR_EMAIL_NAME_LABEL" />
+               <property name="prompt" value="USER_OR_EMAIL_NAME_PROMPT" />
+               <property name="attributeName" value="userName" />
+               <property name="editAttributePath" value="userName" />
+               <property name="editUtility" value="InputText" />
+          </properties>
+          <component id="ValidationConfig" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="mandatory" value="true" />
+               </properties>
+          </component>
+     </component>
+
+     <component id="ContinueButton" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="CONTINUE_LABEL" />
+               <property name="tooltip" value="CONTINUE_LABEL" />
+               <property name="default" value="true" />
+          </properties>
+          <component id="Handler" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="procedure" value="finish" />
+               </properties>
+          </component>
+     </component>
+
+     <component id="BackButton" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="CANCEL_LABEL" />
+               <property name="tooltip" value="CANCEL_LABEL" />
+          </properties>
+          <component id="Handler" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="loadWizardView" value="corePlatformLoginView" />
+               </properties>
+          </component>
+     </component>
+
+
+     <component id="TermsButton" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="TERMS" />
+          </properties>
+     </component>
+
+     <component id="HelpButton" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="HELP" />
+          </properties>
+     </component>
+
+     <component id="TsoftButton" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="TSOFT" />
+          </properties>
+     </component>
+
+     <component id="CopyrightButton" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="label" value="COPYRIGHT" />
+          </properties>
+     </component>
+</view>

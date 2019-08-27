@@ -1,0 +1,1 @@
+{"id":"Root","components":[{"id":"Content","subcomponents":[{"id":"TernaryMenu","properties":{}}],"properties":{"primaryMenuView":"PrimaryMenuView","contentRootStructure":"DemoTableViewExample3RSContentView","headerView":"PrimaryHeaderToolbarView"}}],"menus":[],"properties":{}}

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/details/details-view-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/doc/doc-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/foldernavigation/core-components-folder-navigator-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/part/element-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/people/people-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/rootstructure/rootStructure-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/search/search-all-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/content/upload-content-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/timeline/timeline-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/platform/components/comments/comments-context.xml" />
+
+	<bean id="CurrentContainerLocationViewer" class="io.github.jsoagger.jfxcore.platform.components.container.CurrentContainerLocationViewer" lazy-init="true" scope="prototype" />
+	<bean id="ContainerModelProvider" class="io.github.jsoagger.jfxcore.platform.components.container.ContainerModelProvider" scope="prototype" />
+	<bean id="ContainerAdministractorsModelProvider" class="io.github.jsoagger.jfxcore.platform.components.container.ContainerAdministratorsModelProvider" scope="prototype" />
+	<bean id="ContainerSubContainerTypeProvider" class="io.github.jsoagger.jfxcore.platform.components.container.ContainerSubContainerTypeProvider" scope="prototype" />
+
+
+	<bean id="SoftTypeDetailsModelProvider" class="io.github.jsoagger.jfxcore.platform.components.container.SoftTypeDetailsModelProvider" scope="prototype" />
+	<bean id="CurrentContainerLocationProvider" class="io.github.jsoagger.jfxcore.platform.components.components.provider.CurrentContainerLocationProvider" scope="prototype" />
+	<bean id="SoftAttributeDetailsModelProvider" class="io.github.jsoagger.jfxcore.platform.components.container.SoftAttributeDetailsViewModelProvider" scope="prototype" />
+	<bean id="LifecycleListDetailsModelProvider" class="io.github.jsoagger.jfxcore.platform.components.container.LifecycleListDetailsModelProvider" scope="prototype" />
+	<bean id="ParentControllerModelLoader" class="io.github.jsoagger.jfxcore.platform.components.container.ParentControllerModelLoader" scope="prototype" />
+	<bean id="PartDetailsModelLoader" class="io.github.jsoagger.jfxcore.platform.components.container.ElementDetailsModelLoader" scope="prototype" />
+	<bean id="LatestVersionFromStructureContentModelReference" class="io.github.jsoagger.jfxcore.platform.components.container.LatestVersionFromStructureContentModelReference"
+		scope="prototype" />
+
+	<bean id="UserRootFolderModelProvider" class="io.github.jsoagger.jfxcore.platform.components.modelprovider.UserRootFolderModelProvider" scope="prototype" />
+	<bean id="FromDetailsViewRootElementStructureModelLoader" class="io.github.jsoagger.jfxcore.platform.components.modelprovider.FromDetailsViewRootElementStructureModelLoader" scope="prototype" />
+	<bean id="ReloadRCFromsSCModelLoader" class="io.github.jsoagger.jfxcore.platform.components.modelprovider.ReloadRCFromsSCModelLoader" scope="prototype" />
+	<bean id="ReloadContentHolderFromsSCModelLoader" class="io.github.jsoagger.jfxcore.platform.components.modelprovider.ReloadContentHolderFromsSCModelLoader" scope="prototype" />
+	<bean id="RootElementForStructureModelLoader" class="io.github.jsoagger.jfxcore.platform.components.modelprovider.RootElementForStructureModelLoader" scope="prototype" />
+	<bean id="RootDocForStructureModelLoader" class="io.github.jsoagger.jfxcore.platform.components.modelprovider.RootDocForStructureModelLoader" scope="prototype" />
+	<bean id="DocSearchResultFlowItemResolver" class="io.github.jsoagger.jfxcore.platform.components.search.DocSearchResultFlowItemResolver" scope="prototype" />
+
+
+	<bean id="ForwardToCreateSuccessAction" class="io.github.jsoagger.jfxcore.platform.components.actions.ForwardToCreateSuccessAction" scope="prototype"/>
+
+	<bean id="ElementMaturityHistoryTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="CoreGeneralMessageSource" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="layoutManager" ref="BasicTableStructureContentLayoutManager" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/history/ElementMaturityHistoryTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ElementCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/platform/components/element-components.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="CommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/platform/components/common-components.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SearchCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/platform/components/search-components.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="AllCommonComponents" class="io.github.jsoagger.jfx.core.integration.desktop.LocalCompsService">
+		<property name="configurationFiles">
+			<list>
+				<value>/io/github/jsoagger/jfxcore/platform/components/search-components.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/common-components.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/element-components.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="CreateSuccessView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="CoreGeneralMessageSource"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/common/CreateSuccessView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ContextInputView" class="io.github.jsoagger.jfxcore.platform.components.components.inputview.ContextInputView" scope="prototype" />
+    <bean id="DeleteIteratedToMasterTypedObjectLinkAction" class="io.github.jsoagger.jfxcore.platform.components.actions.DeleteIteratedToMasterTypedObjectLinkAction" scope="prototype" >
+    	<property name="deleteLinkOperation" ref="DeleteLinkOperation"/>
+    </bean>
+    <bean id="CreateIteratedToMasterTypedObjectLinkAction" class="io.github.jsoagger.jfxcore.platform.components.actions.CreateIteratedToMasterTypedObjectLinkAction" scope="prototype" >
+    	<property name="createLinkOperation" ref="CreateTypedObjectLinkOperation"/>
+    </bean>
+    <bean id="DeleteIteratedToMasterLinkFromRecursiveStructureTableRowAction" class="io.github.jsoagger.jfxcore.platform.components.actions.DeleteIteratedToMasterLinkFromRecursiveStructureTableRowAction" scope="prototype" />
+</beans>

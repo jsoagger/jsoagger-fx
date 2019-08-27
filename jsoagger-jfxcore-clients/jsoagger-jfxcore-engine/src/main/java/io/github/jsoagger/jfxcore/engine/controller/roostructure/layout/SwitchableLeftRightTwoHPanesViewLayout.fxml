@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-1.0" maxWidth="-1.0" id="switchableLeftRightViewLayout" minHeight="-1.0" style="-fx-background-color:-background-color;" minWidth="-1.0" pickOnBounds="false" snapToPixel="true" xmlns="http://javafx.com/javafx/8"
+    xmlns:fx="http://javafx.com/fxml/1">
+
+
+    <HBox fx:id="leftFloatingPaneWrapper" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" maxWidth="320">
+        <StackPane fx:id="leftFloatingPaneMenuWrapper" style="-fx-min-width:60;-fx-max-width:60;
+            -fx-border-width:1;-fx-border-color:-grey-color-300;" alignment="TOP_CENTER">
+            <children>
+                <VBox fx:id="leftFloatingPaneActionsWrapper" alignment="TOP_CENTER" styleClass="ep-switchable-pane-lateral-left">
+                    <children>
+                        <Hyperlink fx:id="showLeftPaneButton" />
+                        <Hyperlink fx:id="hideLeftPaneButton" />
+                        <Hyperlink fx:id="closeLeftFloatingPaneButton" />
+                        <Hyperlink fx:id="showLeftFloatingPaneButton" />
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+
+        <StackPane fx:id="leftFloatingPaneContentWrapper" HBox.hgrow="ALWAYS" minWidth="400" maxWidth="400">
+               <StackPane fx:id="leftFloatingPaneContent" styleClass="ep-lrswitchable-pane-left-internal-wrapper" />
+        </StackPane>      
+    </HBox>
+    
+    <!-- The center section -->
+    <HBox fx:id="centerPaneWrapper" VBox.vgrow="ALWAYS" spacing="8" HBox.hgrow="ALWAYS" AnchorPane.leftAnchor="60" AnchorPane.rightAnchor="60" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+        <children>
+            <ScrollPane fx:id="centerScrollPaneWrapper" fitToHeight="true" fitToWidth="true" HBox.hgrow="ALWAYS">
+                <content>
+                    <StackPane fx:id="centerStackPane" BorderPane.alignment="CENTER" />
+                </content>
+            </ScrollPane>
+        </children>
+    </HBox>
+
+    <HBox fx:id="rightFloatingPaneWrapper" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" style="">
+        <StackPane fx:id="rightFloatingPaneMenuWrapper" style="-fx-min-width:60;-fx-max-width:60;
+            -fx-border-width:1;-fx-border-color:-grey-color-300;-fx-background-color:white;" alignment="TOP_CENTER">
+            <VBox fx:id="rightFloatingPaneActionsWrapper" alignment="TOP_CENTER" styleClass="ep-switchable-pane-lateral-left">
+                    <Hyperlink fx:id="showRightPaneButton" />
+                    <Hyperlink fx:id="hideRightPaneButton" />
+                    <Hyperlink fx:id="closeRightFloatingPaneButton" />
+                    <Hyperlink fx:id="showRightFloatingPaneButton" />
+            </VBox>
+        </StackPane>
+
+        <!--
+            THIS IS THE PANE CONTAINING THE LEFT SECTION OF THE VIEW
+        -->
+        <StackPane fx:id="rightFloatingPaneContentWrapper" minWidth="400" maxWidth="400">
+                  <StackPane id="rightFloatingPaneContentWrapperInternalWrapper">
+                         <StackPane fx:id="rightFloatingPaneContent" minWidth="400" maxWidth="400"/>
+                  </StackPane>
+        </StackPane>
+    </HBox>
+
+    <!-- WHEN MINIMIZED, LEFT/RIGHT content IS SHOWN INSIDE THIS PANE -->
+    <ScrollPane fx:id="popOverFloatingScrollPane" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" hbarPolicy="NEVER" visible="false" minWidth="520" maxWidth="520">
+        <content>
+            <StackPane style="">
+                <HBox fx:id="popOverFloatingPane" style="" />
+            </StackPane>
+        </content>
+    </ScrollPane>
+</AnchorPane>
+

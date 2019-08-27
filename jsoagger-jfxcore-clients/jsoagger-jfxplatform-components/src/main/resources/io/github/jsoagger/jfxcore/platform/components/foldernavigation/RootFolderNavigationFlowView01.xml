@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="leftSectionAreaStyleClass" value="white-background" />
+			<property name="centerSectionAreaStyleClass" value="white-background" />
+			<property name="rightSectionAreaStyleClass" value="white-background" />
+			<property name="rightView" value="FolderNavigationTableView" />
+			<property name="contentImpl" value="FlowContent" />
+			<property name="tableStructureAreaStyleClass" value="padding-0-32-0-32" />
+			
+			<property name="location" value="CONTAINER_NAVIGATOR_LOCATION" />
+		</properties>
+
+		<component id="Header" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="headerImpl" value="FolderNavigatorTableHeader" />
+				<property name="styleClass" value="white-background" />
+				<property name="titleStyleClass" value="headline" />
+				<property name="title" value="LOCATIONS_LABEL" />
+				<property name="filtrable" value="false" />
+			</properties>
+		</component>
+
+		<component id="NoContentPane" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="contentImpl" value="GroupedActionsContentPane" />
+			</properties>
+
+			<component id="ActionGroup1">
+				<properties combine.keys="name">
+					<property name="styleClass" value="white-background" />
+					<property name="message" value="NO_CHILD_FOLDER_MESSAGE" />
+					<property name="actionNode" value="NewFolderForNoContentPaneButton" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="Content" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="styleClass" value="white-background" />
+				<property name="flowContentStyleClass" value="spacing-4,padding-8,white-background" />
+
+				<property name="paginateOperation" value="GetFolderChildrenOperation" />
+				<property name="getRootFolderOperation" value="GetContainerRootFolderChildren" />
+				<property name="dataLoader" value="FolderFlowPaginatedDataLoader" />
+
+				<property name="flowMode" value="vbox" />
+				<property name="flowItemImpl" value="FolderSmallFlowItemPresenterFactory" />
+			</properties>
+			<component id="IdentityClickHandler">
+				<properties combine.keys="name">
+					<!-- 
+					<property name="args" value="viewId:FolderContentTableView" />
+					<property name="action" value="PushToViewAction" />
+					 -->
+					<property name="args" value="operation:GetFolderChildrenOperation" />
+					<property name="action" value="LoadItemChildrenAndUpdateTableAction" />
+				</properties>
+			</component>
+		</component>
+
+		<component id="PaginationXX">
+			<properties combine.keys="name">
+				<property name="paginationImpl" value="LoadMorePaginationBar" />
+			</properties>
+		</component>
+
+		<component id="Toolbar">
+			<properties combine.keys="name">
+				<property name="styleClass" value="ep-table-toolbar" />
+			</properties>
+
+			<component id="RootMenuActions">
+				<component id="LeftActions">
+					<component ref="GoHomeButton" />
+					<component ref="GoBackButton" />
+					<component ref="NewFolderButton" />
+					<component ref="PopulateFromTemplateButton" />
+				</component>
+			</component>
+		</component>
+	</component>
+
+	<component id="GoBackButton">
+		<properties combine.keys="name">
+			<property name="label" value="BACK_LABEL" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="upperCase" value="true" />
+			<property name="ikonli" value="mdi-backup-restore:22" />
+			<property name="type" value="SimpleButton" />
+			<property name="presenter" value="DoActionPresenter" />
+		</properties>
+		<!--
+			When arrived in top level of the hierarchy, we don't need the action load the data relative to
+			backing model, we need to load root folders list.
+		-->
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="LoadPreviousItemChildrenAndUpdateTableAction" />
+				<property name="args" value="operation:GetFolderChildrenOperation;relativeToRootModel:false" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="GoHomeButton">
+		<properties combine.keys="name">
+			<property name="label" value="HOME_LABEL" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="upperCase" value="true" />
+			<property name="ikonli" value="mdi-home-outline:22" />
+			<property name="type" value="SimpleButton" />
+			<property name="presenter" value="DoActionPresenter" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="LoadRootContainerChildrenFolderAndUpdateTableAction" />
+				<property name="args" value="operation:GetContainerRootFolderChildren" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="NewFolderForNoContentPaneButton" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="tooltip" value="NEW_FOLDER_LABEL" />
+			<property name="label" value="NEW_FOLDER_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="button-primary-border" />
+			<property name="upperCase" value="true" />
+			<property name="ikonli" value="mdi-plus:26" />
+		</properties>
+		<component id="Handler" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:CreateFolderView" />
+				<property name="action" value="ShowWizardFromTableStructureAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="PopulateFromTemplateButton" combine.keys="name">
+		<properties combine.keys="name">
+			<property name="label" value="POPULATE_LABEL" />
+			<property name="tooltip" value="POPULATE_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="upperCase" value="true" />
+			<property name="ikonli" value="mdi-auto-fix:26" />
+		</properties>
+		<component id="Handler" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:FolderPopulateFromTemplateView" />
+				<property name="action" value="ShowWizardFromTableStructureAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="NewFolderButton" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="tooltip" value="NEW_FOLDER_LABEL" />
+			<property name="label" value="NEW_FOLDER_LABEL" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="upperCase" value="true" />
+			<property name="ikonli" value="mdi-plus:22" />
+		</properties>
+		<component id="Handler" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:CreateFolderView" />
+				<property name="action" value="ShowWizardFromTableStructureAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="CellRightActions">
+		<properties combine.keys="name">
+			<property name="styleClass" value="ep-presenter-right-actions-container" />
+			<property name="orientation" value="horizontal" />
+		</properties>
+		<component id="DeleteAction">
+			<properties combine.keys="name">
+				<property name="tooltip" value="DELETE_LABEL" />
+				<property name="ikonli" value="fa-trash-o:22" />
+				<property name="styleClass" value="button,button-transparent-border" />
+				<property name="type" value="button" />
+				<property name="presenter" value="DoActionPresenter" />
+			</properties>
+			<component id="Handler" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="action" value="DeleteFolderAction" />
+				</properties>
+			</component>
+		</component>
+		<component id="LoadChildrenAction">
+			<properties combine.keys="name">
+				<property name="tooltip" value="CHILDREN_LABEL" />
+				<property name="ikonli" value="fa-angle-right:22" />
+				<property name="styleClass" value="button,button-transparent-border" />
+				<property name="type" value="button" />
+				<property name="presenter" value="DoActionPresenter" />
+			</properties>
+			<component id="Handler" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="args" value="operation:GetFolderChildrenOperation" />
+					<property name="action" value="LoadItemChildrenAndUpdateTableAction" />
+				</properties>
+			</component>
+		</component>
+	</component>
+</view>

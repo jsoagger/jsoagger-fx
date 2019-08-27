@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.github.jsoagger</groupId>
+		<artifactId>jsoagger-jfxcore-clients</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	
+	<name>JSoagger jfx core engine</name>
+	<description>JSoagger jfx core engine</description>
+	<artifactId>jsoagger-jfxcore-engine</artifactId>
+	<packaging>jar</packaging>
+
+	<properties>
+		<java.source.level>1.8</java.source.level>
+		<java.target.level>1.8</java.target.level>
+		<jsoagger.core.client.home>${project.basedir}/../../</jsoagger.core.client.home>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jsoagger</groupId>
+			<artifactId>jsoagger-core-i18n</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jsoagger</groupId>
+			<artifactId>jsoagger-jfxcore-preloader</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jsoagger</groupId>
+			<artifactId>jsoagger-core-bridge</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jsoagger</groupId>
+			<artifactId>jsoagger-core-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jsoagger</groupId>
+			<artifactId>jsoagger-jfxcore-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jsoagger</groupId>
+			<artifactId>jsoagger-core-ioc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jsoagger</groupId>
+			<artifactId>jsoagger-jfxcore-viewdefinition-json</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<classpathContainers>
+						<classpathContainer>
+							org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11
+						</classpathContainer>
+					</classpathContainers>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+

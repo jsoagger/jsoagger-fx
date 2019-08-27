@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane fx:id="rootPane" prefHeight="712.0" prefWidth="836.0" styleClass="ep-spring-preloader-root-pane-wrapper" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <BorderPane prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-spring-preloader-wrapper">
+      <bottom>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="ep-spring-preloader-footer-wrapper" BorderPane.alignment="CENTER">
+          <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+              <children>
+                <Label id="fullCopyright" fx:id="fullCopyRight" alignment="CENTER" prefWidth="416.07080078125" text="Copyright Nexitia Group 2018. All Rights reserved">
+                  <font>
+                    <Font name="Century Gothic" size="9.0" fx:id="x3" />
+                  </font>
+                  <textFill>
+                    <Color blue="0.500" green="0.500" red="0.500" fx:id="x1" />
+                  </textFill>
+                </Label>
+                <Label id="fullCopyright" fx:id="version" alignment="CENTER" font="$x3" prefWidth="416.07080078125" text="Version 0.1" textFill="$x1" />
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+      </bottom>
+      <center>
+        <StackPane prefHeight="150.0" prefWidth="200.0">
+          <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="0.0">
+              <children>
+                <Label fx:id="slogan" alignment="CENTER_RIGHT" minHeight="12.0" opacity="0.71" prefHeight="30.0" prefWidth="446.0" text="Simple is Smart" textFill="#3949ab" wrapText="true">
+                  <font>
+                    <Font name="Lucida Calligraphy Italic" size="12.0" />
+                  </font>
+                </Label>
+                <Text fx:id="platform" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0x3949abff 0.0%, 0x7986cbff 30.0%, 0x3949abff 100.0%)" scaleX="1.2080760098385968" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JSoagger ">
+                  <effect>
+                    <DropShadow color="#606060" height="1.0" offsetX="-1.0" offsetY="-1.0" radius="0.0" spread="0.0158730158730159" width="0.0">
+                      <input>
+                        <Reflection fraction="0.8293650793650794" topOffset="-15.0" topOpacity="0.07936507936507939" />
+                      </input>
+                    </DropShadow>
+                  </effect>
+                  <font>
+                    <Font name="Copperplate Gothic Bold" size="38.0" />
+                  </font>
+                </Text>
+                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="900.0" translateY="50.0">
+                  <children>
+                    <Label fx:id="waitingLabel" opacity="0.97" text="Loading, please wait ..." textAlignment="CENTER" textFill="#ffcccc" translateY="0.0">
+                      <font>
+                        <Font name="Century Gothic" size="12.0" />
+                      </font>
+                    </Label>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+          </children>
+        </StackPane>
+      </center>
+      <top>
+        <HBox prefHeight="41.0" prefWidth="900.0" styleClass="ep-spring-preloader-header-wrapper" />
+      </top>
+    </BorderPane>
+  </children>
+  <stylesheets>
+    <URL value="@desktopPreloader.css" />
+  </stylesheets>
+</StackPane>

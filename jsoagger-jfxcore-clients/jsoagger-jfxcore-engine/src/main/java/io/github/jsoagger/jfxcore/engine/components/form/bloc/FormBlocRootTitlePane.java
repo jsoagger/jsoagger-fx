@@ -1,0 +1,70 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+package io.github.jsoagger.jfxcore.engine.components.form.bloc;
+
+
+
+
+import java.util.List;
+
+import javafx.scene.layout.VBox;
+
+/**
+ * {@link VBox} Wrapper of list of {@link FormBlocTitlePane}
+ *
+ * @author Ramilafananana VONJISOA
+ * @mailto yvonjisoa@nexitia.com
+ * @date 2019
+ */
+public class FormBlocRootTitlePane extends VBox {
+
+  /**
+   * Constructor
+   */
+  public FormBlocRootTitlePane() {
+    // final String styleClass =
+    // fieldsetCfg.getPropertyValue(XMLConstants.STYLE_CLASS);
+    // if (StringUtils.isNotBlank(styleClass)) {
+    // getStyleClass().addAll(styleClass.split(","));
+    // }
+
+    setSpacing(16);
+  }
+
+
+  /**
+   * @param panes
+   */
+  public void setTitlePanes(List<FormBlocTitlePane> panes) {
+    getChildren().clear();
+
+    if (panes.size() > 0) {
+      panes.get(0).setFirst();
+      if (panes.size() > 1) {
+        panes.get(panes.size() - 1).setLast();
+      }
+    }
+
+    for(FormBlocTitlePane e: panes) {
+      getChildren().add(e);
+    }
+  }
+}

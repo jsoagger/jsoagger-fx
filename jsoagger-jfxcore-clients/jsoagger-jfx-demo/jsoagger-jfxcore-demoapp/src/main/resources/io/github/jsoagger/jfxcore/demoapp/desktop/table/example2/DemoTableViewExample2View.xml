@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructureProcessor">
+		<properties combine.keys="name">
+			<property name="styleClass" value="unshadowed-pane" />
+			<property name="location" value="EXAMPLE_2_TABLE_TITLE" />
+			<property name="contentImpl" value="TableContent" />
+			<property name="rowPerPage" value="10" />
+
+			<property name="leftSectionAreaStyleClass" value="default-background" />
+			<property name="centerSectionAreaStyleClass" value="default-background" />
+			<property name="rightSectionAreaStyleClass" value="default-background" />
+			<property name="tableStructureAreaStyleClass" value="default-background" />
+			<property name="tableFooterAreaStyleClass" value="default-background,padding-0-4-0-8" />
+		</properties>
+
+		<component id="Header">
+			<properties combine.keys="name">
+				<property name="title" value="EXAMPLE_2_TABLE_TITLE" />
+				<property name="titleStyleClass" value="ep-table-headline-bold,padding-16-0-16-0" />
+				<property name="headerImpl" value="FiltrableTableHeaderImpl" />
+				<property name="filterImpl" value="DemoTableByModelFilter" />
+				<property name="filteringAlwaysShown" value="true" />
+			</properties>
+		</component>
+
+		<component id="NoContentPane">
+			<properties combine.keys="name">
+				<property name="styleClass" value="transparent-background" />
+				<property name="labelStyleClass" value="no-content-pane-message" />
+				<property name="ikonli" value="hws-face-open-mouth-2:72" />
+				<property name="iconStyleClass" value="grey-flat-ikonli" />
+				<property name="noContentMessage" value="EMPTY_LIST_ADD_ELEMENT_MESSAGE" />
+			</properties>
+		</component>
+
+		<component id="Content">
+			<properties combine.keys="name">
+				<property name="showTableHeader" value="false" />
+				<property name="styleClass" value="transparent-background" />
+				<property name="tableRowStyleClass" value="ep-shadowed-table-row" />
+				<property name="domainClass" value="io.github.jsoagger.core.model.part.Element" />
+				<property name="paginateOperation" value="StubPaginatedTableDataOperation" />
+				<property name="dataLoader" value="GenericEntityPaginatedDataLoader" />
+			</properties>
+
+			<component id="Columns" combine.keys="ref">
+				<component ref="CoreCheckboxSelectColumn" responsiveOrder="-1" />
+				<component ref="CoreWorkStatusColumn" responsiveOrder="-1" />
+				<component ref="CoreSmallTableIconColumn" responsiveOrder="-1" />
+				<component ref="ModelColumn" responsiveOrder="-1" masterColumn="true" />
+				<component ref="FirstNameColumn" responsiveOrder="0" />
+				<component ref="CompanyColumn" responsiveOrder="-1" />
+				<component ref="YearModelColumn" responsiveOrder="1" />
+			</component>
+		</component>
+
+		<component id="Toolbar">
+			<properties combine.keys="name">
+				<property name="styleClass" value="ep-table-toolbar" />
+				<property name="modifyingActionsStyleClass" value="ep-table-toolbar,spacing-8" />
+			</properties>
+
+			<component id="RootMenuActions">
+				<component id="LeftActions">
+					<component ref="CorePasteElementsButton" separator-after="true" />
+					<component ref="CoreRefreshTableStructureButton" />
+				</component>
+			</component>
+		</component>
+
+		<component id="Pagination">
+			<properties combine.keys="name">
+				<property name="styleClass" value="default-background,padding-32" />
+				<property name="paginationImpl" value="LoadMorePaginationBar" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="ForwardToDetailsColumn">
+		<properties combine.keys="name">
+			<property name="presenter" value="TableRowActionPresenter" />
+			<property name="responsiveOrder" value="-1" />
+			<property name="prefWidth" value="40" />
+			<property name="tableCellStyleClass" value="align-right" />
+			<property name="ikonli" value="fa-angle-right:22" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:ManageObjectInSecondaryRSView;contentId:IdentityLessRootDetailsView" />
+				<property name="action" value="PushViewToSecondaryRSContentAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="DeleteSelectedElementsButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="DELETE_LABEL" />
+			<property name="label" value="DELETE_LABEL" />
+			<property name="displayMode" value="LEFT" />
+			<property name="ikonli" value="gmi-delete-forever:18" />
+			<property name="type" value="SimpleButton" />
+			<property name="styleClass" value="table-toolbar-action" />
+			<property name="upperCase" value="true" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="DeleteButtonDemoAction" />
+			</properties>
+		</component>
+	</component>
+
+
+	<component id="VinColumn">
+		<properties combine.keys="name">
+			<property name="label" value="VIN_LABEL" />
+			<property name="tableCellStyleClass" value="ep-table-primary-label" />
+			<property name="attributePath" value="attributes.vin" />
+			<property name="presenter" value="ModelAttributePresenter" />
+			<property name="prefWidth" value="200" />
+		</properties>
+	</component>
+
+	<component id="YearModelColumn">
+		<properties combine.keys="name">
+			<property name="label" value="YEAR_LABEL" />
+			<property name="tableCellStyleClass" value="ep-table-primary-label" />
+			<property name="attributePath" value="attributes.yearmodel" />
+			<property name="presenter" value="ModelAttributePresenter" />
+			<property name="prefWidth" value="140" />
+		</properties>
+	</component>
+
+	<component id="CompanyColumn">
+		<properties combine.keys="name">
+			<property name="label" value="COMPANY_LABEL" />
+			<property name="tableCellStyleClass" value="ep-table-primary-label" />
+			<property name="attributePath" value="attributes.company" />
+			<property name="presenter" value="ModelAttributePresenter" />
+			<property name="prefWidth" value="140" />
+		</properties>
+	</component>
+
+	<component id="ModelColumn">
+		<properties combine.keys="name">
+			<property name="label" value="MODEL_LABEL" />
+			<property name="tableCellStyleClass" value="ep-table-primary-label" />
+			<property name="attributePath" value="attributes.model" />
+			<property name="presenter" value="ModelAttributePresenter" />
+			<property name="prefWidth" value="200" />
+		</properties>
+		<component id="ColumnClickHandler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:IdentityLessRootDetailsView" />
+				<property name="action" value="PushToViewAction" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="FirstNameColumn">
+		<properties combine.keys="name">
+			<property name="label" value="OWNER_LABEL" />
+			<property name="tableCellStyleClass" value="ep-table-primary-label" />
+			<property name="attributePath" value="attributes.firstname" />
+			<property name="presenter" value="ModelAttributePresenter" />
+			<property name="prefWidth" value="200" />
+		</properties>
+	</component>
+
+	<component id="StatusColumn">
+		<properties combine.keys="name">
+			<property name="label" value="STATUSNAME_LABEL" />
+			<property name="tableCellStyleClass" value="ep-table-primary-label" />
+			<property name="attributePath" value="attributes.status" />
+			<property name="presenter" value="ModelAttributePresenter" />
+			<property name="prefWidth" value="100" />
+		</properties>
+	</component>
+
+	<component id="CoreSmallTableIconColumn">
+		<properties combine.keys="name">
+			<property name="presenter" value="DemoSmallTableIconPresenter" />
+			<property name="prefWidth" value="60" />
+		</properties>
+	</component>
+</view>

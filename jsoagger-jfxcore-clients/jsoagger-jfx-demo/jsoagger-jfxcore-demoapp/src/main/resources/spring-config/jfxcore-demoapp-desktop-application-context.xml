@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-destroy-method="destroy">
+
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application-desktop-dev.properties</value>
+				<value>classpath:application-dev.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true"/>
+	</bean>
+
+
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/desktop-client-root-context.xml"/>
+	<import resource="classpath:/core-spring-config/jsoagger-jfxcore-integration.xml"/>
+	<import resource="classpath:/core-spring-config/common/jfx-core-application-context.xml"/>
+	<import resource="classpath:/core-spring-config/jsoagger-cloudstub-operations-context.xml"/>
+	<import resource="classpath:/io/github/jsoagger/jfxcore/components/jfxcore-components-context.xml"/>
+	
+	<!-- IMPORTANT MUST BE AT THE END	--> 
+	<util:list id="IconDefinitionFiles" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>/core-icon-mapping.properties</value>
+		<value>/desktop-icon-mapping.properties</value>
+	</util:list>
+	
+	<util:list id="PrimaryHeaderToolbarResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String" scope="prototype">
+		<value>0:610#0.3:0:0.7#:hide:</value>
+	</util:list>
+	
+	<bean id="SearchablePrimaryHeaderToolbarResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="SearchablePrimaryHeaderToolbarResponsiveMatrixDefinition" />
+	</bean>
+	
+	<util:list id="SearchablePrimaryHeaderToolbarResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String" scope="prototype">
+		<value>0:800#0.5:fixed|500:0.5#::</value>
+		<value>800:1000#0.50:fixed|500:0.50#::</value>
+		<value>1000:1100#0.50:fixed|600:0.50#::</value>
+		<value>1100#0.50:fixed|700:0.50#::</value>
+	</util:list>
+</beans>

@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true">
+
+	<!--*********************************************************************************************************************************************************** INPUTS EDIT 
+		**************************************************************************************************************************************************************** -->
+	<bean id="InputCheckbox" class="io.github.jsoagger.jfxcore.engine.components.input.InputCheckbox" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputCombobox" class="io.github.jsoagger.jfxcore.engine.components.input.InputCombobox" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputDataImportProcessingPane" class="io.github.jsoagger.jfxcore.engine.components.input.InputDataImportProcessingPane" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputDatePicker" class="io.github.jsoagger.jfxcore.engine.components.input.InputDatePicker" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputDirectoryPicker" class="io.github.jsoagger.jfxcore.engine.components.input.InputDirectoryPicker" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputFilePicker" class="io.github.jsoagger.jfxcore.engine.components.input.InputFilePicker" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputPeriodPicker" class="io.github.jsoagger.jfxcore.engine.components.input.InputPeriodPicker" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputText" class="io.github.jsoagger.jfxcore.engine.components.input.InputText" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputTextarea" class="io.github.jsoagger.jfxcore.engine.components.input.InputTextarea" lazy-init="true" scope="prototype"/>
+
+	<bean id="AutoComplete" class="io.github.jsoagger.jfxcore.engine.components.autocomplete.VLAutocomplete" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputHyperlink" class="io.github.jsoagger.jfxcore.engine.components.input.InputHyperlink" lazy-init="true" scope="prototype"/>
+
+	<bean id="InputSortButton" class="io.github.jsoagger.jfxcore.engine.components.input.InputSortButton" lazy-init="true" scope="prototype" parent="InputHyperlink"/>
+
+	<bean id="InputWebView" class="io.github.jsoagger.jfxcore.engine.components.input.InputWebView" lazy-init="true" scope="prototype"/>
+
+	<bean id="AudienceSelector" class="io.github.jsoagger.jfxcore.engine.components.input.AudienceSelector" lazy-init="true" scope="prototype"/>
+
+	<bean id="MultiValuedInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.MultiValuedInputView" lazy-init="true" scope="prototype"/>
+
+	<bean id="VerticalFormRowLayout" class="io.github.jsoagger.jfxcore.engine.components.form.row.VerticalFormRowWrapper" lazy-init="true" scope="prototype"/>
+	<bean id="HorizontalFormRowLayout" class="io.github.jsoagger.jfxcore.engine.components.form.row.HorizontalFormRowWrapper" lazy-init="true" scope="prototype"/>
+	<bean id="LabelLessFormRowWrapper" class="io.github.jsoagger.jfxcore.engine.components.form.row.LabelLessFormRowWrapper" lazy-init="true" scope="prototype"/>
+
+	<bean id="WrappedInput" class="io.github.jsoagger.jfxcore.engine.components.input.WrappedInput" lazy-init="true" scope="prototype"/>
+
+	<!--**************************************************************************************************************************************************************** INPUTS 
+		VIEW ********************************************************************************************************************************************************************* -->
+	<bean id="BasicAttributeInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.BasicAttributeInputView" lazy-init="true" scope="prototype"/>
+
+	<bean id="BlobTextInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.BlobTextInputView" lazy-init="true" scope="prototype"/>
+	<bean id="TextInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.TextInputView" lazy-init="true" scope="prototype"/>
+
+	<bean id="DateInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.DateInputView" lazy-init="true" scope="prototype"/>
+
+	<bean id="NumberInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.NumberInputView" lazy-init="true" scope="prototype"/>
+
+	<bean id="PeriodInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.PeriodInputView" lazy-init="true" scope="prototype"/>
+	<bean id="IdentifiableInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.IdentifiableInputView" lazy-init="true" scope="prototype"/>
+	<bean id="SimpleButton" class="io.github.jsoagger.jfxcore.engine.components.input.SimpleButton" lazy-init="true" scope="prototype"/>
+	<bean id="ProfileSimpleButton" class="io.github.jsoagger.jfxcore.engine.components.input.ProfileSimpleButton" lazy-init="true" scope="prototype"/>
+	<bean id="ProcessingButton" class="io.github.jsoagger.jfxcore.engine.components.input.ProcessingButton" lazy-init="true" scope="prototype"/>
+	<bean id="CurrentLocationViewer" class="io.github.jsoagger.jfxcore.engine.components.header.CurrentLocationViewer" lazy-init="true" scope="prototype"/>
+	<bean id="BasicToolbar" class="io.github.jsoagger.jfxcore.engine.components.header.BasicToolbar" lazy-init="true" scope="prototype"/>
+	<bean id="UserProfile" class="io.github.jsoagger.jfxcore.engine.components.menu.PrimaryMenuUserProfile" scope="prototype"/>
+	<bean id="Copyright" class="io.github.jsoagger.jfxcore.engine.components.menu.Copyright" scope="prototype"/>
+	<bean id="CheckboxInputView" class="io.github.jsoagger.jfxcore.engine.components.inputview.CheckboxInputView" scope="prototype"/>
+	<bean id="FormInlineEditAction" class="io.github.jsoagger.jfxcore.engine.components.toolbar.inline.FormInlineEditAction" scope="prototype"/>
+	<bean id="FormInlineAction" class="io.github.jsoagger.jfxcore.engine.components.toolbar.inline.FormInlineAction" scope="prototype"/>
+	<bean id="FormBlocFooter" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.FormBlocFooter" scope="prototype"/>
+	<bean id="ModelMasterDescriptionPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.descriptionprovider.ModelMasterDescriptionPresenter" scope="prototype"/>
+	<bean id="TableIndicatorColumnPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.TableIndicatorColumnPresenter" scope="prototype"/>
+	<bean id="ScrollableContent" class="io.github.jsoagger.jfxcore.engine.components.header.comps.ScrollableContent" scope="prototype"/>
+	
+
+	<!--**************************************************************************************************************************************************************** LAYOUTS 
+		PROCESSOR ************************************************************************************************************************************************************* -->
+	<bean id="FolderedFieldsetListProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.FolderedFieldsetListProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="FormFieldsetProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.FormFieldsetProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="FormFieldsetListProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.FormFieldsetListProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="DualBlocsFieldsetProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.DualBlocsFieldsetProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="SimpleDetailsViewAllFieldsetsProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.SimpleDetailsViewAllFieldsetsProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="NoContentPaneProcessor" class="io.github.jsoagger.jfxcore.engine.components.message.NoContentPaneProcessor" lazy-init="true" scope="prototype"/>
+	
+	<bean id="SingleBlobBlocsFieldsetProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.SingleBlobBlocsFieldsetProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="UserBigChipsListProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.UserBigChipsListProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="FormBlocProcessor" class="io.github.jsoagger.jfxcore.engine.components.layoutproc.FormBlocProcessor" lazy-init="true" scope="prototype"/>
+	<bean id="WizardContentLayoutSelectorLeft" class="io.github.jsoagger.jfxcore.engine.components.wizard.content.WizardContentLayoutSelectorLeft" scope="prototype"/>
+	<bean id="WizardContentLayoutSelectorTop" class="io.github.jsoagger.jfxcore.engine.components.wizard.content.WizardContentLayoutSelectorTop" scope="prototype"/>
+	<bean id="WizardHorizontalStepper" class="io.github.jsoagger.jfxcore.engine.components.wizard.stepper.WizardHorizontalStepper" scope="prototype"/>
+	<bean id="WizardVerticalStepper" class="io.github.jsoagger.jfxcore.engine.components.wizard.stepper.WizardVerticalStepper" scope="prototype"/>
+	<bean id="EmptyWizardFooter" class="io.github.jsoagger.jfxcore.engine.components.wizard.impl.EmptyWizardFooter" scope="prototype"/>
+	<bean id="EmptyWizardHeader" class="io.github.jsoagger.jfxcore.engine.components.wizard.impl.EmptyWizardHeader" scope="prototype"/>
+	<bean id="EmptyStepHeader" class="io.github.jsoagger.jfxcore.engine.components.wizard.impl.EmptyStepHeader" scope="prototype"/>
+	<bean id="FlowContentHeader" class="io.github.jsoagger.jfxcore.engine.components.header.ListViewPaneHeader" scope="prototype"/>
+	<bean id="ListViewPaneHeader" class="io.github.jsoagger.jfxcore.engine.components.header.ListViewPaneHeader" scope="prototype"/>
+	<bean id="PaginationBar" class="io.github.jsoagger.jfxcore.engine.components.pagination.PaginationBar" scope="prototype" abstract="true"/>
+	<bean id="SimplePaginationBar" class="io.github.jsoagger.jfxcore.engine.components.pagination.SimplePaginationBar" scope="prototype" parent="PaginationBar"/>
+	<bean id="LoadMorePaginationBar" class="io.github.jsoagger.jfxcore.engine.components.pagination.LoadMorePaginationBar" scope="prototype" parent="PaginationBar"/>
+	<bean id="AudienceSelectorCellFactory" class="io.github.jsoagger.jfxcore.engine.components.input.AudienceSelectorCellFactory" scope="prototype"/>
+
+	<bean id="FixedSizeListView" class="io.github.jsoagger.jfxcore.engine.components.list.utils.FixedSizeListView" scope="prototype"/>
+	<bean id="NoContentPane" class="io.github.jsoagger.jfxcore.engine.components.message.NoContentPane" scope="prototype"/>
+	<bean id="EmptyNoContentPane" class="io.github.jsoagger.jfxcore.engine.components.message.EmptyNoContentPane" scope="prototype"/>
+	<bean id="GroupedActionsContentPane" class="io.github.jsoagger.jfxcore.engine.components.message.GroupedActionsContentPane" scope="prototype"/>
+	<bean id="ToolbarNoContentPane" class="io.github.jsoagger.jfxcore.engine.components.message.ToolbarNoContentPane" scope="prototype"/>
+	<bean id="FormInlineToobar" class="io.github.jsoagger.jfxcore.engine.components.toolbar.inline.FormInlineToobar" scope="prototype"/>
+	<bean id="BrowserTitlePaneBlocContent" class="io.github.jsoagger.jfxcore.engine.components.browser.BrowserTitlePaneBlocContent" scope="prototype"/>
+	<bean id="SimpleTableViewProcessor" class="io.github.jsoagger.jfxcore.engine.components.table.simple.SimpleTableViewProcessor" scope="prototype"/>
+
+	<bean id="SingleLocationNavigationBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.SingleLocationNavigationBar" scope="prototype"/>
+	<bean id="HeaderLessSingleLocationNavigationBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.HeaderLessSingleLocationNavigationBar" scope="prototype"/>
+	<bean id="MobileWithBottomTabNavigationBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.MobileWithBottomTabNavigationBar" scope="prototype"/>
+	<bean id="SingleLocationPrimaryMenuWithNavigationBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.SingleLocationPrimaryMenuWithNavigationBar" scope="prototype"/>
+	<bean id="NoLocationPrimaryMenuWithNavigationBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.NoLocationPrimaryMenuWithNavigationBar" scope="prototype"/>
+	<bean id="PrimaryMenuWithNavigationBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.PrimaryMenuWithNavigationBar" scope="prototype"/>
+	<bean id="HeaderRightToolbar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.HeaderRightToolbar" scope="prototype"/>
+	<bean id="HeaderCenterToolBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.HeaderCenterToolBar" scope="prototype"/>
+	<bean id="HeaderLeftToolBar" class="io.github.jsoagger.jfxcore.engine.components.header.comps.HeaderLeftToolBar" scope="prototype"/>
+
+	<bean id="VLTabPane" class="io.github.jsoagger.jfxcore.engine.components.tab.VLTabpane" scope="prototype"/>
+	<bean id="MobileVLTabpane" class="io.github.jsoagger.jfxcore.engine.components.tab.MobileVLTabpane" scope="prototype"/>
+	<bean id="ScrollLessSinglePaneViewLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.ScrollLessSinglePaneViewLayoutManager" scope="prototype"/>
+
+	<bean id="TreeContent" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.tree.TreeContent" scope="prototype"/>
+	<bean id="TreeTableContent" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.tree.TreeTableContent" scope="prototype"/>
+	<!--**************************************************************************************************************************************************************** OTHERS 
+		********************************************************************************************************************************************************************* -->
+	<bean id="applicationVersionValuePresenter" class="io.github.jsoagger.jfxcore.engine.components.listform.MultiSelectionListFormItemPresenter" scope="prototype">
+		<property name="dataLoader" ref="applicationVersionDataLoader"/>
+	</bean>
+
+	<bean id="defaultMultiSelectionPreferenceValuePresenter" class="io.github.jsoagger.jfxcore.engine.components.listform.MultiSelectionListFormItemPresenter" scope="prototype">
+		<property name="dataLoader" ref="ListFormDataLoader"/>
+	</bean>
+
+
+	<bean id="HEllipsisTableCellPresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.HEllipsisTableCellPresenter" scope="prototype"/>
+	<bean id="ForwardToStructureCellPresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.TableContextualActionPresenter" scope="prototype"/>
+	<bean id="DeleteElementTableRowActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.TableRowActionPresenter" scope="prototype"/>
+	<bean id="TableRowMultipleActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.TableRowMultipleActionPresenter" scope="prototype"/>
+	<bean id="TableRowActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.TableRowActionPresenter" scope="prototype"/>
+
+	<bean id="ListFormDataLoader" class="io.github.jsoagger.jfxcore.engine.components.listform.dataloader.ListFormDataLoader" scope="prototype"/>
+	<bean id="legalMentionItemPresenter" class="io.github.jsoagger.jfxcore.engine.components.listform.LegalMentionItemPresenter" scope="prototype"/>
+	<bean id="parentItemPresenter" class="io.github.jsoagger.jfxcore.engine.components.listform.ParentItemPresenter" scope="prototype"/>
+	<bean id="systemUpdatePresenter" class="io.github.jsoagger.jfxcore.engine.components.listform.SystemUpdateListFormCellPresenter" scope="prototype"/>
+	<bean id="systemVersionPresenter" class="io.github.jsoagger.jfxcore.engine.components.listform.SystemVersionListFormCellPresenter" scope="prototype"/>
+	<bean id="applicationVersionDataLoader" class="io.github.jsoagger.jfxcore.engine.components.listform.dataloader.ApplicationVersionDataLoader" scope="prototype"/>
+	<bean id="yesNoItemPresenter" class="io.github.jsoagger.jfxcore.engine.components.listform.YesNoListFormCellPresenter" scope="prototype">
+		<property name="setPreferenceValueOperation" ref="SetPreferenceValueOperation"/>
+	</bean>
+
+	<bean id="FormFieldsetHeader" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.FormFieldsetHeader" lazy-init="true" scope="prototype"/>
+	<bean id="FormFieldsetContent" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.FormFieldsetContent" lazy-init="true" scope="prototype"/>
+	<bean id="FormFieldset" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.FormFieldset" lazy-init="true" scope="prototype"/>
+	<bean id="DynamicalAttributesFormBlocContent" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.DynamicalAttributesFormBlocContent" scope="prototype"/>
+	<bean id="FormBlocContent" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.FormBlocContent" scope="prototype"/>
+	<bean id="FormBlocTitle" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.FormBlocTitle" scope="prototype"/>
+	<bean id="ModelThumbsBlocContent" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.ModelThumbsBlocContent" scope="prototype"/>
+	<bean id="ModelVisualisationBlocContent" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.ModelVisualisationBlocContent" scope="prototype">
+		<property name="platformProperties" ref="platformProperties"/>
+		<property name="getIllustrationOperation" ref="GetIllustrationOperation"/>
+		<property name="width" value="400"/>
+		<property name="height" value="400"/>
+	</bean>
+	<bean id="InternalTabsFormBlocContent" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.InternalTabsFormBlocContent" scope="prototype"/>
+	<bean id="PeopleThumbPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.PeopleThumbPresenter" scope="prototype"/>
+	<bean id="PeopleInitialsThumbPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.PeopleInitialsThumbPresenter" scope="prototype"/>
+
+	<bean id="DialogHeader" class="io.github.jsoagger.jfxcore.engine.components.dialog.DialogHeader" scope="prototype"/>
+	<bean id="DialogContent" class="io.github.jsoagger.jfxcore.engine.components.dialog.DialogContent" scope="prototype"/>
+	<bean id="DialogFooter" class="io.github.jsoagger.jfxcore.engine.components.dialog.DialogFooter" scope="prototype"/>
+
+	<bean id="WizardLayoutManager" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardLayoutManager" lazy-init="true" scope="prototype"/>
+	<bean id="Wizard" class="io.github.jsoagger.jfxcore.engine.components.wizard.Wizard" lazy-init="true" scope="prototype"/>
+	<bean id="WizardFooter" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardFooter" lazy-init="true" scope="prototype"/>
+
+	<bean id="LoginWizardFooter" class="io.github.jsoagger.jfxcore.engine.controller.login.component.LoginWizardFooter" lazy-init="true" scope="prototype"/>
+	<bean id="LoginWizardStepHeader" class="io.github.jsoagger.jfxcore.engine.controller.login.component.LoginWizardStepHeader" lazy-init="true" scope="prototype"/>
+
+	<bean id="WizardHeader" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardHeader" lazy-init="true" scope="prototype"/>
+	<bean id="WizardStep" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardStep" lazy-init="true" scope="prototype"/>
+	<bean id="WizardStepHeader" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardStepHeader" lazy-init="true" scope="prototype"/>
+	<bean id="WizardStepFooter" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardStepFooter" lazy-init="true" scope="prototype"/>
+	<bean id="WizardStepContent" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardStepContent" lazy-init="true" scope="prototype"/>
+	<bean id="WizardContent" class="io.github.jsoagger.jfxcore.engine.components.wizard.WizardContent" lazy-init="true" scope="prototype"/>
+
+	<bean id="LoginWizardFooterToolbar" class="io.github.jsoagger.jfxcore.engine.controller.login.component.LoginWizardFooterToolbar" lazy-init="true" scope="prototype"/>
+
+	<bean id="FieldsetBottomTabedLayout" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.tabed.FieldsetBottomTabedLayout" scope="prototype"/>
+	<bean id="FieldsetTopTabedLayout" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.tabed.FieldsetTopTabedLayout" scope="prototype"/>
+	<bean id="FieldsetWithMenuLayout" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.menu.FieldsetWithMenuLayout" scope="prototype"/>
+	<bean id="FieldsetVerticalLayout" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.menu.FieldsetVerticalLayout" scope="prototype"/>
+	<bean id="FieldsetFlowLayout" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.menu.FieldsetFlowLayout" scope="prototype"/>
+	<bean id="SimpleFieldsetTopTabedLayout" class="io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.tabed.SimpleFieldsetTopTabedLayout" scope="prototype"/>
+
+
+	<bean id="AbstractHToolbar" class="io.github.jsoagger.jfxcore.engine.components.toolbar.htoolbar.AbstractHToolbar" lazy-init="true" scope="prototype" abstract="true"/>
+	<bean id="BasicHToolbar" class="io.github.jsoagger.jfxcore.engine.components.toolbar.htoolbar.BasicHToolbar" lazy-init="true" scope="prototype" parent="AbstractHToolbar"/>
+	<bean id="ModifiableHToolbar" class="io.github.jsoagger.jfxcore.engine.components.toolbar.htoolbar.ModifiableHToolbar" lazy-init="true" scope="prototype" parent="AbstractHToolbar"/>
+
+	<bean id="AbstractVToolbar" class="io.github.jsoagger.jfxcore.engine.components.toolbar.vtoolbar.AbstractVToolbar" lazy-init="true" scope="prototype"/>
+	<bean id="BasicVToolbar" class="io.github.jsoagger.jfxcore.engine.components.toolbar.vtoolbar.BasicVToolbar" lazy-init="true" scope="prototype" parent="AbstractVToolbar"/>
+
+	<bean id="DefaultEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.DefaultEnumeratedValueLoader" lazy-init="true" scope="prototype">
+		<property name="listvaluesOperation" ref="ListvaluesOperation"/>
+	</bean>
+
+	<bean id="LinkableRoleBsLoader" class="io.github.jsoagger.jfxcore.engine.model.LinkableRoleBsLoader" lazy-init="true" scope="prototype"/>
+	<bean id="LinkableRoleBsFromCurrentContextLoader" class="io.github.jsoagger.jfxcore.engine.model.LinkableRoleBsFromCurrentContextLoader" lazy-init="true" scope="prototype"/>
+
+
+	<!--**************************************************************************************************************************************************************** STRING 
+		CONVERTERS ********************************************************************************************************************************************************************* -->
+	<bean id="MaximizedDetailsView" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.MaximizedDetailsView" lazy-init="true" scope="prototype"/>
+	<bean id="MinimizedDetailsView" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.MinimizedDetailsView" lazy-init="true" scope="prototype"/>
+	<bean id="EmptyDetailsView" class="io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.EmptyDetailsView" lazy-init="true" scope="prototype"/>
+
+
+	<bean id="LocalDateConverter" class="io.github.jsoagger.jfxcore.engine.components.converter.LocalDateConverter" lazy-init="true" scope="prototype"/>
+	<bean id="GeneratedValueConverter" class="io.github.jsoagger.jfxcore.engine.components.converter.GeneratedValueConverter" lazy-init="true" scope="prototype"/>
+	<bean id="IdenpotentConverter" class="io.github.jsoagger.jfxcore.engine.components.converter.IdenpotentConverter" lazy-init="true" scope="prototype"/>
+	<bean id="EnumeratedValueModelConverter" class="io.github.jsoagger.jfxcore.engine.components.converter.EnumeratedValueModelConverter" lazy-init="true" scope="prototype"/>
+	<bean id="StringBooleanConverter" class="io.github.jsoagger.jfxcore.engine.components.converter.StringBooleanConverter" lazy-init="true" scope="prototype"/>
+	<bean id="DefaultEnumeratedValueTranslater" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.DefaultEnumeratedValueTranslater" lazy-init="true" scope="prototype"/>
+
+
+	<bean id="TableContent" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.TableContent" scope="prototype"/>
+	<bean id="FlowContent" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.flow.FlowContent" scope="prototype"/>
+	<bean id="FlowTableContent" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.flow.FlowTableContent" scope="prototype"/>
+	<bean id="ListViewContent" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.list.ListViewContent" scope="prototype"/>
+	<bean id="AdvancedTableStructureLayoutManager" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.AdvancedTableStructureLayoutManager" scope="prototype"/>
+	<bean id="SimpleTableStructureLayoutManager" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.SimpleTableStructureLayoutManager" scope="prototype"/>
+	<bean id="TableStructureProcessor" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.TableStructureProcessor" scope="prototype"/>
+	<bean id="TableStructuresVBoxProcessor" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.TableStructuresVBoxProcessor" scope="prototype"/>
+	<bean id="TableStructureWithLayoutProcessor" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.TableStructureWithLayoutProcessor" scope="prototype"/>
+
+	<bean id="AccountThumbPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.AccountThumbPresenter" scope="prototype"/>
+	<bean id="ModelThumbPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.ModelThumbPresenter" scope="prototype">
+		<property name="platformProperties" ref="platformProperties"/>
+	</bean>
+	<bean id="ModelMimeTypePresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.ModelMimeTypePresenter" scope="prototype">
+		<property name="getContentInfoOperation" ref="GetContentInfoOperation" />
+	</bean>
+	<bean id="ModelSmallMimeTypePresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.ModelMimeTypePresenter" scope="prototype">
+		<property name="getContentInfoOperation" ref="GetContentInfoOperation" />
+		<property name="styleClass" value="ep-model-small-mime-type-container" />
+		<property name="iconSize" value="16"/>
+	</bean>
+	
+	<bean id="TableRowMimeTypePresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.TableRowMimeTypePresenter" scope="prototype"/>
+
+
+	<bean id="BlankSpacerTableCellPresenter" class="io.github.jsoagger.jfxcore.engine.components.table.cell.BlankSpacerTableCellPresenter" scope="prototype"/>
+	<bean id="SmallItemInitialIconCircle" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.SmallItemInitialIconCircle" scope="prototype"/>
+	<bean id="ModelAttributePresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.ModelAttributePresenter" scope="prototype"/>
+	<bean id="ModelDateTimePresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.ModelDateTimePresenter" scope="prototype"/>
+	<bean id="GenericModelAttributetoTablePresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.GenericModelAttributetoTablePresenter" scope="prototype"/>
+	<bean id="DynModelAttributetoTablePresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.DynModelAttributetoTablePresenter" scope="prototype"/>
+
+
+	<bean id="SmallMasterNameItemInitialIconCircle" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.iconprovider.SmallItemInitialIconCircle" scope="prototype">
+		<property name="identityPresenter" ref="RCMasterNameIdentityPresenter"/>
+	</bean>
+
+
+	<!-- <bean id="PartStructureTreeNavigationDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.tree.PartStructureTreeNavigationDataLoader" scope="prototype"> </bean> -->
+	<!-- -
+		LAST TRANSLATED LLLL
+	 -->
+	<bean id="ContainerFolderTreeNavigationDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.tree.ContainerFolderTreeNavigationDataLoader" scope="prototype">
+		<property name="getRootFolderOperation" ref="GetContainerRootFolder"/>
+		<property name="getChildrenFolderOperation" ref="GetFolderChildrenOperation"/>
+		<property name="paginateFolderedOperation" ref="GetFolderContentOperation"/>
+	</bean>
+
+
+	<bean id="ModelRelatedAttachmentsContentDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.ModelRelatedAttachmentsContentDataLoader" scope="prototype"/>
+	<bean id="ModelRelatedPrimaryContentDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.ModelRelatedPrimaryContentDataLoader" scope="prototype"/>
+	<bean id="FolderTagsTreeNavigationDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.tree.FolderTagsTreeNavigationDataLoader" scope="prototype"/>
+
+	<bean id="UserFolderTreeNavigationDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.tree.UserFolderTreeNavigationDataLoader" scope="prototype">
+		<property name="getRootFolderOperation" ref="GetUserRootFolder"/>
+		<property name="getChildrenFolderOperation" ref="GetFolderChildrenOperation"/>
+		<property name="paginateFolderedOperation" ref="GetFolderContentOperation"/>
+	</bean>
+
+	<bean id="ModelRelatedPaginatedDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.ModelRelatedPaginatedDataLoader" scope="prototype"/>
+	<bean id="ModelRelatedRCPaginatedDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.ModelRelatedRCPaginatedDataLoader" scope="prototype"/>
+	<bean id="FolderTemplatesToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.EntityToEnumeratedValueLoader" scope="prototype">
+		<property name="operation" ref="GetContainerFolderTemplatesOperation"/>
+	</bean>
+	
+	<bean id="LifecycleTemplatesToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.EntityToEnumeratedValueLoader" scope="prototype">
+		<property name="operation" ref="GetAllLifecyclesOperation"/>
+	</bean>
+
+	<bean id="ForwardToViewButtonAction" class="io.github.jsoagger.jfxcore.engine.action.ForwardToViewButtonAction" scope="prototype"/>
+	<bean id="InstanciablePartTypeToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.SoftTypeToEnumeratedValueLoader" scope="prototype">
+		<property name="operation" ref="GetInstanciableSoftTypesOperation"/>
+		<property name="properties">
+			<map>
+				<entry key="rootType" value="io.github.jsoagger.Element/Part"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="InstanciableElementTypeToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.SoftTypeToEnumeratedValueLoader" scope="prototype">
+		<property name="operation" ref="GetInstanciableSoftTypesOperation"/>
+		<property name="getTypeByPathOperation" ref="GetTypeByPathOperation"/>
+		<property name="includeRootTypeInResult" value="true"/>
+		<property name="properties">
+			<map>
+				<entry key="rootType" value="io.github.jsoagger.Element"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="InstanciableDocTypeToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.SoftTypeToEnumeratedValueLoader" scope="prototype">
+		<property name="operation" ref="GetInstanciableSoftTypesOperation"/>
+		<property name="properties">
+			<map>
+				<entry key="rootType" value="io.github.jsoagger.doc.Document"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="InstanciablePeopleTypeToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.SoftTypeToEnumeratedValueLoader" scope="prototype">
+		<property name="operation" ref="GetInstanciableSoftTypesOperation"/>
+		<property name="properties">
+			<map>
+				<entry key="rootType" value="io.github.jsoagger.people.Party/Person"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="InstanciableOrgTypeToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.SoftTypeToEnumeratedValueLoader" scope="prototype">
+		<property name="operation" ref="GetInstanciableSoftTypesOperation"/>
+		<property name="properties">
+			<map>
+				<entry key="rootType" value="io.github.jsoagger.people.Party/Organisation"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="AddToStructureActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.quickactions.AddToStructureActionPresenter" scope="prototype"/>
+	<bean id="PushToViewActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.quickactions.PushToViewActionPresenter" scope="prototype"/>
+	<bean id="QuickDetailsActionPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.impl.quickactions.QuickDetailsActionPresenter" scope="prototype"/>
+
+	<bean id="TableRowSelectPresenter" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.TableRowSelectPresenter" scope="prototype"/>
+
+
+	<bean id="ProcessingDialog" class="io.github.jsoagger.jfxcore.engine.components.dialog.impl.ProcessingDialog" scope="prototype"/>
+	<bean id="InformationDialog" class="io.github.jsoagger.jfxcore.engine.components.dialog.impl.InformationDialog" scope="prototype"/>
+	<bean id="ErrorDialog" class="io.github.jsoagger.jfxcore.engine.components.dialog.impl.ErrorDialog" scope="prototype"/>
+	<bean id="WarningDialog" class="io.github.jsoagger.jfxcore.engine.components.dialog.impl.WarningDialog" scope="prototype"/>
+	<bean id="OkCancelDialog" class="io.github.jsoagger.jfxcore.engine.components.dialog.impl.OkCancelDialog" scope="prototype"/>
+	<bean id="InputDialogContent" class="io.github.jsoagger.jfxcore.engine.components.dialog.InputDialogContent" scope="prototype"/>
+
+
+	<bean id="BasicTableHeaderImpl" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.BasicTableHeaderImpl" scope="prototype"/>
+	<bean id="FiltrableTableHeaderImpl" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.FiltrableTableHeaderImpl" scope="prototype"/>
+	<bean id="FiltrableTableHeaderImpl2" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.FiltrableTableHeaderImpl2" scope="prototype"/>
+	<bean id="FolderNavigatorTableHeader" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.StructureNavigatorTableHeaderImpl" scope="prototype"/>
+	<bean id="StructureNavigatorTableHeader" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.StructureNavigatorTableHeaderImpl" scope="prototype"/>
+	<bean id="FolderContentTableHeader" class="io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.FolderContentTableHeaderImpl" scope="prototype"/>
+
+	<bean id="ProcessViewFormBlocContent" class="io.github.jsoagger.jfxcore.engine.components.form.bloc.ProcessViewFormBlocContent" scope="prototype"/>
+
+	<bean id="TableByNameFilter" class="io.github.jsoagger.jfxcore.engine.components.table.TableStructureFilter" scope="prototype">
+		<property name="masterAttributePath" value="attributes.name"/>
+	</bean>
+	<bean id="TableByDisplayNameFilter" class="io.github.jsoagger.jfxcore.engine.components.table.TableStructureFilter" scope="prototype">
+		<property name="masterAttributePath" value="attributes.displayName"/>
+	</bean>
+	<bean id="TableByMasterNameFilter" class="io.github.jsoagger.jfxcore.engine.components.table.TableStructureFilter" scope="prototype">
+		<property name="masterAttributePath" value="masterAttributes.name"/>
+	</bean>
+	<bean id="StructureContentController" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.content.StructureContentController" scope="prototype"/>
+	<bean id="ByKeySingleListFormDataLoader" class="io.github.jsoagger.jfxcore.engine.components.listform.dataloader.ByKeySingleListFormDataLoader" scope="prototype">
+		<property name="getPreferenceValueOperation" ref="GetPreferenceValueOperation"/>
+		<property name="setPreferenceValueOperation" ref="SetPreferenceValueOperation"/>
+		<property name="listValueOperation" ref="ListValuesOperation"/>
+	</bean>
+	
+	<bean id="BooleanListFormCellFactory" class="io.github.jsoagger.jfxcore.engine.components.listform.BooleanListFormCellFactory" scope="prototype"/>
+	
+
+	<bean id="DefaultLifecyclesStatusToEnumeratedValueLoader" class="io.github.jsoagger.jfxcore.engine.model.StringListToEnumeratedValueLoader" scope="prototype">
+		<property name="messageSource" ref="CoreGeneralMessageSource"/>
+		<property name="inclusions">
+			<list>
+				<value>DRAFT_STATE</value>
+				<value>IN_WORK</value>
+				<value>OBSELETE_STATE</value>
+				<value>RELEASED_STATE</value>
+				<value>PRE_RELEASED_STATE</value>
+				<value>NEW_STATE</value>
+				<value>WAITING_STATE</value>
+				<value>VALIDATED_STATE</value>
+				<value>WAITING_FOR_VALIDATION_STATE</value>
+			</list>
+		</property>
+	</bean>
+</beans>  

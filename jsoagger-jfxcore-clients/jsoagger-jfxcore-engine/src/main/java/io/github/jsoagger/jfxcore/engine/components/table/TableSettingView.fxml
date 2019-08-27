@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="503.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <ListView fx:id="settingsList" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="settingTable" editable="true" prefHeight="454.0" prefWidth="417.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="nameColumn" editable="false" minWidth="200.0" prefWidth="200.0" sortable="false" text="Column name" />
+                <TableColumn fx:id="dipslayedColumn" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="Displayed" />
+                  <TableColumn fx:id="widthColumn" editable="false" minWidth="150.0" prefWidth="150.0" resizable="false" sortable="false" style="-fx-alignment: center;" text="Width" />
+              </columns>
+            </TableView>
+         </center>
+         <right>
+            <ToolBar nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="468.0" prefWidth="157.0" BorderPane.alignment="CENTER">
+              <items>
+                  <Button fx:id="setAsDefaultButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="114.0" text="Default" />
+                  <Button fx:id="loadButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Load" />
+                  <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Remove" />
+                  <Button fx:id="closeButton" cancelButton="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Close" />
+              </items>
+               <padding>
+                  <Insets left="20.0" top="20.0" />
+               </padding>
+            </ToolBar>
+         </right>
+      </BorderPane>
+   </center>
+   <bottom>
+      <ToolBar prefHeight="35.0" prefWidth="781.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

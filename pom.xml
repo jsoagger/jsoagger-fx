@@ -1,0 +1,803 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.github.jsoagger</groupId>
+	<artifactId>jsoagger-jfxcore</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<name>JSoagger jfx core</name>
+	<description>JSoagger jfx core</description>
+	<packaging>pom</packaging>
+	<url>https://github.com/jsoagger</url>
+
+	<organization>
+		<name>JSOAGGER</name>
+		<url>www.jsoagger.tech</url>
+	</organization>
+	<inceptionYear>2019</inceptionYear>
+
+
+	<modules>
+		<module>jsoagger-jfxcore-clients</module>
+		<module>jsoagger-jfxcore-integration</module>
+	</modules>
+
+	<properties>
+		<internal.core.project.version>1.0-SNAPSHOT</internal.core.project.version>
+		<internal.fx.project.version>${project.version}</internal.fx.project.version>
+		<internal.operations.project.version>1.0-SNAPSHOT</internal.operations.project.version>
+		<jsoagger.core.client.home>${project.basedir}</jsoagger.core.client.home>
+		
+		<javax.annotation.version>1.2</javax.annotation.version>
+		<javaee.api.version>7.0</javaee.api.version>
+		<javax.ejb.version>3.1</javax.ejb.version>
+		<javax.inject>1</javax.inject>
+		<xml.combiner.version>2.2</xml.combiner.version>
+		<apache.batik>1.9</apache.batik>
+		<commons.validator.version>1.6</commons.validator.version>
+		<annotation.discovery.version>1.7</annotation.discovery.version>
+		<common.beanutils.version>1.9.3</common.beanutils.version>
+		<saxon.dom.version>8.7</saxon.dom.version>
+		<commons.io.version>2.6</commons.io.version>
+		<commons.lang.version>3.8.1</commons.lang.version>
+		<commons.collection>4.1</commons.collection>
+		<log4j-core.version>2.11.1</log4j-core.version>
+		<junit.version>4.11</junit.version>
+		<common.dbcp.version>1.2.2</common.dbcp.version>
+		<org.slf4j.version>1.6.0</org.slf4j.version>
+		<commons-lang.version>2.3</commons-lang.version>
+		<com.jolbox.version>0.7.1.RELEASE</com.jolbox.version>
+		<com.querydsl.version>3.7.4</com.querydsl.version>
+		<org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
+		<maven-ejb-plugin.version>2.3</maven-ejb-plugin.version>
+		<hamcrest-all.version>1.3</hamcrest-all.version>
+		<commons-codec-version>1.10</commons-codec-version>
+		<commons-validator.version>1.3.0</commons-validator.version>
+		<xmlbeans-xpath.version>2.6.0</xmlbeans-xpath.version>
+		<org.reflections.version>0.9.11</org.reflections.version>
+		<apache.tika.core.version>1.20</apache.tika.core.version>
+		<h2.database.version>1.4.187</h2.database.version>
+		<jaxb.core.version>2.3.0.1</jaxb.core.version>
+		<jaxb.version>2.3.2</jaxb.version>
+		<jaxb.api>2.3.1</jaxb.api>
+		<spring.batch.version>3.0.7.RELEASE</spring.batch.version>
+		<spring.httpinvoker.version>2.0.6.RELEASE</spring.httpinvoker.version>
+		<spring.version>5.1.0.RELEASE</spring.version>
+		<shiro.all.version>1.4.0</shiro.all.version>
+		<jackson.annotation.version>2.9.7</jackson.annotation.version>
+		<hibernate.version>5.4.0.Final</hibernate.version>
+		<hibernate.orm.version>5.4.0.Final</hibernate.orm.version>
+		<jackson.annotations.version>2.9.8</jackson.annotations.version>
+		<apache.shiro.version>1.3.2</apache.shiro.version>
+		<eh.cache.version>2.10.4</eh.cache.version>
+		<tomcat.version>8.0.8</tomcat.version>
+		<javassist.version>3.23.1-GA</javassist.version>
+		<activation.version>1.1.1</activation.version>
+		<querydsl-core.version>3.7.4</querydsl-core.version>
+		<java.javaee-api.version>8.0</java.javaee-api.version>
+		<saxon.version>8.7</saxon.version>
+		<cglib.version>3.2.7</cglib.version>
+		<spring.version>5.1.0.RELEASE</spring.version>
+		<spring.core.version>5.1.0.RELEASE</spring.core.version>
+		<resource4j.version>3.2.0</resource4j.version>
+		<gson.version>2.8.6-SNAPSHOT</gson.version>
+		<annovention.version>1.7</annovention.version>
+		<okhttp.version>2.7.5</okhttp.version>
+
+		<maven-licence-plugin.version>1.16</maven-licence-plugin.version>
+		<maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+		<versions-maven-plugin.version>2.7</versions-maven-plugin.version>
+		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+		<maven.eclipse.plugin.version>2.10</maven.eclipse.plugin.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<java.source.level>11</java.source.level>
+		<java.target.level>1.9</java.target.level>
+		<jdk>${env.JAVA_HOME}</jdk>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>${javax.annotation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup.okhttp</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>${okhttp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.saxon</groupId>
+				<artifactId>saxon-dom</artifactId>
+				<version>${saxon.dom.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.atteo</groupId>
+				<artifactId>xml-combiner</artifactId>
+				<version>${xml.combiner.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${common.beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tv.cntt</groupId>
+				<artifactId>annovention</artifactId>
+				<version>${annovention.version}</version>
+			</dependency>
+
+			<!-- XML processing -->
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-core</artifactId>
+				<version>${jaxb.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>${jaxb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>${jaxb.api}</version>
+			</dependency>
+
+			<!-- other dependencies -->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-jaxrs</artifactId>
+				<version>${org.codehaus.jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${commons-validator.version}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlbeans</groupId>
+				<artifactId>xmlbeans-xpath</artifactId>
+				<version>${xmlbeans-xpath.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>net.sf.saxon</groupId>
+						<artifactId>saxon</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>${org.reflections.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.annotations.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.annotations.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-core</artifactId>
+				<version>${apache.tika.core.version}</version>
+			</dependency>
+
+			<!-- Do not include implementation to avoid conflict, because some container
+				provide their own implementation -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${org.slf4j.version}</version>
+			</dependency>
+
+			<!-- Query DSL for data access -->
+			<dependency>
+				<groupId>com.mysema.querydsl</groupId>
+				<artifactId>querydsl-core</artifactId>
+				<version>${com.querydsl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mysema.querydsl</groupId>
+				<artifactId>querydsl-apt</artifactId>
+				<version>${com.querydsl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mysema.querydsl</groupId>
+				<artifactId>querydsl-jpa</artifactId>
+				<version>${com.querydsl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mysema.querydsl</groupId>
+				<artifactId>querydsl-sql</artifactId>
+				<version>${com.querydsl.version}</version>
+			</dependency>
+
+			<!-- Servlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- VElocity integration -->
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity-tools</artifactId>
+				<version>2.0</version>
+			</dependency>
+
+			<!-- For testing dependencies -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>hamcrest-core</artifactId>
+						<groupId>org.hamcrest</groupId>
+					</exclusion>
+				</exclusions>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-all</artifactId>
+				<version>${hamcrest-all.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.database.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- internal -->
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-coreui-cloud-services</artifactId>
+				<version>${internal.operations.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-coreui-cloud-services</artifactId>
+				<version>${internal.operations.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-corebusiness-offline-services</artifactId>
+				<version>${internal.operations.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-corebusiness-cloud-services</artifactId>
+				<version>${internal.operations.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-viewdefinition</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-corebusiness-cloud-operations</artifactId>
+				<version>${internal.operations.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-viewdefinition-json</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			
+		
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.8.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-engine</artifactId>
+				<version>${internal.fx.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-core-i18n</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-core-ioc</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-core-utils</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-preloader</artifactId>
+				<version>${internal.fx.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-api</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-viewdefinition</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-core-bridge</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-components</artifactId>
+				<version>${internal.fx.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxplatform-components</artifactId>
+				<version>${internal.fx.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-engine</artifactId>
+				<version>${internal.fx.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-cloudstub-operations</artifactId>
+				<version>${internal.fx.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-core-i18n</artifactId>
+				<version>${internal.core.project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.jsoagger</groupId>
+				<artifactId>jsoagger-jfxcore-desktop-integration</artifactId>
+				<version>${internal.fx.project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<filters>
+			<filter>${jsoagger.core.client.home}/build_jfx.properties</filter>
+		</filters>
+
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.css</include>
+					<include>**/*.fxml</include>
+					<include>**/*.properties</include>
+					<include>**/*.json</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<pluginManagement>
+			<plugins>
+				<!-- for delivery assemblage -->
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.5.4</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.1.0</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<sourceFileExcludes>
+							<sourceFileExclude>module-info.java</sourceFileExclude>
+						</sourceFileExcludes>
+						<additionalOptions>
+							<additionalOption>-Xdoclint:none</additionalOption>
+						</additionalOptions>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.0</version>
+					<configuration>
+						<release>11</release>
+						<source>11</source>
+						<target>1.8</target>
+						<showWarnings>true</showWarnings>
+						<showDeprecation>true</showDeprecation>
+						<fork>true</fork>
+						<executable>${jdk}/bin/javac</executable>
+					</configuration>
+				</plugin>
+
+				<!-- maven resource plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.7</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<useDefaultDelimiters>false</useDefaultDelimiters>
+						<delimiters>
+							<delimiter>@{*}</delimiter>
+						</delimiters>
+					</configuration>
+				</plugin>
+
+				<!-- Surefire -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<jvm>${jdk}/bin/java</jvm>
+						<forkMode>once</forkMode>
+					</configuration>
+				</plugin>
+
+				<!-- For licence generation: http://code.mycila.com/license-maven-plugin/ -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>1.16</version>
+					<configuration>
+						<verbose>false</verbose>
+						<inceptionYear>2019</inceptionYear>
+						<organizationName>NEXITIA</organizationName>
+						<licenseName>apache_v2</licenseName>
+						<projectName>JSoagger </projectName>
+						<emptyLineAfterHeader>true</emptyLineAfterHeader>
+						<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+						<processStartTag>========================LICENSE_START=================================</processStartTag>
+						<processEndTag>=========================LICENSE_END==================================</processEndTag>
+						<excludes>
+							<exclude>src/main/resources/images/**</exclude>
+							<exclude>src/main/resources/fonts/**</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.3</version>
+					<configuration>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<releaseProfiles>releases</releaseProfiles>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>3.1.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<classpathContainers>
+						<classpathContainer>
+							org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11
+						</classpathContainer>
+					</classpathContainers>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<forkMode>once</forkMode>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.source.level}</source>
+					<target>${java.target.level}</target>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+					<fork>true</fork>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+			</extension>
+		</extensions>
+	</build>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<distribution>repo</distribution>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:https://github.com/Nexitia/jsoagger-core.git</connection>
+		<developerConnection>scm:git:https://github.com/Nexitia/jsoagger-core.git</developerConnection>
+		<url>https://github.com/Nexitia/jsoagger-core.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<layout>default</layout>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jboss.org</id>
+			<name>JBoss Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+
+		<!-- for nexitia's snapshots -->
+		<repository>
+			<id>maven-snapshots</id>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		
+	    <repository>
+	        <id>project.local</id>
+	        <name>project</name>
+	        <url>file:${project.basedir}/external-libs</url>
+	    </repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Plugin Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>synergian-repo</id>
+			<url>https://raw.github.com/synergian/wagon-git/releases</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<site>
+			<id>api.wiki</id>
+			<url>https://github.com/Nexitia/jsoagger-platform/wiki</url>
+		</site>
+
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<reporting>
+		<outputDirectory>${project.basedir}/target/site</outputDirectory>
+	</reporting>
+
+	<developers>
+		<developer>
+			<name>Ramilafananana VONJISOA</name>
+			<email>yvonjisoa@nexitia.com</email>
+			<organizationUrl>http://www.nexitia.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<profiles>
+		<!-- Handle delivery -->
+		<profile>
+			<id>macos</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<zip-suffix>macos</zip-suffix>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<zip-suffix>windows</zip-suffix>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+					<name>Linux</name>
+				</os>
+			</activation>
+			<properties>
+				<zip-suffix>linux</zip-suffix>
+			</properties>
+		</profile>
+		<!-- Activate using the release property: mvn clean install -Prelease -->
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>release</name>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<!-- To release to Maven central -->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+					<!-- To generate javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.0.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.1.0</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<sourceFileExcludes>
+								<sourceFileExclude>module-info.java</sourceFileExclude>
+							</sourceFileExcludes>
+							<additionalOptions>
+								<additionalOption>-Xdoclint:none</additionalOption>
+							</additionalOptions>
+						</configuration>
+					</plugin>
+
+					<!-- To sign the artifacts -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

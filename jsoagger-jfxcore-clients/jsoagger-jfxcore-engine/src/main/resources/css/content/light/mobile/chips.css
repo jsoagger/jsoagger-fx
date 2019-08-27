@@ -1,0 +1,624 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+.ep-chips-container{
+	-fx-background-color:-grey-color-200;
+	-fx-alignment:CENTER;
+	-fx-padding:0 24 0 0;
+	-fx-background-radius:10;	
+}
+
+.ep-chips-internal-container{
+	
+}
+
+.ep-chips-icon-container{
+	
+}
+
+.ep-chips-center-container{
+	-fx-alignment:CENTER;
+	-fx-padding: 0 0 0 8;
+}
+
+.ep-chips-primarylabel-container{
+	
+}
+
+.ep-chips-secondarylabel-container{
+	
+}
+
+.ep-chips-quickactions-container{
+	
+}
+
+.ep-chips-rightactions-container{
+	
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* SIZING
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-chips-container-xsmall {
+	-fx-pref-height:32;
+	-fx-pref-width:300;
+}
+
+.ep-chips-container-small {
+	-fx-pref-height:62;
+	-fx-pref-width:300;
+}
+
+
+.ep-chips-container-medium {
+	-fx-pref-height:92;
+	-fx-pref-width:300;
+}
+
+.ep-chips-container-large {
+	-fx-pref-height:102;
+	-fx-pref-width:300;
+}
+
+
+.ep-chips-container-xlarge {
+	-fx-min-height:160;
+	-fx-pref-width:300;
+}
+
+.ep-chips-container-xlarge *.ep-item-presenter-icon-container{
+	-fx-min-width:158;
+	-fx-min-height:158;
+	-fx-alignment:CENTER;
+	-fx-background-color:white;
+}
+
+.ep-chips-container-xlarge *.ep-item-presenter-center-container{
+	-fx-alignment:TOP_LEFT;
+	-fx-padding:16 0 0 32;
+}
+
+.ep-chips-container-xlarge *.ep-item-presenter-center-container *.ep-item-presenter-primarylabel-container{
+	-fx-padding:8 0 4 0;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* SIZING
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-chips-main-label-small {
+	-fx-font-size:16px;
+}
+
+.ep-chips-main-label{
+	-fx-fill:#212121;
+	-fx-text-fill:#212121;
+	-fx-opacity:0.87;
+}
+
+.ep-flow-small-item-main-label .label{
+	-fx-fill:#212121;
+	-fx-text-fill:#212121;
+	-fx-font-size:12px;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* USED IN TYPE FLOWPANE
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.flow-content-wrapper{
+	-fx-hgap:16;
+	-fx-vgap:8;
+	-fx-alignment:TOP_CENTER;
+	-fx-spacing:8;
+}
+
+.ep-type-item-presenter{
+	-fx-background-color:white;
+	-fx-border-color:-primary-color-50;
+	-fx-border-width:1;	
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* SMALL ITEM PRESENTER
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-flow-small-item-presenter-container,
+.ep-small-item-presenter-container{
+	-fx-background-color:white;
+	-fx-min-height:52;
+	-fx-max-height:52;
+	-fx-alignment:CENTER_LEFT;
+	-fx-max-width:500;
+}
+
+.ep-small-item-presenter-container{
+	-fx-padding:0;
+	-fx-alignment:CENTER_LEFT;
+}
+.ep-small-item-presenter-container:last{
+	-fx-border-width:0;
+}
+
+.ep-flow-small-item-presenter-internal-container,
+.ep-small-item-presenter-internal-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-background-color:white;
+}
+
+.ep-flow-small-item-presenter-icon-container,
+.ep-small-item-presenter-icon-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+
+.ep-small-item-presenter-primarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:0 0 0 16;
+}
+
+.ep-small-item-presenter-secondarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-small-item-presenter-rightactions-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-flow-small-item-presenter-center-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* MEDIUM ITEM PRESENTER
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-medium-structure-item-presenter-container,
+.ep-medium-item-presenter-container{
+	-fx-background-color:white;
+	-fx-padding:16 32 16 32;
+	-fx-min-height:102;
+	-fx-min-width:400;
+}
+.ep-medium-item-presenter-container{
+	-fx-effect: dropshadow(three-pass-box, -grey-color-300, 3.0, 0.3, 0.0, 0.0);
+}
+
+.ep-medium-item-presenter-container:hover{
+	-fx-effect: dropshadow(three-pass-box, -grey-color-300, 8.0, 0.3, 0.0, 0.0);
+}
+
+.ep-medium-structure-item-presenter-container{
+	-fx-border-width:0 0 1 0;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-medium-item-presenter-internal-container{
+}
+
+.ep-medium-item-presenter-icon-container{
+	-fx-alignment:CENTER;
+	-fx-min-width:52;
+}
+
+
+.ep-medium-item-presenter-primarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:0 0 0 32;
+}
+
+.ep-medium-item-presenter-primarylabel-container *.label{
+	-fx-font-size:14px;
+	-fx-font-weight:bold;
+}
+
+.ep-medium-item-presenter-secondarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:4 0 0 32;
+}
+
+.ep-medium-item-presenter-secondarylabel-container *.label{
+	-fx-opacity:0.57;
+}
+
+.ep-medium-item-presenter-rightactions-container{
+	
+}
+/*--------------------------------------------------------------------------------------------------------------------------------
+* LARGE ITEM PRESENTER
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-large-item-presenter-container-2,
+.ep-large-item-presenter-container{
+	/**-fx-background-color:white;-fx-max-width:900;*/
+	-fx-min-height:112;
+	-fx-pref-width:350;
+	-fx-min-width:350;
+	-fx-border-color:-grey-color-100;
+	-fx-border-width:0 0 1 0;
+	-fx-font-weight:bold;
+}
+
+.ep-search-result-flow-item .ep-large-item-presenter-container-2{
+	-fx-border-color:-grey-color-300;
+	-fx-border-width:1;
+	-fx-border-radius:5;
+}
+
+
+.ep-large-item-presenter-container-2:last,
+.ep-large-item-presenter-container:last{
+	-fx-border-color:transparent;
+}
+
+.ep-search-result-flow-item .ep-large-item-presenter-container-2:last{
+	-fx-border-color:transparent;
+}
+
+
+.ep-large-item-presenter-container{
+	-fx-effect: -ep-pane-flat-footer-shadow-effect;
+}
+
+.ep-large-item-presenter-internal-container-2,
+.ep-large-item-presenter-internal-container{
+	-fx-padding:16 0 16 0;
+}
+
+.ep-large-item-presenter-center-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:0 8 0 8;
+}
+
+/**120,150 , the thumb presenter should resize image to 120,150*/
+.ep-large-item-presenter-icon-container{
+	-fx-alignment:CENTER;
+	-fx-pref-width:150;
+	-fx-min-width:150;
+	-fx-max-width:150;
+	-fx-max-height:120;
+	-fx-pref-height:120;
+}
+
+
+.ep-large-item-presenter-primarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:8 0 0 0;
+}
+
+.ep-large-item-presenter-primarylabel-container *.ep-rc-master-identity-label,
+.ep-large-item-presenter-primarylabel-container *.label{
+}
+
+.ep-large-item-presenter-secondarylabel-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:4 0 0 0;
+}
+
+.ep-large-item-presenter-secondarylabel-container *.label{
+	-fx-text-fill:-grey-color-500;
+}
+
+.ep-large-item-presenter-rightactions-container{
+	-fx-pref-width:122;
+}
+
+.ep-large-item-presenter-quickactions-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:16 0 0 0;
+}
+
+.ep-flow-item-quick-action{
+	-fx-background-color:-grey-color-50;
+	-fx-text-fill:-text-color-400;
+	-fx-graphic-text-gap:2;
+	-fx-padding:2;
+}
+
+.ep-flow-item-quick-action-default{
+	-fx-background-color:-accent-color;
+}
+
+
+.ep-flow-content-content-wrapper{
+	-fx-spacing:8;
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* FOLDER
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-folder-flow-large-item-presenter-container{
+	-fx-min-height:82;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-folder-flow-large-item-presenter-internal-container{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding: 0 8 0 8;
+	-fx-background-color:white;
+	-fx-border-width:0 0 1 0;
+	-fx-border-color:-internal-border-color;
+	-fx-spacing:16;
+}
+
+.ep-flow-small-item-presenter-container,
+.ep-folder-flow-large-item-presenter-internal-container:hover{
+	-fx-cursor:HAND;
+}
+
+
+.ep-folder-flow-large-item-presenter-icon-container{
+	-fx-alignment:TOP_LEFT;
+	-fx-padding: 16 0 0 16;
+}
+
+
+.ep-folder-flow-large-item-presenter-center-container{
+	-fx-alignment:CENTER;
+}
+
+
+.ep-folder-flow-large-item-presenter-center-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-folder-flow-large-item-main-label{
+	-fx-alignment:CENTER_LEFT;	
+}
+
+.ep-folder-flow-large-item-full-path-label{
+	-fx-alignment:CENTER_LEFT;
+	-fx-fill:-grey-color-400;
+}
+
+.ep-folder-flow-large-item-content-count-label{
+	-fx-alignment:CENTER_LEFT;	
+	-fx-text-fill:-grey-color-400;
+}
+
+.ep-folder-flow-large-item-children-count-label{
+	-fx-alignment:CENTER_LEFT;
+	-fx-text-fill:-grey-color-300;	
+}
+
+.ep-folder-large-item-presenter-quickactions-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-folder-large-item-presenter-rightactions-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-folder-flow-small-item-presenter-container{
+	-fx-min-height:52;
+	-fx-max-height:52;
+}
+
+.ep-folder-flow-small-switchable-item-presenter-container{
+	-fx-max-width:330;
+	-fx-min-height:52;
+	-fx-max-height:52;
+}
+
+.ep-folder-flow-small-item-presenter-internal-container{
+	-fx-spacing:8;
+	-fx-padding: 0 8 0 8;
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color:-internal-border-color;
+	
+}
+
+.ep-folder-flow-small-item-presenter-icon-container{
+	-fx-alignment:CENTER_LEFT;
+}
+
+.ep-folder-flow-small-item-presenter-center-container{
+	-fx-alignment:CENTER_LEFT;	
+}
+
+.ep-folder-flow-small-item-main-label{
+	-fx-alignment:CENTER_LEFT;	
+}
+
+.ep-folder-flow-small-item-main-label .label{
+	-fx-opacity:1;
+	-fx-text-fill:black;
+}
+
+.ep-flow-header-title{
+	-fx-fill:#212121;
+	-fx-text-fill:#212121;
+	-fx-font-size:20px;
+}
+
+.ep-chip-view{
+	-fx-padding:8 22 8 22;
+	-fx-background-color:-grey-color-50;
+	-fx-background-radius:20;
+}
+
+.current-lifecycle-form-info-value{
+	-fx-text-fill:-form-label-color;
+	-fx-fill:-form-label-color;
+}
+
+.ep-large-item-presenter-quantity{
+	-fx-font-size:20px;
+	-fx-text-fill:rgb(0,0,0,0.77);
+}
+
+.ep-large-item-presenter-quantity-container{
+	-fx-alignment:CENTER_RIGHT;
+	-fx-padding:0 32 0 16;
+}
+
+
+.ep-small-item-presenter-quantity-container{
+	-fx-alignment:CENTER_RIGHT;
+	-fx-padding:0 16 0 16;
+	-fx-spacing:8;
+}
+
+
+.ep-rc-master-identity-label-for-header{
+	-fx-font-size:14px;
+	-fx-text-fill:white;
+}
+
+
+.ep-model-current-version-for-header,
+.ep-model-current-status-for-header{
+	-fx-text-fill:white;
+	-fx-border-color:white;
+	-fx-padding:4;
+	-fx-border-radius:5;
+	-fx-border-width:0.5;
+}
+
+.ep-large-item-presenter-primarylabel-container .ep-rc-revision-label{
+	-fx-fill:black;
+	-fx-textfill:black;
+	-fx-opacity:0.42;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* 
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.ep-horizontal-flow-item-root-container{
+	-fx-max-width:320;
+	-fx-pref-width:320;
+	-fx-border-width:0.5;
+	-fx-border-color:transparent;
+	-fx-background-color:white;
+	-fx-pref-height:170;
+}
+
+.ep-flow-item-root-container:hover{
+	-fx-effect:dropshadow(three-pass-box, -grey-color-300,2.0,0.1,2,1.0);	
+	-fx-border-color:transparent;
+}
+
+.ep-flow-item-root-container:hover{
+	-fx-background-color:-grey-color-100;
+}
+
+.ep-flow-item-root-internal-container{
+	
+}
+
+.ep-flow-item-icon-container{
+	-fx-pref-width:140;	
+	-fx-min-height:140;
+	-fx-alignment:CENTER;
+	-fx-background-color:-grey-color-50;
+}
+
+.ep-horizontal-flow-item-icon-container{
+	-fx-pref-width:140;	
+	-fx-min-width:140;
+	-fx-max-width:140;		
+	-fx-alignment:TOP_CENTER;
+	-fx-background-color:white;
+}
+
+.ep-flow-item-center-container{
+	-fx-padding:8;
+	-fx-background-color:white;
+	-fx-alignment:CENTER_LEFT;
+}
+
+
+.ep-horizontal-flow-item-center-container{
+	-fx-padding:0 16 16 0;
+	-fx-background-color:white;
+	-fx-alignment:TOP_LEFT;
+}
+
+.ep-flow-item-main-label-container{
+	-fx-alignment:TOP_LEFT;
+}
+
+.ep-flow-item-secondary-label-container{
+	-fx-alignment:TOP_LEFT;
+}
+
+.ep-flow-item-actions-container{
+	-fx-background-color:white;
+	-fx-alignment:CENTER;
+	-fx-min-height:32;
+}
+
+.ep-presenter-middle-actions-container{
+	-fx-spacing:4;
+	-fx-alignment:CENTER;
+	-fx-min-height:40;
+	-fx-border-width: 1 0 0 0;
+	-fx-border-color:-grey-color-100;
+}
+
+.ep-horizontal-flow-item-root-internal-container{
+}
+
+.ep-horizontal-flow-item-actions-container .ep-presenter-middle-actions-container{
+	-fx-background-color:white;
+	-fx-alignment:CENTER;
+	-fx-padding:8 0 0 0;
+	-fx-border-width: 0;
+	-fx-min-height:-1;
+}
+
+.ep-horizontal-flow-item-main-label-container{
+	-fx-padding:0 0 0 8;
+}
+
+.ep-horizontal-flow-item-secondary-label-container{
+	-fx-padding:0 0 0 8;
+	-fx-font-size:1em;
+}
+
+.ep-horizontal-flow-item-secondary-label-container .label {
+	-fx-text-fill:-fx-link-color;
+	-fx-font-size:10px;
+}
+
+.ep-horizontal-flow-item-main-label-container .ep-rc-master-identity-label{
+	-fx-font-size:12px;
+	-f-font-weight:bold;
+}
+
+.ep-rc-master-identity-caption{
+	-fx-text-fill:red;
+	-fx-fill:red;
+	-fx-font-size:10px;
+}
+
+.ep-quick-search-flow-content{
+	-fx-hgap:8;
+	-fx-vgap:8;
+	-fx-padding:16;
+}
+
+.ep-horizontal-flow-content-wrapper{
+	-fx-hgap:8;
+	-fx-vgap:20;
+	-fx-alignment:TOP_CENTER;
+	-fx-spacing:20;
+}
+
+

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-destroy-method="destroy">
+
+	<bean id="FlowMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="parentMessageSource" ref="CoreGeneralMessageSource" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.jfxcore.demoapp.desktop.flow.message</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="PaginatedFlowItemPresenter1" class="io.github.jsoagger.jfxcore.engine.components.presenter.LargeItemPresenterFactory" scope="prototype" init-method="init">
+		<property name="iconPresenter" ref="DemoModelThumbPresenter" />
+		<property name="identityPresenter" ref="DemoFlowItemIdentityPresenter" />
+		<property name="secondaryLabelPresenter" ref="ModelDescriptionPresenter" />
+	</bean>
+
+	<bean id="PaginatedFlowItemPresenter2" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoFlowItemPresenter" scope="prototype" init-method="init">
+		<property name="iconPresenter" ref="DemoModelThumbPresenter" />
+		<property name="identityPresenter" ref="DemoFlowItemIdentityPresenter" />
+		<property name="secondaryLabelPresenter" ref="ModelDescriptionPresenter" />
+	</bean>
+
+	<bean id="DemoFlowItemIdentityPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoFlowItemIdentityPresenter" scope="prototype" />
+	<bean id="DemoCenteredFullFlowLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.FullFlowContentLayoutManager" scope="prototype">
+		<property name="responsiveMatrix" ref="DemoCenteredFullFlowLayoutManagerMatrix" />
+	</bean>
+
+
+
+	<bean id="DemoCenteredFullFlowLayoutManagerMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="DemoCenteredFullFlowLayoutManagerMatrixDefinition" />
+	</bean>
+
+	<bean id="DemoCenteredFullFlowFixedPaginationLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.FullFlowContentFixedPaginationLayoutManager">
+		<property name="responsiveMatrix" ref="DemoCenteredFullFlowFixedPaginationLayoutManagerResponsiveMatrix" />
+	</bean>
+
+	<bean id="DemoCenteredFullFlowFixedPaginationLayoutManagerResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="DemoCenteredFullFlowLayoutManagerMatrixDefinition" />
+	</bean>
+
+	<util:list id="DemoCenteredFullFlowLayoutManagerMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0:610#0:1:0#hide:minimize:hide</value>
+		<value>610:800#0:1:0#hide:minimize:hide</value>
+		<value>800:1000#0.5:fixed|610:0.5#::</value>
+		<value>1000#0.5:fixed|650:0.50#::</value>
+	</util:list>
+	
+	
+	<bean id="DemoCenteredHorizontalFlowFixedPaginationLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.FullFlowContentFixedPaginationLayoutManager">
+		<property name="responsiveMatrix" ref="DemoCenteredHorizontalFlowFixedPaginationLayoutManagerResponsiveMatrix" />
+	</bean>
+
+	<bean id="DemoCenteredHorizontalFlowFixedPaginationLayoutManagerResponsiveMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="DemoCenteredHorizontalFlowFixedPaginationLayoutManagerResponsiveMatrixDefinition" />
+	</bean>
+	
+	<util:list id="DemoCenteredHorizontalFlowFixedPaginationLayoutManagerResponsiveMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0:610#0.5:fixed|600:0.5#:minimize:</value>
+		<value>610:800#0.5:fixed|600:0.5#hide:minimize:hide</value>
+		<value>800:1000#0.5:fixed|610:0.5#::</value>
+		<value>1000#0.5:fixed|650:0.50#::</value>
+	</util:list>
+
+
+
+	<bean id="Example4FlowLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.FullFlowContentFixedPaginationLayoutManager" scope="prototype">
+		<property name="responsiveMatrix" ref="Example4FlowLayoutManagerMatrix" />
+	</bean>
+
+	<bean id="Example4FlowLayoutManagerMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="Example4FlowLayoutManagerMatrixDefinition" />
+	</bean>
+	<util:list id="Example4FlowLayoutManagerMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0:1:0#hide::hide</value>
+	</util:list>
+
+
+
+
+	<bean id="DemoScrolLessCenteredFullFlowLayoutManager" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.layout.FullFlowContentLayoutManager" scope="prototype">
+		<property name="responsiveMatrix" ref="DemoScrolLessCenteredFullFlowLayoutManagerMatrix" />
+	</bean>
+
+	<bean id="DemoScrolLessCenteredFullFlowLayoutManagerMatrix" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix" scope="prototype">
+		<constructor-arg index="0" ref="DemoScrolLessCenteredFullFlowLayoutManagerMatrixDefinition" />
+	</bean>
+
+	<util:list id="DemoScrolLessCenteredFullFlowLayoutManagerMatrixDefinition" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>0#0:1:0#hide::hide</value>
+	</util:list>
+
+
+	<bean id="DemoFlowItemPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.FlowItemPresenterFactory" scope="prototype" init-method="init">
+		<property name="iconPresenter" ref="DemoModelThumbPresenter" />
+		<property name="identityPresenter" ref="DemoFlowItemIdentityPresenter" />
+		<property name="secondaryLabelPresenter" ref="ModelDescriptionPresenter" />
+	</bean>
+
+	<bean id="DemoFlowItemPresenter4" class="io.github.jsoagger.jfxcore.engine.components.presenter.FlowItemPresenterFactory" scope="prototype" init-method="init">
+		<property name="iconPresenter" ref="DemoModelFlowThumbPresenter" />
+		<property name="identityPresenter" ref="DemoFlowItemIdentityPresenter" />
+	</bean>
+
+	<bean id="DemoHorizontalFlowItemPresenter" class="io.github.jsoagger.jfxcore.engine.components.presenter.HorizontalFlowItemPresenterFactory" scope="prototype" init-method="init">
+		<property name="iconPresenter" ref="DemoModelFlowThumbPresenter" />
+		<property name="identityPresenter" ref="DemoFlowItemIdentityPresenter" />
+		<property name="secondaryLabelPresenter" ref="ModelDescriptionPresenter" />
+	</bean>
+	
+	<bean id="DemoModelThumbPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoModelThumbPresenter" scope="prototype" >
+		<property name="getPreferenceValueOperation" ref="GetPreferenceValueOperation"/>
+		<property name="platformProperties" ref="platformProperties"/>
+	</bean>
+	
+	<bean id="DemoModelFlowThumbPresenter" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoModelFlowThumbPresenter" scope="prototype" >
+		<property name="getPreferenceValueOperation" ref="GetPreferenceValueOperation"/>
+		<property name="platformProperties" ref="platformProperties"/>
+	</bean>
+	
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/flow/example1/demo-list-example1-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/flow/example2/demo-list-example2-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/flow/example3/demo-list-example3-context.xml" />
+	<import resource="classpath:/io/github/jsoagger/jfxcore/demoapp/desktop/flow/example4/demo-list-example4-context.xml" />
+</beans>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true">
+
+
+	<bean id="DialogMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true"/>
+		<property name="parentMessageSource" ref="CoreGeneralMessageSource" />
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.jfxcore.demoapp.desktop.dialog.message</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DialogRSContentView" class="io.github.jsoagger.jfxcore.engine.controller.roostructure.content.RootStructureContentController" scope="prototype">
+		<property name="messageSource" ref="DialogMessageSource"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/dialog/DialogRSContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DialogRSView" class="io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController" scope="prototype">
+		<property name="messageSource" ref="DialogMessageSource"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/dialog/DialogRSView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DialogContentView" class="io.github.jsoagger.jfxcore.demoapp.comps.DemoDialogController" scope="prototype">
+		<property name="messageSource" ref="DialogMessageSource"/>
+		<property name="modelProvider" ref="RootStructureModelLoader"/>
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/demoapp/desktop/dialog/DialogContentView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DemoShowAccentErrorDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowAccentErrorDialogAction" scope="prototype"/>
+	<bean id="DemoShowAccentInfoDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowAccentInfoDialogAction" scope="prototype"/>
+	<bean id="DemoShowAccentOkCancelDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowAccentOkCancelDialogAction" scope="prototype"/>
+	<bean id="DemoShowAccentWarningDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowAccentWarningDialogAction" scope="prototype"/>
+	<bean id="DemoShowPrimaryErrorDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowPrimaryErrorDialogAction" scope="prototype"/>
+	<bean id="DemoShowPrimaryInfoDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowPrimaryInfoDialogAction" scope="prototype"/>
+	<bean id="DemoShowPrimaryOkCancelDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowPrimaryOkCancelDialogAction" scope="prototype"/>
+	<bean id="DemoShowPrimaryWarningDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowPrimaryWarningDialogAction" scope="prototype"/>
+	<bean id="DemoShowWhiteErrorDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowWhiteErrorDialogAction" scope="prototype"/>
+	<bean id="DemoShowWhiteInfoDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowWhiteInfoDialogAction" scope="prototype"/>
+	<bean id="DemoShowWhiteOkCancelDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowWhiteOkCancelDialogAction" scope="prototype"/>
+	<bean id="DemoShowWhiteWarningDialogAction" class="io.github.jsoagger.jfxcore.demoapp.action.DemoShowWhiteWarningDialogAction" scope="prototype"/>
+</beans>

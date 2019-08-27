@@ -1,0 +1,943 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* Root primary colors
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.left-pane-separator{
+	-fx-border-width:0 0 0 0.5;
+	-fx-border-color:-grey-color-400;	
+}
+
+.link{
+	-fx-fill: -fx-link-color;
+	-fx-text-fill: -fx-link-color;
+}
+
+.header{
+    -fx-font-size: 42pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: -white-color;
+}
+
+
+.h1 {
+	-fx-font-size: 2em;
+	-fx-font-family:'Helvetica';
+	-fx-opacity:0.87;
+}
+
+.h2 {
+	-fx-font-size: 1.8em;
+	-fx-font-family:'Helvetica';
+	-fx-opacity:0.87;
+	-fx-font-weight:bold;
+}
+
+.h3 {
+	-fx-font-size: 1.6em;
+	-fx-font-family:'Helvetica';
+	-fx-opacity:0.87;
+}
+
+.h4 {
+	-fx-font-size: 1.4em;
+	-fx-font-family:'Helvetica';
+	-fx-opacity:0.87;
+}
+
+.h5 {
+	-fx-font-size: 1.2em;
+	-fx-opacity:0.87;
+}
+
+.h6 {
+	-fx-font-size: 1em;
+	-fx-opacity:0.87;
+}
+
+.text-body{
+	-fx-font-family: 'Roboto Regular';
+	-fx-font-size:1em;
+	-fx-opacity:0.87;
+	-fx-text-fill:-primary-text-color;
+}
+
+.-white-color-label {
+	-fx-fill: -white-color;
+	-fx-text-fill: -white-color;
+}
+
+.copyright-label {
+	-fx-font-size: 10.0px;
+	-fx-text-fill:-grey-color-400;
+	-fx-underline:false;
+	-fx-font-family:'Roboto Light';
+	-fx-opacity:0.4;
+}
+
+.font-s{
+	-fx-font-size:1em;	
+}
+
+.font-xs{
+	-fx-font-size:0.8em;	
+}
+
+.font-m{
+	-fx-font-size:1.1em;	
+}
+
+.font-l{
+	-fx-font-size:1.2em;	
+}
+
+.font-xl{
+	-fx-font-size:1.2em;	
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+* Forms
+*--------------------------------------------------------------------------------------------------------------------------------*/
+.form-info-value {
+	-fx-text-alignment:JUSTIFY;
+	-fx-text-fill:-form-label-color;
+	-fx-fill:-form-label-color;
+}
+
+.form-info-label{
+	-fx-pref-width:200.0;
+	-fx-text-fill:-form-value-color;
+	-fx-fill:-form-value-color;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.form-info-label-edit{
+	-fx-pref-width:200.0;
+	-fx-alignment:CENTER_LEFT;
+	-fx-text-fill:-text-color-300;
+	-fx-fill:-text-color-300;
+	-fx-font-family:'Roboto Light';
+	-fx-font-size:10px;
+}
+
+.form-label {
+	-fx-text-fill:-form-label-color;
+	-fx-pref-width:200.0;
+	-fx-alignment:CENTER_LEFT;
+}
+
+.form-value-label {
+	-fx-text-fill:-form-value-color;
+}
+
+.input-form-description{
+	-fx-text-fill: -form-label-color;
+	-fx-font-size: 1.0em;
+}
+
+.form-error-label {
+	-fx-text-fill: -form-error-color;
+	-fx-font-family:'Roboto Bold';
+}
+
+.form-mandatory-label{
+	-fx-text-fill: -form-error-color;
+	-fx-fill: -form-error-color;
+}
+
+.ep-info-form-bloc-title{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:32 0.0 8 2;
+	-fx-background-color:-background-color;
+}
+
+/*When collpasible, keep it centered */
+.ep-info-form-bloc-title-collpasible:hover{
+	-fx-cursor:hand;
+}
+
+.ep-info-form-bloc-title-collpasible{
+	-fx-alignment:CENTER_LEFT;
+	-fx-padding:16 0.0 8 0;
+	-fx-border-width:0 0 0 0;
+	-fx-border-color:-grey-color-200;
+}
+
+.form-bloc-title-pane:withHeaderActions .ep-info-form-bloc-title-collpasible{
+	-fx-border-width:0;
+	-fx-background-color:-background-color;
+}
+
+.form-bloc-title-pane:expanded .ep-info-form-bloc-title-collpasible{
+}
+
+.form-bloc-title-pane-wrapper{
+	-fx-background-color:-white-color;
+}
+
+.form-bloc-title-pane-wrapper:last{
+}
+
+.form-bloc-title-pane-wrapper:hover{
+}
+
+.form-bloc-title-pane {
+	-fx-border-width:0.0;
+	-fx-border-color:derive(-grey-color-300,-4%);
+}
+
+.form-bloc-title-pane:withHeaderActions{
+	-fx-border-width:0.0;
+	-fx-border-color:derive(-grey-color-300,-4%);
+}
+
+.form-bloc-title-pane:withHeaderActions .form-bloc-title-pane-internal-layout{
+	-fx-border-width:0.0;
+	-fx-border-color:derive(-grey-color-300,-4%);
+}
+
+.form-bloc-title-pane:expanded{
+	
+}
+
+.ep-info-form-bloc-title:hover{
+	-fx-cursor:hand;
+}
+
+.ep-info-form-bloc-title:expanded{
+	-fx-border-color:-white-color;
+}
+
+.ep-info-form-bloc-content{
+	-fx-padding:0;
+}
+
+.ep-form-bloc-title-pane-header-actions-wrapper{
+	-fx-padding:8;
+	-fx-alignment:CENTER_;
+	-fx-background-color:-white-color;
+	-fx-spacing:8;
+	-fx-border-width:0 0 0.5 0;
+	-fx-border-color:-internal-border-color;
+}
+
+.ep-secondary-root-structure-title{
+	-fx-fill:-white-color;
+	-fx-text-fill:-white-color;
+	-fx-font-size:22.0px;
+}
+
+.ep-item-presenter-secondarylabel-container{
+	-fx-opacity:0.67;
+	-fx-text-fill:#212121;
+}
+
+.ep-structure-content-location-item-label,
+.ep-structure-location-item-label{
+	-fx-fill:black;
+	-fx-text-fill:black;
+	-fx-opacity:0.87;
+	-fx-font-size:14pt;
+	-fx-font-wight:bold;
+}
+
+.ep-structure-location-item-label-ikonli{
+	-fx-fill:-grey-color-300;
+	-fx-text-fill:-grey-color-300;	
+}
+
+.ep-info-form-bloc-header{
+	-fx-font-size:16px;
+	-fx-opacity:0.87;
+	-fx-font-family:'Arial';
+	-fx-font-weight:bold;
+}
+
+.form-bloc-title-pane:withHeaderActions .ep-info-form-bloc-header{
+}
+
+.transparent-background {
+	-fx-background-color: transparent;
+}
+
+.ep-flow-content-wrapper,
+.grey-background,
+.default-background {
+	-fx-background-color: -grey-color-900;
+}
+
+.red-background {
+	-fx-background-color: red;
+}
+
+.transparent-focus {
+	-fx-focus-color: transparent;
+}
+
+.white-background{
+	-fx-background-color: -grey-color-900;
+}
+
+.empty-border{
+	-fx-border-color:tansparent;
+	-fx-border-width:0;
+}
+
+.external-border{
+	-fx-border-color:-grey-color-400;
+	-fx-border-width:0.5;
+}
+
+.horizontal-visible-spacer{
+	-fx-border-color:-grey-color-300;
+	-fx-border-width:0 0 0.5 0;
+	-fx-min-height:32;
+	-fx-max-height:32;
+	-fx-pref-height:32;	
+}
+
+.horizontal-spacer{
+}
+
+.vertical-spacer{
+}
+
+.padding-0-0-8-0{
+	-fx-padding:0 0 8 0;
+}
+
+.padding-0-8-0-8{
+	-fx-padding:0 8 0 8;
+}
+
+.padding-0-4-0-4{
+	-fx-padding:0 4 0 4;
+}
+
+.padding-8-8-8-0{
+	-fx-padding:8 8 8 0;
+}
+
+.padding-16-16-16-0{
+	-fx-padding: 16 16 16 0;
+}
+
+.padding-0-0-0-32{
+	-fx-padding:0 0 0 32;
+}
+
+.padding-0-128-64-0{
+	-fx-padding: 0 64 64 0;
+}
+
+.padding-0-128-0-128{
+	-fx-padding:0 128 0 128;	
+}
+
+.padding-0-128-0-0{
+	-fx-padding:0 128 0 0;	
+}
+
+.padding-32-0-32-0{
+	-fx-padding:32 0 32 0;
+}
+
+.padding-16-0-16-0{
+	-fx-padding:16 0 16 0;
+}
+
+.padding-32-16-16-0{
+	-fx-padding: 32 16 16 0;
+}
+
+.padding-32-16-8-0{
+	-fx-padding: 32 16 8 0;
+}
+
+.padding-32-0-16-0{
+	-fx-padding:32 0 16 0;
+}
+
+.padding-0-16-16-16{
+	-fx-padding:0 16 16 16;
+}
+
+.padding-0-0-16-0{
+	-fx-padding:0 0 16 0;
+}
+
+.padding-0-0-32-0{
+	-fx-padding:0 0 32 0;
+}
+
+.padding-0-0-0-16{
+	-fx-padding:0 0 0 16;
+}
+
+.padding-64-0-32-0{
+	-fx-padding:64 0 32 0;
+}
+
+.padding-64-0-16-0{
+	-fx-padding:64 0 16 0;
+}
+
+.padding-0-0-0-32{
+	-fx-padding:0 0 0 32;
+}
+
+.padding-0-0-64-0{
+	-fx-padding:0 0 64 0;
+}
+
+.padding-0-32-16-32{
+	-fx-padding:0 32 16 32;
+}
+
+.padding-32-32-16-32{
+	-fx-padding:32 32 16 32;
+}
+
+.padding-32-32-16-0{
+	-fx-padding:32 32 16 0;
+}
+
+.padding-64-16-16-16{
+	-fx-padding:64 16 16 16;
+}
+
+.padding-8-0-8-0{
+	-fx-padding: 8 0 8 0;
+}
+
+.padding-8{
+	-fx-padding:8;
+}
+
+.padding-64-16-32-16{
+	-fx-padding:64 16 32 16;
+}
+
+.padding-32-32-32-32{
+	-fx-padding:32;
+}
+
+.padding-0-32-32-32{
+	-fx-padding:0 32 32 32;
+}
+
+.padding-0-0-32-0{
+	-fx-padding:0 0 32 0;
+}
+
+.padding-32-0-0-0{
+	-fx-padding:32 0 0 0;
+}
+
+.padding-32-32-32-0{
+	-fx-padding:32 32 32 0;
+}
+
+.padding-32-32-8-8{
+	-fx-padding:32 32 8 8;
+}
+
+.padding-32-32-64-0{
+	-fx-padding:32 32 64 0;
+}
+.padding-32-32-0-0{
+	-fx-padding: 32 32 0 0;
+}
+
+.padding-0-16-0-16{
+	-fx-padding:0 16 0 16;
+}
+
+.padding-0-32-0-32{
+	-fx-padding:0 32 0 32;
+}
+
+.padding-8-0-0-0{
+	-fx-padding:8 0 0 0;
+}
+
+.padding-32-32-32-8{
+	-fx-padding:32 32 32 8;
+}
+
+.padding-32-32-16-8{
+	-fx-padding: 32 32 16 8;
+}
+
+.padding-32-32-0-32{
+	-fx-padding:32 32 0 32;
+}
+
+.padding-32-32-16-32{
+	-fx-padding:32 32 16 32;
+}
+
+.padding-16-32-16-32{
+	-fx-padding:16 32 16 32;
+}
+
+.padding-0-0-16-0{
+	-fx-padding:0 0 16 0;
+}
+
+.padding-0-64-64-0{
+	-fx-padding:0 64 64 0;
+}
+
+.padding-0-32-64-0{
+	-fx-padding:0 32 64 0;
+}
+
+.padding-0-32-32-0{
+	-fx-padding:0 32 32 0;
+}
+
+.padding-16-32-32-8{
+	-fx-padding:16 32 16 8;
+}
+
+.padding-32-32-8-0{
+	-fx-padding: 32 32 8 0;
+}
+
+.padding-16{
+	-fx-padding: 16;
+}
+
+.padding-32{
+	-fx-padding: 32;
+}
+
+.empty-padding{
+	-fx-padding:0;
+}
+
+/** remove underline and correct color*/
+.app-hyperlink-hyperlink,
+.app-hyperlink:hover,
+.app-hyperlink:visited,
+.app-hyperlink:hover:visited {
+	-fx-underline:false;
+	-fx-fill: -fx-text-link-color;
+}
+
+.extra-shadowed-pane{
+	-fx-effect: -ep-extra-pane-shadow-effect;
+}
+
+
+.unshadowed-pane{
+	-fx-effect:null;
+}
+
+.white-ikonli{
+	-fx-fill: -white-color;
+}
+
+.black-ikonli{
+	-fx-fill: black;
+}
+
+.red-ikonli{
+	-fx-fill: linear-gradient(#F44336,#D32F2F);
+}
+
+.orange-ikonli{
+	-fx-fill: linear-gradient(#FF9800,#F57C00);
+}
+
+.blue-ikonli{
+	-fx-fill: linear-gradient(#2196F3,#1976D2);
+}
+
+.folder-ikonli{
+	-fx-fill: white;
+}
+
+.ep-folder-icon{
+	-fx-background-color:rgb(63, 81, 181,0.60);
+	-fx-background-radius:20;
+	-fx-padding:4;	
+}
+
+.yellow-ikonli{
+	-fx-fill: linear-gradient(#FFEB3B,#FBC02D);
+}
+
+.green-ikonli{
+	-fx-fill: linear-gradient(#4CAF50,#388E3C);
+}
+
+.accent-ikonli{
+	-fx-fill: linear-gradient(-accent-color-500,-accent-color-700);
+}
+
+.accent-ikonli-shadowed{
+	-fx-fill: linear-gradient(-accent-color-500,-accent-color-700);
+	-fx-effect: innershadow(three-pass-box, -grey-color-400, 2.0, 0.2,0.0,2.0);
+}
+.accent-ikonli-shadowed:hover{
+		-fx-effect: dropshadow(three-pass-box, derive(black, 50.0%), 8.0, 0.2,0.0,2.0);
+}
+
+.primary-ikonli{
+	-fx-fill: linear-gradient(-primary-color-500,-primary-color-700);
+}
+
+.primary-ikonli2{
+	-fx-fill: -primary-color-400;
+}
+
+.grey-flat-ikonli{
+	-fx-fill: -grey-color-600;
+}
+
+.grey-ikonli2{
+	-fx-fill: -grey-color-400;
+}
+
+.grey-ikonli{
+	-fx-fill: linear-gradient(-grey-color-400,-grey-color-600);
+}
+
+.grey-clear-ikonli{
+	-fx-fill: linear-gradient(-grey-color-300,-grey-color-300);
+}
+
+.wizard-close-icon{
+	-fx-fill: linear-gradient(-primary-color-100,-primary-color-200);
+}
+
+.chevron-right-navigation-icon{
+	-fx-fill: linear-gradient(-grey-color-500,-grey-color-600);
+	-fx-opacity:0.57;
+}
+
+.chevron-left-header-navigation-icon{
+	-fx-fill: -white-color;
+	-fx-padding:0;
+}
+
+.header-location-separator{
+	-fx-fill: -white-color;
+}
+
+.icon-provider-icon >*.ikonli-font-icon{
+	-fx-fill: -grey-color-500;
+}
+
+
+.ep-fade-to-black-pane{
+	-fx-effect: innershadow( gaussian , -primary-color-800 , 5.0,0.0,0.0,0.0 );
+}
+
+
+.soft-type-icon-provider-icon-wrapper{
+	-fx-alignment:CENTER;
+	-fx-background-color:-grey-color-50;
+	-fx-pref-width:62;
+	-fx-max-width:62;
+	-fx-max-height:62;
+	-fx-background-radius:40;
+}
+
+.item-initial-circle-icon-label-wrapper .ikonli-font-icon,
+.item-initial-circle-icon-label-wrapper-primary .ikonli-font-icon,
+.item-initial-circle-icon-label-wrapper-grey .ikonli-font-icon,
+.soft-type-icon-provider-icon-wrapper .ikonli-font-icon{
+	-fx-fill: -white-color;
+}
+
+.item-initial-circle-icon-label-wrapper-grey{
+	-fx-background-color:-grey-color-200;
+}
+
+.item-initial-circle-icon-label-wrapper-primary{
+	-fx-background-color:#82B1FF;
+}
+
+.item-initial-circle-icon-label-wrapper-accent{
+	-fx-background-color:#FF7043;
+}
+
+.item-initial-circle-icon-label-wrapper-medium{
+	-fx-pref-width:45;
+	-fx-max-width:45;
+	-fx-max-height:45;
+	-fx-min-height:45;
+	-fx-background-radius:40;
+	-fx-padding:8;
+}
+
+.item-initial-circle-icon-label-wrapper-small{
+	-fx-pref-width:25;
+	-fx-max-width:25;
+	-fx-max-height:25;
+	-fx-min-height:25;
+	-fx-background-radius:20;
+}
+
+.item-initial-circle-icon-label-wrapper{
+	-fx-background-color:-grey-color-200;
+}
+
+.item-initial-circle-icon-label{
+	-fx-text-fill:-white-color;
+	-fx-font-size:10pt;
+	-fx-font-family:'Roboto bold';
+}
+
+
+.rootStructure-footer-stack{
+	-fx-min-height:32;
+	-fx-max-height:32;
+	-fx-background-color:-white-color;
+	-fx-effect:dropshadow(three-pass-box, derive(-background-color,-19%),8.0,0.2,0,0.0);
+}
+
+.full-bordered-grey-pane{
+	-fx-border-width: 1;
+	-fx-border-color:-grey-color-300;
+}
+
+.bottom-borderless-bordered-grey-pane{
+	-fx-border-width: 1 1 0 1;
+	-fx-border-color:-grey-color-300;
+}
+
+.top-borderless-bordered-grey-pane{
+	-fx-border-width: 0 1 1 1;
+	-fx-border-color:-grey-color-300;
+}
+
+.top-borderless-bordered-external-pane{
+	-fx-border-width: 0 1 1 1;
+	-fx-border-color:-external-border-color;
+}
+
+
+.full-bordered-pane{
+	-fx-border-width: 1;
+	-fx-border-color:-primary-color-50;
+}
+
+.top-bordered-pane{
+	-fx-border-width: 1 0 0 0;
+	-fx-border-color:-primary-color-50;
+}
+
+.left-bordered-pane{
+	-fx-border-width: 0 0 0 1;
+	-fx-border-color:-primary-color-50;
+}
+
+.right-bordered-pane{
+	-fx-border-width: 0 1 0 0;
+	-fx-border-color:-primary-color-50;
+}
+
+.right-bordered-grey-pane{
+	-fx-border-width: 0 1 0 0;
+	-fx-border-color:-grey-color-300;
+}
+
+.bottom-bordered-pane{
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color:-primary-color-50;
+}
+
+.hand-hover:hover{
+	-fx-cursor:hand;
+}
+
+.expand-collapse-icon{
+	-fx-fill:rgb(0,0,0);
+	-fx-opacity:0.40;
+}
+
+.padding-32-32-64-16{
+	-fx-padding:32 32 64 16;
+}
+
+.padding-16-0-32-0{
+	-fx-padding:16 0 32 0;
+}
+
+.padding-32-0-32-32{
+	-fx-padding:32 0 32 32;
+}
+
+.padding-32-32-32-16{
+	-fx-padding:32 32 32 16;
+}
+
+
+.spacing-8 {
+	-fx-spacing:8;
+}
+
+.spacing-16{
+	-fx-spacing:16;
+}
+
+.spacing-32 {
+	-fx-spacing:32;
+}
+
+.white-background{
+	-fx-background-color:white;
+}
+
+.padding-16-0-0-16{
+	-fx-padding: 16 0 0 16;
+}
+
+.align-right{
+	-fx-alignment:CENTER_RIGHT;
+}
+
+.padding-32-16-0-16{
+	-fx-padding:32 16 0 16;
+}
+
+.padding-32-32-32-8{
+	-fx-padding:32 32 32 8;
+}
+
+.height-92{
+	-fx-min-height:92;
+	-fx-max-height:92;
+}
+
+.height-112{
+	-fx-min-height:212;
+	-fx-max-height:212;
+}
+
+.align-center{
+	-fx-alignment:CENTER;
+}
+
+.rotate-180{
+	-fx-rotate:180;
+}
+
+.padding-0-4-0-8{
+	-fx-padding:0 4 0 8;
+}
+
+.spacing-4{
+	-fx-spacing:4;	
+}
+
+.padding-0-8-0-16{
+	-fx-padding:0 8 0 16;
+}
+
+.padding-0-0-0-8{
+	-fx-padding:0 0 0 8;
+}
+
+.padding-0-8-0-0{
+	-fx-padding:0 8 0 0;	
+}
+
+
+.ep-top-rounded-pane{
+	-fx-border-radius:10 10 0 0;
+	-fx-background-radius:10 10 0 0;
+	-fx-border-width:1 1 0 0;
+	-fx-border-color:-grey-color-300;
+}
+
+.padding-32-16-32-16{
+	-fx-padding:32 16 32 16;
+}
+
+.rootStructure-header-stack{
+}
+
+.rootStructure-header-stack:shadowed{
+	-fx-effect:-ep-pane-header-shadow-effect;
+}
+
+.padding-8-32-8-32{
+	-fx-padding:8 32 8 32;
+}
+
+
+.padding-16-32-16-32{
+	-fx-padding:16 32 16 32;
+}
+
+.ep-view-actions-container{
+	-fx-alignment:CENTER_LEFT;	
+	-fx-spacing:8;
+	-fx-padding:0;
+}
+
+.ep-form-hrow{
+	-fx-spacing:16;
+	-fx-hgap:16;
+}
+
+.list-cell:hover .item-presenter-row-container, 
+.item-presenter-row-container:hover,
+.item-presenter-row-container{
+	-fx-alignment:CENTER_LEFT;
+}
+.padding-4-0-4-0{
+	-fx-padding:4 0 4 0;
+}
+.padding-4-0-4-4{
+	-fx-padding:4 0 4 4;
+}
+.padding-4{
+	-fx-padding:4;
+}
+
+
+.top-rounded-pane{
+	-fx-border-radius:10 10 0 0;
+	-fx-background-radius:10 10 0 0;
+}
+
+.full-rounded-pane{
+	-fx-border-radius:10 10 10 10;
+	-fx-background-radius:10 10 10 10;
+}
+
+.half-opacity{
+	-fx-opacity:0.50;	
+}
+
+.quarter-opacity{
+	-fx-opacity:0.25;	
+}
+
+
+
+

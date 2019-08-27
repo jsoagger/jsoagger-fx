@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="rootContainer" id="rootContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+	<HBox fx:id="internalContainer" id="internalContainer" HBox.hgrow="ALWAYS">
+		<HBox fx:id="iconContainer" id="iconContainer"/>
+		<VBox  fx:id="centerContainer" id="centerContainer" HBox.hgrow="ALWAYS" spacing="10">
+			<HBox fx:id="mainLabelContainer" id="mainLabelContainer" alignment="TOP_LEFT" HBox.hgrow="ALWAYS"/>
+			<HBox fx:id="secondaryLabelContainer" id="secondaryLabelContainer" VBox.vgrow="ALWAYS"/>
+			<HBox fx:id="rightActionsContainer" id="rightActionsContainer" />
+		</VBox>
+	</HBox>
+</StackPane>

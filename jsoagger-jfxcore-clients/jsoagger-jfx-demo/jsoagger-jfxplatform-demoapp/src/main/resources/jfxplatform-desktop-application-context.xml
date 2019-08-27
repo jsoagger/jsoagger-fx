@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-destroy-method="destroy">
+
+	<context:component-scan base-package="io.github.jsoagger.core.ui.jfx"/>
+	
+	<bean id="DemoPlatformMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="parentMessageSource" ref="CoreGeneralMessageSource"/>
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.jfx.platform.demo.rootstructure.message</value>
+				<value>io.github.jsoagger.jfx.platform.demo.message</value>
+				<value>io.github.jsoagger.jfxcore.engine.controller.localization</value>
+				<value>i18n.generalBundle</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application-desktop-dev.properties</value>
+				<value>classpath:application-dev.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true"/>
+	</bean>
+
+	<import resource="classpath:/core-spring-config/jsoagger-jfxcore-integration.xml"/>
+	<import resource="classpath:/core-spring-config/common/jfx-core-application-context.xml"/>
+	<import resource="classpath:/core-spring-config/jsoagger-cloud-operations-context.xml"/>
+	<import resource="classpath:/core-spring-config/jfx-platform-integration-context.xml"/>
+	<import resource="classpath:/io/github/jsoagger/jfxcore/components/jfxcore-components-context.xml"/>
+	<import resource="classpath:/io/github/jsoagger/jfx/platform/demo/platform-demoapp-root-context.xml"/>
+	
+	
+	<!-- override values defined in core xml configuration -->
+	<util:properties id="platformProperties" value-type="java.lang.String">
+		<prop key="tempFolderPath">${application.root.dir}\temp</prop>
+		<prop key="applicationDataFolderPath">${application.root.dir}\datas</prop>
+		<prop key="localNotificationsFolderPath">${application.root.dir}\datas\notifications</prop>
+		<prop key="applicationWindowName">${application.name}</prop>
+		<prop key="applicationTitle">${application.name}</prop>
+		<prop key="fullScreen">${application.launch.in.fullScreen.mode}</prop>
+
+		<prop key="platformRootStructureId">WelcomeRSView</prop>
+		<prop key="loginRootStructureId">LoginRootStructure</prop>
+
+		<prop key="platformType">desktop</prop>
+		<prop key="applicationViewConfigMode">offline</prop>
+
+		<!-- Connection mode on the application: if allow allow_anonymous, the login form is show only if the user decides to connect to application -->
+		<!-- If connection mode is disallow_anonymous, the login form is show to the user and welcome view after success connection -->
+		<prop key="applicationConnexionMode">disallow_anonymous</prop>
+
+		<!-- This parameter must be tru in order to dipslay fullscreen button in teh header of application in desktop mode only -->
+		<prop key="full.screen.support">false</prop>
+	</util:properties>
+	
+	<!-- IMPORTANT MUST BE AT THE END	--> 
+	<util:list id="IconDefinitionFiles" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<value>/core-icon-mapping.properties</value>
+		<value>/desktop-icon-mapping.properties</value>
+	</util:list>
+	
+	 <!-- Size of screen on startup -->
+	<util:properties id="screenProperties" value-type="java.lang.String">
+		<prop key="width">900</prop>
+		<prop key="height">1000</prop>
+
+		<!-- We block the scene minimum width to this size to avoid some troubles on scrolling data -->
+		<!-- Do no go under 600x500 in desktop. All UI components are matrix relative to these min -->
+		<prop key="minWidth">690</prop>
+		<prop key="minHeight">500</prop>
+	</util:properties>
+	
+	<util:list id="customStyleSheetsPath" list-class="java.util.ArrayList" value-type="java.lang.String">
+		<!-- <value>classpath:/css/jfoenix-design.css</value> -->
+		<value>classpath:/css/desktop-override.css</value>
+	</util:list>
+	
+	<bean id="platformViewStructure" class="io.github.jsoagger.jfxcore.engine.controller.main.layout.TopTabPanedViewStructure" scope="singleton">
+          <property name="screenProperties" ref="screenProperties" />
+          <property name="stylesheetManager" ref="styleSheetManager" />
+          <property name="platformProperties" ref="platformProperties" />
+     </bean>
+	
+	<bean id="IntegrationService" class="io.github.jsoagger.jfxcore.api.services.Services" primary="true" lazy-init="false">
+		<property name="appContextService" ref="SpringBasedApplicationContext"/>
+		<property name="viewConfigurationService" ref="XMLViewConfigurationService"/>
+		<property name="globalConfigService" ref="XMLGlobalCompsService"/>
+		<property name="commonComponentsServices" ref="CommonCompsServices"/>
+		<property name="dialogConfigServices" ref="DialogConfigServices"/>
+	</bean>
+	
+</beans>

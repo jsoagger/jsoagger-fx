@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<context:component-scan base-package="io.github.jsoagger.cloud.stub.operations" />
+
+	<bean id="GetCurrentUserOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetCurrentUserOperation" lazy-init="true" scope="prototype" />
+	<bean id="LoginOperation" class="io.github.jsoagger.cloud.stub.operations.StubLoginOperation" lazy-init="true" scope="prototype" />
+	<bean id="LogoutOperation" class="io.github.jsoagger.cloud.stub.operations.StubLogoutOperation" lazy-init="true" scope="prototype" />
+	<bean id="LoadContainerByOidOperation" class="io.github.jsoagger.cloud.stub.operations.StubLoadContainerByOidOperation" lazy-init="true" scope="prototype" />
+	<bean id="LoadContainerByPathOperation" class="io.github.jsoagger.cloud.stub.operations.StubLoadContainerByPathOperation" lazy-init="true" scope="prototype" />
+
+	<bean id="StubPaginatedTableDataOperation" class="io.github.jsoagger.cloud.stub.operations.StubPaginatedTableDataOperation" lazy-init="true" scope="prototype" >
+		<property name="getPreferenceValueOperation" ref="GetPreferenceValueOperation"/>
+	</bean>
+	
+	<bean id="StubSavedSearchTableDataOperation"  class="io.github.jsoagger.cloud.stub.operations.StubSavedSearchTableDataOperation" scope="prototype"/>
+	
+	<bean id="GetThumbOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetThumbOperation" lazy-init="true" scope="prototype" />
+	<bean id="GetInstanciableSoftTypesOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetInstanciableSoftTypesOperation" lazy-init="true" scope="prototype" >
+		<property name="operation" ref="GetTypeByPathOperation"/>
+	</bean>
+	
+	<bean id="GetTypeByPathOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetTypeByPathOperation" lazy-init="true" scope="prototype" />
+	<bean id="ListvaluesOperation" class="io.github.jsoagger.cloud.stub.operations.StubListvaluesOperation" lazy-init="true" scope="prototype" />
+	<bean id="ListValuesOperation" class="io.github.jsoagger.cloud.stub.operations.StubListvaluesOperation" lazy-init="true" scope="prototype" />
+	<bean id="GetTypeByOidOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetTypeByOidOperation" lazy-init="true" scope="prototype" />
+	<bean id="PersistableLoadSimpleModelOperation" class="io.github.jsoagger.cloud.stub.operations.StubPersistableLoadSimpleModelOperation" lazy-init="true" scope="prototype" >
+		<property name="operation" ref="GetTypeByOidOperation"/>
+	</bean>
+	
+	<bean id="EmptyMultipleResultOperation" class="io.github.jsoagger.cloud.stub.operations.StubEmptyMultipleResultOperation" lazy-init="true" scope="prototype" />
+	<bean id="GetIllustrationOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetIllustrationOperation" lazy-init="true" scope="prototype" >
+		<property name="platformProperties" ref="platformProperties"/>
+		<property name="getPreferenceValueOperation" ref="GetPreferenceValueOperation"/>
+	</bean>
+
+	<bean id="GetPreferenceValueOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetPreferenceValueOperation" lazy-init="true" scope="prototype" />
+	<bean id="SetPreferenceValueOperation" class="io.github.jsoagger.cloud.stub.operations.StubSetPreferenceValueOperation" lazy-init="true" scope="prototype" />
+	
+	<bean id="GetFolderContentOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetFolderContentOperation" lazy-init="true" scope="prototype" />
+	<bean id="GetFolderChildrenOperation" class="io.github.jsoagger.cloud.stub.operations.StubGetFolderChildrenOperation" lazy-init="true" scope="prototype" />
+	<bean id="GetContainerRootFolderChildren" class="io.github.jsoagger.cloud.stub.operations.StubGetContainerRootFolderChildren" lazy-init="true" scope="prototype" />
+	
+	<bean id="LoadAllCurrentUserPreferencesValueOperation" class="io.github.jsoagger.cloud.stub.operations.StubLoadAllCurrentUserPreferencesValueOperation" scope="prototype"/>
+</beans>

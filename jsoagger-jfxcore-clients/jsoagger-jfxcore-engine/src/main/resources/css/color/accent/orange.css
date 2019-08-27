@@ -1,0 +1,37 @@
+/*-
+ * ========================LICENSE_START=================================
+ * JSoagger 
+ * %%
+ * Copyright (C) 2019 JSOAGGER
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =========================LICENSE_END==================================
+ */
+
+
+.root {
+	-accent-color-900: #E65100;
+	-accent-color-800: #EF6C00;
+	-accent-color-700: #F57C00;
+	-accent-color-600: #FB8C00;
+	-accent-color-500: #FF9800;
+	-accent-color-400: #FFA726;
+	-accent-color-300: #FFB74D;
+	-accent-color-200: #FFCC80;
+	-accent-color-100: #FFE0B2;
+	-accent-color-50: #FFF3E0;
+	-accent-color-a100: #FFD180;
+	-accent-color-a200: #FFAB40;
+	-accent-color-a400: #FF9100;
+	-accent-color-a700: #FF6D00;
+}

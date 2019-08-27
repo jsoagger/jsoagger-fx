@@ -1,0 +1,134 @@
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<component id="ListViewDefinition">
+     <properties combine.keys="name">
+                <!-- pane style, no style class by default -->
+          <property name="styleClass" value="" />
+                
+                <!-- default is 10 -->
+          <property name="rowPerPage" value="10" />
+
+          <property name="listViewImpl" value="AdvancedListview" />
+     </properties>
+
+     <component id="Listview" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="id" value="id" />
+               <property name="styleClass" value="styleClass" />
+        
+                        <!-- mandatory -->
+               <property name="cellFactory" value="listViewCellFactory_00" />
+          </properties>
+     </component>
+
+     <component id="Pagination">
+          <properties combine.keys="name">
+               <property name="paginationImpl" value="" />
+               <property name="position" value="right" />
+               <property name="maxItems" value="5" />
+          </properties>
+     </component>
+
+     <component id="Toolbar" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="styleClass" value="transparent-background" />
+               <property name="toolbarImpl" value="BasicHToolbar" />
+          </properties>
+
+          <component id="RootMenuActions">
+               <component id="LeftActions">
+                    <component ref="SearchAndAddTeamMember" />
+               </component>
+               <component id="CenterActions" />
+               <component id="RightActions">
+                    <component ref="AddTeamMemberButton" />
+               </component>
+          </component>
+     </component>
+
+     <component id="Header" combine.keys="id">
+          <properties combine.keys="name">
+               <property name="styleClass" value="white-background,light-border" />
+               <property name="labelStyleClass" value="h4" />
+               <property name="message" value="" />
+               <property name="staticMessage" value="" />
+               <property name="headerImpl" value="" />
+          </properties>
+     </component>
+
+     <component id="NoContentPane">
+          <properties combine.keys="name">
+               <property name="noContentMessage" value="" />
+               <property name="styleClass" value="" />
+          </properties>
+
+          <component id="MaterialButton">
+               <component ref="" />
+          </component>
+     </component>
+</component>
+
+
+
+<component id="Content" combine.keys="id" processor="FormFieldsetProcessor">
+     <properties combine.keys="name">
+          <property name="contentImpl" value="ListViewPane" />
+          <property name="styleClass" value="unshadowed-pane" />
+          <property name="location" value="TM_LV" />
+     </properties>
+
+     <component id="ListContentDefinition">
+          <properties combine.keys="name">
+               <property name="rowPerPage" value="6" />
+          </properties>
+
+          <component id="Header" combine.keys="id">
+               <properties combine.keys="name">
+                    <property name="styleClass" value="transparent-background,flow-content-header,padding-32-32-16-0" />
+                    <property name="descriptionStyleClass" value="" />
+                    <property name="description" value="TYPES_MANAGER_DESCRIPTION" />
+                    <property name="displayHeader" value="true" />
+               </properties>
+          </component>
+
+          <component id="Listview">
+               <properties combine.keys="name">
+                    <property name="listViewStyleClass" value="ep-fixed-size-listview-large,ep-fixed-size-listview,ep-separated-items-listview" />
+                    <property name="listWrapperStyleClass" value="ep-listview-pane-content-wrapper,padding-0-32-0-32" />
+                    <property name="paginateOperation" value="GetAllRootTypesOperation" />
+                    <property name="dataLoader" value="DefaultEntityPaginatedDataLoader" />
+
+                    <property name="descriptionLabelStyleClass" value="" />
+                    <property name="mainLabelStyleClass" value="ep-fixed-size-listview-root-item-presenter-main-label-small,padding-0-0-0-32" />
+                    <property name="cellPresenter" value="SoftTypeCellPresenter" />
+                    <property name="cellFactory" value="SoftTypeCellFactory" />
+               </properties>
+          </component>
+
+          <component id="Pagination">
+               <properties combine.keys="name">
+                    <property name="paginationImpl" value="LoadMorePaginationBar" />
+                    <property name="maxItems" value="5" />
+               </properties>
+          </component>
+     </component>
+</component>

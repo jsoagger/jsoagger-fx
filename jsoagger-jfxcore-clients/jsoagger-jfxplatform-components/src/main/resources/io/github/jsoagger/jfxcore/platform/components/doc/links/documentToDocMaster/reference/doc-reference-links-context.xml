@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true" profile="desktop">
+
+	<bean id="DocumentReferencedNavigationFlowView" lazy-init="default" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="DocMessageSource" />
+		<property name="layoutManager" ref="BasicTableStructureContentLayoutManager" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/reference/DocumentReferencedNavigationFlowView.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="DocumentReferenceContentTabPaneView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardTabPaneController" scope="prototype">
+		<property name="messageSource" ref="DocMessageSource" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="layoutManager" ref="FullTabPaneLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/DocumentToDocMasterContentTabPaneView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/reference/DocumentReferenceContentTabPaneView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DocumentReferenceLinksDatatableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullTableViewController" scope="prototype">
+		<property name="messageSource" ref="DocMessageSource" />
+		<property name="layoutManager" ref="FullTableViewFixedPaginationLayoutManager" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="tableResponsiveMatrix" ref="DefaultTableResponsiveMatrix" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/DocumentToDocMasterDataTableView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/reference/DocumentReferenceLinksDatatableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DocumentReferenceManagementView" lazy-init="default"
+		class="io.github.jsoagger.jfxcore.engine.controller.main.FlowWithTableContentViewController" scope="prototype">
+		<property name="messageSource" ref="DocMessageSource" />
+		<property name="modelProvider" ref="StructureContentModelReference" />
+		<property name="layoutManager" ref="RightSwitchableTwoHPanesLayoutManager" />
+		<property name="identityPresenter" ref="RCIteratedFullIdentityHeaderPresenter" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/DocumentToDocMasterManagementSearchFlowWithStructureView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/reference/DocumentReferenceManagementView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SearchDocumentAddToReferenceFormView" class="io.github.jsoagger.jfxcore.components.search.controller.UniformSearchController" scope="prototype">
+		<property name="messageSource" ref="DocMessageSource" />
+		<property name="layoutManager" ref="SingleSearchFormAndResultLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/reference/SearchDocumentAddToReferenceFormView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SearchDocumentResultAddDocToReferenceFlowView" class="io.github.jsoagger.jfxcore.components.search.controller.SearchResultController" scope="prototype">
+		<property name="messageSource" ref="DocMessageSource" />
+		<property name="layoutManager" ref="SearchResultLayoutManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="getTypeByOidOperation" ref="GetTypeByOidOperation" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/platform/components/doc/links/documentToDocMaster/reference/SearchDocumentResultAddDocToReferenceFlowView.xml</value>
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Region?>
+
+<StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+	<children>
+		<AnchorPane prefHeight="-1" prefWidth="-1">
+			<children>
+				<StackPane AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+					<children>
+						<AnchorPane prefHeight="-1" prefWidth="-1">
+
+							<!--
+								BOTTOM ANCHOR: HEIGHT OF PAGINATION BAR
+								TOP ANCHOR: HEIGHT OF HEADER
+							-->
+							<HBox fx:id="anchorCenteredPane" AnchorPane.topAnchor="162" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="72">
+								<children>
+									<StackPane fx:id="leftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
+									<BorderPane fx:id="tableStructureAreaSection" HBox.hgrow="ALWAYS">
+										<center>
+											<HBox fx:id="externalWrapper" alignment="CENTER" VBox.vgrow="ALWAYS">
+												<VBox fx:id="centerFixedAreaSection" alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+													<StackPane fx:id="centerAreaSection" VBox.vgrow="ALWAYS" alignment="TOP_CENTER" />
+												</VBox>
+											</HBox>
+										</center>
+									</BorderPane>
+									<StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0" />
+								</children>
+							</HBox>
+							<StackPane fx:id="headerAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"
+								style="-fx-border-width:0 0 1 0;-fx-border-color:-internal-border-color;-fx-effect:-ep-pane-header-shadow-effect" AnchorPane.topAnchor="0"
+								AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+							<StackPane fx:id="footerAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"
+								styleClass="ep-fixed-pagination-full-table-structure-footer" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+								style="-fx-border-width:1 0 0 0;-fx-border-color:-internal-border-color" />
+						</AnchorPane>
+					</children>
+				</StackPane>
+
+
+				<VBox fx:id="editorStructureAreaSection" AnchorPane.topAnchor="80" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" visible="false" />
+				<HBox fx:id="editorStructureMinimizedPane" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="20" visible="false" managed="false"
+					styleClass="ep-search-result-minimized-pane">
+					<children>
+						<Label fx:id="editorStructureMinimizedPaneLabel" text="I am the minimized pane" styleClass="ep-search-result-minimized-pane-label" />
+						<Button fx:id="editorStructureMaximizeButton" />
+					</children>
+				</HBox>
+
+				<!-- Pane containing material button -->
+				<StackPane fx:id="floatingDefaultActionsWrapper" id="floatingDefaultActionsWrapper" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="350" visible="false"
+					managed="false" />
+			</children>
+		</AnchorPane>
+	</children>
+</StackPane>
+

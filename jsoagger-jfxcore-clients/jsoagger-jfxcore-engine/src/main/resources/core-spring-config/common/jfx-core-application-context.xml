@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+     xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+     <bean id="CoreValidationMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+          <property name="useCodeAsDefaultMessage" value="true" />
+          <property name="defaultEncoding" value="UTF-8" />
+          <property name="basenames">
+               <list>
+                    <value>i18n.validationBundle</value>
+               </list>
+          </property>
+     </bean>
+
+     <bean id="CoreGeneralMessageSource" class="io.github.jsoagger.core.i18n.MessageSource">
+          <property name="useCodeAsDefaultMessage" value="true" />
+          <property name="defaultEncoding" value="UTF-8" />
+          <property name="basenames">
+               <list>
+                    <value>i18n.generalBundle</value>
+                    <value>i18n.validationBundle</value>
+                    <value>i18n.lifecycleBundle</value>
+                    <value>i18n.componentBundle</value>
+               </list>
+          </property>
+     </bean>
+
+        <!--****************************************************************************************************************************************************************
+                THE ROOT CONTEXT OF THE APPLICATION SINGLETON IN ALL APPLICATION CONTEXT, ONE ROOT CONTEXT BY VIEW
+                **************************************************************************************************************************************************************** -->
+     <bean id="rootContext" class="io.github.jsoagger.jfxcore.engine.components.security.RootContext" scope="singleton" />
+
+        <!--****************************************************************************************************************************************************************
+                PLATFORM PROPERTIES
+                **************************************************************************************************************************************************************** -->
+     <bean id="platformViewStructure" class="io.github.jsoagger.jfxcore.engine.controller.main.layout.TopTabPanedViewStructure" scope="singleton">
+          <property name="screenProperties" ref="screenProperties" />
+          <property name="stylesheetManager" ref="styleSheetManager" />
+          <property name="platformProperties" ref="platformProperties" />
+     </bean>
+
+     <bean id="viewContext" lazy-init="true" class="io.github.jsoagger.jfxcore.engine.components.security.UIContext" scope="prototype">
+          <property name="userContext" ref="userContext" />
+
+          <!-- must be a singleton, the unique container context of application -->
+          <property name="rootContext" ref="rootContext" />
+     </bean>
+
+     <bean id="userContext" class="io.github.jsoagger.jfxcore.engine.components.security.UserContext" scope="singleton" />
+
+        <!--**********************************************************************************************************************************
+                UTILITIES BEAN
+                ********************************************************************************************************************************** -->
+     <bean id="LocaleResolver" scope="singleton" class="io.github.jsoagger.jfxcore.engine.utils.LocaleResolver" />
+<!--      <bean id="resourceLoader" scope="singleton" class="org.springframework.core.io.ClassRelativeResourceLoader"/> -->
+
+        <!--**********************************************************************************************************************************
+                VALIDATIONS BEAN
+                ********************************************************************************************************************************** -->
+     <bean id="VLAlphaNumericConstraint" scope="prototype" class="io.github.jsoagger.jfxcore.engine.components.validation.VLAlphaNumericConstraint" >
+          <property name="errorMessageKey" value="ERROR_ALPHANUMERIC_VALUE" />
+     </bean>
+
+     <bean id="VLConstraintRequired" scope="prototype" class="io.github.jsoagger.jfxcore.engine.components.validation.VLConstraintRequired" >
+          <property name="errorMessageKey" value="ERROR_MANDATORY_FIELD" />
+     </bean>
+
+     <bean id="VLConstraintMaxLength" scope="prototype" class="io.github.jsoagger.jfxcore.engine.components.validation.VLConstraintMaxLength" >
+          <property name="errorMessageKey" value="ERROR_VALIDATION_MAX_LENGTH" />
+     </bean>
+
+     <bean id="VLConstraintMinLength" scope="prototype" class="io.github.jsoagger.jfxcore.engine.components.validation.VLConstraintMinLength" >
+          <property name="errorMessageKey" value="ERROR_VALIDATION_MIN_LENGTH" />
+     </bean>
+
+     <bean id="VLConstraintNotBlank" scope="prototype" class="io.github.jsoagger.jfxcore.engine.components.validation.VLConstraintNotBlank" >
+          <property name="errorMessageKey" value="ERROR_NOT_BLANK_FIELD" />
+     </bean>
+
+     <bean id="VLEmailConstraint" scope="prototype" class="io.github.jsoagger.jfxcore.engine.components.validation.VLEmailConstraint" >
+          <property name="errorMessageKey" value="ERROR_MAIL_NOT_VALID" />
+     </bean>
+
+     <bean id="VLPhoneNumberConstraints" scope="prototype" class="io.github.jsoagger.jfxcore.engine.components.validation.VLPhoneNumberConstraints" >
+          <property name="errorMessageKey" value="ERROR_PHONE_NOT_VALID" />
+     </bean>
+
+
+     <bean id="LoginSessionHolder" class="io.github.jsoagger.jfxcore.engine.components.security.LoginSessionHolder" scope="singleton" />
+     <bean id="RootContext" class="io.github.jsoagger.jfxcore.engine.components.security.RootContext" scope="prototype" init-method="init">
+          <property name="loginSessionHolder" ref="LoginSessionHolder" />
+     </bean>
+
+     <bean id="DefaultLinkPaginatedDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.DefaultLinkPaginatedDataLoader" scope="prototype" />
+     <bean id="DefaultEntityPaginatedDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.DefaultEntityPaginatedDataLoader" scope="prototype" />
+     <bean id="GenericEntityPaginatedDataLoader" class="io.github.jsoagger.jfxcore.engine.components.pagination.GenericEntityPaginatedDataLoader" scope="prototype" />
+
+     <bean id="UserNotificationsManagementDelegate" scope="singleton" class="io.github.jsoagger.jfxcore.engine.delegate.UserNotificationsManagementDelegate" />
+	 <bean id="ResourceUtils" scope="singleton" class="io.github.jsoagger.jfxcore.api.ResourceUtils" lazy-init="false"/>
+
+     <!-- !! important, import are always on the end of the file, in order to override properties -->
+     <import resource="classpath:/core-spring-config/common/jfx-core-listview-context.xml" />
+     <import resource="classpath:/core-spring-config/common/jfx-core-inputs-context.xml" />
+     <import resource="classpath:/core-spring-config/common/jfx-core-action-context.xml" />
+     <import resource="classpath:/core-spring-config/common/jfx-core-actionModel-context.xml" />
+     <import resource="classpath:/core-spring-config/common/jfx-core-actionFilter-context.xml" />
+     <import resource="classpath:/core-spring-config/common/jfx-core-controller-context.xml" />
+     <import resource="classpath:/io/github/jsoagger/core/jfx/controller/login/login-context.xml" />
+     
+     <import resource="classpath:/core-spring-config/desktop/jfx-core-desktop-application-context.xml" />
+     <import resource="classpath:/core-spring-config/mobile/jfx-core-mobile-application-context.xml" />
+</beans>

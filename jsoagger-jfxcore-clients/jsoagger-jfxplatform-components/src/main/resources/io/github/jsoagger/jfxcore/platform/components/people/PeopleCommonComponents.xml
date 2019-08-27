@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+<view id="Root" combine.keys="id">
+
+	<component id="PeopleTypeAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="TYPE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="TYPE_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="people.type" />
+			<property name="editAttributePath" value="attributes.type" />
+			<property name="editUtility" value="InputCombobox" />
+			<property name="enumeratedValuesLoader" value="InstanciablePeopleTypeToEnumeratedValueLoader" />
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="converter" value="EnumeratedValueModelConverter"/>
+			</properties>
+		</component>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="GenderAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="GENDER_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="GENDER_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="gender" />
+			<property name="editAttributePath" value="attributes.gender" />
+			<property name="editUtility" value="InputCombobox" />
+			<property name="enumeratedValuesLoader" value="DefaultEnumeratedValueLoader" />
+			<property name="enumerationKey" value="gender" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="FirstName" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="FIRSTNAME_LABEL" />
+			<property name="prompt" value="FIRSTNAME_LABEL" />
+			<property name="attributeName" value="firstname" />
+			<property name="editAttributePath" value="attributes.firstname" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="LastName" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LASTNAME_LABEL" />
+			<property name="prompt" value="LASTNAME_LABEL" />
+			<property name="attributeName" value="lastname" />
+			<property name="editAttributePath" value="attributes.lastname" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="BirthDate" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="BIRTHDATE_LABEL" />
+			<property name="prompt" value="BIRTHDATE_LABEL" />
+			<property name="attributeName" value="birthdate" />
+			<property name="editAttributePath" value="attributes.birthdate" />
+			<property name="editUtility" value="InputDatePicker" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+	<component id="BirthPlace" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="BIRTHPLACE_LABEL" />
+			<property name="prompt" value="BIRTHPLACE_LABEL" />
+			<property name="attributeName" value="birthplace" />
+			<property name="editAttributePath" value="attributes.birthplace" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true" />
+			</properties>
+		</component>
+	</component>
+
+
+	<component id="AddressStreetAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="STREET_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="STREET_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="address.street" />
+			<property name="editAttributePath" value="attributes.address.street" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="AddressCityAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="CITY_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="CITY_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="address.city" />
+			<property name="editAttributePath" value="attributes.address.city" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="AddressCountryAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="COUNTRY_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="COUNTRY_ATTRIBUTE_LABEL" />
+			<property name="attributeName" value="address.country" />
+			<property name="editAttributePath" value="attributes.address.country" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+
+	<component id="WizardStep1Model">
+		<component id="RootMenuActions">
+			<component id="CenterActions">
+				<component ref="CancelButton" />
+				<component ref="FinishButton" />
+			</component>
+		</component>
+	</component>
+
+	<component id="HomeMobilePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="MOBILE_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="MOBILE_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.mobile" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.mobile" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="HomePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="HOME_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="HOME_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.home" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.home" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="EmailAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="EMAIL_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="EMAIL_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.email" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.email" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+			</properties>
+		</component>
+	</component>
+	
+	<component id="WebSiteAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="WEBSITE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="WEBSITE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.personal.website" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.website" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+
+
+	<component id="ProHomeMobilePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_MOBILE_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_MOBILE_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.office.mobile" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.mobile" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="ProHomePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_HOME_PHONE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_HOME_PHONE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.office.home" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.home" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="ProEmailAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_EMAIL_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_EMAIL_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.office.email" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.email" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	<component id="ProWebSiteAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PRO_WEBSITE_ATTRIBUTE_LABEL" />
+			<property name="prompt" value="PRO_WEBSITE_ATTRIBUTE_LABEL_PROMPT" />
+			<property name="attributeName" value="contact.phone.office.website" />
+			<property name="editAttributePath" value="attributes.contact.phone.personal.website" />
+			<property name="editUtility" value="InputText" />
+		</properties>
+	</component>
+	
+	<!-- 
+		PEOPLE CREATION DEFAULT WIZARD ACTIONS
+	 -->
+	<component id="CreatePeopleStep1Model">
+		<component id="RootMenuActions">
+			<component id="CenterActions">
+				<component ref="NextToContactButton" />
+			</component>
+		</component>
+	</component>
+	<component id="NextToContactButton">
+		<properties combine.keys="name">
+			<property name="label" value="CONTACT_LABEL" />
+			<property name="tooltip" value="CONTACT_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="fa-angle-double-right:20" />
+			<property name="displayMode" value="RIGHT" />
+			<property name="styleClass" value="button-medium,wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepNextActionHandler" />
+			</properties>
+		</component>
+	</component>
+
+	<component id="CreatePeopleStep2Model">
+		<component id="RootMenuActions">
+			<component id="CenterActions">
+				<component ref="BackToInfosButton" />
+				<component ref="FinishButton" />
+			</component>
+		</component>
+	</component>
+	<component id="BackToInfosButton">
+		<properties combine.keys="name">
+			<property name="label" value="BACK_LABEL" />
+			<property name="tooltip" value="BACK_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="ikonli" value="fa-angle-double-left:20" />
+			<property name="styleClass" value="button-medium,wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="WizardStepBackActionHandler" />
+			</properties>
+		</component>
+	</component>
+	<component id="FinishButton">
+		<properties combine.keys="name">
+			<property name="label" value="CREATE_LABEL" />
+			<property name="tooltip" value="CREATE_LABEL" />
+			<property name="default" value="true" />
+			<property name="upperCase" value="true" />
+			<property name="type" value="SimpleButton" />
+			<property name="displayMode" value="RIGHT" />
+			<property name="styleClass" value="button-medium,wizard-button" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="CreatePeopleActionHandler" />
+			</properties>
+		</component>
+	</component>
+	
+	 <component id="CorePeopleLastNameAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="LASTNAME_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="masterName"/>
+			<property name="attributePath" value="data.attributes.lastName"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleFirtsNameAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="FIRSTNAME_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="masterName"/>
+			<property name="attributePath" value="data.attributes.firstName"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleAgeAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="AGED_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+		</properties>
+	</component>
+
+	<component id="CorePeopleBirthDateAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="BIRTH_DATE_LABEL"/>
+			<property name="viewUtility" value="DateInputView"/>
+			<property name="attributeName" value="creation"/>
+			<property name="attributePath" value="data.attributes.createDate"/>
+			<property name="inplaceEditable" value="false"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="displayFormat" value="dd/MM/yyyy"/>
+				<property name="saveFormat" value="yyyy-MM-dd HH:mm:ss"/>
+				<property name="converter" value="LocalDateConverter"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleBirthPlaceAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PLACE_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="masterName"/>
+			<property name="attributePath" value="data.attributes.birthPlace"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleEmailAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="EMAIL_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="masterName"/>
+			<property name="attributePath" value="data.attributes.email"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleSiteWebAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="WEB_SITE_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="siteWeb"/>
+			<property name="attributePath" value="data.attributes.siteWeb"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleAddressCityAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="ADDRESS_CITY_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="addressCity"/>
+			<property name="attributePath" value="data.attributes.addressCity"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleAddressCountryAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="ADDRESS_COUNTRY_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="addressCity"/>
+			<property name="attributePath" value="data.attributes.addressCountry"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeoplePhoneAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PHONE_HOME_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="homePhone"/>
+			<property name="attributePath" value="data.attributes.homePhone"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CorePeopleMobileAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="PHONE_MOBILE_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="mobilePhone"/>
+			<property name="attributePath" value="data.attributes.mobilePhone"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+	
+	<component id="CorePeopleGenderAttribute">
+		<properties combine.keys="name">
+			<property name="label" value="GENDER_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="masterName"/>
+			<property name="attributePath" value="data.attributes.gender"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+</view>

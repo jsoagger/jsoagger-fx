@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" style="-fx-background-color:-background-color;" minWidth="-1.0" pickOnBounds="false" snapToPixel="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox VBox.vgrow="ALWAYS" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
+            <children>
+                <StackPane fx:id="leftFloatingPaneWrapper" style="-fx-padding:0 4 0 0;-fx-min-width:40;-fx-max-width:40;-fx-pref-width:40;-fx-background-color:linear-gradient(#ECEFF1,#CFD8DC);" alignment="TOP_CENTER">
+                    <children>
+                        <VBox fx:id="leftFloatingPane" alignment="TOP_CENTER" styleClass="ep-switchable-pane-lateral-left" maxHeight="120">
+                            <children>
+                                <Hyperlink fx:id="showLeftPaneButton" />
+                                <Hyperlink fx:id="showLeftFloatingPaneButton" />
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+
+                <AnchorPane fx:id="leftStackPaneWrapper" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0">
+                    <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" fx:id="leftScrollPane" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+                            <content>
+                                <StackPane id="internalWrapper" style="-fx-padding:0 0 0 0;-fx-background-color:-background-color;">
+                                    <children>
+                                        <StackPane fx:id="leftStackPane" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-switchable-pane-internal-wrapper" />
+                                    </children>
+                                </StackPane>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </AnchorPane>
+
+                <AnchorPane fx:id="rightStackPaneAnchor" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox fx:id="headerActionsWrapper" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" styleClass="ep-switchable-hpanes-actions-pane"/>
+                        <ScrollPane fx:id="rightStackPaneWrapper" fitToHeight="true" fitToWidth="true" AnchorPane.topAnchor="162" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+                            <content>
+                                <StackPane fx:id="rightStackPane" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </AnchorPane>
+
+                <StackPane fx:id="rightFloatingPaneWrapper" style="-fx-padding:0 0 0 4;-fx-min-width:40;-fx-max-width:40;-fx-pref-width:40;-fx-background-color:linear-gradient(#ECEFF1,#CFD8DC)">
+                    <children>
+                        <VBox fx:id="rightFloatingPane" styleClass="ep-switchable-pane-lateral-right">
+                            <children>
+                                <Hyperlink fx:id="showRightPaneButton" />
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </children>
+        </HBox>
+
+        <!-- THIS PANE IS THE ONE WHICH IS DISPLAYED OVER THE RIGHT PANE. -->
+        <HBox fx:id="leftMenuFloatingPane" translateX="-460" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-border-width:1 1 1 0;-fx-border-color:-grey-color-400;">
+            <children>
+                <VBox fx:id="leftMenuContentPaneActions" style="-fx-padding:0 0 0 4;-fx-min-width:40;-fx-max-width:40;-fx-pref-width:40;-fx-background-color:linear-gradient(#ECEFF1,#CFD8DC);">
+                    <children>
+                        <Hyperlink fx:id="closeLeftFloatingPaneButton" />
+                    </children>
+                </VBox>
+                <StackPane fx:id="leftMenuContentPane" prefHeight="-1.0" styleClass="ep-swithable-left-menu">
+                </StackPane>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
+

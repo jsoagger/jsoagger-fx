@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	========================LICENSE_START=================================
+	JSoagger 
+	%%
+	Copyright (C) 2019 JSOAGGER
+	%%
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	=========================LICENSE_END==================================
+-->
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="SearchMessageI18n" class="io.github.jsoagger.core.i18n.MessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>io.github.jsoagger.jfxcore.components.search.message</value>
+				<value>i18n.generalBundle</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="AdvancedSearchTabPaneView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardTabPaneController" scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTabPaneLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/SearchTabPane.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="AdvancedFloatingSearchAndFlowResultView" lazy-init="default" class="io.github.jsoagger.jfxcore.components.search.controller.AdvancedSearchAndResultFlowController"
+		scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="layoutManager" ref="LeftSwitchableTwoHPanesLayoutManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/AdvancedSearchAndFlowResultView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="AdvancedSwitchableSearchAndFlowResultView" lazy-init="default"
+		class="io.github.jsoagger.jfxcore.components.search.controller.AdvancedSearchAndResultFlowController" scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="layoutManager" ref="LeftSwitchableTwoHPanesLayoutManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/AdvancedSearchAndFlowResultView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SearchFormView" lazy-init="default" class="io.github.jsoagger.jfxcore.components.search.controller.SearchFormController" scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="layoutManager" ref="SearchFormLayoutContentManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/QuickSearchFormView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SearchResultFlowView" class="io.github.jsoagger.jfxcore.components.search.controller.SearchResultController" scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="layoutManager" ref="CenteredFullFlowLayoutManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="getTypeByOidOperation" ref="GetTypeByOidOperation" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/components/search/SearchResultFlowView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="AdvancedSearchFormView" lazy-init="default" class="io.github.jsoagger.jfxcore.components.search.controller.SearchFormController" scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="layoutManager" ref="SearchFormLayoutContentManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/AdvancedSearchFormView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="DefaultSearchPaginatedDataLoader" class="io.github.jsoagger.jfxcore.components.search.DefaultSearchPaginatedDataLoader" scope="prototype" />
+	<bean id="SearchLayoutManager" class="io.github.jsoagger.jfxcore.engine.search.SearchViewLayoutManager" scope="prototype" />
+	<bean id="SearchResultCellFactory" class="io.github.jsoagger.jfxcore.engine.components.list.impl.ModelSearchResultListCell" lazy-init="true" scope="prototype" />
+	<bean id="SearchAttributeForwardEditor" class="io.github.jsoagger.jfxcore.components.search.SearchAttributeForwardEditor" scope="prototype" />
+	<bean id="SearchFormForwardEditionHandler" class="io.github.jsoagger.jfxcore.components.search.SimpleSearchForwardEditionHandler" scope="prototype" />
+
+
+	<bean id="SavedSearchTabPaneView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardTabPaneController" scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="FullTabPaneLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/saved/SavedSearchTabPane.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MySavedSearchTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="CenteredTabViewLayoutManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/saved/MineSavedSearchListViewTab.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SharedTabView" class="io.github.jsoagger.jfxcore.engine.controller.main.StandardTabPaneController" scope="prototype">
+		<property name="messageSource" ref="DetailsViewMessageSource" />
+		<property name="layoutManager" ref="CenteredTabViewLayoutManager" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/saved/SharedSavedSearchListView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="MySavedSearchTableView" class="io.github.jsoagger.jfxcore.engine.controller.main.FullFlowViewController" scope="prototype">
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="modelProvider" ref="RootStructureModelLoader" />
+		<property name="layoutManager" ref="CenteredFullFlowFixedPaginationLayoutManager" />
+		<property name="viewDefinitions">
+			<list merge="true">
+				<value>/io/github/jsoagger/jfxcore/components/search/saved/MySavedSearchTableView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="CreateSavedSearchView" class="io.github.jsoagger.jfxcore.engine.controller.main.WizardViewController" scope="prototype">
+		<property name="wizardProperties" ref="wizardProperties" />
+		<property name="messageSource" ref="SearchMessageI18n" />
+		<property name="viewDefinitions">
+			<list merge="false">
+				<value>/io/github/jsoagger/jfxcore/components/search/saved/CreateSavedSearchView.xml</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
