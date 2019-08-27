@@ -3,21 +3,21 @@
 1. com.sun.javafx.* package content have been made inaccessible by orable in jdk9
 	Class using library in this class must be refactored in order to run in JAVA9
 	
-2A. RUN EMAGIN DESKTOP CLIENT ON JAVA9 -- NO MODULES
+2A. RUN JSOAGGER DESKTOP CLIENT ON JAVA9 -- NO MODULES
 	As JAXB is planned to removal in JAVA11 and made private in JAVA9, must use --add-modules to make it accessible
 	-> JAXB should be carried as maven dependency in futur version
 	$JAVA_HOME/bin/java -jar --add-modules java.xml.bind,javafx.base,javafx.controls -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 -Dspring.profiles.active=desktop,dev,h2 jsoagger-jfxcore-desktop-demoapp-11.0.2-spring-boot.jar
 	
 	
-	2.1	RUN EMAGIN DESKTOP CLIENT ON JAVA8
+	2.1	RUN JSOAGGER DESKTOP CLIENT ON JAVA8
 		java -jar -Dspring.profiles.active=desktop,dev,h2 jsoagger-jfxcore-desktop-spring-boot.jar
 	2.2 Remote DEBUG
 		-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1045
 		
-2B. RUN EMAGIN DESKTOP CLIENT ON JAVA9/10 WITH MODULES (SPRING BOOT)
+2B. RUN JSOAGGER DESKTOP CLIENT ON JAVA9/10 WITH MODULES (SPRING BOOT)
 	java -Dspring.profiles.active=desktop,dev,h2 --add-opens javafx.controls/javafx.scene.control.skin=ALL-UNNAMED,javafx.controls/com.sun.javafx.scene.control.skin=ALL-UNNAMED,javafx.graphics/com.sun.javafx.application=ALL-UNNAMED  -jar ./target/jsoagger-jfxcore-desktop-demoapp-11.0.2-spring-boot.jar
 
-2C. RUN EMAGIN DESKTOP CLIENT ON JAVA9/10 WITH MODULES (Jar WITH EXTERNAL DEPENDENCIES)
+2C. RUN JSOAGGER DESKTOP CLIENT ON JAVA9/10 WITH MODULES (Jar WITH EXTERNAL DEPENDENCIES)
 	DEPENDENCIES ARE LOCATED IN EXTERNAL LIB FOLDER -- manual, dependencies are out of the final jar,
 	java -Dspring.profiles.active=desktop,dev,h2 -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 --add-opens javafx.controls/javafx.scene.control.skin=ALL-UNNAMED,javafx.controls/com.sun.javafx.scene.control.skin=ALL-UNNAMED,javafx.graphics/com.sun.javafx.application=ALL-UNNAMED  -jar jsoagger-jfxcore-desktop-demoapp-11.0.2.jar
 

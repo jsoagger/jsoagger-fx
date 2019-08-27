@@ -11,7 +11,7 @@
 
 # Concept
 
-**« EmaginFX »** concept is to **build** JavaFX **IHM from « XML » or « JSON » configuration file**.
+**« JSoaggerFX »** concept is to **build** JavaFX **IHM from « XML » or « JSON » configuration file**.
 
 **Each node on the scene is a reusable, configurable and injectable component, described by a configuration file**.
 
@@ -21,9 +21,9 @@ Builded UI is **Responsive, Adaptative and material designed**. It can be easily
 
 
 ## View Processor
-With EmaginFX, views are described by XML/JSON files and processed by EmaginJFX processor. 
+With JSoaggerFX, views are described by XML/JSON files and processed by JSoaggerJFX processor. 
 
-That's why « EmaginFX » upon JavaFX gives developers ability to quickly realise multiplatform application and reuse components as library through mutiple projects.
+That's why « JSoaggerFX » upon JavaFX gives developers ability to quickly realise multiplatform application and reuse components as library through mutiple projects.
 
 
 <p align="center">
@@ -32,7 +32,7 @@ That's why « EmaginFX » upon JavaFX gives developers ability to quickly realis
 
 
 ## Bean Instances management and IOC
-EmaginFX uses a container to manage bean instance. Best practice is to not intanciate manually a component but get an instance from bean manager.
+JSoaggerFX uses a container to manage bean instance. Best practice is to not intanciate manually a component but get an instance from bean manager.
 
 
 ```java
@@ -41,7 +41,7 @@ component.build(controller, configuration);
 ```
 
 
-EmaginFX can be launched with Spring framework as IOC container and bean instances manager. All spring XML configuration files are already packaged inside framework.
+JSoaggerFX can be launched with Spring framework as IOC container and bean instances manager. All spring XML configuration files are already packaged inside framework.
 
 ```java
     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext();
@@ -63,7 +63,7 @@ In fact Spring is a **RUNTIME ONLY DEPENDENCY**, i.e, there is no spring annotat
 
 
 ## Components configuration overriding
-EmaginFX uses XMLCombiner to manage component XML configuration. XMLCombiner gives us ability to merge multiple XML files while removing/adding nodes in output file.
+JSoaggerFX uses XMLCombiner to manage component XML configuration. XMLCombiner gives us ability to merge multiple XML files while removing/adding nodes in output file.
 
 It gives us the ability te reuse and by the way override some attributes of a component, while keeping the source code clean and maintenable.
 
@@ -128,7 +128,7 @@ mvn package
 
 # Running the demo application
 
-Demo application shows part of EmaginFX capabilities.
+Demo application shows part of JSoaggerFX capabilities.
 
 * Download a version of the demo for your OS from following links:
 
@@ -136,9 +136,9 @@ Demo application shows part of EmaginFX capabilities.
 
 | Platform   | Status | Download  Demo|
 | ------- | --- | --- |
-| MacOs   |[![Build Status](https://dev.azure.com/yvonjisoa0885/Emagin%20Platform/_apis/build/status/Nexitia.jsoagger-platform?branchName=develop)](https://dev.azure.com/yvonjisoa0885/Emagin%20Platform/_build/latest?definitionId=1?branchName=develop)|[Download](https://github.com/Nexitia/emaginfx/releases)||
-| Linux|[![Build Status](https://dev.azure.com/yvonjisoa0885/Emagin%20Platform/_apis/build/status/Nexitia.jsoagger-platform?branchName=develop)](https://dev.azure.com/yvonjisoa0885/Emagin%20Platform/_build/latest?definitionId=1?branchName=develop)|[Download](https://github.com/Nexitia/emaginfx/releases)||
-| Windows |[![Build Status](https://dev.azure.com/yvonjisoa0885/Emagin%20Platform/_apis/build/status/Nexitia.jsoagger-platform?branchName=develop)](https://dev.azure.com/yvonjisoa0885/Emagin%20Platform/_build/latest?definitionId=1?branchName=develop)|[Download](https://github.com/Nexitia/emaginfx/releases)||
+| MacOs   |[![Build Status](https://dev.azure.com/yvonjisoa0885/JSoagger%20Platform/_apis/build/status/Nexitia.jsoagger-platform?branchName=develop)](https://dev.azure.com/yvonjisoa0885/JSoagger%20Platform/_build/latest?definitionId=1?branchName=develop)|[Download](https://github.com/Nexitia/jsoaggerfx/releases)||
+| Linux|[![Build Status](https://dev.azure.com/yvonjisoa0885/JSoagger%20Platform/_apis/build/status/Nexitia.jsoagger-platform?branchName=develop)](https://dev.azure.com/yvonjisoa0885/JSoagger%20Platform/_build/latest?definitionId=1?branchName=develop)|[Download](https://github.com/Nexitia/jsoaggerfx/releases)||
+| Windows |[![Build Status](https://dev.azure.com/yvonjisoa0885/JSoagger%20Platform/_apis/build/status/Nexitia.jsoagger-platform?branchName=develop)](https://dev.azure.com/yvonjisoa0885/JSoagger%20Platform/_build/latest?definitionId=1?branchName=develop)|[Download](https://github.com/Nexitia/jsoaggerfx/releases)||
 
 &nbsp;
 
@@ -176,13 +176,13 @@ MOBILE            |
 
 # Links
 
-[EmaginFX Wiki](https://github.com/Nexitia/emaginfx/wiki)  
+[JSoaggerFX Wiki](https://github.com/Nexitia/jsoaggerfx/wiki)  
  
-[EmaginFX components library](https://github.com/Nexitia/emaginfx/wiki/EmaginFx-header-Toolbar)
+[JSoaggerFX components library](https://github.com/Nexitia/jsoaggerfx/wiki/JSoaggerFx-header-Toolbar)
  
-[Creating cross platform Java application](https://nexitia.com/creating-javafx-11-application-with-emaginfx/)
+[Creating cross platform Java application](https://nexitia.com/creating-javafx-11-application-with-jsoaggerfx/)
 
-[Creating mobile application with EmaginFX](https://nexitia.com/creating-mobile-javafx-application-with-emaginfx/)
+[Creating mobile application with JSoaggerFX](https://nexitia.com/creating-mobile-javafx-application-with-jsoaggerfx/)
 
 
 # Project
