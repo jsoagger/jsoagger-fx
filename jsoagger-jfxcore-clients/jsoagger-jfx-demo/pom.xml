@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>io.github.jsoagger</groupId>
 		<artifactId>jsoagger-jfxcore-clients</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.1</version>
 	</parent>
 	
 	<name>JSoagger jfx demo</name>
@@ -160,7 +160,7 @@
 				<dependency>
 					<groupId>io.github.jsoagger</groupId>
 					<artifactId>jsoagger-jfxcore11</artifactId>
-					<version>1.0.1-SNAPSHOT</version>
+					<version>1.0.1</version>
 				</dependency>
 				<dependency>
 					<groupId>com.jfoenix</groupId>
