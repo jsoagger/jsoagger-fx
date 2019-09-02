@@ -7,7 +7,7 @@ package io.github.jsoagger.jfxcore.components;
 import io.github.jsoagger.core.bridge.operation.IOperation;
 import io.github.jsoagger.core.i18n.MessageSource;
 import io.github.jsoagger.core.ioc.api.BeanFactory;
-import io.github.jsoagger.core.ioc.api.annotations.Bean;
+import io.github.jsoagger.core.ioc.api.annotations.Bean; 
 import io.github.jsoagger.core.ioc.api.annotations.BeansProvider;
 import io.github.jsoagger.core.ioc.api.annotations.Named;
 import io.github.jsoagger.core.ioc.api.annotations.Singleton;

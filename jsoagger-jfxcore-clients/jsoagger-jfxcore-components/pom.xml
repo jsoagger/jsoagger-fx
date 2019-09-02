@@ -29,11 +29,11 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.jsoagger</groupId>
-			<artifactId>jsoagger-core-ioc</artifactId>
+			<artifactId>jsoagger-core-bridge</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.github.jsoagger</groupId>
-			<artifactId>jsoagger-jfxcore-api</artifactId>
+			<artifactId>jsoagger-core-ioc</artifactId>
 		</dependency>
 	</dependencies>
 </project>

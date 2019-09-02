@@ -42,7 +42,7 @@
 				<value>classpath:/css/color/primary/indigo.css</value>
 				<value>classpath:/css/content/light/light-desktop.css</value>
 				<value>classpath:/css/undecorator/undecorator.css</value>
-				<value>classpath:/io/github/jsoagger/core/jfx/controller/login/login.css</value>
+				<value>classpath:/io/github/jsoagger/jfxcore/controller/login/login.css</value>
 			</list>
 		</property>
 	</bean>

@@ -206,7 +206,7 @@ public class DemoAppCommonBeansProvider {
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.dashboard.message");
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.dialog.message");
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.message");
-    messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.preferences.message");
+    messageSource.getBasenames().add("io.github.jsoagger.jfxcore.components.preferences.message");
 
     return messageSource;
   }
@@ -224,7 +224,7 @@ public class DemoAppCommonBeansProvider {
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.dashboard.message");
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.dialog.message");
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.message");
-    messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.preferences.message");
+    messageSource.getBasenames().add("io.github.jsoagger.jfxcore.components.preferences.message");
     messageSource.getBasenames().add("i18n.generalBundle");
     return messageSource;
   }
@@ -242,7 +242,7 @@ public class DemoAppCommonBeansProvider {
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.dashboard.message");
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.dialog.message");
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.desktop.message");
-    messageSource.getBasenames().add("io.github.jsoagger.jfxcore.demoapp.preferences.message");
+    messageSource.getBasenames().add("io.github.jsoagger.jfxcore.components.preferences.message");
     return messageSource;
   }
 

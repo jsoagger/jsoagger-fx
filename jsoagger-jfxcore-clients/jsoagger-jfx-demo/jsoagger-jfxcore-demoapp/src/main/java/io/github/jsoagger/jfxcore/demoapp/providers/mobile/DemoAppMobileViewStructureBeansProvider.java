@@ -73,7 +73,7 @@ public class DemoAppMobileViewStructureBeansProvider {
     sheetsManager.getStyleSheetsPath().add("classpath:/css/color/primary/indigo.css");
     sheetsManager.getStyleSheetsPath().add("classpath:/css/content/light/light-mobile.css");
     sheetsManager.getStyleSheetsPath().add("classpath:/css/undecorator/undecorator.css");
-    sheetsManager.getStyleSheetsPath().add("classpath:/io/github/jsoagger/core/jfx/controller/login/login.css");
+    sheetsManager.getStyleSheetsPath().add("classpath:/io/github/jsoagger/jfxcore/controller/login/login.css");
     return sheetsManager;
   }
 

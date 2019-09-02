@@ -134,7 +134,7 @@
      <import resource="classpath:/core-spring-config/common/jfx-core-actionModel-context.xml" />
      <import resource="classpath:/core-spring-config/common/jfx-core-actionFilter-context.xml" />
      <import resource="classpath:/core-spring-config/common/jfx-core-controller-context.xml" />
-     <import resource="classpath:/io/github/jsoagger/core/jfx/controller/login/login-context.xml" />
+     <import resource="classpath:/io/github/jsoagger/jfxcore/controller/login/login-context.xml" />
      
      <import resource="classpath:/core-spring-config/desktop/jfx-core-desktop-application-context.xml" />
      <import resource="classpath:/core-spring-config/mobile/jfx-core-mobile-application-context.xml" />

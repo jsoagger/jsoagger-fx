@@ -442,7 +442,7 @@ public abstract class SearchController extends StandardController {
 
   protected void buildRootForm() {
     final String rootFormId = getSearchRootFormViewId(new HashMap<>());
-    System.out.println(">>>>>>>>>>>>>>>>>>>< Form identifier : " + rootFormId);
+    //System.out.println(">>>>>>>>>>>>>>>>>>>< Form identifier : " + rootFormId);
     if (getStructureContent() == null) {
       rootFormController = (SearchRootFormController) StandardViewUtils.forId(getRootStructure(), rootFormId);
     } else {

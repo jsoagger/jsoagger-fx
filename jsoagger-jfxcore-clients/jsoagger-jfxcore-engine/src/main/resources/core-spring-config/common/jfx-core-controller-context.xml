@@ -35,7 +35,7 @@
 	<bean id="CoreSimpleAttributeForwardEditionView" class="io.github.jsoagger.jfxcore.engine.components.wizard.editor.controller.CoreSimpleAttributeForwardEditionController" scope="prototype">
 		<property name="viewDefinitions">
 			<list merge="false">
-				<value>/io/github/jsoagger/core/jfx/components/wizard/editor/controller/CoreSimpleAttributeForwardEditionView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/components/wizard/editor/controller/CoreSimpleAttributeForwardEditionView.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -44,7 +44,7 @@
 		<property name="messageSource" ref="FolderBrowserMessageSource" />
 		<property name="viewDefinitions">
 			<list merge="false">
-				<value>/io/github/jsoagger/core/jfx/components/browser/FolderBrowserContentView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/components/browser/FolderBrowserContentView.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -64,7 +64,7 @@
 		<property name="messageSource" ref="FolderBrowserMessageSource" />
 		<property name="viewDefinitions">
 			<list merge="false">
-				<value>/io/github/jsoagger/core/jfx/components/browser/FolderCreateView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/components/browser/FolderCreateView.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -83,7 +83,7 @@
 		<property name="messageSource" ref="NotificationsMessageSource" />
 		<property name="viewDefinitions">
 			<list merge="false">
-				<value>/io/github/jsoagger/core/jfx/components/notification/NotificationsView.xml</value>
+				<value>/io/github/jsoagger/jfxcore/components/notification/NotificationsView.xml</value>
 			</list>
 		</property>
 	</bean>

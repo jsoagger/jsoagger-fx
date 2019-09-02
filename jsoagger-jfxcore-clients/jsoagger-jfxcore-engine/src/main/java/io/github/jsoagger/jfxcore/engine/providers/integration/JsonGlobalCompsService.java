@@ -33,7 +33,7 @@ public class JsonGlobalCompsService implements GlobalComponentsService {
   public VLViewComponentXML getCompFromGlobalConfig(String id) {
     // not supported yet
     if(debug) {
-      System.out.println("[Find global component ] " + id);
+      //System.out.println("[Find global component ] " + id);
     }
 
     if(!loaded) {
@@ -42,10 +42,10 @@ public class JsonGlobalCompsService implements GlobalComponentsService {
 
     Optional<VLViewComponentXML> comp =  allLoadedComps.getComponentById(id);
     if(comp.isPresent()) {
-      System.out.println("[Found global component ] " + id);
+      //System.out.println("[Found global component ] " + id);
     }
     else {
-      System.out.println("[Not Found global component ] " + id);
+      //System.out.println("[Not Found global component ] " + id);
     }
 
     return comp.orElse(null);
