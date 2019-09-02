@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>io.github.jsoagger</groupId>
 		<artifactId>jsoagger-jfx-demo</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<name>JSoagger Cloud stub operations</name>
