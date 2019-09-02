@@ -33,7 +33,7 @@ before_install:
     - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
 
 install: 
-    mvn --settings .maven.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+    mvn --settings .maven.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=false -B -V
       
       
 before_deploy:
@@ -58,12 +58,12 @@ deploy:
         all_branches: true
  
 
-    - provider: releases
-      api_key:
-          secure: b6vylD4uN84KnsNlcu8ctw2LLk4O+8sDEilDgRnnMrfo/mYrKPTVzhbZsQqLgSskF92RcZ3QL89E5+hVEV4W0+NqnKoPdUireV/7aZ1Udd86/KU7IseSXyOtVo9LAtcIofuQvfDIuK9qr3h1ba6e2c4wpMmsfTiXlDBvXCAmhGA6CM3/EArI9qTXqSBCUAA5/R7XFMyzo3HaDd2B92xC/8u1zNn0eW79T3zP+qZ0RmLnrVJcwBf6cRUvsP41uxnD9E3XDuQH5Wo28xzhMsrbvlrE9Ql0UfQgx9po9Ye9kX1WzAR3Jjl4cFX+H60y4TONxqvd6i80eHmUfa5ZzHd3fqfOLtRL2ro3hKUrVpdgnjJxHbn3blTK1gV3IDe2yIhO+zZziCMgS7eSMveCYWtOdHgrnL/cCbCOtydR3HGmNp8QM/pKIOJn6c5wbeCWC5qAEzQIMFryn3g5SWxhC++g78guiZH06f1LE2K/TyjzyZQNtctt3tq/vxPMO6/vIjp/7nbfSvYmKXkWm9ZHytjZcizXk+PE3/SF6g2cizQQKoEYr6mxNllFC3el8TCLiqw/nuLeqsrgh4q7yXPnfVSLmXCwjphKqzFBSbIotpETYOWazb2rgtQE+7sss1OK8QFDYt2JWe1i1CsLrdYcrloOwuJwRsPhXP4+W5lXakYyz1Q=
-      skip_cleanup: true
-      on:
-        tags: true
-        all_branches: true
+#    - provider: releases
+#      api_key:
+#          secure: b6vylD4uN84KnsNlcu8ctw2LLk4O+8sDEilDgRnnMrfo/mYrKPTVzhbZsQqLgSskF92RcZ3QL89E5+hVEV4W0+NqnKoPdUireV/7aZ1Udd86/KU7IseSXyOtVo9LAtcIofuQvfDIuK9qr3h1ba6e2c4wpMmsfTiXlDBvXCAmhGA6CM3/EArI9qTXqSBCUAA5/R7XFMyzo3HaDd2B92xC/8u1zNn0eW79T3zP+qZ0RmLnrVJcwBf6cRUvsP41uxnD9E3XDuQH5Wo28xzhMsrbvlrE9Ql0UfQgx9po9Ye9kX1WzAR3Jjl4cFX+H60y4TONxqvd6i80eHmUfa5ZzHd3fqfOLtRL2ro3hKUrVpdgnjJxHbn3blTK1gV3IDe2yIhO+zZziCMgS7eSMveCYWtOdHgrnL/cCbCOtydR3HGmNp8QM/pKIOJn6c5wbeCWC5qAEzQIMFryn3g5SWxhC++g78guiZH06f1LE2K/TyjzyZQNtctt3tq/vxPMO6/vIjp/7nbfSvYmKXkWm9ZHytjZcizXk+PE3/SF6g2cizQQKoEYr6mxNllFC3el8TCLiqw/nuLeqsrgh4q7yXPnfVSLmXCwjphKqzFBSbIotpETYOWazb2rgtQE+7sss1OK8QFDYt2JWe1i1CsLrdYcrloOwuJwRsPhXP4+W5lXakYyz1Q=
+#      skip_cleanup: true
+#      on:
+#        tags: true
+#        all_branches: true
         
         
