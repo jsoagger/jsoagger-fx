@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>io.github.jsoagger</groupId>
 		<artifactId>jsoagger-jfxcore-integration</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 	
 	<name>JSoagger jfx core integration jdk11</name>
