@@ -211,7 +211,7 @@ public abstract class AbstractApplicationRunner extends Application {
   private void showMobileSplash(Stage stage) {
     pane.getStyleClass().add("-fx-background-color:white");
 
-    Image image = new Image("/images/logo/NEXITIA_FULL_ORIG.png", 300, 200, true, true);
+    Image image = new Image("/images/logo/JSOAGGER_FX_WHITE.png", 300, 200, true, true);
     ImageView imageView = new ImageView(image);
     pane.getChildren().add(imageView);
 
