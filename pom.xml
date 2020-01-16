@@ -26,9 +26,9 @@
 	</modules>
 
 	<properties>
-		<internal.core.project.version>1.0.1</internal.core.project.version>
+		<internal.core.project.version>1.0.2</internal.core.project.version>
 		<internal.fx.project.version>${project.version}</internal.fx.project.version>
-		<internal.cloudservices.project.version>1.0.1</internal.cloudservices.project.version>
+		<internal.cloudservices.version>1.0.2</internal.cloudservices.version>
 		<jsoagger.core.client.home>${basedir}</jsoagger.core.client.home>
 		
 		<javax.annotation.version>1.2</javax.annotation.version>
@@ -292,8 +292,8 @@
 			<!-- internal -->
 			<dependency>
 				<groupId>io.github.jsoagger</groupId>
-				<artifactId>jsoagger-corebusiness-cloud-services</artifactId>
-				<version>${internal.cloudservices.project.version}</version>
+				<artifactId>corebusiness-cloud-services</artifactId>
+				<version>${internal.cloudservices.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.code.gson</groupId>
