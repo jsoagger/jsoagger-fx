@@ -7,7 +7,7 @@
 		<artifactId>jsoagger-jfxcore-integration</artifactId>
 		<version>1.0.2-SNAPSHOT</version>
 	</parent>
-	
+
 	<description>JSoagger jfx XML views to JSON converter</description>
 	<artifactId>jsoagger-coreview-json-converter</artifactId>
 
@@ -15,23 +15,19 @@
 		<spring.boot.version>2.1.2.RELEASE</spring.boot.version>
 
 		<fully.qualified.main.class>io.github.jsoagger.coreview.json.converter.JSoaggerXMLJsonify</fully.qualified.main.class>
-		<java.target.level>11</java.target.level>
-		<java.source.level>1.9</java.source.level>
+		<java.target.level>1.8</java.target.level>
+		<java.source.level>1.8</java.source.level>
 		<jsoagger.core.client.home>${project.basedir}/../..</jsoagger.core.client.home>
 	</properties>
 
 	<dependencies>
-
+		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
 		<dependency>
-			<groupId>io.github.jsoagger</groupId>
-			<artifactId>jsoagger-jfxcore-viewdefinition</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.23.1-GA</version>
 		</dependency>
+
 		<dependency>
 			<groupId>io.github.jsoagger</groupId>
 			<artifactId>jsoagger-core-ioc</artifactId>
@@ -66,10 +62,11 @@
 			<version>11.0.4-SNAPSHOT</version> </dependency> <dependency> <groupId>io.github.jsoagger</groupId> 
 			<artifactId>jsoagger-jfxcore-components</artifactId> </dependency> <dependency> 
 			<groupId>io.github.jsoagger</groupId> <artifactId>jsoagger-jfxcore-demoapp-components</artifactId> 
-			</dependency> <dependency> <groupId>io.github.jsoagger</groupId> 
-			<artifactId>jsoagger-jfxcore-engine</artifactId> <exclusions> <exclusion> <groupId>io.github.jsoagger</groupId> 
-			<artifactId> jsoagger-jfxcore-viewdefinition-json </artifactId> </exclusion> 
-			</exclusions> </dependency> -->
+			</dependency> <dependency> <groupId>io.github.jsoagger</groupId> <artifactId>jsoagger-jfxcore-engine</artifactId> 
+			<exclusions> <exclusion> <groupId>io.github.jsoagger</groupId> <artifactId> 
+			jsoagger-jfxcore-viewdefinition-json </artifactId> </exclusion> </exclusions> 
+			</dependency> -->
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -116,6 +113,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.2.2.RELEASE</version>
 				<executions>
 					<execution>
 						<goals>
@@ -127,6 +125,20 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>${java.source.level}</source>
+					<target>${java.target.level}</target>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+					<fork>true</fork>
+					<!-- <executable>${jdk}/bin/javac</executable> -->
+				</configuration>
 			</plugin>
 
 			<plugin>
@@ -171,12 +183,12 @@
 			</dependencies>
 		</profile>
 	</profiles>
-	
+
 	<repositories>
 		<repository>
-	        <id>project.local</id>
-	        <name>project</name>
-	        <url>file:${project.basedir}/external-libs</url>
-	    </repository>
+			<id>project.local</id>
+			<name>project</name>
+			<url>file:${project.basedir}/external-libs</url>
+		</repository>
 	</repositories>
 </project>

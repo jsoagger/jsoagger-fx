@@ -17,23 +17,21 @@ import java.util.Scanner;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.atteo.xmlcombiner.XmlCombiner;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
-import io.github.jsoagger.core.utils.StringUtils;
+
 import io.github.jsoagger.core.ioc.api.annotations.View;
+import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.ResourceUtils;
-import io.github.jsoagger.jfxcore.viewdefinition.xml.model.VLViewConfigXML;
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewConfigXML;
 
 /**
  * Take source folder and target folder in argument.

@@ -4,6 +4,7 @@
 package io.github.jsoagger.coreview.json.converter;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -29,19 +30,19 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.atteo.xmlcombiner.XmlCombiner;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.impetus.annovention.ClasspathDiscoverer;
 import com.impetus.annovention.Discoverer;
-import io.github.jsoagger.core.utils.StringUtils;
+
 import io.github.jsoagger.core.ioc.api.annotations.CopyResource;
 import io.github.jsoagger.core.ioc.api.annotations.GlobalComponents;
 import io.github.jsoagger.core.ioc.api.annotations.I18n;
 import io.github.jsoagger.core.ioc.api.annotations.View;
+import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.ResourceUtils;
-import io.github.jsoagger.jfxcore.viewdefinition.xml.model.VLViewConfigXML;
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewConfigXML;
 
 /**
  * Take source folder and target folder in argument.
@@ -56,7 +57,7 @@ import io.github.jsoagger.jfxcore.viewdefinition.xml.model.VLViewConfigXML;
  */
 public class JSoaggerDSpringify {
 
-  private static boolean debug = false;
+  private static boolean debug = true;
   protected static final String CONF_FILE_SUFFIX = ".xml";
   public static JAXBContext JC;
 
@@ -128,10 +129,21 @@ public class JSoaggerDSpringify {
       System.exit(-1);
     }
 
-
-    // first clean destination
     clearDestination();
+    generateJson();
+  }
 
+  public static void generateJson() {
+	  File source = new File(SRC);
+	  if(source.isDirectory()) {
+		  for(File file : source.listFiles()) {
+			  if(file != null) toJsonFile(file);
+		  }
+	  }
+  }
+
+
+  public static void generateAll() throws IOException {
     // Scan for annotated class
     final Discoverer discoverer = new ClasspathDiscoverer();
     final ViewClassAnnotationListener listener = new ViewClassAnnotationListener();
@@ -279,8 +291,33 @@ public class JSoaggerDSpringify {
     }
   }
 
+
+  private static void toJsonFile(File source) {
+	  if(source.getName().endsWith(".xml")) {
+		  Gson gson = new Gson();
+	      VLViewConfigXML config = getConfigurationFile(Arrays.asList(source.getAbsolutePath()));
+
+	      // name of file
+	      String filename = source.getName();
+	      String finalDest = DEST +  File.separator + StringUtils.substringBeforeLast(filename, ".xml") + ".json";
+
+	      System.out.println("Writing file : " + finalDest);
+
+	      try {
+	          String json = gson.toJson(config);
+	          System.out.println(json);
+	          com.google.common.io.Files.write(json.getBytes(), new File(finalDest));
+	        } catch (JsonIOException | IOException e) {
+	          System.out.println("ERROR " + finalDest);
+	          e.printStackTrace();
+	        }
+	  }
+  }
+
   private static void clearDestination() {
     if(cleanDestination) {
+      System.out.println("Cleaning json files in : " +  DEST);
+
       File dest = new File(DEST);
       if(dest.isDirectory()) {
         File[] files = dest.listFiles();
@@ -288,6 +325,9 @@ public class JSoaggerDSpringify {
           deleteFolder(f);
         }
       }
+
+
+      System.out.println("+++++ End clean folder");
     }
   }
 
@@ -298,12 +338,13 @@ public class JSoaggerDSpringify {
         if(f.isDirectory()) {
           deleteFolder(f);
         } else {
-          f.delete();
+    	  if(f.getName().endsWith(".json")) {
+    		System.out.println("Deleting file : " +  f.getAbsolutePath());
+            f.delete();
+    	  }
         }
       }
     }
-
-    folder.delete();
   }
 
 
@@ -325,36 +366,54 @@ public class JSoaggerDSpringify {
       final boolean combine = confiFiles.size() > 0;
       for (final String uri : confiFiles) {
         System.out.println("Loading file : " + uri);
-        InputStream is = ResourceUtils.getStream(JSoaggerDSpringify.class.getClass(), uri);
-        if (is == null) {
-          System.out.println("FATAL ERROR");
+
+        InputStream is = null;
+        try {
+        		try {
+        			is = ResourceUtils.getStream(JSoaggerDSpringify.class.getClass(), uri);
+        		}catch (Exception e) {
+				}
+
+        	 if (is == null) {
+             	is = new FileInputStream(new File(uri));
+             }
+
+             combiner.combine(is);
+
+             if (combine) {
+                 // LOG.debug(MessageFormat.format("Unmarshalling final view definition : {0}", controller.getId()));
+                 final Document result = combiner.buildDocument();
+                 finalResult = (VLViewConfigXML) JC.createUnmarshaller().unmarshal(result);
+
+                 if(debug) {
+                   try {
+                     final DOMSource domSource = new DOMSource(result);
+                     final StringWriter writer = new StringWriter();
+                     final StreamResult resultA = new StreamResult(writer);
+                     final TransformerFactory tf = TransformerFactory.newInstance();
+                     final Transformer transformer = tf.newTransformer();
+                     transformer.transform(domSource, resultA);
+                     System.out.println("XML IN String format is: \n" + writer.toString());
+                   } catch (final Exception e) {
+                     e.printStackTrace();
+                   }
+                 }
+               } else {
+                 finalResult = new VLViewConfigXML();
+               }
         }
-        combiner.combine(is);
+        catch (Exception e) {
+		}
+        finally {
+        	if(is != null) {
+            	is.close();
+            }
+		}
       }
 
-      if (combine) {
-        // LOG.debug(MessageFormat.format("Unmarshalling final view definition : {0}", controller.getId()));
-        final Document result = combiner.buildDocument();
-        finalResult = (VLViewConfigXML) JC.createUnmarshaller().unmarshal(result);
 
-        if(debug) {
-          try {
-            final DOMSource domSource = new DOMSource(result);
-            final StringWriter writer = new StringWriter();
-            final StreamResult resultA = new StreamResult(writer);
-            final TransformerFactory tf = TransformerFactory.newInstance();
-            final Transformer transformer = tf.newTransformer();
-            transformer.transform(domSource, resultA);
-            System.out.println("XML IN String format is: \n" + writer.toString());
-          } catch (final Exception e) {
-            e.printStackTrace();
-          }
-        }
-      } else {
-        finalResult = new VLViewConfigXML();
-      }
       // @formatter: off
-    } catch (SAXException | IOException | TransformerFactoryConfigurationError | JAXBException | ParserConfigurationException e) {
+    } catch (IOException | TransformerFactoryConfigurationError | ParserConfigurationException e) {
       e.printStackTrace();
       // LOG.error(e);
     }

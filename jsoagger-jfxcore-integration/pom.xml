@@ -19,7 +19,6 @@
 
 	<modules>
 		<module>jsoagger-jfxcore11</module>
-<!-- 		<module>jsoagger-jfxcore8</module> -->
 		<module>jsoagger-coreview-json-converter</module>
 	</modules>
 </project>

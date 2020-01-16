@@ -1,0 +1,17 @@
+{
+   "id":"Root",
+   "components":[
+      {
+         "id":"Content",
+         "properties":{
+
+         }
+      }
+   ],
+   "menus":[
+
+   ],
+   "properties":{
+
+   }
+}
