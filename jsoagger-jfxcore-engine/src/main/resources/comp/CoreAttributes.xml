@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+
+	<component id="CoreCopyright" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="title" value="COPYRIGHT_LABEL"/>
+			<property name="styleClass" value="copyright-container"/>
+			<property name="labelStyleClass" value="copyright-label"/>
+			<property name="type" value="Copyright"/>
+		</properties>
+	</component>
+
+	<component id="CoreCreationDateAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="CREATION_DATE_LABEL"/>
+			<property name="viewUtility" value="DateInputView"/>
+			<property name="attributeName" value="creation"/>
+			<property name="attributePath" value="attributes.createDate"/>
+			<property name="inplaceEditable" value="false"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="displayFormat" value="dd/MM/yyyy"/>
+				<property name="saveFormat" value="yyyy-MM-dd HH:mm:ss"/>
+				<property name="converter" value="LocalDateConverter"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreCreatedByAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="CREATED_BY_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="attributeName" value="createdBy"/>
+			<property name="attributePath" value="attributes.createdBy"/>
+			<property name="inplaceEditable" value="false"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="displayFormat" value="dd/MM/yyyy"/>
+				<property name="saveFormat" value="yyyy-MM-dd HH:mm:ss"/>
+				<property name="converter" value="LocalDateConverter"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreModificationDateAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="MODIFICATION_DATE_LABEL"/>
+			<property name="viewUtility" value="DateInputView"/>
+			<property name="attributeName" value="lastModification"/>
+			<property name="attributePath" value="attributes.lastModifiedDate"/>
+			<property name="inplaceEditable" value="false"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="displayFormat" value="dd/MM/yyyy"/>
+				<property name="saveFormat" value="yyyy-MM-dd HH:mm:ss"/>
+				<property name="converter" value="LocalDateConverter"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreModifiedByAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="MODIFIED_BY_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="attributeName" value="modifiedBy"/>
+			<property name="attributePath" value="attributes.lastModifiedBy"/>
+			<property name="inplaceEditable" value="false"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="displayFormat" value="dd/MM/yyyy"/>
+				<property name="saveFormat" value="yyyy-MM-dd HH:mm:ss"/>
+				<property name="converter" value="LocalDateConverter"/>
+			</properties>
+		</component>
+	</component>
+
+	<!-- Generic action handler for attribute update -->
+	<component id="CoreUpdateAttributeInLineAction">
+		<properties combine.keys="name">
+			<property name="title" value="UPDATE_LABEL"/>
+			<property name="type" value="FormInlineEditAction"/>
+			<property name="actionHandler" value="UpdateAttributeInLineActionHandler"/>
+			<property name="persistableDelegate" value="PersistenceServiceDelegate"/>
+			<property name="actionName" value="update_attribute_general_action"/>
+		</properties>
+	</component>
+
+	<component id="CoreUpdateAttributeForwardAction">
+		<properties combine.keys="name">
+			<property name="ikonli" value="fa-angle-right:18"/>
+			<property name="styleClass" value="form-inline-action"/>
+			<property name="actionHandler" value="UpdateAttributeForwardActionHandler"/>
+			<property name="location" value="EDIT_ATTRIBUTE_LOCATION"/>
+			<property name="persistableDelegate" value="PersistenceServiceDelegate"/>
+			<property name="actionName" value="update_attribute_general_action"/>
+		</properties>
+	</component>
+
+	<!-- Master attributes -->
+	<component id="CoreMasterNameAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="NAME_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="masterName"/>
+			<property name="attributePath" value="masterAttributes.name"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreMasterDescriptionAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="DESCRIPTION_LABEL"/>
+			<property name="viewUtility" value="TextInputView"/>
+			<property name="editUtility" value="InputTextarea"/>
+			<property name="attributeName" value="masterDescription"/>
+			<property name="attributePath" value="masterAttributes.description"/>
+			<!-- <property name="viewLayout" value="VerticalFormRowLayout" /> -->
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreMasterNumberAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="NUMBER_LABEL"/>
+			<property name="viewUtility" value="TextInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="internalNumber"/>
+			<property name="attributePath" value="masterAttributes.number"/>
+		</properties>
+	</component>
+
+	<!-- Workinfo -->
+	<component id="CoreWorkableLockedSinceAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LOCKED_SINCE_LABEL"/>
+			<property name="viewUtility" value="DateInputView"/>
+			<property name="attributeName" value="workInfo.lockedSince"/>
+			<property name="attributePath" value="attributes.workInfo.lockedSince"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="displayFormat" value="dd/MM/yyyy hh:mm"/>
+				<property name="converter" value="LocalDateConverter"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreWorkableLockedByAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LOCKED_BY_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="attributeName" value="workInfo.lockedBy"/>
+			<property name="attributePath" value="attributes.workInfo.lockedBy"/>
+			<property name="inplaceEditable" value="false"/>
+		</properties>
+		<component id="Format">
+			<properties combine.keys="name">
+				<property name="displayFormat" value="dd/MM/yyyy"/>
+				<property name="saveFormat" value="yyyy-MM-dd HH:mm:ss"/>
+				<property name="converter" value="LocalDateConverter"/>
+			</properties>
+		</component>
+	</component>
+
+	<!-- VersionInfo -->
+	<component id="CoreRCVersionNumberAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="VERSION_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="versionInfo.versionId"/>
+			<property name="attributePath" value="attributes.versionInfo.versionId"/>
+		</properties>
+	</component>
+
+	<component id="CoreRCIsLatestVersionAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LATEST_VERSION_LABEL"/>
+			<property name="viewUtility" value="CheckboxInputView"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="attributeName" value="versionInfo.isLatestVersion"/>
+			<property name="attributePath" value="attributes.versionInfo.isLatestVersion"/>
+		</properties>
+	</component>
+
+	<!-- IterationInfo -->
+	<component id="CoreRCIterationNumberAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ITERATION_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="iterationInfo.iterationNumber"/>
+			<property name="attributePath" value="attributes.iterationInfo.iterationNumber"/>
+		</properties>
+	</component>
+
+	<component id="CoreRCIsLatestIterationAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LATEST_ITERATION_LABEL"/>
+			<property name="viewUtility" value="CheckboxInputView"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="attributeName" value="iterationInfo.isLatestIteration"/>
+			<property name="attributePath" value="attributes.iterationInfo.isLatestIteration"/>
+		</properties>
+	</component>
+
+	<!-- Lifecycle Info -->
+	<component id="CoreLifecycleInfoAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="STATUS_LABEL"/>
+			<property name="viewUtility" value="LifecycleInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="lifecycleInfo.currentState"/>
+			<property name="attributePath" value="attributes.lifecycleInfo.currentState"/>
+		</properties>
+	</component>
+
+	<!-- Container Info -->
+	<component id="CoreContainerAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="CONTAINER_LABEL" />
+			<property name="viewUtility" value="ContextInputView" />
+			<property name="attributeName" value="name" />
+			<property name="attributePath" value="container.path" />
+		</properties>
+	</component>
+
+	<!-- Display name -->
+	<component id="CoreDisplayNameAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="NAME_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.displayName"/>
+		</properties>
+	</component>
+
+
+	<component id="CoreInitialisationRuleAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="labelStyleClass" value=""/>
+			<property name="label" value="INITIALISATION_RULE_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.displayName"/>
+		</properties>
+	</component>
+
+	<component id="CoreLifecycleAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="labelStyleClass" value=""/>
+			<property name="label" value="LIFECYCLE_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.displayName"/>
+		</properties>
+	</component>
+
+	<component id="CoreDescriptionAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="DESCRIPTION_LABEL"/>
+			<property name="viewUtility" value="TextInputView"/>
+			<property name="editUtility" value="InputTextarea"/>
+			<property name="attributeName" value="description"/>
+			<property name="attributePath" value="attributes.description"/>
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+		</properties>
+		<component id="ValidationConfig" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="mandatory" value="false"/>
+				<property name="maxLength" value="255"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreLogicalPathAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="LOGICAL_PATH_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.logicalPath"/>
+		</properties>
+	</component>
+
+	<component id="CoreIsEnabledAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ENBLED_LABEL"/>
+			<property name="viewUtility" value="CheckboxInputView"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.isEnabled"/>
+		</properties>
+	</component>
+
+	<component id="CoreIsInstanciableAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="INSTANCIABLE_LABEL"/>
+			<property name="viewUtility" value="CheckboxInputView"/>
+			<property name="editUtility" value="InputCheckbox"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.isInstanciable"/>
+		</properties>
+	</component>
+
+	<component id="CoreIconNameAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ICON_NAME_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.iconName"/>
+		</properties>
+	</component>
+
+	<component id="CoreIconPathAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ICON_PATH_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.iconPath"/>
+		</properties>
+	</component>
+
+	<component id="CoreI18nKeyAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="I18N_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.i18nKey"/>
+		</properties>
+	</component>
+
+	<component id="CoreAddChildTypeButton">
+		<properties combine.keys="name">
+			<property name="tooltip" value="ADD_CHILD_TYPE_LABEL"/>
+			<property name="label" value="ADD_CHILD_TYPE_LABEL"/>
+			<property name="icon" value="PLUS"/>
+			<property name="styleClass" value="flat-button,button-xl"/>
+			<property name="iconStyleClass" value="white-icon"/>
+			<property name="iconSize" value="icon-small"/>
+			<property name="type" value="SimpleButton"/>
+		</properties>
+	</component>
+
+	<component id="CoreLifecycleAllStatesAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ALL_STATES_LABEL"/>
+			<property name="viewUtility" value="LifecycleAllStatesInputView"/>
+			<property name="attributeName" value="lifecycleInfo.allStates"/>
+			<property name="attributePath" value="links.lifecycleStates.allStates"/>
+		</properties>
+	</component>
+
+	<component id="CoreIconPathAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="ICON_PATH_LABEL"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="attributeName" value="name"/>
+			<property name="attributePath" value="attributes.iconPath"/>
+		</properties>
+	</component>
+
+	<component id="CoreTypeAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="TYPE_LABEL"/>
+			<property name="attributeName" value="businessType.displayName"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+		</properties>
+	</component>
+
+	<component id="CoreSearchMasterAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="NAME_LABEL"/>
+			<property name="prompt" value="NAME_LABEL"/>
+			<property name="labelStyleClass" value="ep-search-form-label"/>
+			<property name="attributeName" value="attributes.search_query.master.string.like.name"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="viewLayout" value="LabelLessFormRowWrapper"/>
+			<property name="editLayout" value="LabelLessFormRowWrapper"/>
+			<property name="viewStyleClass" value="ep-search-form-info-value"/>
+			<property name="editUtility" value="SearchInputComponent"/>
+		</properties>
+	</component>
+
+	<component id="CoreSearchModifiedByAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="BY_LABEL"/>
+			<property name="prompt" value="ALL_USERS_LABEL"/>
+			<property name="attributeName" value="attributes.search_query.string.modifiedBy"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editLayout" value="VerticalFormRowLayout"/>
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+			<property name="viewStyleClass" value="ep-search-form-info-value"/>
+		</properties>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="CoreSearchUpdateAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+
+	<component id="CoreSearchCreatedByAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="BY_LABEL"/>
+			<property name="prompt" value="ALL_USERS_LABEL"/>
+			<property name="attributeName" value="attributes.search_query.string.createdBy"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editLayout" value="VerticalFormRowLayout"/>
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+			<property name="viewStyleClass" value="ep-search-form-info-value"/>
+		</properties>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="CoreSearchUpdateAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+
+	<component id="CoreSearchAllTypeAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="TYPE_LABEL"/>
+			<property name="prompt" value="SELECT_A_TYPE_LABEL"/>
+			<property name="labelStyleClass" value="ep-search-form-label"/>
+			<property name="attributeName" value="business.type"/>
+			
+			<property name="editUtility" value="InputCombobox"/>
+			<property name="viewUtility" value="MultiValuedInputView"/>
+			<property name="displayType" value="checkbox"/>
+			
+			<property name="enumeratedValuesLoader" value="InstanciableTypesToEnumeratedValueLoader"/>
+			<property name="editLayout" value="LabelLessFormRowWrapper"/>
+			<property name="viewLayout" value="LabelLessFormRowWrapper"/>
+			<property name="viewStyleClass" value="form-multi-input-view-each"/>
+		</properties>
+		<component id="ValidationConfig">
+			<properties combine.keys="name">
+				<property name="mandatory" value="true"/>
+			</properties>
+		</component>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="CoreSearchUpdateAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+
+	<component id="CoreSearchModificationDateAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="MODIFIED_LABEL"/>
+			<property name="labelStyleClass" value="ep-search-form-label"/>
+			<property name="attributeName" value="attributes.search_query.date.modificationDate"/>
+			<property name="editUtility" value="InputCombobox"/>
+			<property name="viewUtility" value="PeriodInputView"/>
+			<property name="enumeratedValuesLoader" value="DefaultEnumeratedValueLoader"/>
+			<property name="enumerationKey" value="period"/>
+			<property name="editLayout" value="VerticalFormRowLayout"/>
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+			<property name="viewStyleClass" value="ep-search-form-info-value"/>
+			<property name="displayType" value="radio"/>
+		</properties>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="CoreSearchUpdateAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+
+	<component id="CoreSearchCreateDateAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="CREATED_LABEL"/>
+			<property name="labelStyleClass" value="ep-search-form-label"/>
+			<property name="attributeName" value="attributes.search_query.date.creationDate"/>
+			<property name="editUtility" value="InputCombobox"/>
+			<property name="enumeratedValuesLoader" value="DefaultEnumeratedValueLoader"/>
+			<property name="enumerationKey" value="period"/>
+			<property name="viewUtility" value="PeriodInputView"/>
+			<property name="editLayout" value="VerticalFormRowLayout"/>
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+			<property name="viewStyleClass" value="ep-search-form-info-value"/>
+			<property name="displayType" value="radio"/>
+		</properties>
+		<component id="Actions">
+			<component id="InLine">
+				<component ref="CoreSearchUpdateAttributeForwardAction"/>
+			</component>
+		</component>
+	</component>
+
+	<component id="CoreSearchNumberAttribute" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="prompt" value="NUMBER_LABEL"/>
+			<property name="labelStyleClass" value="ep-search-form-label"/>
+			<property name="attributeName" value="attributes.search_query.master.string.like.number"/>
+			<property name="editUtility" value="InputText"/>
+			<property name="viewUtility" value="BasicAttributeInputView"/>
+			<property name="editLayout" value="LabelLessFormRowWrapper"/>
+			<property name="viewLayout" value="VerticalFormRowLayout"/>
+			<property name="viewStyleClass" value="ep-search-form-info-value"/>
+		</properties>
+	</component>
+
+	<component id="CoreSearchDoReinitFiltersButton" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="REINIT_FILTERS_LABEL"/>
+			<property name="tooltip" value="REINIT_FILTERS_LABEL"/>
+			<property name="upperCase" value="true"/>
+			<property name="type" value="SimpleButton"/>
+			<property name="styleClass" value="button-small,button-primary-border"/>
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="DoCancelSearchFilteringAction"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreSearchDoValidateFiltersButton" combine.keys="id">
+		<properties combine.keys="name">
+			<property name="label" value="VALIDATE_FILTERS_LABEL"/>
+			<property name="tooltip" value="VALIDATE_FILTERS_LABEL"/>
+			<property name="upperCase" value="true"/>
+			<property name="type" value="SimpleButton"/>
+			<property name="styleClass" value="button-small,button-primary-border"/>
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="action" value="DoSearchAndHideFilteringAction"/>
+			</properties>
+		</component>
+	</component>
+
+	<component id="CoreSearchUpdateAttributeForwardAction">
+		<properties combine.keys="name">
+			<property name="ikonli" value="fa-angle-right:20"/>
+			<property name="styleClass" value="form-inline-action"/>
+			<property name="actionHandler" value="SearchFormForwardEditionHandler"/>
+			<property name="forwardEditorImpl" value="SearchAttributeForwardEditor"/>
+			<property name="footerImpl" value="SimpleSearchForwardEditorFooter"/>
+
+			<property name="forwardEditorStyleClass" value="ep-as-forward-editor"/>
+			<property name="forwardEditorContentStyleClass" value="ep-as-forward-editor-content"/>
+		</properties>
+	</component>
+</view>

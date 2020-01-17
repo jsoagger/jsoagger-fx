@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+<view id="Root" combine.keys="id">
+	<component id="Content" combine.keys="id" processor="TableStructuresVBoxProcessor">
+		<properties combine.keys="name">
+			<property name="rootPaneStyleClass" value="grey-background,shadowed-pane" />
+			<property name="forwardLayoutHeaderStyleClass" value="white-background,shadowed-pane" />
+			<property name="tableStuctureVboxStyleClass" value="white-background,shadowed-pane,spacing-32,preference-form-intra-pane-padding" />
+			<property name="leftSectionAreaStyleClass" value="grey-background" />
+			<property name="centerSectionAreaStyleClass" value="grey-background" />
+			<property name="rightSectionAreaStyleClass" value="grey-background" />
+			<property name="editorStructureAreaSectionStyleClass" value="grey-background" />
+			<property name="forwardLayoutHeaderTitle" value="SYSTEM_INFORMATION_LABEL" />
+		</properties>
+
+		<component id="GeneralParametersGroupDatas" processor="TableStructureWithLayoutProcessor" combine.keys="id">
+			<properties combine.keys="name">
+				<property name="componentLayoutManager" value="SimpleTableStructureLayoutManager" />
+				<property name="contentImpl" value="ListViewContent" />
+			</properties>
+			<component id="Header">
+				<properties combine.keys="name">
+					<property name="title" value="PARAMETERS_LABEL" />
+					<property name="styleClass" value="white-background,ep-preference-title-pane" />
+					<property name="titleStyleClass" value="padding-16-16-16-0,ep-headline" />
+				</properties>
+			</component>
+			<component id="Content" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="listViewStyleClass" value="ep-fixed-size-listview,ep-fixed-size-listview-small,ep-preferences-list-view" />
+					<property name="dataKey" value="GeneralParametersGroupDatas" />
+					<property name="dataLoader" value="StaticListEntryLoader" />
+					<property name="cellFactory" value="PreferencesListCellFactory" />
+				</properties>
+			</component>
+			<component id="CellRightActions" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="styleClass" value="" />
+					<property name="orientation" value="horizontal" />
+				</properties>
+				<component id="ManageAction" combine.keys="id">
+					<properties combine.keys="name">
+						<property name="tooltip" value="MANAGE_LABEL" />
+						<property name="ikonli" value="gmi-chevron-right:22" />
+						<property name="type" value="button" />
+						<property name="styleClass" value="simple-button,button-transparent-border-transparent" />
+						<property name="presenter" value="DoActionPresenter" />
+					</properties>
+				</component>
+			</component>
+		</component>
+	</component>
+
+	<component id="GeneralParametersGroupDatas">
+		<properties combine.keys="name">
+			<property name="title" value="GENERAL_LABEL" />
+		</properties>
+		<component id="VersionAttribute">
+			<properties combine.keys="name">
+				<property name="title" value="VERSION_LABEL" />
+				<property name="key" value="io.github.jsoagger.version" />
+				<property name="presenter" value="systemVersionPresenter" />
+			</properties>
+		</component>
+		<component id="LegalMentionAttribute">
+			<properties combine.keys="name">
+				<property name="title" value="LEGAL_MENTIONS_LABEL" />
+				<property name="presenter" value="legalMentionItemPresenter" />
+			</properties>
+		</component>
+		<component id="UpdateAttribute">
+			<properties combine.keys="name">
+				<property name="title" value="SOFT_UPDATE_LABEL" />
+				<property name="presenter" value="systemUpdatePresenter" />
+			</properties>
+		</component>
+		<component id="ClearCacheDataAttribute">
+			<properties combine.keys="name">
+				<property name="title" value="CACHE_LABEL" />
+				<property name="buttonTitle" value="CLEAR_CACHE" />
+				<property name="buttonStyleClass" value="button-primary" />
+				<property name="presenter" value="PreferenceDoActionPresenterFactory" />
+			</properties>
+			<component id="Handler" combine.keys="id">
+				<properties combine.keys="name">
+					<property name="action" value="ClearCachedDataAction" />
+				</properties>
+			</component>
+		</component>
+	</component>
+</view>

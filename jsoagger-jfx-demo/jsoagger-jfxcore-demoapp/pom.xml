@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.github.jsoagger</groupId>
 		<artifactId>jsoagger-jfx-demo</artifactId>
-		<version>1.0.2-SNAPSHOT</version> 
+		<version>1.0.2</version> 
 	</parent>
 
 	<name>JSoagger jfx core demoapp</name>
@@ -26,6 +26,7 @@
 		<dependency>
 			<groupId>io.github.jsoagger</groupId>
 			<artifactId>jsoagger-cloudstub-operations</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.jsoagger</groupId>

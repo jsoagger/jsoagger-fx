@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+
+
+<view id="Root" combine.keys="id">
+
+    <component id="CoreWizardNextButton">
+        <properties combine.keys="name">
+            <property name="label" value="NEXT_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="flat-button,action-button" />
+            <property name="upperCase" value="true" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="WizardStepNextActionHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <!--
+        GO TO - PAGE
+    -->
+    <component id="CoreWizardBackButton">
+        <properties combine.keys="name">
+            <property name="label" value="BACK_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="flat-button,action-button" />
+            <property name="upperCase" value="true" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="WizardStepBackActionHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <!--
+        FINISH
+    -->
+    <component id="CoreWizardFinishButton">
+        <properties combine.keys="name">
+            <property name="label" value="FINISH_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="flat-button,action-button" />
+            <property name="upperCase" value="true" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="WizardStepFinishActionHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <!--
+        CANCEL
+    -->
+    <component id="CoreWizardCancelButton">
+        <properties combine.keys="name">
+            <property name="label" value="CANCEL_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="tooltip" value="CANCEL_LABEL" />
+            <property name="styleClass" value="flat-button,action-button" />
+            <property name="upperCase" value="true" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="HideWizardAction" />
+            </properties>
+        </component>
+    </component>
+
+    <!--
+        Simple edition page, done button
+    -->
+    <component id="CoreSimpleObjectEditionDoneButton">
+        <properties combine.keys="name">
+            <property name="title" value="DONE_LABEL" />
+            <property name="tooltip" value="DONE_LABEL" />
+            <property name="upperCase" value="false" />
+            <property name="styleClass" value="done-item-label" />
+            <property name="type" value="InputHyperlink" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="CoreSimpleAttributeUpdateAction" />
+            </properties>
+        </component>
+    </component>
+    
+    <!--
+        TABLE PRINT BUTTON 
+     -->
+    <component id="CorePrintSelectedElementsButton">
+        <properties combine.keys="name">
+            <property name="tooltip" value="PRINT_LABEL" />
+            <property name="label" value="PRINT_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="table-toolbar-action" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="gmi-local-printshop:18" />
+        </properties>
+
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="PrintSelectedElementsInTableStructureAction" />
+            </properties>
+        </component>
+    </component>
+    
+    
+    <!--
+        CORE REVISION CONTROLLED ACTIONS 
+     -->
+    <component id="CoreCopySelectedElementsButton">
+        <properties combine.keys="name">
+            <property name="tooltip" value="COPY_LABEL" />
+            <property name="label" value="COPY_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="table-toolbar-action" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="gmi-content-copy:18" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="CopySelectedElementsFromTableStructureAction" />
+            </properties>
+        </component>
+    </component>
+    
+    
+    <component id="CorePasteElementsButton">
+        <properties combine.keys="name">
+            <property name="tooltip" value="PASTE_LABEL" />
+            <property name="label" value="PASTE_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="styleClass" value="table-toolbar-action" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="gmi-content-paste:18" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="PasteElementsToTableStructureAction" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreRefreshTableStructureButton">
+        <properties combine.keys="name">
+            <property name="tooltip" value="REFRESH_LABEL" />
+            <property name="label" value="REFRESH_LABEL" />
+            <property name="styleClass" value="table-toolbar-action" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="gmi-refresh:18" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="RefreshTableStructureAction" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreSelectAllItemsButton">
+        <properties combine.keys="name">
+            <property name="tooltip" value="SELECT_ALL_TOOLTIP_LABEL" />
+            <property name="label" value="ALL_LABEL" />
+            <property name="styleClass" value="table-toolbar-action" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="gmi-done-all:18" />
+            <property name="displayMode" value="GRAPHIC_ONLY" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="action" value="SelectAllElementsInTableStructureAction" />
+            </properties>
+        </component>
+    </component>
+    
+    
+    <component id="CoreRcCheckoutButton" criteria="CanCheckout">
+        <properties combine.keys="name">
+            <property name="tooltip" value="CHECKOUT_LABEL" />
+            <property name="label" value="CHECKOUT_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="gmi-lock-outline:18" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:ByVersionOidCheckoutOperation;viewId:DetailsView;replace:true" />
+                <property name="action" value="ModelByOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreRcCheckinButton" criteria="WorkingCopy">
+        <properties combine.keys="name">
+            <property name="tooltip" value="CHECKIN_LABEL" />
+            <property name="label" value="CHECKIN_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="fa-mail-forward:18" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:ByVersionOidCheckinOperation;viewId:DetailsView;replace:true" />
+                <property name="action" value="ModelByOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreRcReviseButton" criteria="CanRevise">
+        <properties combine.keys="name">
+            <property name="tooltip" value="REVISE_LABEL" />
+            <property name="label" value="REVISE_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="fa-code-fork:18" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:ByVersionOidReviseOperation;viewId:DetailsView;replace:true" />
+                <property name="action" value="ModelByOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreLmStatesButton">
+
+    </component>
+
+    <component id="CoreLmPromoteButton" criteria="CanPromote">
+        <properties combine.keys="name">
+            <property name="tooltip" value="PROMOTE_LABEL" />
+            <property name="label" value="PROMOTE_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="displayMode" value="TEXT_ONLY" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:PromoteOperation;viewId:DetailsViewExample2;replace:true" />
+                <property name="action" value="ModelByOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreLmDenoteButton" criteria="CanDenote">
+        <properties combine.keys="name">
+            <property name="tooltip" value="DENOTE_LABEL" />
+            <property name="label" value="DENOTE_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="displayMode" value="TEXT_ONLY" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:DenoteOperation;viewId:DetailsViewExample2;replace:true" />
+                <property name="action" value="ModelByOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreForwardToWCButton" criteria="HasWorkingCopy">
+        <properties combine.keys="name">
+            <property name="tooltip" value="WORKING_COPY_LABEL" />
+            <property name="label" value="WORKING_COPY_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="fa-angle-double-right:16" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:ByVersionOidGetWorkingCopyOperation;viewId:DetailsView;replace:true" />
+                <property name="action" value="ModelByOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreForwardToOriginalCopyButton" criteria="WorkingCopy">
+        <properties combine.keys="name">
+            <property name="tooltip" value="ORIGINAL_COPY_LABEL" />
+            <property name="label" value="ORIGINAL_COPY_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="fa-angle-double-left:16" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:GetLatestVersionByMasterOidOperation;viewId:DetailsView;replace:true" />
+                <property name="action" value="ModelByMasterOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreLastIterationButton" criteria="NotLatestIteration">
+        <properties combine.keys="name">
+            <property name="tooltip" value="LAST_ITERATION_LABEL" />
+            <property name="label" value="LAST_ITERATION_LABEL" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="fa-fast-forward:16" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:GetLatestVersionByMasterOidOperation;viewId:DetailsView" />
+                <property name="action" value="ModelByMasterOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreDeleteWCButton" criteria="WorkingCopy">
+        <properties combine.keys="name">
+            <property name="tooltip" value="DELETE_LABEL" />
+            <property name="label" value="DELETE_LABEL" />
+            <property name="upperCase" value="true" />
+            <property name="type" value="SimpleButton" />
+            <property name="upperCase" value="true" />
+            <property name="ikonli" value="fa-archive:16" />
+            <property name="styleClass" value="button-xsmall,button-transparent-border-transparent" />
+        </properties>
+        <component id="Handler">
+            <properties combine.keys="name">
+                <property name="args" value="operation:ByVersionOidUndoCheckoutOperation;viewId:DetailsView;replace:true" />
+                <property name="action" value="ModelByOidDoActionAndForwardToViewHandler" />
+            </properties>
+        </component>
+    </component>
+</view>

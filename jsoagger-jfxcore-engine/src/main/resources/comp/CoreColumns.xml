@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  JSoagger 
+  %%
+  Copyright (C) 2019 JSOAGGER
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  =========================LICENSE_END==================================
+  -->
+
+
+
+<view id="Root" combine.keys="id">
+
+    <component id="CoreBlankSpacerColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="BlankSpacerTableCellPresenter" />
+            <property name="responsiveOrder" value="-1" />
+        </properties>
+    </component>
+
+    <component id="CoreSmallItemInitialIconCircleColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="SmallItemInitialIconCircle" />
+            <property name="prefWidth" value="80" />
+            <property name="tableCellStyleClass" value="align-center" />
+        </properties>
+    </component>
+
+    <component id="CoreSmallFolderedIconColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="ModelSoftTypeSmallIconPresenter" />
+            <property name="prefWidth" value="80" />
+            <property name="tableCellStyleClass" value="align-center" />
+        </properties>
+    </component>
+
+    <component id="CoreSmallMasterNameItemInitialIconCircleColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="SmallMasterNameItemInitialIconCircle" />
+            <property name="prefWidth" value="60" />
+        </properties>
+    </component>
+
+    <component id="CoreMasterNameColumn">
+        <properties combine.keys="name">
+            <property name="label" value="NAME_LABEL" />
+            <property name="tableCellStyleClass" value="ep-table-primary-label" />
+            <property name="attributePath" value="masterAttributes.name" />
+            <property name="presenter" value="ModelMasterAttributePresenter" />
+            <property name="prefWidth" value="200" />
+        </properties>
+    </component>
+
+    <component id="CoreRCMasterNameColumn">
+        <properties combine.keys="name">
+            <property name="label" value="NAME_LABEL" />
+            <property name="presenter" value="RCMasterNamePresenter" />
+            <property name="prefWidth" value="200" />
+        </properties>
+    </component>
+
+    <component id="CoreDisplayNameColumn">
+        <properties combine.keys="name">
+            <property name="label" value="NAME_LABEL" />
+            <property name="tableCellStyleClass" value="ep-table-primary-label" />
+            <property name="attributePath" value="attributes.displayName" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+        </properties>
+    </component>
+
+    <component id="CoreNameColumn">
+        <properties combine.keys="name">
+            <property name="label" value="NAME_LABEL" />
+            <property name="tableCellStyleClass" value="ep-table-primary-label" />
+            <property name="attributePath" value="attributes.name" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+        </properties>
+    </component>
+
+    <component id="CoreRevisionColumn">
+        <properties combine.keys="name">
+            <property name="ikonli" value="fa-code-fork:16" />
+            <property name="iconStyleClass" value="grey-ikonli" />
+            <property name="attributePath" value="attributes.version" />
+            <property name="presenter" value="ModelRevisionPresenter" />
+            <property name="prefWidth" value="80" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+    
+    <component id="CorePrimaryContentColumn">
+		<properties combine.keys="name">
+			<property name="presenter" value="TableRowActionPresenter" />
+			<property name="responsiveOrder" value="-1" />
+			<property name="prefWidth" value="40" />
+			<property name="tableCellStyleClass" value="align-left" />
+			<property name="ikonli" value="gmi-attach-file:18" />
+			<property name="iconStyleClass" value="grey-flat-ikonli" />
+		</properties>
+	</component>
+    
+    
+    <component id="CoreVersionColumn">
+        <properties combine.keys="name">
+            <property name="ikonli" value="fa-code-fork:16" />
+            <property name="iconStyleClass" value="grey-ikonli" />
+            <property name="attributePath" value="attributes.version" />
+            <property name="presenter" value="ModelVersionPresenter" />
+            <property name="prefWidth" value="80" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+    
+    <component id="CoreVersionColumn">
+        <properties combine.keys="name">	
+        	<property name="ikonli" value="fa-code-fork:16" />
+            <property name="iconStyleClass" value="grey-ikonli" />
+            <property name="attributePath" value="attributes.versionInfo.versionId" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="30" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+
+    <component id="CoreLifecycleStatusColumn">
+        <properties combine.keys="name">
+            <property name="label" value="STATUS_LABEL" />
+            <property name="presenter" value="ModelStatusPresenter" />
+            <property name="prefWidth" value="100" />
+        </properties>
+    </component>
+
+    <component id="CoreWorkStatusColumn">
+        <properties combine.keys="name">
+            <property name="ikonli" value="fa-lock:16" />
+            <property name="iconStyleClass" value="white-ikonli" />
+            <property name="presenter" value="ModelWorkStatusPresenter" />
+            <property name="prefWidth" value="40" />
+            <property name="tableCellStyleClass" value="align-center" />
+        </properties>
+    </component>
+
+    <component id="CoreModificationDateColumn">
+        <properties combine.keys="name">
+            <property name="label" value="MODIFICATION_DATE_LABEL" />
+            <property name="attributePath" value="attributes.lastModifiedDate" />
+            <property name="presenter" value="ModelDateTimePresenter" />
+            <property name="prefWidth" value="120" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+        <component id="DisplayFormat">
+            <properties combine.keys="name">
+                <property name="fullDisplayFormat" value="dd-MM-YY hh:mm" />
+                <property name="shortDisplayFormat" value="hh:mm" />
+                <property name="saveFormat" value="yyyy-MM-dd hh:mm:ss" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreCreationDateColumn">
+        <properties combine.keys="name">
+            <property name="label" value="CREATION_DATE_LABEL" />
+            <property name="attributePath" value="attributes.createDate" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+        <component id="DisplayFormat">
+            <properties combine.keys="name">
+                <property name="fullDisplayFormat" value="dd-MM-YY hh:mm" />
+                <property name="shortDisplayFormat" value="hh:mm" />
+                <property name="saveFormat" value="yyyy-MM-dd hh:mm:ss" />
+            </properties>
+        </component>
+    </component>
+
+    <component id="CoreInternalNameColumn">
+        <properties combine.keys="name">
+            <property name="label" value="INTERNAL_NAME_LABEL" />
+            <property name="attributePath" value="attributes.internalName" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+        </properties>
+    </component>
+
+    <component id="CoreLogicalNameColumn">
+        <properties combine.keys="name">
+            <property name="label" value="INTERNAL_NAME_LABEL" />
+            <property name="attributePath" value="attributes.logicalName" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+        </properties>
+    </component>
+
+    <component id="CoreLogicalPathColumn">
+        <properties combine.keys="name">
+            <property name="label" value="LOGICAL_PATH_LABEL" />
+            <property name="attributePath" value="attributes.logicalPath" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+
+    <component id="CoreSoftAttributeTypeValueColumn">
+        <properties combine.keys="name">
+            <property name="attributePath" value="logicalPath" />
+            <property name="attributePath" value="type" />
+            <property name="enumeratedTypeTranslater" value="DefaultEnumeratedValueTranslater" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+
+
+    <component id="CoreForwardToStructureColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="ForwardToStructureCellPresenter" />
+            <property name="responsiveOrder" value="-1" />
+            <property name="prefWidth" value="80" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+
+    <component id="CoreHEllipsisColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="HEllipsisTableCellPresenter" />
+            <property name="responsiveOrder" value="-1" />
+            <property name="prefWidth" value="80" />
+            <property name="tableCellStyleClass" value="align-right" />
+        </properties>
+    </component>
+
+    <component id="CoreRCForwardToDetailsColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="TableRowActionPresenter" />
+            <property name="responsiveOrder" value="-1" />
+            <property name="prefWidth" value="40" />
+            <property name="tableCellStyleClass" value="align-right" />
+            <property name="ikonli" value="fa-angle-right:22" />
+            <property name="iconStyleClass" value="grey-flat-ikonli" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+
+
+    <component id="CoreNestedQuantityColumn">
+        <properties combine.keys="name">
+            <property name="label" value="QUANTITY_LABEL" />
+            <property name="presenter" value="GenericModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+            <property name="columnHeaderStyleClass" value="ep-table-quantity-col-header" />
+            <property name="tableCellStyleClass" value="ep-table-quantity-label,align-right" />
+            <property name="attributePath" value="nestedAttributes.attributes.softAttributeColumns.dyn_att_15" />
+        </properties>
+    </component>
+
+    <component id="CoreNestedQuantityUnitColumn">
+        <properties combine.keys="name">
+            <property name="label" value="QUANTITY_UNIT_LABEL" />
+            <property name="attributePath" value="nestedAttributes.attributes.softAttributeColumns.dyn_att_15" />
+            <property name="presenter" value="GenericModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+            <property name="tableCellStyleClass" value="ep-table-quantity-unit-label" />
+        </properties>
+    </component>
+
+    <component id="CoreDeleteTableRowColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="DeleteTableRowPresenter" />
+            <property name="responsiveOrder" value="-1" />
+            <property name="prefWidth" value="60" />
+            <property name="tableCellStyleClass" value="align-right" />
+        </properties>
+    </component>
+
+    <component id="CoreAttributesNameColumn">
+        <properties combine.keys="name">
+            <property name="label" value="NAME_LABEL" />
+            <property name="tableCellStyleClass" value="ep-table-uses-primary-label" />
+            <property name="attributePath" value="attributes.name" />
+            <property name="presenter" value="ModelAttributePresenter" />
+            <property name="prefWidth" value="200" />
+        </properties>
+    </component>
+
+    <component id="CoreCheckboxSelectColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="TableRowSelectPresenter" />
+            <property name="responsiveOrder" value="-1" />
+            <property name="prefWidth" value="40" />
+            <property name="tableCellStyleClass" value="ep-table-selector" />
+            <property name="tableCellStyleClass" value="align-center" />
+        </properties>
+    </component>
+
+    <component id="CoreTableIndicatorColumn">
+        <properties combine.keys="name">
+            <property name="presenter" value="TableIndicatorColumnPresenter" />
+            <property name="prefWidth" value="5" />
+            <property name="tableCellStyleClass" value="align-left" />
+        </properties>
+    </component>
+    
+    <component id="CoreElementMasterNameColumn">
+		<properties combine.keys="name">
+			<property name="label" value="NAME_LABEL" />
+			<property name="presenter" value="RCMasterNamePresenter" />
+			<property name="prefWidth" value="200" />
+		</properties>
+		<component id="columnClickHandler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:ElementIterationMaximizedRootDetailsView" />
+				<property name="action" value="PushToViewAction" />
+			</properties>
+		</component>
+	</component>
+	
+	<component id="CoreDocumentMasterNameColumn">
+		<properties combine.keys="name">
+			<property name="label" value="NAME_LABEL" />
+			<property name="presenter" value="RCMasterNamePresenter" />
+			<property name="prefWidth" value="200" />
+		</properties>
+		<component id="columnClickHandler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:DocIterationMaximizedRootDetailsView" />
+				<property name="action" value="PushToViewAction" />
+			</properties>
+		</component>
+	</component>
+	
+	<component id="CoreForwardToDocumentDetailsColumn">
+		<properties combine.keys="name">
+			<property name="presenter" value="TableRowActionPresenter" />
+			<property name="responsiveOrder" value="-1" />
+			<property name="prefWidth" value="40" />
+			<property name="tableCellStyleClass" value="align-left" />
+			<property name="ikonli" value="fa-angle-right:22" />
+			<property name="iconStyleClass" value="grey-flat-ikonli" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:ManageDocumentInSecondaryRSView;contentId:IdentityLessDocIterationMaximizedRootDetailsView" />
+				<property name="action" value="PushViewToSecondaryRSContentAction" />
+			</properties>
+		</component>
+	</component>
+	
+	<component id="CoreForwardToElementDetailsColumn">
+		<properties combine.keys="name">
+			<property name="presenter" value="TableRowActionPresenter" />
+			<property name="responsiveOrder" value="-1" />
+			<property name="prefWidth" value="40" />
+			<property name="tableCellStyleClass" value="align-left" />
+			<property name="ikonli" value="fa-angle-right:22" />
+			<property name="iconStyleClass" value="grey-flat-ikonli" />
+		</properties>
+		<component id="Handler">
+			<properties combine.keys="name">
+				<property name="args" value="viewId:ManageElementInSecondaryRSView;contentId:IdentityLessElementIterationMaximizedRootDetailsView" />
+				<property name="action" value="PushViewToSecondaryRSContentAction" />
+			</properties>
+		</component>
+	</component>
+	
+</view>
