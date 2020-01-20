@@ -364,9 +364,9 @@ public abstract class ViewStructure implements IViewStructure {
     	String primary = "Indigo";
     	String accent = "Orange";
 
-        ((StyleSheetsManager) styleSheetManager)
-        .setDefaultTheme(ThemeUtils.getCssFromPrimaryColor(primary),
-            ThemeUtils.getCssFromAccentColor(accent));
+       // ((StyleSheetsManager) styleSheetManager)
+        //.setDefaultTheme(ThemeUtils.getCssFromPrimaryColor(primary),
+          //  ThemeUtils.getCssFromAccentColor(accent));
 
     });
   }

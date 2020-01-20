@@ -160,7 +160,7 @@
 				<dependency>
 					<groupId>io.github.jsoagger</groupId>
 					<artifactId>jsoagger-jfxcore11</artifactId>
-					<version>1.0.2</version>
+					<version>1.0.3</version>
 				</dependency>
 				<dependency>
 					<groupId>com.jfoenix</groupId>
