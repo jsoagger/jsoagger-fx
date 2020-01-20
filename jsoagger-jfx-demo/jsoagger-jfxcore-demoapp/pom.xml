@@ -15,7 +15,6 @@
 
 	<properties>
 		<fully.qualified.main.class>io.github.jsoagger.jfxcore.demoapp.providers.DemoApplicationLauncher</fully.qualified.main.class>
-		<jsoagger.core.client.home>${project.basedir}/../..</jsoagger.core.client.home>
 	</properties>
 
 	<dependencies>

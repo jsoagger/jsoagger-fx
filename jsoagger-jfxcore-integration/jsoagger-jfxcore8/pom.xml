@@ -22,8 +22,6 @@
 		<jfxetras.version>8.0-r6</jfxetras.version>
 		<commons.lang.version>2.3</commons.lang.version>
 
-		<jsoagger.core.client.home>${project.basedir}/../../</jsoagger.core.client.home>
-
 		<java.source.level>1.8</java.source.level>
 		<java.target.level>1.8</java.target.level>
 		<jdk>/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/</jdk>

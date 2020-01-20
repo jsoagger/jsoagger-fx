@@ -12,10 +12,6 @@
 	<description>JSoagger jfx stubs of cloud operations</description>
 	<artifactId>jsoagger-cloudstub-operations</artifactId>
 
-	<properties>
-		<jsoagger.core.client.home>${project.basedir}/../..</jsoagger.core.client.home>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>io.github.jsoagger</groupId>

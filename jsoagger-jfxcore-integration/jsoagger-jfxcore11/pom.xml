@@ -22,8 +22,6 @@
 		<jfxetras.version>9.0-r1</jfxetras.version>
 		<commons.lang.version>2.3</commons.lang.version>
 
-		<jsoagger.core.client.home>${project.basedir}/../../</jsoagger.core.client.home>
-
 		<maven.eclipse.plugin.version>2.10</maven.eclipse.plugin.version>
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 		<java.source.level>11</java.source.level>

@@ -14,7 +14,6 @@
 
 	<properties>
 		<fully.qualified.main.class>io.github.jsoagger.jfx.platform.desktop.demo.JFXPlatformDemoDesktopApplicationRunner</fully.qualified.main.class>
-		<jsoagger.core.client.home>${project.basedir}/../../</jsoagger.core.client.home>
 	</properties>
 
 	<dependencies>
