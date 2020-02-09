@@ -569,23 +569,19 @@
 			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
 
-		<!-- for nexitia's snapshots 
 		<repository>
-			<id>Sonatype-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<layout>default</layout>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
+			<id>nexitia.com</id>
+			<name>Nexitia releases</name>
+			<url>http://nexus.nexitia.com/repository/nexitia-group/</url>
 			<snapshots>
 				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
 			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
 		</repository>
-		<repository>
-			<id>Sonatype-release</id>
-			<url>https://oss.sonatype.org/content/repositories/releases</url>
-			<layout>default</layout>
-		</repository>-->
 	</repositories>
 
 	<pluginRepositories>
@@ -615,13 +611,14 @@
 		</site>
 
 		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<id>nexitia-snapshots</id>
+			<url>http://nexus.nexitia.com/repository/nexitia-snapshots</url>
 		</snapshotRepository>
+		
 		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
+			<id>nexitia-release</id>
+			<url>http://nexus.nexitia.com/repository/nexitia-releases/</url>
+		</repository>	
 	</distributionManagement>
 
 	<reporting>
@@ -692,8 +689,8 @@
 						<version>1.6.8</version>
 						<extensions>true</extensions>
 						<configuration>
-							<serverId>ossrh</serverId>
-							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<serverId>nexitia</serverId>
+							<nexusUrl>http://nexus.nexitia.com/</nexusUrl>
 							<autoReleaseAfterClose>true</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
@@ -734,7 +731,7 @@
 						</configuration>
 					</plugin>
 
-					<!-- To sign the artifacts -->
+					<!-- To sign the artifacts 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
@@ -748,7 +745,7 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
+					</plugin>-->
 				</plugins>
 			</build>
 		</profile>

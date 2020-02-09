@@ -6,13 +6,23 @@
             <username>${env.SONATYPE_USERNAME}</username>
             <password>${env.SONATYPE_PASSWORD}</password>
         </server>
+        <server>
+            <id>nexitia-snapshots</id>
+            <username>${env.NX_NEXUS_USERNAME}</username>
+            <password>${env.NX_NEXUS_PASSWORD}</password>
+        </server>
+         <server>
+            <id>nexitia-releases</id>
+            <username>${env.NX_NEXUS_USERNAME}</username>
+            <password>${env.NX_NEXUS_PASSWORD}</password>
+        </server>
     </servers>
 
     <profiles>
       <profile>
         <id>ossrh</id>
         <activation>
-          <activeByDefault>true</activeByDefault>
+          <activeByDefault>false</activeByDefault>
         </activation>
         <properties>
           <gpg.executable>${env.GPG_EXECUTABLE}</gpg.executable>
