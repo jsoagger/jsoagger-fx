@@ -14,8 +14,8 @@
 
 	<modules>
 		<module>jsoagger-cloudstub-operations</module>
-		<module>jsoagger-jfxcore-demoapp</module>
-		<module>jsoagger-jfxplatform-demoapp</module>
+		<!--<module>jsoagger-jfxcore-demoapp</module>
+		<module>jsoagger-jfxplatform-demoapp</module>-->
 	</modules>
 
 	<properties>
