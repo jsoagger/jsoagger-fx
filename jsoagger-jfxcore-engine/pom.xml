@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.github.jsoagger</groupId>
 		<artifactId>jsoagger-jfxcore</artifactId>
-		<version>1.0.4</version>
+		<version>1.0.5-SNAPSHOT</version>
 	</parent>
 
 	<name>JSoagger jfx core engine</name>
