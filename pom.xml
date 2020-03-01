@@ -27,8 +27,9 @@
 
 	<properties>
 		<internal.core.project.version>1.0.3</internal.core.project.version><!-- todo move to 1.0.3 -->
-		<internal.fx.project.version>${project.version}</internal.fx.project.version>
 		<internal.cloudservices.version>1.0.2</internal.cloudservices.version>
+		
+		<project.scm.id>jsoaggercore.repo</project.scm.id>
 		
 		<javax.annotation.version>1.2</javax.annotation.version>
 		<javaee.api.version>7.0</javaee.api.version>
@@ -302,7 +303,7 @@
 			<dependency>
 				<groupId>io.github.jsoagger</groupId>
 				<artifactId>jsoagger-jfxcore-engine</artifactId>
-				<version>${internal.fx.project.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.github.jsoagger</groupId>
@@ -317,7 +318,7 @@
 			<dependency>
 				<groupId>io.github.jsoagger</groupId>
 				<artifactId>jsoagger-jfxcore-preloader</artifactId>
-				<version>${internal.fx.project.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.github.jsoagger</groupId>
@@ -332,7 +333,7 @@
 			<dependency>
 				<groupId>io.github.jsoagger</groupId>
 				<artifactId>jsoagger-jfxcore-desktop-integration</artifactId>
-				<version>${internal.fx.project.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -540,20 +541,11 @@
 	<scm>
 		<connection>scm:git:https://github.com/Nexitia/jsoagger-core.git</connection>
 		<developerConnection>scm:git:https://github.com/Nexitia/jsoagger-core.git</developerConnection>
-		<url>https://github.com/Nexitia/jsoagger-core.git</url>
+		<url>https://github.com/jsoagger</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<repositories>
-	<!-- for nexitia's release -->
-		<repository>
-			<id>Sonatype-release</id>
-			<url>https://oss.sonatype.org/content/repositories/releases</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>	
 		<repository>
 			<id>central</id>
 			<name>Maven Repository Switchboard</name>
@@ -572,7 +564,7 @@
 		<repository>
 			<id>nexitia.com</id>
 			<name>Nexitia releases</name>
-			<url>http://nexus.nexitia.com/repository/nexitia-group/</url>
+			<url>http://nexus.nexitia.com/repository/nexitia-releases/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<checksumPolicy>ignore</checksumPolicy>
@@ -605,18 +597,13 @@
 	</pluginRepositories>
 
 	<distributionManagement>
-		<site>
-			<id>api.wiki</id>
-			<url>https://github.com/Nexitia/jsoagger-platform/wiki</url>
-		</site>
-
 		<snapshotRepository>
 			<id>nexitia-snapshots</id>
 			<url>http://nexus.nexitia.com/repository/nexitia-snapshots</url>
 		</snapshotRepository>
 		
 		<repository>
-			<id>nexitia-release</id>
+			<id>nexitia-releases</id>
 			<url>http://nexus.nexitia.com/repository/nexitia-releases/</url>
 		</repository>	
 	</distributionManagement>
@@ -668,7 +655,7 @@
 				</os>
 			</activation>
 			<properties>
-				<zip-suffix>linux</zip-suffix>
+				<zip-suffix>unix</zip-suffix>
 			</properties>
 		</profile>
 		<!-- Activate using the release property: mvn clean install -Prelease -->
@@ -682,19 +669,36 @@
 
 			<build>
 				<plugins>
-					<!-- To release to Maven central -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>2.5.3</version>
+						<configuration>
+							<tagNameFormat>@{project.version}</tagNameFormat>
+							<autoVersionSubmodules>true</autoVersionSubmodules>
+							<releaseProfiles>releases</releaseProfiles>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
 						<version>1.6.8</version>
 						<extensions>true</extensions>
+						<executions>
+							<execution>
+								<id>default-deploy</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
 						<configuration>
-							<serverId>nexitia</serverId>
-							<nexusUrl>http://nexus.nexitia.com/</nexusUrl>
-							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+							<serverId>nexitia-releases</serverId>
+							<nexusUrl>http://nexus.nexitia.com</nexusUrl>
+							<skipStaging>true</skipStaging>
 						</configuration>
 					</plugin>
-					<!-- To generate javadoc -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
@@ -708,7 +712,6 @@
 							</execution>
 						</executions>
 					</plugin>
-
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>

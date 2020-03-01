@@ -16,18 +16,10 @@
             <username>${env.NX_NEXUS_USERNAME}</username>
             <password>${env.NX_NEXUS_PASSWORD}</password>
         </server>
+        <server>
+        	<id>jsoaggercore.repo</id>
+            <username>${ENV_GIT_USERNAME}</username>
+            <password>${ENV_GIT_PASSWORD}</password>
+        </server>
     </servers>
-
-    <profiles>
-      <profile>
-        <id>ossrh</id>
-        <activation>
-          <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-          <gpg.executable>${env.GPG_EXECUTABLE}</gpg.executable>
-          <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-        </properties>
-      </profile>
-    </profiles>
 </settings>
