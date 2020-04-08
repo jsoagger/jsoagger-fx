@@ -22,7 +22,6 @@ package io.github.jsoagger.jfxcore.engine.controller.main;
 
 
 
-
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -71,6 +70,7 @@ import javafx.fxml.FXML;
 import javafx.scene.CacheHint;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
@@ -111,6 +111,8 @@ public class RootStructureController extends AbstractViewController {
   | FXML CONTENT OF THE STRUCTURE
    *=============================================================================*/
   @FXML
+  protected Pane rootStructureWrapper;
+  @FXML
   protected Pane secondaryRSWrapperScrollpane;
   @FXML
   protected Pane secondaryRSActionsWrapper;
@@ -133,8 +135,6 @@ public class RootStructureController extends AbstractViewController {
   @FXML
   protected Pane rootStructureLeftMenuPane;
   @FXML
-  protected Pane rootStructureWrapper;
-  @FXML
   protected ButtonBase closePushedContentButton;
 
   private final StackPane notificationsStack = new StackPane();
@@ -144,14 +144,6 @@ public class RootStructureController extends AbstractViewController {
    *=============================================================================*/
   /** Default Anchors configuration file */
   protected static Properties APPLICATION_PROP = null;
-  static {
-    try (InputStream is = ResourceUtils.getStream(AbstractViewController.class, "/anchors.properties")) {
-      APPLICATION_PROP = new Properties();
-      APPLICATION_PROP.load(is);
-    } catch (final Exception e) {
-    }
-  }
-
 
   /*-----------------------------------------------------------------------------
   | CONSTRUCTOR
@@ -169,6 +161,13 @@ public class RootStructureController extends AbstractViewController {
     registerListener(CoreEvent.HideDialogEvent);
     registerListener(CoreEvent.DisplayMenuEvent);
     registerListener(CoreEvent.CloseMenuEvent);
+
+    try (InputStream is = ResourceUtils.getStream(AbstractViewController.class, "/anchors.json")) {
+      APPLICATION_PROP = new Properties();
+      APPLICATION_PROP.load(is);
+    } catch (final Exception e) {
+      e.printStackTrace();
+    }
   }
 
 
@@ -186,22 +185,19 @@ public class RootStructureController extends AbstractViewController {
     NodeHelper.setHVGrow(notificationsStack);
 
     pushedContentWrapper.managedProperty().bind(pushedContentWrapper.visibleProperty());
-    closePushedContentButton.setOnAction(e-> popContent());
+    closePushedContentButton.setOnAction(e -> popContent());
     IconUtils.setFontIcon("gmi-close:22", closePushedContentButton);
     closePushedContentButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
     // rootStructure.visibleProperty().bind(Bindings.not(pushedContentWrapper.visibleProperty()));
 
-    //final CompletableFuture buildHeader = CompletableFuture.runAsync(() -> buildHeader(), DesktopApplicationRunner.pool);
-    //final CompletableFuture buildContent = CompletableFuture.runAsync(() -> buildContent(), DesktopApplicationRunner.pool);
-    //CompletableFuture.allOf(buildHeader, buildContent).join();
-    //CompletableFuture.runAsync(() -> buildPrimaryMenu(), DesktopApplicationRunner.pool);
     buildHeader();
     buildContent();
     buildPrimaryMenu();
 
-    secondaryRootStructureWrapper.managedProperty().bind(secondaryRootStructureWrapper.visibleProperty());
+    secondaryRootStructureWrapper.managedProperty()
+        .bind(secondaryRootStructureWrapper.visibleProperty());
     secondaryRootStructureWrapper.setVisible(false);
-    if(AbstractApplicationRunner.isSimulMobile() || AbstractApplicationRunner.isMobile()) {
+    if (AbstractApplicationRunner.isSimulMobile() || AbstractApplicationRunner.isMobile()) {
     }
 
     if (!headerLess) {
@@ -284,7 +280,7 @@ public class RootStructureController extends AbstractViewController {
 
       // CTRL + L: SHOW
       // ESC: HIDE
-      if(ViewStructure.primaryStage() != null && ViewStructure.primaryStage().getScene() != null) {
+      if (ViewStructure.primaryStage() != null && ViewStructure.primaryStage().getScene() != null) {
         ViewStructure.primaryStage().getScene().addEventFilter(KeyEvent.KEY_RELEASED, kr);
       }
     }
@@ -295,22 +291,22 @@ public class RootStructureController extends AbstractViewController {
   | THE CONTENT
    *=============================================================================*/
   private void buildContent() {
-    try {
-      final VLViewComponentXML rootComp = getRootComponent();
-      if (rootComp != null) {
-        final String contentRootStructure = rootComp.getPropertyValue("contentRootStructure");
-        if (StringUtils.isNotBlank(contentRootStructure)) {
-          rootStructureContentController = RootStructureContentUtils.forId(contentRootStructure, this);
-          contentStack.getChildren().add(rootStructureContentController.processedView());
-        }
+    final VLViewComponentXML rootComp = getRootComponent();
+    if (rootComp != null) {
+      final String contentRootStructure = rootComp.getPropertyValue("contentRootStructure");
+      if (StringUtils.isNotBlank(contentRootStructure)) {
+        rootStructureContentController =
+            RootStructureContentUtils.forId(contentRootStructure, this);
+        contentStack.getChildren().add(rootStructureContentController.processedView());
       }
-    } catch (final Exception e) {
-      e.printStackTrace();
+    } else {
+      Button button = new Button("Please contact administrator, there is a problem!");
+      contentStack.getChildren().add(button);
     }
   }
 
   public RootStructureContentController getRootStructureContent() {
-	  return rootStructureContentController;
+    return rootStructureContentController;
   }
 
   /*-----------------------------------------------------------------------------
@@ -347,7 +343,7 @@ public class RootStructureController extends AbstractViewController {
       }
 
       // and then other child
-      for(StandardViewController c : aware) {
+      for (StandardViewController c : aware) {
         c.handle(event);
       }
     }
@@ -372,7 +368,7 @@ public class RootStructureController extends AbstractViewController {
     } else if (event.isA(CoreEvent.CloseMenuEvent)) {
       handleEvent((CloseMenuEvent) event);
     } else if (event.isA(CoreEvent.HeaderSearchFocusedEvent)) {
-      handleEvent((HeaderSearchFocusedEvent)event);
+      handleEvent((HeaderSearchFocusedEvent) event);
     } else if (event.isA(CoreEvent.HeaderSearchLostFocusedEvent)) {
       handleEvent((HeaderSearchLostFocusedEvent) event);
     }
@@ -407,15 +403,16 @@ public class RootStructureController extends AbstractViewController {
   private void handleEvent(ShowDialogEvent e) {
     final Stage stage = e.getStage();
     makeCentralPaneDarker();
-    if(stage != null) stage.show();
+    if (stage != null)
+      stage.show();
   }
 
 
   private void handleEvent(HideDialogEvent e) {
     final Stage stage = e.getStage();
     makeCentralPaneLighter();
-    if(stage != null)
-    	Platform.runLater(() -> stage.hide());
+    if (stage != null)
+      Platform.runLater(() -> stage.hide());
   }
 
 
@@ -423,7 +420,7 @@ public class RootStructureController extends AbstractViewController {
    * Removes and clean children
    */
   public void clear() {
-    for(StandardViewController s: children) {
+    for (StandardViewController s : children) {
       s.destroy();
     }
     children.clear();
@@ -487,45 +484,58 @@ public class RootStructureController extends AbstractViewController {
     String rootStructurePrimaryPaneAnchors = null;
     String pushedContentWrapperAnchors = null;
 
-    final Optional<VLViewComponentXML> anchorsConfig = getRootComponent().getComponentById("RootStructureComponentAnchors");
+    final Optional<VLViewComponentXML> anchorsConfig =
+        getRootComponent().getComponentById("RootStructureComponentAnchors");
     if (anchorsConfig != null && anchorsConfig.isPresent()) {
       final VLViewComponentXML anchorsConf = anchorsConfig.get();
-      rootStructureWrapperAnchors = anchorsConf.getPropertyValue("rootStructureView.rootStructureWrapper.anchor");
-      rootStructureLeftMenuPanAnchors = anchorsConf.getPropertyValue("rootStructureView.rootStructureLeftMenuPane.anchor");
-      secondaryRootStructureWrapperAnchors = anchorsConf.getPropertyValue("rootStructureView.secondaryRootStructureWrapper.anchor");
-      pushedContentWrapperAnchors = anchorsConf.getPropertyValue("rootStructureView.pushedContentWrapper.anchor");
-      rootStructurePrimaryPaneAnchors = anchorsConf.getPropertyValue("rootStructureView.rootStructurePrimaryPane.anchor");
-      rootStructureTernaryPaneAnchors = anchorsConf.getPropertyValue("rootStructureView.rootStructureTernaryPane.anchor");
+      rootStructureWrapperAnchors =
+          anchorsConf.getPropertyValue("rootStructureView.rootStructureWrapper.anchor");
+      rootStructureLeftMenuPanAnchors =
+          anchorsConf.getPropertyValue("rootStructureView.rootStructureLeftMenuPane.anchor");
+      secondaryRootStructureWrapperAnchors =
+          anchorsConf.getPropertyValue("rootStructureView.secondaryRootStructureWrapper.anchor");
+      pushedContentWrapperAnchors =
+          anchorsConf.getPropertyValue("rootStructureView.pushedContentWrapper.anchor");
+      rootStructurePrimaryPaneAnchors =
+          anchorsConf.getPropertyValue("rootStructureView.rootStructurePrimaryPane.anchor");
+      rootStructureTernaryPaneAnchors =
+          anchorsConf.getPropertyValue("rootStructureView.rootStructureTernaryPane.anchor");
     }
 
     // rootStructureWrapper.default.anchor
     if (StringUtils.isEmpty(rootStructureWrapperAnchors))
-      rootStructureWrapperAnchors = APPLICATION_PROP.getProperty("rootStructureView.rootStructureWrapper.default.anchor");
+      rootStructureWrapperAnchors =
+          APPLICATION_PROP.getProperty("rootStructureView.rootStructureWrapper.default.anchor");
     setAnchors(rootStructureWrapper, rootStructureWrapperAnchors);
 
     // rootStructureLeftMenuPane.default.anchor
     if (StringUtils.isEmpty(rootStructureLeftMenuPanAnchors))
-      rootStructureLeftMenuPanAnchors = APPLICATION_PROP.getProperty("rootStructureView.rootStructureLeftMenuPane.default.anchor");
+      rootStructureLeftMenuPanAnchors = APPLICATION_PROP
+          .getProperty("rootStructureView.rootStructureLeftMenuPane.default.anchor");
     setAnchors(rootStructureLeftMenuPane, rootStructureLeftMenuPanAnchors);
 
     // secondaryRootStructureWrapper.default.anchor
     if (StringUtils.isEmpty(secondaryRootStructureWrapperAnchors))
-      secondaryRootStructureWrapperAnchors = APPLICATION_PROP.getProperty("rootStructureView.secondaryRootStructureWrapper.default.anchor");
+      secondaryRootStructureWrapperAnchors = APPLICATION_PROP
+          .getProperty("rootStructureView.secondaryRootStructureWrapper.default.anchor");
     setAnchors(secondaryRootStructureWrapper, secondaryRootStructureWrapperAnchors);
 
     // pushedContentWrapper.default.anchor
     if (StringUtils.isEmpty(pushedContentWrapperAnchors))
-      pushedContentWrapperAnchors = APPLICATION_PROP.getProperty("rootStructureView.pushedContentWrapper.default.anchor");
+      pushedContentWrapperAnchors =
+          APPLICATION_PROP.getProperty("rootStructureView.pushedContentWrapper.default.anchor");
     setAnchors(pushedContentWrapper, pushedContentWrapperAnchors);
 
     // rootStructurePrimaryPane.default.anchor
     if (StringUtils.isEmpty(rootStructurePrimaryPaneAnchors))
-      rootStructurePrimaryPaneAnchors = APPLICATION_PROP.getProperty("rootStructureView.rootStructurePrimaryPane.default.anchor");
+      rootStructurePrimaryPaneAnchors =
+          APPLICATION_PROP.getProperty("rootStructureView.rootStructurePrimaryPane.default.anchor");
     setAnchors(rootStructurePrimaryPane, rootStructurePrimaryPaneAnchors);
 
     // rootStructureTernaryPane.default.anchor
     if (StringUtils.isEmpty(rootStructureTernaryPaneAnchors))
-      rootStructureTernaryPaneAnchors = APPLICATION_PROP.getProperty("rootStructureView.rootStructureTernaryPane.default.anchor");
+      rootStructureTernaryPaneAnchors =
+          APPLICATION_PROP.getProperty("rootStructureView.rootStructureTernaryPane.default.anchor");
     setAnchors(rootStructureTernaryPane, rootStructureTernaryPaneAnchors);
   }
 
@@ -726,7 +736,7 @@ public class RootStructureController extends AbstractViewController {
 
       // if screen is not maximized, no animation when showing.
       // because translation will start out of the screen!!
-      if(AbstractApplicationRunner.isDesktop()) {
+      if (AbstractApplicationRunner.isDesktop()) {
         tt = NodeHelper.translateTo(50, 0, rootStructurePrimaryPane);
         tt.setDuration(Duration.millis(50));
         final EasingInterpolator ei = new EasingInterpolator(EasingMode.IN_EXPO);
@@ -742,8 +752,8 @@ public class RootStructureController extends AbstractViewController {
 
         @Override
         public void handle(MouseEvent event) {
-          if(!event.isConsumed() && primaryMenuIsShowing) {
-            //animateHidePrimaryMenu();
+          if (!event.isConsumed() && primaryMenuIsShowing) {
+            // animateHidePrimaryMenu();
           }
         }
       };
@@ -772,15 +782,15 @@ public class RootStructureController extends AbstractViewController {
     if (primaryMenuIsShowing) {
       // if screen is not maximized, no animation when closing.
       // because translation will go out of the screen!!
-      if(!AbstractApplicationRunner.isDesktop()) {
+      if (!AbstractApplicationRunner.isDesktop()) {
         final EasingInterpolator cme = new EasingInterpolator(EasingMode.IN_OUT_CIRC);
         final TranslateTransition tte = NodeHelper.translateTo(-800, rootStructurePrimaryPane);
         tte.setDuration(Duration.millis(1000));
         tte.setInterpolator(cme);
         tte.play();
-      }
-      else {
-        final FadeTransition tte = NodeHelper.fadeOut(rootStructurePrimaryPane, Duration.millis(100));
+      } else {
+        final FadeTransition tte =
+            NodeHelper.fadeOut(rootStructurePrimaryPane, Duration.millis(100));
         tte.setOnFinished(e -> {
           rootStructurePrimaryPane.setOpacity(1);
           rootStructurePrimaryPane.translateXProperty().set(-800);
@@ -889,6 +899,8 @@ public class RootStructureController extends AbstractViewController {
   public void displayMainView() {
     pushedContentWrapper.setVisible(false);
     rootStructureWrapper.setVisible(true);
+    NodeHelper.setVgrow(rootStructure);
+    NodeHelper.setVgrow(contentStack);
   }
 
   /*-------------------------------------------------------------------------------------------------------------
@@ -930,7 +942,7 @@ public class RootStructureController extends AbstractViewController {
 
   public void closeSecondaryRSWrapper() {
     animateHideSecondaryRSContent();
-    //ViewStructure.instance().hideSecondaryRS();
+    // ViewStructure.instance().hideSecondaryRS();
   }
 
 
@@ -948,11 +960,10 @@ public class RootStructureController extends AbstractViewController {
     secondaryRootStructureWrapper.setCacheHint(CacheHint.SPEED);
 
     final EasingInterpolator cme = new EasingInterpolator(EasingMode.OUT_CIRC);
-    if(AbstractApplicationRunner.isDesktop()) {
+    if (AbstractApplicationRunner.isDesktop()) {
       showSecondaryStrWrapper = NodeHelper.translateYTo(0, 0, secondaryRootStructureWrapper);
       showSecondaryStrWrapper.setDuration(Duration.millis(50));
-    }
-    else {
+    } else {
       showSecondaryStrWrapper = NodeHelper.translateYTo(-100, 0, secondaryRootStructureWrapper);
       showSecondaryStrWrapper.setDuration(Duration.millis(200));
     }
@@ -960,11 +971,10 @@ public class RootStructureController extends AbstractViewController {
     showSecondaryStrWrapper.setInterpolator(cme);
 
     final EasingInterpolator cme1 = new EasingInterpolator(EasingMode.OUT_CIRC);
-    if(AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
+    if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
       hideSecondaryStrWrapper = NodeHelper.translateYTo(-400, -1000, secondaryRootStructureWrapper);
       hideSecondaryStrWrapper.setDuration(Duration.millis(500));
-    }
-    else {
+    } else {
       hideSecondaryStrWrapper = NodeHelper.translateYTo(-500, -2000, secondaryRootStructureWrapper);
       hideSecondaryStrWrapper.setDuration(Duration.millis(100));
     }
@@ -980,7 +990,7 @@ public class RootStructureController extends AbstractViewController {
   }
 
   private void animateShowSecondaryRSContent(Node node, List<Node> actions) {
-    if(!AbstractApplicationRunner.isDesktop()) {
+    if (!AbstractApplicationRunner.isDesktop()) {
       ((Pane) node).maxWidthProperty().unbind();
       ((Pane) node).minWidthProperty().unbind();
       ((Pane) node).maxWidthProperty().bind(((Pane) node).prefWidthProperty());
@@ -988,7 +998,7 @@ public class RootStructureController extends AbstractViewController {
       ((Pane) node).setPrefWidth(ViewStructure.instance().platformSceneWidth().get());
     }
 
-    Platform.runLater(()->{
+    Platform.runLater(() -> {
       secondaryRootStructureWrapper.toFront();
       showSecondaryStrWrapper.setOnFinished(e -> {
         if (actions != null && actions.size() > 0) {
@@ -1056,7 +1066,8 @@ public class RootStructureController extends AbstractViewController {
    * @param id
    * @return VLComponent ro null
    */
-  public io.github.jsoagger.jfxcore.api.InjectableComponent getComponent(String id, boolean inChildren) {
+  public io.github.jsoagger.jfxcore.api.InjectableComponent getComponent(String id,
+      boolean inChildren) {
     if (children != null && children.size() > 0) {
       for (final AbstractViewController avc : children) {
         final InjectableComponent ic = avc.getComponent(id);
@@ -1078,8 +1089,8 @@ public class RootStructureController extends AbstractViewController {
     /*
      * super.destroy(); final Task<Void> t = new Task<Void>() {
      *
-     * @Override protected Void call() throws Exception { rootContext = null;
-     * null; return null; } }; final Thread thread = new Thread(t); thread.start();
+     * @Override protected Void call() throws Exception { rootContext = null; null; return null; }
+     * }; final Thread thread = new Thread(t); thread.start();
      */
   }
 
@@ -1092,11 +1103,10 @@ public class RootStructureController extends AbstractViewController {
   protected Pane headerMessagePane;
 
   public void showMessage(Node message) {
-    if(Platform.isFxApplicationThread()) {
+    if (Platform.isFxApplicationThread()) {
       _showMessage(message);
-    }
-    else {
-      Platform.runLater(()->{
+    } else {
+      Platform.runLater(() -> {
         _showMessage(message);
       });
     }

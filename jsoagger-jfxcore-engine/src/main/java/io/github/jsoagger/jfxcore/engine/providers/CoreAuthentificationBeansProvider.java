@@ -20,11 +20,13 @@ import io.github.jsoagger.jfxcore.engine.components.security.UserContext;
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.StructureContentController;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 @BeansProvider
 public class CoreAuthentificationBeansProvider {
+
+  public CoreAuthentificationBeansProvider() {}
 
   @Bean
   @Singleton
@@ -38,7 +40,8 @@ public class CoreAuthentificationBeansProvider {
   @Named("RootContext")
   public IRootContext rootContext() {
     IRootContext context = new RootContext();
-    context.setLoginSessionHolder((ILoginSessionHolder) BeanFactory.instance().getBean("LoginSessionHolder"));
+    context.setLoginSessionHolder(
+        (ILoginSessionHolder) BeanFactory.instance().getBean("LoginSessionHolder"));
     context.init();
     return context;
   }

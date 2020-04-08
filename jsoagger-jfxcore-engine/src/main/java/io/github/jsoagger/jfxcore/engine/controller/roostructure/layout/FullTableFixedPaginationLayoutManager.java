@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -24,8 +24,8 @@ package io.github.jsoagger.jfxcore.engine.controller.roostructure.layout;
 
 import java.net.URL;
 
+import io.github.jsoagger.jfxcore.api.components.annotation.GraalComponent;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManageable;
-
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -36,6 +36,7 @@ import javafx.scene.layout.Pane;
  * @mailTo yvonjisoa@nexitia.com
  * @date 11 févr. 2018
  */
+@GraalComponent
 public class FullTableFixedPaginationLayoutManager extends FullTableStructureContentLayoutManager {
 
   @FXML
@@ -63,27 +64,26 @@ public class FullTableFixedPaginationLayoutManager extends FullTableStructureCon
       AnchorPane.setLeftAnchor(centerAreaSection, 0.);
       AnchorPane.setRightAnchor(centerAreaSection, 0.);
 
-      if(bottomNode != null) {
+      if (bottomNode != null) {
         AnchorPane.setBottomAnchor(centerAreaSection, 72.);
-      }
-      else {
+      } else {
         AnchorPane.setBottomAnchor(centerAreaSection, 0.);
       }
     } else {
-      headerAreaSection.heightProperty().addListener((ChangeListener<Number>) (observable, oldValue, newValue) -> {
-        double height = newValue.doubleValue();
-        AnchorPane.clearConstraints(centerAreaSection);
-        AnchorPane.setTopAnchor(centerAreaSection, height);
-        AnchorPane.setLeftAnchor(centerAreaSection, 0.);
-        AnchorPane.setRightAnchor(centerAreaSection, 0.);
-        if(bottomNode != null) {
-          AnchorPane.setBottomAnchor(centerAreaSection, 72.);
-        }
-        else {
-          AnchorPane.setBottomAnchor(centerAreaSection, 0.);
-        }
-        centerAreaSection.requestLayout();
-      });
+      headerAreaSection.heightProperty()
+          .addListener((ChangeListener<Number>) (observable, oldValue, newValue) -> {
+            double height = newValue.doubleValue();
+            AnchorPane.clearConstraints(centerAreaSection);
+            AnchorPane.setTopAnchor(centerAreaSection, height);
+            AnchorPane.setLeftAnchor(centerAreaSection, 0.);
+            AnchorPane.setRightAnchor(centerAreaSection, 0.);
+            if (bottomNode != null) {
+              AnchorPane.setBottomAnchor(centerAreaSection, 72.);
+            } else {
+              AnchorPane.setBottomAnchor(centerAreaSection, 0.);
+            }
+            centerAreaSection.requestLayout();
+          });
     }
   }
 
@@ -93,6 +93,7 @@ public class FullTableFixedPaginationLayoutManager extends FullTableStructureCon
    */
   @Override
   public URL getFXMLLocation() {
-    return FullTableFixedPaginationLayoutManager.class.getResource("FullTableFixedPaginationStructureContent.fxml");
+    return FullTableFixedPaginationLayoutManager.class
+        .getResource("FullTableFixedPaginationStructureContent.fxml");
   }
 }

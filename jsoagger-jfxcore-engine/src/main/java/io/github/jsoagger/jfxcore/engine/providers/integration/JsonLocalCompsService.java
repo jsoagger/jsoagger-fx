@@ -9,10 +9,12 @@ import io.github.jsoagger.jfxcore.api.services.LocalComponentsService;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
-public class JsonLocalCompsService   implements LocalComponentsService {
+public class JsonLocalCompsService implements LocalComponentsService {
+
+  public JsonLocalCompsService() {}
 
   /**
    * {@inheritDoc}
@@ -34,6 +36,5 @@ public class JsonLocalCompsService   implements LocalComponentsService {
    * {@inheritDoc}
    */
   @Override
-  public void setConfigurationFiles(List<String> configurationFiles) {
-  }
+  public void setConfigurationFiles(List<String> configurationFiles) {}
 }

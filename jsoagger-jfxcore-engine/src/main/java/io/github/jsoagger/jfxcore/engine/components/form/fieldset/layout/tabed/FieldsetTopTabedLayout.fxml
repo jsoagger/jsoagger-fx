@@ -10,7 +10,6 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -22,13 +21,10 @@
                <children>
                     <StackPane fx:id="fieldsetTopLayoutHeader" prefHeight="-1" prefWidth="-1" style="" AnchorPane.topAnchor="0"
                          AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
-
                     </StackPane>
                     
                     <StackPane fx:id="fieldsetTopLayoutCenter" style="" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0"
                          AnchorPane.topAnchor="34" AnchorPane.bottomAnchor="0">
-                         <children>
-                         </children>
                     </StackPane>
                </children>
           </AnchorPane>

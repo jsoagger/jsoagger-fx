@@ -25,6 +25,7 @@ import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.RootStr
 @ConvertViewToJson
 public class CoreComponentsWelcomeBeanProvider {
 
+  public CoreComponentsWelcomeBeanProvider() {}
 
   @Bean
   @Named("WelcomeButtonAction")
@@ -44,7 +45,7 @@ public class CoreComponentsWelcomeBeanProvider {
   @Bean
   @Singleton
   @Named("WelcomeView")
-  @View(locations= {"/io/github/jsoagger/jfxcore/components/welcome/WelcomeView.xml"})
+  @View(locations = {"/io/github/jsoagger/jfxcore/components/welcome/WelcomeView.xml"})
   public WelcomeController welcomeView() {
     WelcomeController controller = new WelcomeController();
     controller.setMessageSource(WelcomeMessageSource());
@@ -55,22 +56,24 @@ public class CoreComponentsWelcomeBeanProvider {
   @Bean
   @Singleton
   @Named("WelcomeRSContentView")
-  @View(locations= {"/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSContentView.xml"})
+  @View(locations = {"/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSContentView.xml"})
   public RootStructureContentController welcomeRSContentView() {
     RootStructureContentController controller = new RootStructureContentController();
     controller.setMessageSource(WelcomeMessageSource());
-    controller.addViewDefinition("/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSContentView.json");
+    controller.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSContentView.json");
     return controller;
   }
 
   @Bean
   @Singleton
   @Named("WelcomeRSView")
-  @View(locations= {"/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSView.xml"})
+  @View(locations = {"/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSView.xml"})
   public RootStructureController welcomeRSView() {
     DoubleHeaderRootStructureController controller = new DoubleHeaderRootStructureController();
     controller.setMessageSource(WelcomeMessageSource());
-    controller.addViewDefinition("/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSView.json");
+    controller
+        .addViewDefinition("/io/github/jsoagger/jfxcore/components/welcome/WelcomeRSView.json");
     return controller;
   }
 }

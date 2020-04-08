@@ -16,10 +16,10 @@ import javafx.stage.Stage;
 /**
  * Can be used in mobile. Each tab is equaly sized and grow to fill its parent.
  *
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
-public class BottomTabPaneViewStructure extends ViewStructure   {
+public class BottomTabPaneViewStructure extends ViewStructure {
 
   private StackPane pane = new StackPane();
   private StackPane content = new StackPane();
@@ -31,19 +31,21 @@ public class BottomTabPaneViewStructure extends ViewStructure   {
     super();
 
     pane.getChildren().add(content);
-    //pane.setStyle("-fx-border-width:1;-fx-border-color:blue;-fx-alignment:CENTER;");
+    // pane.setStyle("-fx-border-width:1;-fx-border-color:blue;-fx-alignment:CENTER;");
     pane.setId("BottomTabPaneViewStructure-Pane");
 
     content.maxWidthProperty().bind(pane.widthProperty());
     content.setId("BottomTabPaneViewStructure-Content");
-    //content.setStyle("-fx-background-color:red");
+    // content.setStyle("-fx-background-color:red");
 
     pane.widthProperty().addListener(new ChangeListener<Number>() {
 
       @Override
-      public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+          Number newValue) {
         platformSceneWidth().set(newValue.doubleValue());
-      }});
+      }
+    });
   }
 
 
@@ -61,10 +63,10 @@ public class BottomTabPaneViewStructure extends ViewStructure   {
   @Override
   public void displayInSecondaryWR(Pane node) {
     super.displayInSecondaryWR(node);
-    //secondaryContent.setMaxWidth(300);
-    //secondaryContent.setPrefWidth(300);
+    // secondaryContent.setMaxWidth(300);
+    // secondaryContent.setPrefWidth(300);
     content.getChildren().add(secondaryContent);
-    //node.prefWidthProperty().bind(content.widthProperty());
+    // node.prefWidthProperty().bind(content.widthProperty());
   }
 
   @Override
@@ -95,24 +97,19 @@ public class BottomTabPaneViewStructure extends ViewStructure   {
   }
 
   @Override
-  public void selectTab(int tabIndex) {
-  }
+  public void selectTab(int tabIndex) {}
 
   @Override
-  public void removeTab(String tabId) {
-  }
+  public void removeTab(String tabId) {}
 
   @Override
-  public void removeTab(int tabIndex) {
-  }
+  public void removeTab(int tabIndex) {}
 
   @Override
-  public void selectTab(String tabId) {
-  }
+  public void selectTab(String tabId) {}
 
   @Override
-  public void add(RootStructureController rootStructure) {
-  }
+  public void add(RootStructureController rootStructure) {}
 
   @Override
   public void remove(RootStructureController rootStructure) {
@@ -135,6 +132,5 @@ public class BottomTabPaneViewStructure extends ViewStructure   {
   }
 
   @Override
-  public void setStatus(ViewStructureStatus status) {
-  }
+  public void setStatus(ViewStructureStatus status) {}
 }

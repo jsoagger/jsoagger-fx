@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -26,7 +26,6 @@ import io.github.jsoagger.core.bridge.result.OperationData;
 import io.github.jsoagger.jfxcore.api.IAction;
 import io.github.jsoagger.jfxcore.api.IActionRequest;
 import io.github.jsoagger.jfxcore.api.services.Services;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import io.github.jsoagger.jfxcore.engine.client.apiimpl.ActionRequest;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.contextmenu.EllipsisActionButton;
@@ -35,7 +34,7 @@ import io.github.jsoagger.jfxcore.engine.components.presenter.impl.quickactions.
 import io.github.jsoagger.jfxcore.engine.components.tablestructure.AbstractTableStructure;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.css.PseudoClass;
@@ -44,7 +43,10 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class DefaultModelListCell<T> extends AbstractListCell<T> {
@@ -66,6 +68,7 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
   @FXML
   private Pane ternaryLabelContainer;
 
+  private Pane rootContainer2;
   private boolean isLoadingChild = false;
 
 
@@ -73,7 +76,44 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
    * Default Constructor
    */
   public DefaultModelListCell() {
-    NodeHelper.loadFXML(DefaultModelListCell.class.getResource("DefaultModelListCell.fxml"), this);
+    try {
+      NodeHelper.loadFXML(DefaultModelListCell.class.getResource("DefaultModelListCell.fxml"),
+          this);
+    } catch (Exception e) {
+    }
+
+    if (rootContainer == null) {
+      rootContainer = new StackPane();
+      rootContainer2 = new HBox();
+      iconContainer = new HBox();
+      centerContainer = new VBox();
+      mainLabelContainer = new HBox();
+      quickActionsContainer = new HBox();
+      secondaryLabelContainer = new HBox();
+      ternaryLabelContainer = new HBox();
+      rightActionsContainer = new HBox();
+
+      rootContainer.getChildren().add(rootContainer2);
+      rootContainer2.getChildren().addAll(iconContainer, centerContainer, ternaryLabelContainer,
+          rightActionsContainer);
+      centerContainer.getChildren().addAll(mainLabelContainer, secondaryLabelContainer,
+          quickActionsContainer);
+
+      NodeHelper.setHgrow(centerContainer);
+
+      rootContainer.getStyleClass().add("default-list-cellpresenter-external-container");
+      iconContainer.getStyleClass().add("default-list-cellpresenter-icon-container");
+      centerContainer.getStyleClass().add("default-list-cellpresenter-center-container");
+      mainLabelContainer.getStyleClass().add("default-list-cellpresenter-primarylabel-container");
+      secondaryLabelContainer.getStyleClass()
+          .add("default-list-cellpresenter-secondarylabel-container");
+      quickActionsContainer.getStyleClass()
+          .add("default-list-cellpresenter-quickactions-container");
+      ternaryLabelContainer.getStyleClass()
+          .add("default-list-cellpresenter-ternarylabel-container");
+      rightActionsContainer.getStyleClass()
+          .add("default-list-cellpresenter-rightactions-container");
+    }
   }
 
 
@@ -92,9 +132,9 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
       rootContainer.maxWidthProperty().bind(getListView().widthProperty());
 
       // handle first and last pseudoclass
-      int index  = getIndex();
+      int index = getIndex();
       ListView<T> lv = getListView();
-      if(lv instanceof FixedSizeListView) {
+      if (lv instanceof FixedSizeListView) {
         PseudoClass pcf = PseudoClass.getPseudoClass("first");
         pseudoClassStateChanged(pcf, index == 0);
 
@@ -126,7 +166,8 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
 
       // The identity information
       if (presenter.getIdentityPresenter() != null) {
-        Node cell = presenter.getIdentityPresenter().provideIdentityOf(controller, configuration, model);
+        Node cell =
+            presenter.getIdentityPresenter().provideIdentityOf(controller, configuration, model);
         if (cell != null) {
           mainLabelContainer.getChildren().clear();
           mainLabelContainer.getChildren().add(cell);
@@ -135,7 +176,8 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
 
       // the secondary label
       if (presenter.getSecondaryLabelPresenter() != null) {
-        Node secondaryLabel = presenter.getSecondaryLabelPresenter().provideLabel(controller, configuration, model);
+        Node secondaryLabel =
+            presenter.getSecondaryLabelPresenter().provideLabel(controller, configuration, model);
         if (secondaryLabel != null) {
           secondaryLabelContainer.getChildren().clear();
           secondaryLabelContainer.getChildren().add(secondaryLabel);
@@ -146,7 +188,8 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
 
       // The ellipsis menu
       if (presenter.getEllipsisMenuPresenter() != null) {
-        Node ellipsisMenu = presenter.getEllipsisMenuPresenter().provideEllipsis(controller, configuration, model);
+        Node ellipsisMenu =
+            presenter.getEllipsisMenuPresenter().provideEllipsis(controller, configuration, model);
         presenter.setEllipsisMenu((EllipsisActionButton) ellipsisMenu);
 
         if (ellipsisMenu != null) {
@@ -170,7 +213,8 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
       AbstractTableStructure ts = (AbstractTableStructure) getUserData();
 
       // build right actions
-      VLViewComponentXML rightActions = ts.getRootConfiguration().getComponentById("CellRightActions").orElse(null);
+      VLViewComponentXML rightActions =
+          ts.getRootConfiguration().getComponentById("CellRightActions").orElse(null);
       if (rightActions != null) {
         Node actions = ViewActionFactory.viewActions(controller, rightActions, model, this);
         NodeHelper.styleClassAddAll(actions, rightActions, "rightActionsStyleClass");
@@ -179,7 +223,8 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
       }
 
       // build more actions
-      VLViewComponentXML moreActions = ts.getRootConfiguration().getComponentById("CellMiddleActions").orElse(null);
+      VLViewComponentXML moreActions =
+          ts.getRootConfiguration().getComponentById("CellMiddleActions").orElse(null);
       if (moreActions != null) {
         Node actions = ViewActionFactory.viewActions(controller, moreActions, model, this);
         quickActionsContainer.getChildren().clear();
@@ -187,25 +232,29 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
       }
 
       // build row click handler
-      VLViewComponentXML rowClickHandler = ts.getRootConfiguration().getComponentById("RowClickHandler").orElse(null);
-      if(rowClickHandler != null) {
+      VLViewComponentXML rowClickHandler =
+          ts.getRootConfiguration().getComponentById("RowClickHandler").orElse(null);
+      if (rowClickHandler != null) {
         getRootContainer().getStyleClass().add("hand-hover");
-        getRootContainer().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> onClick(e, rowClickHandler));
+        getRootContainer().addEventHandler(MouseEvent.MOUSE_CLICKED,
+            e -> onClick(e, rowClickHandler));
       }
     }
   }
 
   protected void onClick(MouseEvent event, VLViewComponentXML rowClickHandler) {
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1500), ae -> isLoadingChild = false));
+    Timeline timeline =
+        new Timeline(new KeyFrame(Duration.millis(1500), ae -> isLoadingChild = false));
 
     // ROW HAVE BEEN TOUCHED
-    if(AbstractApplicationRunner.isMobile()) {
+    if (AbstractApplicationRunner.isMobile()) {
       isLoadingChild = true;
       timeline.play();
       _doRowClickAction(rowClickHandler);
     }
     // ROW CLICKED
-    else if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 && !isLoadingChild) {
+    else if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2
+        && !isLoadingChild) {
       isLoadingChild = true;
       timeline.play();
       _doRowClickAction(rowClickHandler);
@@ -214,10 +263,9 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
 
   private void _doRowClickAction(VLViewComponentXML rowClickHandler) {
     IAction action = (IAction) Services.getBean(rowClickHandler.getPropertyValue("action"));
-    if(action != null) {
+    if (action != null) {
       IActionRequest actionRequest = new ActionRequest.Builder().controller(controller)
-          .args(rowClickHandler.getPropertyValue("args"))
-          .build();
+          .args(rowClickHandler.getPropertyValue("args")).build();
       actionRequest.setProperty("source", this);
       actionRequest.setProperty("sourceData", getItem());
       action.setData((OperationData) getItem());
@@ -227,14 +275,15 @@ public class DefaultModelListCell<T> extends AbstractListCell<T> {
 
   protected void onContextMenu(MouseEvent event) {
     if (event.getButton() == MouseButton.SECONDARY) {
-      EllipsisActionButton contextMenu = (EllipsisActionButton) presenter.getContextMenuPresenter().provideContextMenu(null, null);
+      EllipsisActionButton contextMenu =
+          (EllipsisActionButton) presenter.getContextMenuPresenter().provideContextMenu(null, null);
       if (contextMenu != null) {
         if (presenter.getEllipsisMenu() != null) {
-          //          if (presenter.getEllipsisMenu().contextMenu().isShowing()) {
-          //            presenter.getEllipsisMenu().contextMenu().hide();
-          //          }
+          // if (presenter.getEllipsisMenu().contextMenu().isShowing()) {
+          // presenter.getEllipsisMenu().contextMenu().hide();
+          // }
         }
-        //        contextMenu.contextMenu().show(this);
+        // contextMenu.contextMenu().show(this);
       }
     }
   }

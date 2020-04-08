@@ -41,10 +41,11 @@ import javafx.scene.layout.HBox;
 /**
  * Do an action from preference view.
  *
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
-public class DoActionPresenterFactory extends CellPresenterFactory implements IListFormCellPresenter {
+public class DoActionPresenterFactory extends CellPresenterFactory
+    implements IListFormCellPresenter {
 
   private Button button;
   private HBox layout;
@@ -70,31 +71,33 @@ public class DoActionPresenterFactory extends CellPresenterFactory implements IL
     }
     button.setDefaultButton(true);
 
-    if(StringUtils.isNotBlank(title)) {
-    	layout.getChildren().addAll(new Label(controller.getLocalised(title)), NodeHelper.horizontalSpacer());
+    if (StringUtils.isNotBlank(title)) {
+      layout.getChildren().addAll(new Label(controller.getLocalised(title)),
+          NodeHelper.horizontalSpacer());
     }
 
     layout.getChildren().addAll(button);
 
     // subcom is on data
-    List<VLViewComponentXML> sub = (List<VLViewComponentXML>) getForData().getMeta().get("subComponents");
+    List<VLViewComponentXML> sub =
+        (List<VLViewComponentXML>) getForData().getMeta().get("subComponents");
     VLViewComponentXML conf = new VLViewComponentXML();
     if (sub != null) {
       conf.setSubcomponents(sub);
     }
 
     getForData().getAttributes().keySet().forEach(key -> {
-  	  conf.getProperties().put(key, String.valueOf(getForData().getAttributes().get(key)));
+      conf.getProperties().put(key, String.valueOf(getForData().getAttributes().get(key)));
     });
 
     NodeHelper.styleClassSetAll(layout, conf, "layoutStyleClass", "item-presenter-row-container");
-    NodeHelper.styleClassSetAll(button, conf, "buttonStyleClass", "button, button-primary, button-xlarge");
-    ComponentToButtonBaseHelper.setOnAction(conf, button, (AbstractViewController) controller, null, e -> {
-      processUpdate(null);
-      return null;
-    });
-
-    //currentValuesPresenter.getStyleClass().add("-fx-background-color:red;");
+    NodeHelper.styleClassSetAll(button, conf, "buttonStyleClass",
+        "button, button-primary, button-xlarge");
+    ComponentToButtonBaseHelper.setOnAction(conf, button, (AbstractViewController) controller, null,
+        e -> {
+          processUpdate(null);
+          return null;
+        });
   }
 
 
@@ -127,6 +130,5 @@ public class DoActionPresenterFactory extends CellPresenterFactory implements IL
   }
 
   @Override
-  public void processUpdate(List<IListFormValue> selected) {
-  }
+  public void processUpdate(List<IListFormValue> selected) {}
 }

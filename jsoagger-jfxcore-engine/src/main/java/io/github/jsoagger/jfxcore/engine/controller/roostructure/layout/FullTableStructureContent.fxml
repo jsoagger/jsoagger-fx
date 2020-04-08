@@ -20,34 +20,32 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" prefHeight="-1" prefWidth="-1">
-	<AnchorPane prefHeight="-1" prefWidth="-1">
-		<StackPane AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
-			<AnchorPane prefHeight="-1" prefWidth="-1">
-				<HBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" fx:id="internalWrapper" alignment="TOP_CENTER">
-					<StackPane fx:id="leftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"/>
-					<BorderPane fx:id="tableStructureAreaSection" HBox.hgrow="ALWAYS">
-						<top>
-							<StackPane fx:id="headerAreaSection" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"
-								style="-fx-border-width:0 0 1 0;-fx-border-color:-internal-border-color;"/>
-						</top>
-						<center>
-							<ScrollPane fitToHeight="true" fitToWidth="true">
-								<content>
-									<VBox>
-										<StackPane fx:id="externalWrapper" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
-											<VBox fx:id="centerFixedAreaSection" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
-												<StackPane fx:id="centerAreaSection" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" alignment="TOP_CENTER"/>
-											</VBox>
-										</StackPane>
-										<StackPane fx:id="footerAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-full-table-structure-footer"/>
-									</VBox>
-								</content>
-							</ScrollPane>
-						</center>
-					</BorderPane>
-					<StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0"/>
-				</HBox>
-			</AnchorPane>
+	<AnchorPane fx:id="rootAnchorPane" prefHeight="-1" prefWidth="-1">
+		<StackPane fx:id="mainContentAnchorContent" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+			<HBox fx:id="internalWrapper" alignment="TOP_CENTER">
+				<StackPane fx:id="leftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"/>
+				<BorderPane fx:id="tableStructureAreaSection" HBox.hgrow="ALWAYS">
+					<top>
+						<StackPane fx:id="headerAreaSection" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"
+							style="-fx-border-width:0 0 1 0;-fx-border-color:-internal-border-color;"/>
+					</top>
+					<center>
+						<ScrollPane fx:id="mainScrollPane" fitToHeight="true" fitToWidth="true">
+							<content>
+								<VBox fx:id="mainScrollPaneContent" >
+									<StackPane fx:id="externalWrapper" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+										<VBox fx:id="centerFixedAreaSection" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+											<StackPane fx:id="centerAreaSection" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" alignment="TOP_CENTER"/>
+										</VBox>
+									</StackPane>
+									<StackPane fx:id="footerAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-full-table-structure-footer"/>
+								</VBox>
+							</content>
+						</ScrollPane>
+					</center>
+				</BorderPane>
+				<StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0"/>
+			</HBox>
 		</StackPane>
 
 		<VBox fx:id="editorStructureAreaSection" AnchorPane.topAnchor="80" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" visible="false"/>

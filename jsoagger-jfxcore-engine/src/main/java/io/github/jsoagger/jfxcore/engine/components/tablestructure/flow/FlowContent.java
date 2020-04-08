@@ -22,7 +22,6 @@ package io.github.jsoagger.jfxcore.engine.components.tablestructure.flow;
 
 
 
-
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -106,48 +105,48 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
         break;
       case TILEPANE:
         content = new TilePane();
-        //((TilePane)content).setAlignment(Pos.TOP_LEFT);
+        // ((TilePane)content).setAlignment(Pos.TOP_LEFT);
         break;
       case GRID:
-          content = new TilePane();
-          ((TilePane)content).setPrefColumns(2);
-          //((TilePane)content).setAlignment(Pos.TOP_LEFT);
-          //((TilePane)content).setPrefTileWidth(180);
-          break;
+        content = new TilePane();
+        ((TilePane) content).setPrefColumns(2);
+        // ((TilePane)content).setAlignment(Pos.TOP_LEFT);
+        // ((TilePane)content).setPrefTileWidth(180);
+        break;
       case VBOX:
         content = new VBox();
-        //((VBox) content).setStyle("-fx-alignment:TOP_CENTER;-fx-spacing:4");
+        // ((VBox) content).setStyle("-fx-alignment:TOP_CENTER;-fx-spacing:4");
         break;
 
       default:
-    	  content = new TilePane();
+        content = new TilePane();
         break;
     }
 
-    if(content != null) {
-    	updatetimeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10)));
-    	content.setOnScroll(new EventHandler<ScrollEvent>() {
-    		// deltaY > 0 means going up
-    		//
+    if (content != null) {
+      updatetimeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10)));
+      content.setOnScroll(new EventHandler<ScrollEvent>() {
+        // deltaY > 0 means going up
+        //
 
-			@Override
-			public void handle(ScrollEvent event) {
-//				System.out.println("-------------------");
-//				System.out.println("getVvalue : " + scrollPane.getVvalue());
-//				System.out.println("getHvalue : " + scrollPane.getHvalue());
-//				System.out.println("getDeltaX : " + event.getDeltaX());
-//				System.out.println("getDeltaY : " + event.getDeltaY());
-//				System.out.println("getTotalDeltaY : " + event.getTotalDeltaY());
-//				System.out.println("getScreenX : " + event.getScreenX());
-//				System.out.println("getScreenY : " + event.getScreenY());
-//				System.out.println("getX : " + event.getX());
-//				System.out.println("getY : " + event.getY());
-			}
-		});
+        @Override
+        public void handle(ScrollEvent event) {
+          // System.out.println("-------------------");
+          // System.out.println("getVvalue : " + scrollPane.getVvalue());
+          // System.out.println("getHvalue : " + scrollPane.getHvalue());
+          // System.out.println("getDeltaX : " + event.getDeltaX());
+          // System.out.println("getDeltaY : " + event.getDeltaY());
+          // System.out.println("getTotalDeltaY : " + event.getTotalDeltaY());
+          // System.out.println("getScreenX : " + event.getScreenX());
+          // System.out.println("getScreenY : " + event.getScreenY());
+          // System.out.println("getX : " + event.getX());
+          // System.out.println("getY : " + event.getY());
+        }
+      });
       // HANDLE MOBILE SCROLL ON TOUCH EVENT
-      if(AbstractApplicationRunner.isMobile()) {
+      if (AbstractApplicationRunner.isMobile()) {
         content.setOnScrollStarted(s -> AbstractApplicationRunner.setApplicationScrolling(true));
-        content.setOnScrollFinished(s-> AbstractApplicationRunner.setApplicationScrolling(false));
+        content.setOnScrollFinished(s -> AbstractApplicationRunner.setApplicationScrolling(false));
       }
     }
 
@@ -159,13 +158,13 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
   }
 
   private void manageUpdateData() {
-	  if(updatetimeline.getStatus() == Status.STOPPED) {
-		  updatetimeline.playFromStart();
+    if (updatetimeline.getStatus() == Status.STOPPED) {
+      updatetimeline.playFromStart();
 
-		  ScrollReachTopScreenEvent event = new ScrollReachTopScreenEvent();
-		  event.setSourceController(controller);
-		  controller.dispatchEvent(event);
-	  }
+      ScrollReachTopScreenEvent event = new ScrollReachTopScreenEvent();
+      event.setSourceController(controller);
+      controller.dispatchEvent(event);
+    }
   }
 
 
@@ -194,7 +193,8 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
   public void buildContent() {
     super.buildContent();
 
-    NodeHelper.styleClassAddAll(content, contentConfiguration, "flowContentStyleClass", "ep-flow-content-wrapper");
+    NodeHelper.styleClassAddAll(content, contentConfiguration, "flowContentStyleClass",
+        "ep-flow-content-wrapper");
     if (contentConfiguration != null) {
       // extract item factory
       flowItemImpl = contentConfiguration.getPropertyValue("flowItemImpl");
@@ -205,14 +205,25 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
     }
 
     getFilteredDatas().addListener((ListChangeListener<OperationData>) c -> {
-      buildItems();
+
+      // TODO build only removed/added items
+      // no all items all time!!!!
+      if (Platform.isFxApplicationThread()) {
+        buildItems();
+      } else {
+        Platform.runLater(() -> {
+          buildItems();
+        });
+      }
     });
+
     modifyingProperty().addListener((ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
       // f.deselect();
     });
 
-    if(noContentPaneConfiguration != null) {
-      alwaysShowNoContentPane = noContentPaneConfiguration.getBooleanProperty("alwaysVisible", false);
+    if (noContentPaneConfiguration != null) {
+      alwaysShowNoContentPane =
+          noContentPaneConfiguration.getBooleanProperty("alwaysVisible", false);
     }
   }
 
@@ -221,7 +232,8 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
       return flowItemImpl;
     }
 
-    final IFlowItemResolver iFlowItemResolver = (IFlowItemResolver) Services.getBean(flowItemResolver);
+    final IFlowItemResolver iFlowItemResolver =
+        (IFlowItemResolver) Services.getBean(flowItemResolver);
     return iFlowItemResolver.getFlowItem(controller, this);
   }
 
@@ -252,74 +264,78 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
    */
   @Override
   public void setData(MultipleResult multipleResult) {
+    try {
 
-	  content.pseudoClassStateChanged(PseudoClass.getPseudoClass("nocontent"), false);
+      System.out.println(">>>>>>>>>>>>>>>> + Flow content setData begin");
 
-    final int elementsCount = multipleResult.totaElements();
-    this.elementsCount.set(elementsCount);
-    currentData = multipleResult;
+      content.pseudoClassStateChanged(PseudoClass.getPseudoClass("nocontent"), false);
 
-    final boolean isFirst = multipleResult.getCurrentPageIndex() <= 0;
-    if (pagination != null) {
-    	if(!pagination.getDisplay().visibleProperty().isBound())
-    		pagination.getDisplay().setVisible(true);
+      final int elementsCount = multipleResult.totaElements();
+      this.elementsCount.set(elementsCount);
+      currentData = multipleResult;
+
+      final boolean isFirst = multipleResult.getCurrentPageIndex() <= 0;
+      if (pagination != null) {
+        if (!pagination.getDisplay().visibleProperty().isBound())
+          pagination.getDisplay().setVisible(true);
+      }
+
+      if (pagination != null && pagination.isLoadMorePagination() && !isFirst) {
+        // items.clear();
+      } else {
+        items.clear();
+      }
+
+      System.out.println(">>>>>>>>>>>>>>>> + Flow content setData clearing");
+
+      content.getChildren().clear();
+      items.addAll(multipleResult.getData());
+
+      System.out.println(">>>>>>>>>>>>>>>> + Flow content setData end");
+
+    } catch (Throwable e) {
+      e.printStackTrace();
     }
-
-    if (pagination != null && pagination.isLoadMorePagination() && !isFirst) {
-      // items.clear();
-    } else {
-      items.clear();
-    }
-
-    items.addAll(multipleResult.getData());
   }
 
   int rowIndex = 0;
   int colIndex = 0;
 
   private void buildItems() {
-	 /* if(flowMode == FlowMode.GRID) {
-		    ColumnConstraints col1 = new ColumnConstraints();
-		    col1.setPercentWidth(48);
+    content.getChildren().clear();
+    Iterator<OperationData> it = getFilteredDatas().iterator();
 
-		    ColumnConstraints col2 = new ColumnConstraints();
-		    col1.setPercentWidth(48);
+    while (it.hasNext()) {
+      OperationData c = it.next();
 
-		    ((GridPane)content).getColumnConstraints().addAll(col1,col2);
-	    }*/
+      try {
+        final IBuildable d = buildItem(c);
 
+        if (flowMode == FlowMode.GRID) {
+          colIndex = colIndex + 1;
+          if (colIndex > 1) {
+            colIndex = 0;
+            rowIndex += 1;
+          }
 
-    Platform.runLater(()-> {
-	    //content.getChildren().clear();
-	    Iterator<OperationData> it = getFilteredDatas().iterator();
+          System.out.println(">>>>>>>>>>>>>>>> + Flow content buildItems, build one item---");
+          content.getChildren().add(d.getDisplay());
+        } else {
+          content.getChildren().add(d.getDisplay());
+        }
+        if (!it.hasNext()) {
+          d.getDisplay().pseudoClassStateChanged(PseudoClass.getPseudoClass("last"), true);
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+      }
+    }
 
-	    while(it.hasNext()) {
-	      OperationData c = it.next();
-	      final IBuildable d = buildItem(c);
-
-	      if(flowMode == FlowMode.GRID) {
-	    	 // ((GridPane)content).add(d.getDisplay(), colIndex, rowIndex);
-
-		      colIndex = colIndex + 1;
-		      if(colIndex > 1) {
-		    	  colIndex = 0;
-		    	  rowIndex += 1;
-		      }
-		      content.getChildren().add(d.getDisplay());
-	      }
-	      else {
-	    	  content.getChildren().add(d.getDisplay());
-	      }
-
-	      if(!it.hasNext()) {
-	        d.getDisplay().pseudoClassStateChanged(PseudoClass.getPseudoClass("last"), true);
-	      }
-	    }
-
-	    if(alwaysShowNoContentPane) {
-	      //content.getChildren().add(noContentPane.getDisplay());
-	    }
-    });
+    content.requestFocus();
+    content.toFront();
+    if (alwaysShowNoContentPane) {
+      // content.getChildren().add(noContentPane.getDisplay());
+    }
   }
 
 
@@ -339,7 +355,7 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
 
 
   private void _doSetNoContent() {
-	content.pseudoClassStateChanged(PseudoClass.getPseudoClass("nocontent"), true);
+    content.pseudoClassStateChanged(PseudoClass.getPseudoClass("nocontent"), true);
     content.getChildren().clear();
     if (noContentPane != null) {
       content.getChildren().clear();
@@ -347,8 +363,8 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
     }
 
     if (pagination != null) {
-     if(!pagination.getDisplay().visibleProperty().isBound())
-    	 pagination.getDisplay().setVisible(false);
+      if (!pagination.getDisplay().visibleProperty().isBound())
+        pagination.getDisplay().setVisible(false);
       pagination.getDisplay().pseudoClassStateChanged(PseudoClass.getPseudoClass("nodata"), true);
     }
   }
@@ -374,12 +390,12 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
     p.setId("LoadingPane");
     p.setStyle("-fx-background-color:white;-fx-alignment:CENTER");
     NodeHelper.setHVGrow(p);
-    //content.getChildren().clear();
-    //content.getChildren().add(p);
-    //p.getChildren().add(NodeHelper.getProcessingIndicator());
+    // content.getChildren().clear();
+    // content.getChildren().add(p);
+    // p.getChildren().add(NodeHelper.getProcessingIndicator());
     if (pagination != null) {
-    	if(!pagination.getDisplay().visibleProperty().isBound())
-    		pagination.getDisplay().setVisible(false);
+      if (!pagination.getDisplay().visibleProperty().isBound())
+        pagination.getDisplay().setVisible(false);
     }
   }
 
@@ -389,7 +405,7 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
    */
   @Override
   public Node getTableStructure() {
-	  return content;
+    return content;
   }
 
 
@@ -427,8 +443,8 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
         return FlowMode.VBOX;
       }
       if ("grid".equalsIgnoreCase(v)) {
-          return FlowMode.GRID;
-        }
+        return FlowMode.GRID;
+      }
       if ("tilepane".equalsIgnoreCase(v)) {
         return FlowMode.TILEPANE;
       }

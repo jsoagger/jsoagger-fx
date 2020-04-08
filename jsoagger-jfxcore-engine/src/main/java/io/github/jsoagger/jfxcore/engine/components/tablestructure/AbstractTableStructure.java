@@ -66,7 +66,8 @@ import javafx.scene.Node;
  * @mailTo yvonjisoa@nexitia.com
  * @date 12 févr. 2018
  */
-public abstract class AbstractTableStructure implements ITableStructure, IPageable, IModifiableToolbarHolder, IMinimizable {
+public abstract class AbstractTableStructure
+    implements ITableStructure, IPageable, IModifiableToolbarHolder, IMinimizable {
 
   protected AbstractToolbar toolbar = null;
   protected IPaginationBar pagination = null;
@@ -120,7 +121,6 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
     defaultActionsConfiguration = rootConfiguration.getComponentById("DefaultActions").orElse(null);
     loadFirstPageData = contentConfiguration.getBooleanProperty("loadFirstPage", true);
 
-
     buildToolbar();
     buildNoContentPane();
     buildHeader();
@@ -137,7 +137,12 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
       final IOperationResult result = (IOperationResult) controller.getModel();
       if (result.rootData() != null) {
         loadFirstPage();
+      } else {
+        System.out.println("[ERROR] Data have not been loaded but not root data found");
       }
+    } else {
+      System.out
+          .println("[ERROR] Controller model is null, data have not been loaded for the table");
     }
 
     final ChangeListener<Boolean> mc = this::modifyingChanged;
@@ -145,7 +150,8 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
   }
 
 
-  protected void modifyingChanged(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+  protected void modifyingChanged(ObservableValue<? extends Boolean> observable, Boolean oldValue,
+      Boolean newValue) {
     if (newValue == Boolean.TRUE) {
     } else {
     }
@@ -162,28 +168,27 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
   }
 
   public void buildFooter() {
-	    footerConfiguration = rootConfiguration.getComponentById("Footer").orElse(null);
-	    String footerImpl = "";
-	    if (footerConfiguration != null) {
-	      footerImpl = footerConfiguration.getPropertyValue("footerImpl", null);
-	      footer = (IBuildable) Services.getBean(footerImpl);
-	      footer.buildFrom(controller, headerConfiguration);
-	    }
-	  }
+    footerConfiguration = rootConfiguration.getComponentById("Footer").orElse(null);
+    String footerImpl = "";
+    if (footerConfiguration != null) {
+      footerImpl = footerConfiguration.getPropertyValue("footerImpl", null);
+      footer = (IBuildable) Services.getBean(footerImpl);
+      footer.buildFrom(controller, headerConfiguration);
+    }
+  }
 
 
   public void buildNoContentPane() {
     noContentPaneConfiguration = null;
-    List<VLViewComponentXML> comps  = rootConfiguration.getComponentsById("NoContentPane");
-    if(comps.size() > 0) {
-      for(VLViewComponentXML comp: comps) {
-        if(StringUtils.isBlank(comp.getCriteria())) {
+    List<VLViewComponentXML> comps = rootConfiguration.getComponentsById("NoContentPane");
+    if (comps.size() > 0) {
+      for (VLViewComponentXML comp : comps) {
+        if (StringUtils.isBlank(comp.getCriteria())) {
           noContentPaneConfiguration = comp;
           break;
-        }
-        else {
+        } else {
           boolean ok = controller.evaluateFilter(comp);
-          if(ok) {
+          if (ok) {
             noContentPaneConfiguration = comp;
             break;
           }
@@ -206,7 +211,8 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
    */
   public void buildPagination() {
     if (paginationConfiguration != null) {
-      final String paginationImpl = paginationConfiguration.getPropertyValue("paginationImpl", "SimplePaginationBar");
+      final String paginationImpl =
+          paginationConfiguration.getPropertyValue("paginationImpl", "SimplePaginationBar");
       pagination = (IPaginationBar) Services.getBean(paginationImpl);
       pagination.buildFrom(controller, paginationConfiguration);
       pagination.setPageable(this);
@@ -216,8 +222,9 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
         pagination.setCurrentPageSize(rpp.toString());
       }
 
-      pagination.getDisplay().visibleProperty().addListener((ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
-      });
+      pagination.getDisplay().visibleProperty()
+          .addListener((ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
+          });
     }
   }
 
@@ -225,7 +232,7 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
 
   public abstract ObservableList<OperationData> getItems();
 
-  public abstract void forceLoadFirstPage() ;
+  public abstract void forceLoadFirstPage();
 
   /**
    * @{inheritedDoc}
@@ -251,7 +258,7 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
     selections.clear();
     getItems().clear();
     loadFirstPageData = true;
-    if(childTree().isEmpty()) {
+    if (childTree().isEmpty()) {
       forceLoadFirstPage();
     }
     // reload last item in tree
@@ -270,7 +277,7 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
   public void refreshCurrentPage() {
     selections.clear();
     getItems().clear();
-    if(childTree().isEmpty()) {
+    if (childTree().isEmpty()) {
     }
     // reload last item in tree
     else {
@@ -288,18 +295,18 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
 
 
   @Override
-  public abstract void nextPage(SimpleObjectProperty<MultipleResult> model) ;
+  public abstract void nextPage(SimpleObjectProperty<MultipleResult> model);
 
 
   @Override
-  public abstract  void previousPage(SimpleObjectProperty<MultipleResult> model) ;
+  public abstract void previousPage(SimpleObjectProperty<MultipleResult> model);
 
   @Override
-  public  abstract void firstPage(SimpleObjectProperty<MultipleResult> model) ;
+  public abstract void firstPage(SimpleObjectProperty<MultipleResult> model);
 
 
   @Override
-  public  abstract void lastPage(SimpleObjectProperty<MultipleResult> model);
+  public abstract void lastPage(SimpleObjectProperty<MultipleResult> model);
 
 
   /**
@@ -460,13 +467,12 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
 
 
   public void removeFromSelection(Object item) {
-    if(item instanceof TableRowSelectPresenter) {
-      OperationData data = (OperationData) ((TableRowSelectPresenter)item).getCell().getItem();
+    if (item instanceof TableRowSelectPresenter) {
+      OperationData data = (OperationData) ((TableRowSelectPresenter) item).getCell().getItem();
       if (data != null) {
         selections.remove(data);
       }
-    }
-    else {
+    } else {
       if (item != null) {
         selections.remove(item);
       }
@@ -580,7 +586,7 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
    *
    * @return
    */
-  public SimpleObjectProperty<IOperationResult> modelProperty(){
+  public SimpleObjectProperty<IOperationResult> modelProperty() {
     return model;
   }
 
@@ -603,7 +609,8 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
 
   protected void buildDefaultActions() {
     if (defaultActionsConfiguration != null && defaultActionsConfiguration.hasSubComponent()) {
-      defaultActions = ComponentUtils.resolveAndGenerate(controller, defaultActionsConfiguration.getSubcomponents());
+      defaultActions = ComponentUtils.resolveAndGenerate(controller,
+          defaultActionsConfiguration.getSubcomponents());
     }
   }
 
@@ -615,10 +622,10 @@ public abstract class AbstractTableStructure implements ITableStructure, IPageab
   }
 
 
-/**
- * @return the footer
- */
-public IBuildable getFooter() {
-	return footer;
-}
+  /**
+   * @return the footer
+   */
+  public IBuildable getFooter() {
+    return footer;
+  }
 }

@@ -27,12 +27,14 @@ import io.github.jsoagger.jfxcore.engine.controller.login.action.LoginAction;
 @BeansProvider
 public class CoreActionsBeanProvider {
 
+  public CoreActionsBeanProvider() {}
+
   @Bean
   @Named("LoginActionHandler")
   public WizardStepFinishActionHandler LoginActionHandler() {
     WizardStepFinishActionHandler w = new WizardStepFinishActionHandler();
     w.getActions().add((IAction) Services.getBean("LoginAction"));
-    w.getActions().add((IAction)Services.getBean("HideWizardAction"));
+    w.getActions().add((IAction) Services.getBean("HideWizardAction"));
     return w;
   }
 
@@ -40,7 +42,7 @@ public class CoreActionsBeanProvider {
   @Named("WizardStepNextActionHandler")
   public WizardStepNextActionHandler WizardStepNextActionHandler() {
     WizardStepNextActionHandler w = new WizardStepNextActionHandler();
-    w.getActions().add((IAction)Services.getBean("NextWizardAction"));
+    w.getActions().add((IAction) Services.getBean("NextWizardAction"));
     return w;
   }
 
@@ -49,7 +51,7 @@ public class CoreActionsBeanProvider {
   @Named("WizardStepBackActionHandler")
   public WizardStepBackActionHandler WizardStepBackActionHandler() {
     WizardStepBackActionHandler w = new WizardStepBackActionHandler();
-    w.getActions().add((IAction)Services.getBean("BackWizardAction"));
+    w.getActions().add((IAction) Services.getBean("BackWizardAction"));
     return w;
   }
 
@@ -57,7 +59,7 @@ public class CoreActionsBeanProvider {
   @Named("WizardStepFinishActionHandler")
   public WizardStepFinishActionHandler WizardStepFinishActionHandler() {
     WizardStepFinishActionHandler w = new WizardStepFinishActionHandler();
-    w.getActions().add((IAction)Services.getBean("BackWizardAction"));
+    w.getActions().add((IAction) Services.getBean("BackWizardAction"));
     return w;
   }
 
@@ -74,7 +76,7 @@ public class CoreActionsBeanProvider {
   @Named("CreateSavedSearchButtonActionHandler")
   public WizardStepFinishActionHandler CreateSavedSearchButtonActionHandler() {
     WizardStepFinishActionHandler w = new WizardStepFinishActionHandler();
-    w.getActions().add((IAction)Services.getBean("CreateSavedSearchAction"));
+    w.getActions().add((IAction) Services.getBean("CreateSavedSearchAction"));
     return w;
   }
 

@@ -16,11 +16,13 @@ import io.github.jsoagger.jfxcore.engine.components.validation.VLEmailConstraint
 import io.github.jsoagger.jfxcore.engine.components.validation.VLPhoneNumberConstraints;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 @BeansProvider
 public class CoreValidationConstraintBeansProvider {
+
+  public CoreValidationConstraintBeansProvider() {}
 
   @Bean
   @Named("VLAlphaNumericConstraint")

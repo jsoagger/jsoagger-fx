@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,7 +22,6 @@ package io.github.jsoagger.jfxcore.components.list.utils;
 
 
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
@@ -38,7 +37,8 @@ import javafx.scene.control.skin.ListViewSkin;
 import javafx.scene.layout.Region;
 
 /**
- * Implementation of listview with fixed size. By default {@link ListView} displays empty rows, this skin will hide them.
+ * Implementation of listview with fixed size. By default {@link ListView} displays empty rows, this
+ * skin will hide them.
  *
  * @author Administrator
  *
@@ -57,28 +57,26 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
   public FixedSizeListViewSkin(T listView) {
     super(listView);
     this.listView = listView;
-    //registerChangeListener(listView.fillWidthProperty(), e -> updateFillWidth());
+    // registerChangeListener(listView.fillWidthProperty(), e -> updateFillWidth());
   }
 
 
-  /*private void updateFillWidth() {
-    if (scrollBarHorizontal != null && scrollBarVertical != null && fillWidthCache != listView.isFillWidth()) {
-      if (listView.isFillWidth() && !fillWidthCache) {
-        scrollBarHorizontal.visibleProperty().addListener(this::updateCellsPrefWidth);
-        scrollBarVertical.visibleProperty().addListener(this::updateCellsPrefWidth);
-      } else {
-        scrollBarHorizontal.visibleProperty().removeListener(this::updateCellsPrefWidth);
-        scrollBarVertical.visibleProperty().removeListener(this::updateCellsPrefWidth);
-      }
-
-      fillWidthCache = listView.isFillWidth();
-    }
-  }*/
+  /*
+   * private void updateFillWidth() { if (scrollBarHorizontal != null && scrollBarVertical != null
+   * && fillWidthCache != listView.isFillWidth()) { if (listView.isFillWidth() && !fillWidthCache) {
+   * scrollBarHorizontal.visibleProperty().addListener(this::updateCellsPrefWidth);
+   * scrollBarVertical.visibleProperty().addListener(this::updateCellsPrefWidth); } else {
+   * scrollBarHorizontal.visibleProperty().removeListener(this::updateCellsPrefWidth);
+   * scrollBarVertical.visibleProperty().removeListener(this::updateCellsPrefWidth); }
+   * 
+   * fillWidthCache = listView.isFillWidth(); } }
+   */
 
 
   private void updateCellsPrefWidth(Observable o) {
     final Insets insets = getSkinnable().getInsets();
-    final double prefWidth = getSkinnable().getWidth() + insets.getLeft() + insets.getRight() - scrollBarVertical.getWidth();
+    final double prefWidth = getSkinnable().getWidth() + insets.getLeft() + insets.getRight()
+        - scrollBarVertical.getWidth();
 
     if (prefWidth != prefWidthCache) {
       for (int i = 0; i < getItemCount(); i++) {
@@ -94,7 +92,7 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
 
 
   private boolean showingPlaceHolder() {
-    checkState9();
+    // checkState9();
 
     if (getItemCount() == 0) {
       if (placeholderRegion == null) {
@@ -118,14 +116,15 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
   protected void handleControlPropertyChanged(String p) {
     // super.handleControlPropertyChanged(p);
     if ("FILL_WIDTH".equals(p)) {
-      //updateFillWidth();
+      // updateFillWidth();
     }
   }
 
 
   @SuppressWarnings("rawtypes")
   @Override
-  protected double computePrefHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
+  protected double computePrefHeight(double width, double topInset, double rightInset,
+      double bottomInset, double leftInset) {
 
     // BE AWARE OF CONTENT OF THE EACH CELL.
     // IT CAN MAKE THE CELL HEIGHT GROWING AND CALCULATION IS WRONG
@@ -155,7 +154,8 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
    * @{inheritedDoc}
    */
   @Override
-  protected double computeMinHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
+  protected double computeMinHeight(double width, double topInset, double rightInset,
+      double bottomInset, double leftInset) {
     return computePrefHeight(width, topInset, rightInset, bottomInset, leftInset);
   }
 
@@ -163,7 +163,8 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
    * @{inheritedDoc}
    */
   @Override
-  protected double computeMaxHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
+  protected double computeMaxHeight(double width, double topInset, double rightInset,
+      double bottomInset, double leftInset) {
     return computePrefHeight(width, topInset, rightInset, bottomInset, leftInset);
   }
 
@@ -171,7 +172,8 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
 
   @SuppressWarnings("rawtypes")
   @Override
-  protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
+  protected double computePrefWidth(double height, double topInset, double rightInset,
+      double bottomInset, double leftInset) {
     double computedWidth = 0;
 
     if (showingPlaceHolder()) {
@@ -203,7 +205,7 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
     if (scrollBarHorizontal == null || scrollBarVertical == null) {
       Set<Node> nodes = getSkinnable().lookupAll(".scroll-bar");
 
-      for(Node node: nodes) {
+      for (Node node : nodes) {
         if (node instanceof ScrollBar) {
           final ScrollBar scrollBar = (ScrollBar) node;
 
@@ -241,27 +243,10 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
     this.scrollableVertically = scrollableVertically;
   }
 
-
-  /****************************************************************************************************
-   *
-   * JAVA9 use reflection to access restricted fields and methods(com.sun.javafx.*).
-   *
-   ****************************************************************************************************/
-  public void checkState9() {
-    try {
-      Method method = this.getClass().getSuperclass().getSuperclass().getDeclaredMethod("checkState", new Class[0]);
-      // final Method checkState = getClass().getMethod("checkState");
-      method.setAccessible(true);
-      method.invoke(this);
-    } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-      throw new RuntimeException("Cannot add UserAgentStylesheet as the method is not accessible");
-    }
-  }
-
-
   public void updatePlaceholderRegionVisibility9() {
     try {
-      Method method = this.getClass().getSuperclass().getSuperclass().getDeclaredMethod("updatePlaceholderRegionVisibility", new Class[0]);
+      Method method = this.getClass().getSuperclass().getSuperclass()
+          .getDeclaredMethod("updatePlaceholderRegionVisibility", new Class[0]);
       // final Method updatePlaceholderRegionVisibility =
       // getClass().getMethod("updatePlaceholderRegionVisibility");
       method.setAccessible(true);

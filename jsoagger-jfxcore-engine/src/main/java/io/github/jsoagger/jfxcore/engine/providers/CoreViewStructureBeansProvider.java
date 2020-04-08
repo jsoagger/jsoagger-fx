@@ -21,23 +21,19 @@ import io.github.jsoagger.jfxcore.engine.providers.integration.JSonViewConfigura
 import io.github.jsoagger.jfxcore.engine.providers.integration.JsonGlobalCompsService;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  */
 @BeansProvider
 public class CoreViewStructureBeansProvider {
 
-  /**
-   * Constructor
-   */
-  public CoreViewStructureBeansProvider() {
-  }
+  public CoreViewStructureBeansProvider() {}
 
 
   @Bean
   @Singleton
   @Named("ApplicationContextService")
   public ApplicationContextService appContextService() {
-	JSoaggerFXApplicationContextService mobile = new JSoaggerFXApplicationContextService();
+    JSoaggerFXApplicationContextService mobile = new JSoaggerFXApplicationContextService();
     return mobile;
   }
 
@@ -71,10 +67,14 @@ public class CoreViewStructureBeansProvider {
   @Named("IntegrationService")
   public Services integrationService() {
     Services services = Services.instance();
-    services.setAppContextService((ApplicationContextService) BeanFactory.instance().getBean("ApplicationContextService"));
-    services.setCommonComponentsServices((CommonComponentsServices) BeanFactory.instance().getBean("CommonCompsServices"));
-    services.setGlobalConfigService((GlobalComponentsService) BeanFactory.instance().getBean("GlobalComponentsService"));
-    services.setViewConfigurationService((ViewConfigurationService) BeanFactory.instance().getBean("ViewConfigurationService"));
+    services.setAppContextService(
+        (ApplicationContextService) BeanFactory.instance().getBean("ApplicationContextService"));
+    services.setCommonComponentsServices(
+        (CommonComponentsServices) BeanFactory.instance().getBean("CommonCompsServices"));
+    services.setGlobalConfigService(
+        (GlobalComponentsService) BeanFactory.instance().getBean("GlobalComponentsService"));
+    services.setViewConfigurationService(
+        (ViewConfigurationService) BeanFactory.instance().getBean("ViewConfigurationService"));
     return services;
   }
 }

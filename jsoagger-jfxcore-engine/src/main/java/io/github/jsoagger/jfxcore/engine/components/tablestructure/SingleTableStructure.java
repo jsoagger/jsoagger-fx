@@ -24,10 +24,6 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.css.PseudoClass;
 
-/**
- * @author Ramilafananana  VONJISOA
- *
- */
 public abstract class SingleTableStructure extends AbstractTableStructure {
 
   protected SimpleObjectProperty<TableStructureState> tableState = new SimpleObjectProperty<>();
@@ -63,9 +59,13 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
 
   @Override
   public void forceLoadFirstPage() {
-    Platform.runLater(()->{
+    if (Platform.isFxApplicationThread()) {
       loadFirstPage.restart();
-    });
+    } else {
+      Platform.runLater(() -> {
+        loadFirstPage.restart();
+      });
+    }
   }
 
 
@@ -82,7 +82,7 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
   @Override
   public void refreshCurrentPage() {
     super.refreshCurrentPage();
-    if(childTree().isEmpty()) {
+    if (childTree().isEmpty()) {
       dataProvider.navigate(controller, model.get(), Direction.CURRENT, e -> {
         model.set(null);
         model.set(e);
@@ -94,9 +94,6 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
     }
   }
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void nextPage(SimpleObjectProperty<MultipleResult> model) {
     dataProvider.navigate(controller, model.get(), Direction.NEXT, e -> this.model.set(e));
@@ -112,9 +109,6 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void firstPage(SimpleObjectProperty<MultipleResult> model) {
     initialQuery = model.get();
@@ -122,9 +116,6 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void lastPage(SimpleObjectProperty<MultipleResult> model) {
     dataProvider.navigate(controller, model.get(), Direction.LAST, e -> this.model.set(e));
@@ -168,14 +159,14 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
   }
 
 
-  /**
-   * Model is updated
-   *
-   * @param newValue
-   */
   @Override
   public void onModelUpdated(IOperationResult newValue) {
-    if (newValue == null || !((MultipleResult) newValue).hasElements()) {
+
+    System.out.println("SingleTableStructure On model updated :  " + newValue);
+    System.out.println(
+        "SingleTableStructure On model updated :  " + ((MultipleResult) newValue).getData().size());
+
+    if (newValue == null || ((MultipleResult) newValue).getData().size() < 1) {
       items.clear();
       elementsCount.set(0);
 
@@ -184,8 +175,8 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
       }
 
       if (pagination != null) {
-    	  if(!pagination.getDisplay().visibleProperty().isBound())
-    		  pagination.getDisplay().setVisible(false);
+        if (!pagination.getDisplay().visibleProperty().isBound())
+          pagination.getDisplay().setVisible(false);
       }
 
       if (Platform.isFxApplicationThread()) {
@@ -194,39 +185,39 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
         Platform.runLater(() -> setNoContent());
       }
 
-      //((StandardViewController)controller).selectedElementProperty().set(null);
+      // ((StandardViewController)controller).selectedElementProperty().set(null);
     } else {
+
+      System.out.println("[DEBUG] On model updated : >>>>>>>>> 22222222222222");
 
       final MultipleResult multipleResult = (MultipleResult) newValue;
       elementsCount.set(multipleResult.totaElements());
       if (pagination != null) {
         pagination.getDisplay().pseudoClassStateChanged(nodata, false);
-        if(!pagination.getDisplay().visibleProperty().isBound()) pagination.getDisplay().setVisible(true);
+        if (!pagination.getDisplay().visibleProperty().isBound())
+          pagination.getDisplay().setVisible(true);
         pagination.setModel(multipleResult);
       }
 
       // force select first element
-      //((StandardViewController)controller).selectedElementProperty().set(multipleResult.getData().get(0));
+      // ((StandardViewController)controller).selectedElementProperty().set(multipleResult.getData().get(0));
+      System.out.println("[DEBUG] On model updated : >>>>>>>>> 33");
 
       if (Platform.isFxApplicationThread()) {
         setData(multipleResult);
       } else {
         Platform.runLater(() -> {
-          try {
-            setData(multipleResult);
-          } catch (final Exception ex) {
-            ex.printStackTrace();
-          }
+          setData(multipleResult);
         });
       }
     }
   }
 
-
   @Override
   public void buildContent() {
     if (contentConfiguration != null) {
       final String dataProviderBean = contentConfiguration.getPropertyValue("dataLoader");
+
       if (StringUtils.isNotBlank(dataProviderBean)) {
         dataProvider = (IPaginatedDataProvider) Services.getBean(dataProviderBean);
         dataProvider.initFromConfiguration(controller, contentConfiguration);
@@ -234,12 +225,6 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
     }
   }
 
-  /**
-   * Task for loading page.
-   *
-   * @author Ramilafananana  VONJISOA
-   *
-   */
   private class LoadDataTask extends Service<Void> {
 
     @Override
@@ -250,27 +235,32 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
         @Override
         protected Void call() throws Exception {
           if (contentConfiguration != null) {
+
             if (loadFirstPageData) {
               getItems().clear();
               if (dataProvider != null) {
                 setLoading();
 
                 // @formatter:off
-                final MultipleResult zero =
-                    new MultipleResult.Builder()
-                    .addMeta(IOperationResult.pageSize, pagination != null ? pagination.getCurrentPageSize() : 5)
+                final MultipleResult zero = new MultipleResult.Builder()
+                    .addMeta(IOperationResult.pageSize,
+                        pagination != null ? pagination.getCurrentPageSize() : 5)
                     .addMeta(IOperationResult.pageNumber, -1).build();
                 // @formatter:on
 
-                dataProvider.navigate(controller, zero, Direction.NEXT, e -> {
+                dataProvider.navigate(controller, zero, Direction.NEXT, result -> {
                   model.set(null);
-                  model.set(e);
+
+                  System.out.println(">>>>>>>>> LoadDataTask result: " + result);
+                  model.set(result);
                 });
               } else {
+                System.out.println(">>>>>>> LoadDataTask no content");
                 setNoContent();
               }
             } else {
               setNoContent();
+              System.out.println(">>>>>>> LoadDataTask no content 2222222");
             }
           }
 
@@ -285,14 +275,11 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
       setOnRunning(r -> {
         setLoading();
       });
+
       return task;
     }
   }
 
-  /**
-   *
-   * @return
-   */
   @Override
   public FilteredList<OperationData> getFilteredDatas() {
     return filteredList;

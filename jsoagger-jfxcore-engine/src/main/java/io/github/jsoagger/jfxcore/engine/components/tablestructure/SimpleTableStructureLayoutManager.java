@@ -1,15 +1,15 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,7 +49,8 @@ public class SimpleTableStructureLayoutManager {
     if (structure.getHeader() != null || structure.getToolbar().isPresent()) {
       if (structure.getHeader() != null && structure.getToolbar().isPresent()) {
         VBox header = new VBox();
-        header.getChildren().addAll(structure.getHeader().getDisplay(), structure.getToolbar().get());
+        header.getChildren().addAll(structure.getHeader().getDisplay(),
+            structure.getToolbar().get());
         layout.setTop(header);
       } else if (structure.getToolbar().isPresent()) {
         layout.setTop(structure.getToolbar().get());

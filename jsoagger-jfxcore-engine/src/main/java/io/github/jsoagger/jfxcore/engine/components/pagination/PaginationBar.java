@@ -22,7 +22,6 @@ package io.github.jsoagger.jfxcore.engine.components.pagination;
 
 
 
-
 import io.github.jsoagger.core.bridge.result.MultipleResult;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
@@ -76,9 +75,10 @@ public abstract class PaginationBar implements IPaginationBar {
 
     rowsPerPageCombo.getItems().addAll("5", "10", "15", "20");
     rowsPerPageCombo.getSelectionModel().selectFirst();
-    rowsPerPageCombo.getSelectionModel().selectedItemProperty().addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
-      firstPage();
-    });
+    rowsPerPageCombo.getSelectionModel().selectedItemProperty()
+        .addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
+          firstPage();
+        });
   }
 
 
@@ -115,7 +115,8 @@ public abstract class PaginationBar implements IPaginationBar {
    */
   @Override
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
-    NodeHelper.styleClassSetAll(rowsPerPageLabel, configuration, "resultStyleClass", "simple-pagination-label");
+    NodeHelper.styleClassSetAll(rowsPerPageLabel, configuration, "resultStyleClass",
+        "simple-pagination-label");
   }
 
 
@@ -124,8 +125,8 @@ public abstract class PaginationBar implements IPaginationBar {
    */
   @Override
   public void setNoContent() {
-	  if(!getDisplay().visibleProperty().isBound())
-		  getDisplay().setVisible(false);
+    if (!getDisplay().visibleProperty().isBound())
+      getDisplay().setVisible(false);
   }
 
 
@@ -181,14 +182,13 @@ public abstract class PaginationBar implements IPaginationBar {
       rowsPerPageCombo.setVisible(false);
       setNoContent();
     } else {
-    	if(!getDisplay().visibleProperty().isBound())
-    		getDisplay().setVisible(true);
+      if (!getDisplay().visibleProperty().isBound())
+        getDisplay().setVisible(true);
 
       rowsPerPageCombo.setVisible(result.pageElements() > 0);
       if (result.pageElements() > 0) {
         final int curPage = result.getMetaDataIntValue("pageNumber") + 1;
-        final String label = String.format(totalElementCountFormat,
-            curPage,
+        final String label = String.format(totalElementCountFormat, curPage,
             Double.valueOf(String.valueOf(result.getMetaData().get("totalPages"))).intValue(),
             doubleToString(String.valueOf(result.totaElements())));
 

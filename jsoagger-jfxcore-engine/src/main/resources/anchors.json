@@ -1,0 +1,50 @@
+
+# ========================LICENSE_START=================================
+# JSoagger 
+# %%
+# Copyright (C) 2019 JSOAGGER
+# %%
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# =========================LICENSE_END==================================
+# #%L
+# jsoagger-jfxcore
+# %%
+# Copyright (C) 2019 JSOAGGER
+# %%
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# #L%
+# by default, the header of applciation size is 72px
+#by default, there is no left menu
+rootStructureView.rootStructureWrapper.default.anchor=72,0,0,0
+
+#
+rootStructureView.rootStructureLeftMenuPane.default.anchor=72,-1,0,0
+
+#There is no left menu by default so anchor left is 0
+rootStructureView.secondaryRootStructureWrapper.default.anchor=0,0,0,0
+
+#There is no left menu by default so anchor left is 0
+rootStructureView.pushedContentWrapper.default.anchor=0,0,0,0
+
+rootStructureView.rootStructurePrimaryPane.default.anchor=0,-1,0,0
+rootStructureView.rootStructureTernaryPane.default.anchor=72,0,0,-1

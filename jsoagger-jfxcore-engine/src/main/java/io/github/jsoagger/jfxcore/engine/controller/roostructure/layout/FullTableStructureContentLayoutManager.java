@@ -30,6 +30,7 @@ import io.github.jsoagger.jfxcore.api.IResponsiveAreaSize;
 import io.github.jsoagger.jfxcore.api.IResponsiveAware;
 import io.github.jsoagger.jfxcore.api.IResponsiveSizing;
 import io.github.jsoagger.jfxcore.api.ViewLayoutPosition;
+import io.github.jsoagger.jfxcore.api.components.annotation.GraalComponent;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManageable;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManager;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
@@ -37,16 +38,27 @@ import io.github.jsoagger.jfxcore.engine.utils.IconUtils;
 import io.github.jsoagger.jfxcore.engine.utils.ReflectionUIUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  * @author Ramilafananana Vonjisoa
  * @mailTo yvonjisoa@nexitia.com
  * @date 11 févr. 2018
  */
-public class FullTableStructureContentLayoutManager extends AbstractViewLayoutManager implements IViewLayoutManager {
+@GraalComponent
+public class FullTableStructureContentLayoutManager extends AbstractViewLayoutManager
+    implements IViewLayoutManager {
 
   @FXML
   protected Pane leftFixedAreaSection;
@@ -58,13 +70,22 @@ public class FullTableStructureContentLayoutManager extends AbstractViewLayoutMa
   protected Pane rightFixedAreaSection;
 
   @FXML
+  protected Pane mainContentAnchorContent;
+
+  @FXML
+  protected ScrollPane mainScrollPane;
+
+  @FXML
+  protected Pane rootAnchorPane;
+
+  @FXML
   protected Pane headerAreaSection;
 
   @FXML
   protected Pane centerAreaSection;
 
   @FXML
-  protected Pane tableStructureAreaSection;
+  protected BorderPane tableStructureAreaSection;
 
   @FXML
   protected ButtonBase editorStructureMaximizeButton;
@@ -76,11 +97,14 @@ public class FullTableStructureContentLayoutManager extends AbstractViewLayoutMa
   protected Pane footerAreaSection;
 
   @FXML
-  protected Pane internalWrapper;
+  protected HBox internalWrapper;
 
+  VBox mainScrollPaneContent;
   Node topNode = null;
   Node centerNode = null;
   Node bottomNode = null;
+  StackPane externalWrapper = null;
+  Label editorStructureMinimizedPaneLabel;
 
   @FXML
   Pane editorStructureAreaSection;
@@ -93,6 +117,78 @@ public class FullTableStructureContentLayoutManager extends AbstractViewLayoutMa
   @Override
   public void layout(IViewLayoutManageable layoutManageable) {
     super.layout(layoutManageable);
+
+    if (getRootPane() == null) {
+      rootPane = new StackPane();
+      rootAnchorPane = new AnchorPane();
+      editorStructureMinimizedPaneLabel = new Label();
+      editorStructureMaximizeButton = new Button();
+      mainContentAnchorContent = new StackPane();
+      internalWrapper = new HBox();
+      leftFixedAreaSection = new StackPane();
+      tableStructureAreaSection = new BorderPane();
+      headerAreaSection = new StackPane();
+      mainScrollPane = new ScrollPane();
+      mainScrollPaneContent = new VBox();
+      externalWrapper = new StackPane();
+      centerFixedAreaSection = new VBox();
+      centerAreaSection = new StackPane();
+      footerAreaSection = new StackPane();
+      rightFixedAreaSection = new StackPane();
+      editorStructureAreaSection = new VBox();
+      editorStructureMinimizedPane = new HBox();
+
+      rootPane.getChildren().add(rootAnchorPane);
+      rootAnchorPane.getChildren().addAll(mainContentAnchorContent, editorStructureAreaSection,
+          editorStructureMinimizedPane);
+      AnchorPane.setTopAnchor(mainContentAnchorContent, 0.0);
+      AnchorPane.setLeftAnchor(mainContentAnchorContent, 0.0);
+      AnchorPane.setRightAnchor(mainContentAnchorContent, 0.0);
+      AnchorPane.setBottomAnchor(mainContentAnchorContent, 0.0);
+
+      AnchorPane.setTopAnchor(editorStructureAreaSection, 80.0);
+      AnchorPane.setLeftAnchor(editorStructureAreaSection, 0.0);
+      AnchorPane.setRightAnchor(editorStructureAreaSection, 0.0);
+      editorStructureAreaSection.setVisible(false);
+
+      AnchorPane.setRightAnchor(editorStructureMinimizedPane, 20.0);
+      AnchorPane.setBottomAnchor(editorStructureMinimizedPane, 0.0);
+      editorStructureMinimizedPane.setVisible(false);
+      editorStructureMinimizedPane.setManaged(false);
+      editorStructureMinimizedPane.getStyleClass().add("ep-search-result-minimized-pane");
+
+      mainContentAnchorContent.getChildren().add(internalWrapper);
+      internalWrapper.setAlignment(Pos.TOP_CENTER);
+      internalWrapper.getChildren().addAll(leftFixedAreaSection, tableStructureAreaSection,
+          rightFixedAreaSection);
+
+      NodeHelper.setHVGrow(tableStructureAreaSection);
+      tableStructureAreaSection.setTop(headerAreaSection);
+      tableStructureAreaSection.setCenter(mainScrollPane);
+
+      headerAreaSection.setStyle(
+          "-fx-border-width:0 0 1 0;-fx-border-color:-internal-border-color;-fx-alignment:CENTER");
+
+      mainScrollPane.setFitToHeight(true);
+      mainScrollPane.setFitToWidth(true);
+      mainScrollPane.setContent(mainScrollPaneContent);
+      mainScrollPaneContent.getChildren().addAll(externalWrapper, footerAreaSection);
+      NodeHelper.setVgrow(externalWrapper);
+      externalWrapper.setAlignment(Pos.CENTER);
+
+      externalWrapper.getChildren().addAll(centerFixedAreaSection);
+      centerFixedAreaSection.getChildren().add(centerAreaSection);
+      NodeHelper.setVgrow(centerFixedAreaSection, centerAreaSection);
+
+      footerAreaSection.getStyleClass().add("ep-full-table-structure-footer");
+      editorStructureMinimizedPane.getStyleClass().add("ep-search-result-minimized-pane");
+      editorStructureMinimizedPaneLabel.getStyleClass()
+          .add("ep-search-result-minimized-pane-label");
+      editorStructureMinimizedPane.getChildren().addAll(editorStructureMinimizedPaneLabel,
+          editorStructureMaximizeButton);
+
+      postLayout();
+    }
 
     editorStructureAreaSection.managedProperty().bind(editorStructureAreaSection.visibleProperty());
     tableStructureAreaSection.managedProperty().bind(tableStructureAreaSection.visibleProperty());
@@ -107,13 +203,19 @@ public class FullTableStructureContentLayoutManager extends AbstractViewLayoutMa
     centerFixedAreaSection.minWidthProperty().bind(centerFixedAreaSection.maxWidthProperty());
     centerFixedAreaSection.prefWidthProperty().bind(centerFixedAreaSection.maxWidthProperty());
 
-    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(), "leftSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(), "centerSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(), "rightSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(tableStructureAreaSection, layoutManageable.getConfiguration(), "tableStructureAreaStyleClass", false);
-    NodeHelper.setStyleClass(footerAreaSection, layoutManageable.getConfiguration(), "tableFooterAreaStyleClass", false);
+    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(),
+        "leftSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(),
+        "centerSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(),
+        "rightSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(tableStructureAreaSection, layoutManageable.getConfiguration(),
+        "tableStructureAreaStyleClass", false);
+    NodeHelper.setStyleClass(footerAreaSection, layoutManageable.getConfiguration(),
+        "tableFooterAreaStyleClass", false);
 
-    NodeHelper.setStyleClass(internalWrapper, layoutManageable.getConfiguration(), "layoutInternalWrapperStyleClass", false);
+    NodeHelper.setStyleClass(internalWrapper, layoutManageable.getConfiguration(),
+        "layoutInternalWrapperStyleClass", false);
 
     topNode = layoutManageable.getNodeOnPosition(ViewLayoutPosition.TOP);
     centerNode = layoutManageable.getNodeOnPosition(ViewLayoutPosition.CENTER);
@@ -125,11 +227,11 @@ public class FullTableStructureContentLayoutManager extends AbstractViewLayoutMa
     editorStructureMaximizeButton.getStyleClass().add("button-transparent");
   }
 
-    @Override
-	public void setDefaultActions(List<IBuildable> comps) {
-		super.setDefaultActions(comps);
+  @Override
+  public void setDefaultActions(List<IBuildable> comps) {
+    super.setDefaultActions(comps);
 
-	}
+  }
 
   private boolean isEditingNode = false;
 
@@ -252,7 +354,8 @@ public class FullTableStructureContentLayoutManager extends AbstractViewLayoutMa
    */
   @Override
   public URL getFXMLLocation() {
-    return FullTableStructureContentLayoutManager.class.getResource("FullTableStructureContent.fxml");
+    return FullTableStructureContentLayoutManager.class
+        .getResource("FullTableStructureContent.fxml");
   }
 
 

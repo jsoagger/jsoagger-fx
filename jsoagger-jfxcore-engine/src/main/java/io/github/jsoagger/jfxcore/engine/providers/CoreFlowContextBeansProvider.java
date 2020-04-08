@@ -14,13 +14,15 @@ import io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.
 import io.github.jsoagger.jfxcore.engine.components.tablestructure.table.header.FiltrableTableHeaderImpl2;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 @BeansProvider
 @ConvertViewToJson
 public class CoreFlowContextBeansProvider {
 
+
+  public CoreFlowContextBeansProvider() {}
 
   @Bean
   @Named("ModelNameIdentityPresenter")

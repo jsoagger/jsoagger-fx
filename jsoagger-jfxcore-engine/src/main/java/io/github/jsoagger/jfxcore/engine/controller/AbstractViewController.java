@@ -119,11 +119,12 @@ public abstract class AbstractViewController implements IJSoaggerController {
    */
   protected IViewContext viewContext;
   /**
-   * Whatever the depth of content in the xml definition, the processed content must be wrapped into a
-   * node. This node is passed to the layout managed and displayed. It is the responsability of the
-   * processor to handle {@link AbstractViewController}.
+   * Whatever the depth of content in the xml definition, the processed content must be wrapped into
+   * a node. This node is passed to the layout managed and displayed. It is the responsability of
+   * the processor to handle {@link AbstractViewController}.
    */
   protected Pane processedView;
+  protected SimpleObjectProperty<Pane> processedViewProperty = new SimpleObjectProperty();
 
   /** Internationalisation */
   protected MessageSource messageSource;
@@ -222,8 +223,8 @@ public abstract class AbstractViewController implements IJSoaggerController {
    * @return
    */
   public synchronized <T extends GenericEvent> boolean isAwareOf(T event) {
-    for(VLEvent e : handledEvents) {
-      if(e.filter().equals(event.getFilter())) {
+    for (VLEvent e : handledEvents) {
+      if (e.filter().equals(event.getFilter())) {
         return true;
       }
     }
@@ -308,6 +309,7 @@ public abstract class AbstractViewController implements IJSoaggerController {
    * @return {@link VLViewComponentXML}
    */
   public VLViewComponentXML getRootComponent() {
+    VLViewComponentXML rootComp = viewContext().getViewConfig().getRootComponent();
     return viewContext().getViewConfig().getRootComponent();
   }
 
@@ -383,10 +385,10 @@ public abstract class AbstractViewController implements IJSoaggerController {
           try {
             final String url = getClass().getResource(cssPath).toExternalForm();
             if (url != null) {
-              //Services.getStylesheetManager().addStyleSheet(url);
-              //System.out.println("Adding style : " + url + ", to controller " + getClass());
+              // Services.getStylesheetManager().addStyleSheet(url);
+              // System.out.println("Adding style : " + url + ", to controller " + getClass());
             } else {
-              //System.out.println("Css file not found : " + cssPath);
+              // System.out.println("Css file not found : " + cssPath);
             }
           } catch (final NullPointerException e) {
           }
@@ -396,12 +398,14 @@ public abstract class AbstractViewController implements IJSoaggerController {
   }
 
 
-  /**
-   * @return the processedContent
-   */
   public Node processedView() {
     return processedView;
   }
+
+  public SimpleObjectProperty<Pane> processedViewProperty() {
+    return processedViewProperty;
+  }
+
 
 
   /**
@@ -411,10 +415,11 @@ public abstract class AbstractViewController implements IJSoaggerController {
     if (processedContent instanceof Pane) {
       processedView = (Pane) processedContent;
     } else {
-      final StackPane pane = new StackPane();
-      processedView = pane;
-      pane.getChildren().add(processedContent);
+      processedView = new StackPane();
+      processedView.getChildren().add(processedContent);
     }
+
+    processedViewProperty().set(processedView);
   }
 
 
@@ -453,7 +458,10 @@ public abstract class AbstractViewController implements IJSoaggerController {
       if ("SearchMasterAttribute".equals(((InjectableComponent) comp).getInternalId())) {
       }
       controls.put(((InjectableComponent) comp).getInternalId(), (InjectableComponent) comp);
-      injectNodeInController(getClass(), (InjectableComponent) comp);
+
+      // Reflection is too complicated in GRAALVM so disable it
+      // Search component inside available component instead just above
+      // injectNodeInController(getClass(), (InjectableComponent) comp);
     }
   }
 
@@ -483,19 +491,20 @@ public abstract class AbstractViewController implements IJSoaggerController {
         final String id = annotation.id();
         final boolean wasAccessible = field.isAccessible();
 
-        if("DeliveryCostAttribute".equals(id)) {
-        	System.out.println("InjectableComponent ++ : " + comp.getInternalId());
+        if ("DeliveryCostAttribute".equals(id)) {
+          System.out.println("InjectableComponent ++ : " + comp.getInternalId());
         }
 
         if (id.equalsIgnoreCase(comp.getInternalId())) {
-        	System.out.println(">>>>< InjectedComponent : " + comp.getInternalId());
+          System.out.println(">>>>< InjectedComponent : " + comp.getInternalId());
 
           try {
             field.setAccessible(true);
             field.set(this, comp);
             injected = true;
           } catch (IllegalArgumentException | IllegalAccessException e) {
-            throw new IllegalArgumentException("Error occurs when injecting component : " + comp.getInternalId(), e);
+            throw new IllegalArgumentException(
+                "Error occurs when injecting component : " + comp.getInternalId(), e);
           } finally {
             field.setAccessible(wasAccessible);
           }
@@ -558,7 +567,7 @@ public abstract class AbstractViewController implements IJSoaggerController {
    * @return
    */
   public String getLocalised(String key, Object... args) {
-    if(messageSource == null) {
+    if (messageSource == null) {
       return "__I18N__";
     }
 
@@ -574,7 +583,7 @@ public abstract class AbstractViewController implements IJSoaggerController {
    */
   @Override
   public String getLocalised(String key, VLViewComponentXML config) {
-    if(messageSource == null) {
+    if (messageSource == null) {
       return "__I18N__";
     }
 
@@ -594,7 +603,7 @@ public abstract class AbstractViewController implements IJSoaggerController {
    */
   @Override
   public String getGLocalised(String key) {
-    if(messageSource == null) {
+    if (messageSource == null) {
       return "__I18N__";
     }
 
@@ -602,10 +611,10 @@ public abstract class AbstractViewController implements IJSoaggerController {
       return "__I18N__";
     }
     final Locale locale = LocaleResolver.getLocale();
-    if(messageSource.getParentMessageSource() == null) {
+    if (messageSource.getParentMessageSource() == null) {
       return "__I18N__";
     }
-    return messageSource.getParentMessageSource().getOrDefault(key,"__I18N__" ,locale);
+    return messageSource.getParentMessageSource().getOrDefault(key, "__I18N__", locale);
   }
 
 
@@ -617,12 +626,12 @@ public abstract class AbstractViewController implements IJSoaggerController {
    * @return
    */
   public String getGLocalised(String key, Object... args) {
-    if(messageSource == null) {
+    if (messageSource == null) {
       return "__GI18N__";
     }
 
     final Locale locale = LocaleResolver.getLocale();
-    return messageSource.getParentMessageSource().getOrDefault(key,"__I18N__" ,locale);
+    return messageSource.getParentMessageSource().getOrDefault(key, "__I18N__", locale);
   }
 
 
@@ -664,11 +673,10 @@ public abstract class AbstractViewController implements IJSoaggerController {
 
       if (noeud != null) {
         return evaluatorImpl.evaluate(this, noeud, viewContext.getCriterias());
-      }
-      else {
+      } else {
 
-        if(viewContext.getCriterias() != null) {
-          if(viewContext.getCriterias().containsFilter(criteria)){
+        if (viewContext.getCriterias() != null) {
+          if (viewContext.getCriterias().containsFilter(criteria)) {
             return "true".equals(viewContext.getCriterias().filterValue(criteria));
           }
         }
@@ -777,7 +785,8 @@ public abstract class AbstractViewController implements IJSoaggerController {
    * @param actionRequest
    * @param result
    */
-  public void handleValidationResult(IActionRequest actionRequest, IUIDataValidationResult result) {}
+  public void handleValidationResult(IActionRequest actionRequest,
+      IUIDataValidationResult result) {}
 
 
   public final SimpleObjectProperty<Object> modelProperty() {
@@ -943,6 +952,7 @@ public abstract class AbstractViewController implements IJSoaggerController {
   }
 
   private IFormRowEditor currentForwarEditor;
+
   public IFormRowEditor currentForwarEditor() {
     return currentForwarEditor;
   }
@@ -990,8 +1000,8 @@ public abstract class AbstractViewController implements IJSoaggerController {
   /**
    * Handle the layout of this view.
    *
-   * @param controller The source controller. When the pop is called, the source controller beforePop
-   *        method is called in order to tell it to update itself.
+   * @param controller The source controller. When the pop is called, the source controller
+   *        beforePop method is called in order to tell it to update itself.
    *
    * @param node
    */
@@ -1042,8 +1052,7 @@ public abstract class AbstractViewController implements IJSoaggerController {
   }
 
   /**
-   * Add a view defnition to this
-   * controller.
+   * Add a view defnition to this controller.
    *
    * @param path
    */

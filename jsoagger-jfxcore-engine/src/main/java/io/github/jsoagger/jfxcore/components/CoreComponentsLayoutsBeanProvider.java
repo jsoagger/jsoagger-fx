@@ -39,6 +39,8 @@ import io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResp
 @BeansProvider
 public class CoreComponentsLayoutsBeanProvider {
 
+  public CoreComponentsLayoutsBeanProvider() {}
+
   @Bean
   @Named("AlwaysHideLeftAndRightLayoutManager")
   public IViewLayoutManager alwaysHideLeftAndRightLayoutManager() {
@@ -181,7 +183,6 @@ public class CoreComponentsLayoutsBeanProvider {
 
 
 
-
   @Bean
   @Named("MobileCenteredStretchedForwardViewLayoutManager")
   public IViewLayoutManager MobileCenteredStretchedForwardViewLayoutManager() {
@@ -206,7 +207,6 @@ public class CoreComponentsLayoutsBeanProvider {
     matrix.add("0#0.:0.98:0.0#hide::hide");
     return matrix;
   }
-
 
 
 
@@ -328,7 +328,6 @@ public class CoreComponentsLayoutsBeanProvider {
 
 
 
-
   @Bean
   @Named("FullPaneLayoutManager")
   public IViewLayoutManager FullPaneLayoutManager() {
@@ -409,7 +408,6 @@ public class CoreComponentsLayoutsBeanProvider {
 
 
 
-
   @Bean
   @Named("FullTableViewFixedPaginationLayoutManager")
   public IViewLayoutManager FullTableViewFixedPaginationLayoutManager() {
@@ -433,7 +431,6 @@ public class CoreComponentsLayoutsBeanProvider {
     matrix.add("0#0:1:0.0#hide::hide");
     return matrix;
   }
-
 
 
 
@@ -579,7 +576,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("FullFlowFixedPaginationLayoutManager")
   public IViewLayoutManager FullFlowFixedPaginationLayoutManager() {
-    FullFlowContentFixedPaginationLayoutManager p = new FullFlowContentFixedPaginationLayoutManager();
+    FullFlowContentFixedPaginationLayoutManager p =
+        new FullFlowContentFixedPaginationLayoutManager();
     p.setResponsiveMatrix(FullFlowFixedPaginationLayoutManagerResponsiveMatrix());
     return p;
   }
@@ -605,7 +603,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("FullFlowFixedPaginationScrollLessLayoutManager")
   public IViewLayoutManager FullFlowFixedPaginationScrollLessLayoutManager() {
-    FullFlowContentFixedPaginationLayoutManager p = new FullFlowContentFixedPaginationLayoutManager();
+    FullFlowContentFixedPaginationLayoutManager p =
+        new FullFlowContentFixedPaginationLayoutManager();
     p.setScroll(false);
     p.setResponsiveMatrix(FullFlowFixedPaginationScrollLessLayoutManagerResponsiveMatrix());
     return p;
@@ -614,7 +613,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("FullFlowFixedPaginationScrollLessLayoutManagerResponsiveMatrix")
   public ParentResponsiveMatrix FullFlowFixedPaginationScrollLessLayoutManagerResponsiveMatrix() {
-    List<String> matrix = FullFlowFixedPaginationScrollLessLayoutManagerResponsiveMatrixDefinition();
+    List<String> matrix =
+        FullFlowFixedPaginationScrollLessLayoutManagerResponsiveMatrixDefinition();
     ParentResponsiveMatrix p = new ParentResponsiveMatrix(matrix);
     return p;
   }
@@ -629,13 +629,13 @@ public class CoreComponentsLayoutsBeanProvider {
 
 
 
-
   @Bean
   @Named("SwitchableTwoHPanesWithHeaderActionsViewLayoutManager")
   public IViewLayoutManager SwitchableTwoHPanesWithHeaderActionsViewLayoutManager() {
-    SwitchableTwoHPanesWithHeaderActionsViewLayoutManager p = new SwitchableTwoHPanesWithHeaderActionsViewLayoutManager();
+    SwitchableTwoHPanesWithHeaderActionsViewLayoutManager p =
+        new SwitchableTwoHPanesWithHeaderActionsViewLayoutManager();
     p.setVerticalScroll(false);
-    //p.setFloating(false);
+    // p.setFloating(false);
     p.setResponsiveMatrix(SwitchableTwoHPanesWithHeaderActionsViewLayoutManagerMatrix());
     return p;
   }
@@ -688,9 +688,10 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("FloatingTwoHPanesWithHeaderActionsViewLayoutManager")
   public IViewLayoutManager FloatingTwoHPanesWithHeaderActionsViewLayoutManager() {
-    SwitchableTwoHPanesWithHeaderActionsViewLayoutManager p = new SwitchableTwoHPanesWithHeaderActionsViewLayoutManager();
+    SwitchableTwoHPanesWithHeaderActionsViewLayoutManager p =
+        new SwitchableTwoHPanesWithHeaderActionsViewLayoutManager();
     p.setVerticalScroll(false);
-    //p.setFloating(false);
+    // p.setFloating(false);
     p.setResponsiveMatrix(FloatingTwoHPanesWithHeaderActionsViewLayoutManagerMatrix());
     return p;
   }
@@ -712,7 +713,6 @@ public class CoreComponentsLayoutsBeanProvider {
     matrix.add("1100#fixed|400:1#:");
     return matrix;
   }
-
 
 
 
@@ -760,11 +760,11 @@ public class CoreComponentsLayoutsBeanProvider {
 
 
 
-
   @Bean
   @Named("SwitchableLeftRightTwoHPanesViewLayoutManager")
   public IViewLayoutManager SwitchableLeftRightTwoHPanesViewLayoutManager() {
-    SwitchableLeftRightTwoHPanesViewLayoutManager p = new SwitchableLeftRightTwoHPanesViewLayoutManager();
+    SwitchableLeftRightTwoHPanesViewLayoutManager p =
+        new SwitchableLeftRightTwoHPanesViewLayoutManager();
     p.setVerticalScroll(false);
     p.setResponsiveMatrix(SwitchableLeftRightTwoHPanesViewLayoutManagerMatrix());
     return p;
@@ -787,7 +787,6 @@ public class CoreComponentsLayoutsBeanProvider {
     matrix.add("1200#0:1:0#fixed|450::fixed|400");
     return matrix;
   }
-
 
 
 
@@ -830,7 +829,6 @@ public class CoreComponentsLayoutsBeanProvider {
     matrix.add("0#0.20:0:0.80#:hide:");
     return matrix;
   }
-
 
 
 
@@ -892,7 +890,6 @@ public class CoreComponentsLayoutsBeanProvider {
 
 
 
-
   @Bean
   @Named("ListDetailsViewLayoutManager")
   public IViewLayoutManager ListDetailsViewLayoutManager() {
@@ -920,7 +917,6 @@ public class CoreComponentsLayoutsBeanProvider {
     matrix.add("1200#0.5:fixed|900:0.5#::");
     return matrix;
   }
-
 
 
 
@@ -973,7 +969,6 @@ public class CoreComponentsLayoutsBeanProvider {
     matrix.add("900#0.50:fixed|600:0.50#::");
     return matrix;
   }
-
 
 
 
@@ -1036,27 +1031,31 @@ public class CoreComponentsLayoutsBeanProvider {
 
 
 
-
   @Bean
   @Named("FixedLeftRightThreeHPanesViewLayoutManager")
   public FixedLeftRightThreeHPanesViewLayoutManager FixedLeftRightThreeHPanesViewLayoutManager() {
-    FixedLeftRightThreeHPanesViewLayoutManager lyt = new FixedLeftRightThreeHPanesViewLayoutManager();
-    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("FullTabPaneLayoutManagerResponsiveMatrix"));
+    FixedLeftRightThreeHPanesViewLayoutManager lyt =
+        new FixedLeftRightThreeHPanesViewLayoutManager();
+    lyt.setResponsiveMatrix(
+        (IParentResponsiveMatrix) Services.getBean("FullTabPaneLayoutManagerResponsiveMatrix"));
     return lyt;
   }
 
   @Bean
   @Named("FullTabPaneLayoutManager")
   public FixedLeftRightThreeHPanesViewLayoutManager FullTabPaneLayoutManager() {
-    FixedLeftRightThreeHPanesViewLayoutManager lyt = new FixedLeftRightThreeHPanesViewLayoutManager();
-    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("FullTabPaneLayoutManagerResponsiveMatrix"));
+    FixedLeftRightThreeHPanesViewLayoutManager lyt =
+        new FixedLeftRightThreeHPanesViewLayoutManager();
+    lyt.setResponsiveMatrix(
+        (IParentResponsiveMatrix) Services.getBean("FullTabPaneLayoutManagerResponsiveMatrix"));
     return lyt;
   }
 
   @Bean
   @Named("FullTabPaneLayoutManagerResponsiveMatrix")
   public ParentResponsiveMatrix FullTabPaneLayoutManagerResponsiveMatrix() {
-    List<String> matrix = (List<String>) Services.getBean("FullTabPaneLayoutManagerResponsiveMatrixDefinition");
+    List<String> matrix =
+        (List<String>) Services.getBean("FullTabPaneLayoutManagerResponsiveMatrixDefinition");
     ParentResponsiveMatrix lyt = new ParentResponsiveMatrix(matrix);
     return lyt;
   }
@@ -1076,15 +1075,18 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("CenteredStretchedViewLayoutManager")
   public FixedLeftRightThreeHPanesViewLayoutManager CenteredStretchedViewLayoutManager() {
-    FixedLeftRightThreeHPanesViewLayoutManager lyt = new FixedLeftRightThreeHPanesViewLayoutManager();
-    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("CenteredStretchedViewLayoutManagerResponsiveMatrix"));
+    FixedLeftRightThreeHPanesViewLayoutManager lyt =
+        new FixedLeftRightThreeHPanesViewLayoutManager();
+    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services
+        .getBean("CenteredStretchedViewLayoutManagerResponsiveMatrix"));
     return lyt;
   }
 
   @Bean
   @Named("CenteredStretchedViewLayoutManagerResponsiveMatrix")
   public ParentResponsiveMatrix CenteredStretchedViewLayoutManagerResponsiveMatrix() {
-    List<String> matrix = (List<String>) Services.getBean("CenteredStretchedViewLayoutManagerResponsiveMatrixDefinition");
+    List<String> matrix = (List<String>) Services
+        .getBean("CenteredStretchedViewLayoutManagerResponsiveMatrixDefinition");
     ParentResponsiveMatrix lyt = new ParentResponsiveMatrix(matrix);
     return lyt;
   }
@@ -1104,7 +1106,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Named("CenteredStretchedForwardViewLayoutManager")
   public ViewForwardLayoutManager CenteredStretchedForwardViewLayoutManager() {
     ViewForwardLayoutManager lyt = new ViewForwardLayoutManager();
-    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("CenteredStretchedForwardViewLayoutResponsiveMatrix"));
+    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services
+        .getBean("CenteredStretchedForwardViewLayoutResponsiveMatrix"));
     return lyt;
   }
 
@@ -1112,7 +1115,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Named("CenteredStretchedMobileForwardViewLayoutManager")
   public ViewForwardLayoutManager CenteredStretchedMobileForwardViewLayoutManager() {
     ViewForwardLayoutManager lyt = new ViewForwardLayoutManager();
-    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("CenteredStretchedMobileForwardViewLayoutResponsiveMatrix"));
+    lyt.setResponsiveMatrix((IParentResponsiveMatrix) Services
+        .getBean("CenteredStretchedMobileForwardViewLayoutResponsiveMatrix"));
     return lyt;
   }
 
@@ -1131,7 +1135,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("CenteredStretchedForwardViewLayoutManagerLayoutResponsiveMatrix")
   public IParentResponsiveMatrix CenteredStretchedForwardViewLayoutManagerLayoutResponsiveMatrix() {
-    List<String> matrix = (List<String>) Services.getBean("CenteredStretchedMobileForwardViewLayoutResponsiveMatrixDefinition");
+    List<String> matrix = (List<String>) Services
+        .getBean("CenteredStretchedMobileForwardViewLayoutResponsiveMatrixDefinition");
     ParentResponsiveMatrix lyt = new ParentResponsiveMatrix(matrix);
     return lyt;
   }
@@ -1139,7 +1144,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("CenteredStretchedMobileForwardViewLayoutResponsiveMatrix")
   public IParentResponsiveMatrix CenteredStretchedMobileForwardViewLayoutResponsiveMatrix() {
-    List<String> matrix = (List<String>) Services.getBean("CenteredStretchedMobileForwardViewLayoutResponsiveMatrixDefinition");
+    List<String> matrix = (List<String>) Services
+        .getBean("CenteredStretchedMobileForwardViewLayoutResponsiveMatrixDefinition");
     ParentResponsiveMatrix lyt = new ParentResponsiveMatrix(matrix);
     return lyt;
   }
@@ -1157,7 +1163,8 @@ public class CoreComponentsLayoutsBeanProvider {
   @Bean
   @Named("SecondaryHeaderToolbarResponsiveMatrix")
   public IParentResponsiveMatrix SecondaryHeaderToolbarResponsiveMatrix() {
-    List<String> matrix = (List<String>) Services.getBean("SecondaryHeaderToolbarResponsiveMatrixDefinition");
+    List<String> matrix =
+        (List<String>) Services.getBean("SecondaryHeaderToolbarResponsiveMatrixDefinition");
     ParentResponsiveMatrix lyt = new ParentResponsiveMatrix(matrix);
     return lyt;
   }

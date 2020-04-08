@@ -30,30 +30,48 @@ import io.github.jsoagger.jfxcore.api.IResponsiveAreaSize;
 import io.github.jsoagger.jfxcore.api.IResponsiveAware;
 import io.github.jsoagger.jfxcore.api.IResponsiveSizing;
 import io.github.jsoagger.jfxcore.api.ViewLayoutPosition;
+import io.github.jsoagger.jfxcore.api.components.annotation.GraalComponent;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManageable;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManager;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  * @author Ramilafananana Vonjisoa
  * @mailTo yvonjisoa@nexitia.com
  * @date 11 févr. 2018
  */
-public class FullFlowContentLayoutManager extends AbstractViewLayoutManager implements IViewLayoutManager {
+@GraalComponent
+public class FullFlowContentLayoutManager extends AbstractViewLayoutManager
+    implements IViewLayoutManager {
 
+  @FXML
+  protected Pane rootAnchorPane;
+  @FXML
+  protected BorderPane rootBorderPane;
+  @FXML
+  protected HBox mainScrollPaneLayout;
   @FXML
   protected Pane headerAreaExternalSection;
-
+  @FXML
+  protected StackPane externalWrapper;
   @FXML
   protected Pane leftFixedAreaSection;
-
   @FXML
-  protected Pane centerFixedAreaSection;
+  protected Pane internalWrapperSection;
+  @FXML
+  protected VBox centerFixedAreaSection;
 
   @FXML
   protected Pane rightFixedAreaSection;
@@ -99,6 +117,64 @@ public class FullFlowContentLayoutManager extends AbstractViewLayoutManager impl
   public void layout(IViewLayoutManageable layoutManageable) {
     super.layout(layoutManageable);
 
+    if (getRootPane() == null) {
+      rootPane = new StackPane();
+      internalWrapper = new HBox();
+      rootAnchorPane = new AnchorPane();
+      rootBorderPane = new BorderPane();
+      leftFixedAreaSection = new StackPane();
+      headerAreaExternalSection = new StackPane();
+      headerAreaSection = new StackPane();
+      mainScrollPane = new ScrollPane();
+      mainScrollPaneLayout = new HBox();
+      centerFixedAreaSection = new VBox();
+      externalWrapper = new StackPane();
+      internalWrapperSection = new VBox();
+      centerAreaSection = new StackPane();
+      footerAreaSection = new StackPane();
+      rightFixedAreaSection = new StackPane();
+      floatingDefaultActionsWrapper = new StackPane();
+
+      rootPane.getChildren().add(rootAnchorPane);
+      rootAnchorPane.getChildren().addAll(internalWrapper, floatingDefaultActionsWrapper);
+
+      AnchorPane.setTopAnchor(internalWrapper, 0.0);
+      AnchorPane.setRightAnchor(internalWrapper, 0.0);
+      AnchorPane.setLeftAnchor(internalWrapper, 0.0);
+      AnchorPane.setBottomAnchor(internalWrapper, 0.0);
+      internalWrapper.getChildren().addAll(rootBorderPane);
+
+      rootBorderPane.setLeft(leftFixedAreaSection);
+      rootBorderPane.setTop(headerAreaExternalSection);
+      rootBorderPane.setCenter(mainScrollPane);
+
+      headerAreaExternalSection.getChildren().add(headerAreaSection);
+      mainScrollPane.setContent(mainScrollPaneLayout);
+      mainScrollPaneLayout.getChildren().addAll(centerFixedAreaSection, rightFixedAreaSection);
+      centerFixedAreaSection.getChildren().addAll(externalWrapper, footerAreaSection);
+      externalWrapper.getChildren().add(internalWrapperSection);
+      internalWrapperSection.getChildren().add(centerAreaSection);
+
+      headerAreaExternalSection.setVisible(false);
+      headerAreaExternalSection.setManaged(false);
+
+      mainScrollPane.setFitToHeight(true);
+      mainScrollPane.setFitToWidth(true);
+      mainScrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+      mainScrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+
+      mainScrollPaneLayout.setAlignment(Pos.CENTER);
+      NodeHelper.setHgrow(centerFixedAreaSection);
+      centerFixedAreaSection.setSpacing(16);
+      NodeHelper.setVgrow(externalWrapper, internalWrapperSection, centerAreaSection);
+      externalWrapper.setAlignment(Pos.CENTER);
+
+      footerAreaSection.getStyleClass().add("ep-full-table-structure-footer");
+      floatingDefaultActionsWrapper.setVisible(false);
+      floatingDefaultActionsWrapper.setManaged(false);
+      NodeHelper.setHVGrow(rootBorderPane);
+    }
+
     leftFixedAreaSection.managedProperty().bind(leftFixedAreaSection.visibleProperty());
     leftFixedAreaSection.maxWidthProperty().bind(leftFixedAreaSection.prefWidthProperty());
     leftFixedAreaSection.minWidthProperty().bind(leftFixedAreaSection.prefWidthProperty());
@@ -111,17 +187,26 @@ public class FullFlowContentLayoutManager extends AbstractViewLayoutManager impl
     centerFixedAreaSection.minWidthProperty().bind(centerFixedAreaSection.prefWidthProperty());
     centerFixedAreaSection.maxWidthProperty().bind(centerFixedAreaSection.prefWidthProperty());
 
-    NodeHelper.setStyleClass(tableStructureAreaSection, layoutManageable.getConfiguration(), "tableStructureAreaStyleClass", false);
-    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(), "leftSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(), "centerSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(), "rightSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(footerAreaSection, layoutManageable.getConfiguration(), "footerAreaSectionStyleClass", false);
-    //NodeHelper.styleClassAddAll(headerAreaSection, layoutManageable.getConfiguration(), "tableHeaderAreaStyleClass", "ep-shadowed-table-header");
-    NodeHelper.styleClassAddAll(headerAreaSection, layoutManageable.getConfiguration(), "tableHeaderAreaStyleClass");
-    NodeHelper.setStyleClass(internalWrapper, layoutManageable.getConfiguration(), "layoutInternalWrapperStyleClass", false);
+    NodeHelper.setStyleClass(tableStructureAreaSection, layoutManageable.getConfiguration(),
+        "tableStructureAreaStyleClass", false);
+    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(),
+        "leftSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(),
+        "centerSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(),
+        "rightSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(footerAreaSection, layoutManageable.getConfiguration(),
+        "footerAreaSectionStyleClass", false);
+    // NodeHelper.styleClassAddAll(headerAreaSection, layoutManageable.getConfiguration(),
+    // "tableHeaderAreaStyleClass", "ep-shadowed-table-header");
+    NodeHelper.styleClassAddAll(headerAreaSection, layoutManageable.getConfiguration(),
+        "tableHeaderAreaStyleClass");
+    NodeHelper.setStyleClass(internalWrapper, layoutManageable.getConfiguration(),
+        "layoutInternalWrapperStyleClass", false);
 
     if (mainScrollPane != null) {
-      NodeHelper.setStyleClass(mainScrollPane, layoutManageable.getConfiguration(), "mainScrollPaneStyleClass", false);
+      NodeHelper.setStyleClass(mainScrollPane, layoutManageable.getConfiguration(),
+          "mainScrollPaneStyleClass", false);
     }
 
     topNode = layoutManageable.getNodeOnPosition(ViewLayoutPosition.TOP);
@@ -138,10 +223,9 @@ public class FullFlowContentLayoutManager extends AbstractViewLayoutManager impl
 
     if (bottomNode != null) {
       setBottom(bottomNode);
-    }
-    else {
-    	footerAreaSection.setVisible(false);
-    	footerAreaSection.setManaged(false);
+    } else {
+      footerAreaSection.setVisible(false);
+      footerAreaSection.setManaged(false);
     }
 
     _doLayoutDefaultActions();
@@ -192,7 +276,7 @@ public class FullFlowContentLayoutManager extends AbstractViewLayoutManager impl
 
 
   private void setTop(Node topNode) {
-    if(headerAreaExternalSection != null) {
+    if (headerAreaExternalSection != null) {
       headerAreaExternalSection.setVisible(true);
       headerAreaExternalSection.setManaged(true);
     }
@@ -255,10 +339,10 @@ public class FullFlowContentLayoutManager extends AbstractViewLayoutManager impl
   }
 
 
-/**
- * @return the mainScrollPane
- */
-public ScrollPane getMainScrollPane() {
-	return mainScrollPane;
-}
+  /**
+   * @return the mainScrollPane
+   */
+  public ScrollPane getMainScrollPane() {
+    return mainScrollPane;
+  }
 }

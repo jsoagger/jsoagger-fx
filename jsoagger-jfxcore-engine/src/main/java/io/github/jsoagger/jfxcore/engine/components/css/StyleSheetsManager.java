@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
+
 import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.ResourceUtils;
 import io.github.jsoagger.jfxcore.api.css.IStylesheetManager;
@@ -263,31 +265,11 @@ public class StyleSheetsManager implements IStylesheetManager {
 
 
   public static void addUserAgentStylesheet(String stylesheet) {
-    try {
-      final Class<?> styleManagerClass = Class.forName("com.sun.javafx.css.StyleManager");
-      final Method getInstance = styleManagerClass.getMethod("getInstance");
-      getInstance.setAccessible(true);
-      final Object styleManager = getInstance.invoke(styleManagerClass);
-      final Method addUserStyleSheet = styleManagerClass.getMethod("addUserAgentStylesheet", String.class);
-      addUserStyleSheet.setAccessible(true);
-      addUserStyleSheet.invoke(styleManager, stylesheet);
-    } catch (IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException e) {
-      throw new RuntimeException("Cannot add UserAgentStylesheet as the method is not accessible");
-    }
+      StyleManager.getInstance().addUserAgentStylesheet(stylesheet);
   }
 
 
   public static void removeUserAgentStylesheet(String stylesheet) {
-    try {
-      final Class<?> styleManagerClass = Class.forName("com.sun.javafx.css.StyleManager");
-      final Method getInstance = styleManagerClass.getMethod("getInstance");
-      getInstance.setAccessible(true);
-      final Object styleManager = getInstance.invoke(styleManagerClass);
-      final Method addUserStyleSheet = styleManagerClass.getMethod("removeUserAgentStylesheet", String.class);
-      addUserStyleSheet.setAccessible(true);
-      addUserStyleSheet.invoke(styleManager, stylesheet);
-    } catch (IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException e) {
-      throw new RuntimeException("Cannot add UserAgentStylesheet as the method is not accessible");
-    }
+      StyleManager.getInstance().removeUserAgentStylesheet(stylesheet);
   }
 }

@@ -20,28 +20,16 @@
 
 
 .login-root-pane{
-	-fx-background-size:auto ;
 	-fx-background-color:transparent;
 }
 
 .login-wizard{
-	-fx-background-color:transparent;
-	-fx-padding:32 32 64 32;
-	-fx-max-width:500;
-	-fx-max-height:700;
-	-fx-effect:dropshadow(three-pass-box, -grey-color-200,10.9,0.2,0,1.0);
-	-fx-translate-y:-80;
 }
 
 .login-wizard-step{
-	-fx-border-width:1;
-	-fx-border-color:-grey-color-300;	
-	-fx-background-color:white;
 }
 
 .login-left-area{
-	-fx-background-color:transparent;
-	-fx-border-width:0;
 }
 
 .login-center-area-wrapper {
@@ -60,9 +48,6 @@
 }
 
 .login-right-area{
-	-fx-border-color:-primary-color-700;
-	-fx-border-width:0.0 0.0 0.0 0.0;
-	-fx-opacity:0.45;
 }
 
 .login-wizard-header{

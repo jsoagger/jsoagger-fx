@@ -20,6 +20,8 @@ import io.github.jsoagger.jfxcore.engine.controller.main.StandardController;
 @BeansProvider
 public class CorePreferencesBeanProvider {
 
+  public CorePreferencesBeanProvider() {}
+
   @Bean
   @Named("PreferencesMessageSource")
   public MessageSource PreferencesMessageSource() {
@@ -33,25 +35,31 @@ public class CorePreferencesBeanProvider {
 
   @Bean
   @Named("PreferencesThemingPrimaryTabPaneView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingPrimaryTabPaneView.xml")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingPrimaryTabPaneView.xml")
   public StandardController PreferencesThemingPrimaryTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingPrimaryTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingPrimaryTabPaneView.json");
     return c;
   }
 
   @Bean
   @Named("PreferencesThemingAccentTabPaneView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingAccentTabPaneView.xml")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingAccentTabPaneView.xml")
   public StandardController PreferencesThemingAccentTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingAccentTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/PreferencesThemingAccentTabPaneView.json");
     return c;
   }
 
@@ -59,29 +67,36 @@ public class CorePreferencesBeanProvider {
 
   @Bean
   @Named("SystemPreferencesRootGroupListView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesRootGroupListView.xml",
-  outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesRootGroupListView.xml",
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system")
   public StandardController SystemPreferencesRootGroupListView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesRootGroupListView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesRootGroupListView.json");
     return c;
   }
 
 
   @Bean
   @Named("SelfSystemPreferencesRootGroupListView")
-  @View(locations = {"/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesRootGroupListView.xml",
-  "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRootGroupListView.xml"},
-  outputFileName = "SelfSystemPreferencesRootGroupListView", outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
+  @View(locations = {
+      "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesRootGroupListView.xml",
+      "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRootGroupListView.xml"},
+      outputFileName = "SelfSystemPreferencesRootGroupListView",
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
   public StandardController SelfSystemPreferencesRootGroupListView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRootGroupListView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRootGroupListView.json");
     return c;
   }
 
@@ -89,88 +104,104 @@ public class CorePreferencesBeanProvider {
 
   @Bean
   @Named("SystemPreferencesNotificationsTabPaneView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesNotificationsTabPaneView.xml")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesNotificationsTabPaneView.xml")
   public StandardController SystemPreferencesNotificationsTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesNotificationsTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesNotificationsTabPaneView.json");
     return c;
   }
 
 
   @Bean
   @Named("SelfSystemPreferencesNotificationsTabPaneView")
-  @View(locations = {"/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesNotificationsTabPaneView.xml",
-  "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesNotificationsTabPaneView.xml"},
-  outputFileName = "SelfSystemPreferencesNotificationsTabPaneView", outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
+  @View(locations = {
+      "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesNotificationsTabPaneView.xml",
+      "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesNotificationsTabPaneView.xml"},
+      outputFileName = "SelfSystemPreferencesNotificationsTabPaneView",
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
   public StandardController SelfSystemPreferencesNotificationsTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesNotificationsTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesNotificationsTabPaneView.json");
     return c;
   }
 
 
 
-
-
   @Bean
   @Named("SystemPreferencesGeneralGroupTabPaneView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesGeneralGroupTabPaneView.xml")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesGeneralGroupTabPaneView.xml")
   public StandardController SystemPreferencesGeneralGroupTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesGeneralGroupTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesGeneralGroupTabPaneView.json");
     return c;
   }
 
 
   @Bean
   @Named("SelfSystemPreferencesGeneralGroupTabPaneView")
-  @View(locations = {"/io/github/jsoagger/jfxcore/components/preferences/PreferencesGeneralGroupTabPaneView.xml",
-  "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesGeneralGroupTabPaneView.xml"},
-  outputFileName = "SelfSystemPreferencesNotificationsTabPaneView", outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
+  @View(locations = {
+      "/io/github/jsoagger/jfxcore/components/preferences/PreferencesGeneralGroupTabPaneView.xml",
+      "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesGeneralGroupTabPaneView.xml"},
+      outputFileName = "SelfSystemPreferencesNotificationsTabPaneView",
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
   public StandardController SelfSystemPreferencesGeneralGroupTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesGeneralGroupTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesGeneralGroupTabPaneView.json");
     return c;
   }
 
 
 
-
-
   @Bean
   @Named("SystemPreferencesInformationGroupTabPaneView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesInformationGroupTabPaneView.xml")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesInformationGroupTabPaneView.xml")
   public StandardController SystemPreferencesInformationGroupTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesGeneralGroupTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SystemPreferencesGeneralGroupTabPaneView.json");
     return c;
   }
 
 
   @Bean
   @Named("SelfSystemPreferencesInformationGroupTabPaneView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesInformationGroupTabPaneView.xml")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesInformationGroupTabPaneView.xml")
   public StandardController SelfSystemPreferencesInformationGroupTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesInformationGroupTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesInformationGroupTabPaneView.json");
     return c;
   }
 
@@ -182,8 +213,10 @@ public class CorePreferencesBeanProvider {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/cachedatas/SelfSystemLicenseView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/cachedatas/SelfSystemLicenseView.json");
     return c;
   }
 
@@ -195,8 +228,10 @@ public class CorePreferencesBeanProvider {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/cachedatas/SelfSystemThanksToView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/cachedatas/SelfSystemThanksToView.json");
     return c;
   }
 
@@ -208,7 +243,8 @@ public class CorePreferencesBeanProvider {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
     c.addViewDefinition("/io/github/jsoagger/jfxcore/components/cachedatas/SystemLicenseView.json");
     return c;
   }
@@ -220,38 +256,46 @@ public class CorePreferencesBeanProvider {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/cachedatas/SystemThanksToView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/cachedatas/SystemThanksToView.json");
     return c;
   }
 
 
 
-
   @Bean
   @Named("SystemPreferencesRegionalGroupTabPaneView")
-  @View(locations = "/io/github/jsoagger/jfxcore/components/preferences/PreferencesRegionalGroupTabPaneView.xml")
+  @View(
+      locations = "/io/github/jsoagger/jfxcore/components/preferences/PreferencesRegionalGroupTabPaneView.xml")
   public StandardController SystemPreferencesRegionalGroupTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/PreferencesRegionalGroupTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("CenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/PreferencesRegionalGroupTabPaneView.json");
     return c;
   }
 
 
   @Bean
   @Named("SelfSystemPreferencesRegionalGroupTabPaneView")
-  @View(locations = {"/io/github/jsoagger/jfxcore/components/preferences/PreferencesRegionalGroupTabPaneView.xml",
-  "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRegionalGroupTabPaneView.xml"},
-  outputFileName = "SelfSystemPreferencesNotificationsTabPaneView", outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
+  @View(locations = {
+      "/io/github/jsoagger/jfxcore/components/preferences/PreferencesRegionalGroupTabPaneView.xml",
+      "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRegionalGroupTabPaneView.xml"},
+      outputFileName = "SelfSystemPreferencesNotificationsTabPaneView",
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/preferences/system/")
   public StandardController SelfSystemPreferencesRegionalGroupTabPaneView() {
     StandardController c = new StandardController();
     c.setMessageSource((MessageSource) Services.getBean("PreferencesMessageSource"));
     c.setModelProvider((IModelProvider) Services.getBean("RootStructureModelLoader"));
-    c.setLayoutManager((IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
-    c.addViewDefinition("/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRegionalGroupTabPaneView.json");
+    c.setLayoutManager(
+        (IViewLayoutManager) Services.getBean("SelfCenteredStretchedForwardViewLayoutManager"));
+    c.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/preferences/system/SelfSystemPreferencesRegionalGroupTabPaneView.json");
     return c;
   }
 

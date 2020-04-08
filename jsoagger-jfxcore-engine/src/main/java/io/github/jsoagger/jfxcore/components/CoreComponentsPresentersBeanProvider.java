@@ -48,6 +48,8 @@ import io.github.jsoagger.jfxcore.engine.components.presenter.impl.quickactions.
 @BeansProvider
 public class CoreComponentsPresentersBeanProvider {
 
+  public CoreComponentsPresentersBeanProvider() {}
+
   @Bean
   @Named("ModelMasterAttributePresenter")
   public ModelMasterAttributePresenter modelMasterAttributePresenter() {
@@ -201,7 +203,7 @@ public class CoreComponentsPresentersBeanProvider {
   @Bean
   @Named("DoActionPresenterFactory")
   public DoActionPresenterFactory DoActionPresenterFactory() {
-	  DoActionPresenterFactory p = new DoActionPresenterFactory();
+    DoActionPresenterFactory p = new DoActionPresenterFactory();
     return p;
   }
 
@@ -241,8 +243,10 @@ public class CoreComponentsPresentersBeanProvider {
   public SmallItemPresenterFactory smallSearchResultItemPresenter() {
     SmallItemPresenterFactory pr = new SmallItemPresenterFactory();
     pr.setIconPresenter((ModelIconPresenter) Services.getBean("ModelSoftTypeIconPresenter"));
-    pr.setIdentityPresenter((ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
-    pr.setSecondaryLabelPresenter((ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
+    pr.setIdentityPresenter(
+        (ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
+    pr.setSecondaryLabelPresenter(
+        (ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
     return pr;
   }
 
@@ -251,8 +255,10 @@ public class CoreComponentsPresentersBeanProvider {
   public MediumItemPresenterFactory mediumItemPresenterFactory() {
     MediumItemPresenterFactory pr = new MediumItemPresenterFactory();
     pr.setIconPresenter((ModelIconPresenter) Services.getBean("ModelSoftTypeIconPresenter"));
-    pr.setIdentityPresenter((ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
-    pr.setSecondaryLabelPresenter((ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
+    pr.setIdentityPresenter(
+        (ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
+    pr.setSecondaryLabelPresenter(
+        (ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
     return pr;
   }
 
@@ -261,8 +267,10 @@ public class CoreComponentsPresentersBeanProvider {
   public LargeItemPresenterFactory largerSearchResultItemPresenter() {
     LargeItemPresenterFactory pr = new LargeItemPresenterFactory();
     pr.setIconPresenter((ModelIconPresenter) Services.getBean("ModelSoftTypeIconPresenter"));
-    pr.setIdentityPresenter((ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
-    pr.setSecondaryLabelPresenter((ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
+    pr.setIdentityPresenter(
+        (ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
+    pr.setSecondaryLabelPresenter(
+        (ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
     return pr;
   }
 
@@ -271,8 +279,10 @@ public class CoreComponentsPresentersBeanProvider {
   public LargeItemPresenterFactory LargerSearchResultItemPresenter2() {
     LargeItemPresenterFactory pr = new LargeItemPresenterFactory();
     pr.setIconPresenter((ModelIconPresenter) Services.getBean("ModelSoftTypeIconPresenter"));
-    pr.setIdentityPresenter((ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
-    pr.setSecondaryLabelPresenter((ModelSecondaryLabelPresenter) Services.getBean("ModelMasterDescriptionPresenter"));
+    pr.setIdentityPresenter(
+        (ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
+    pr.setSecondaryLabelPresenter(
+        (ModelSecondaryLabelPresenter) Services.getBean("ModelMasterDescriptionPresenter"));
     return pr;
   }
 
@@ -280,8 +290,10 @@ public class CoreComponentsPresentersBeanProvider {
   @Named("SmallFixedSearchResultItemPresenter")
   public SmallItemPresenterFactory SmallItemPresenterFactory() {
     SmallItemPresenterFactory pr = new SmallItemPresenterFactory();
-    pr.setIdentityPresenter((ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
-    pr.setSecondaryLabelPresenter((ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
+    pr.setIdentityPresenter(
+        (ModelIdentityPresenter) Services.getBean("ModelNameIdentityPresenter"));
+    pr.setSecondaryLabelPresenter(
+        (ModelSecondaryLabelPresenter) Services.getBean("ModelDescriptionPresenter"));
     return pr;
   }
 }

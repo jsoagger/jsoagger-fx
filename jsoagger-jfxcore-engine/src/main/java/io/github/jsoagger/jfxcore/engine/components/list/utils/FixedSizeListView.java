@@ -23,6 +23,7 @@ package io.github.jsoagger.jfxcore.engine.components.list.utils;
 
 
 
+import io.github.jsoagger.jfxcore.components.list.utils.FixedSizeListViewSkin;
 import io.github.jsoagger.jfxcore.engine.utils.ReflectionUIUtils;
 
 import javafx.beans.property.BooleanProperty;
@@ -64,11 +65,10 @@ public class FixedSizeListView<T> extends AbstractListView<T> {
   }
 
 
-  @SuppressWarnings("rawtypes")
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   protected Skin createDefaultSkin() {
-    Object[] argsValues = new Object[] {this};
-    Skin skin =  (Skin) ReflectionUIUtils.newInstance("io.github.jsoagger.jfxcore.components.list.utils.FixedSizeListViewSkin", argsValues, ListView.class);
+	Skin skin = new FixedSizeListViewSkin(this);  
     return skin;
   }
 }

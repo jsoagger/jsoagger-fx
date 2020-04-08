@@ -52,6 +52,8 @@ import io.github.jsoagger.jfxcore.engine.delegate.PersistenceServiceDelegate;
  */
 public class WizardConfigurationProvider {
 
+  public WizardConfigurationProvider() {}
+
   @Bean
   @Named("LoginAction")
   public IAction loginAction() {
@@ -218,28 +220,32 @@ public class WizardConfigurationProvider {
   @Bean
   @Named("DeleteObjectLinkFromTableRowAction")
   public DeleteObjectLinkFromTableStructureRowAction deleteObjectLinkFromTableRowAction() {
-    DeleteObjectLinkFromTableStructureRowAction la = new DeleteObjectLinkFromTableStructureRowAction();
+    DeleteObjectLinkFromTableStructureRowAction la =
+        new DeleteObjectLinkFromTableStructureRowAction();
     return la;
   }
 
   @Bean
   @Named("DeleteObjectLinkFromRecursiveStructureTableRowAction")
   public DeleteObjectLinkFromRecursiveStructureTableRowAction deleteObjectLinkFromRecursiveStructureTableRowAction() {
-    DeleteObjectLinkFromRecursiveStructureTableRowAction la = new DeleteObjectLinkFromRecursiveStructureTableRowAction();
+    DeleteObjectLinkFromRecursiveStructureTableRowAction la =
+        new DeleteObjectLinkFromRecursiveStructureTableRowAction();
     return la;
   }
 
   @Bean
   @Named("CopySelectedElementsFromTableStructureAction")
   public CopySelectedElementsFromTableStructureAction copySelectedElementsFromTableStructureAction() {
-    CopySelectedElementsFromTableStructureAction la = new CopySelectedElementsFromTableStructureAction();
+    CopySelectedElementsFromTableStructureAction la =
+        new CopySelectedElementsFromTableStructureAction();
     return la;
   }
 
   @Bean
   @Named("DeleteSelectedElementsInTableStructureAction")
   public DeleteSelectedElementsInTableStructureAction deleteSelectedElementsInTableStructureAction() {
-    DeleteSelectedElementsInTableStructureAction la = new DeleteSelectedElementsInTableStructureAction();
+    DeleteSelectedElementsInTableStructureAction la =
+        new DeleteSelectedElementsInTableStructureAction();
     return la;
   }
 
@@ -253,7 +259,8 @@ public class WizardConfigurationProvider {
   @Bean
   @Named("PrintSelectedElementsInTableStructureAction")
   public PrintSelectedElementsInTableStructureAction printSelectedElementsInTableStructureAction() {
-    PrintSelectedElementsInTableStructureAction la = new PrintSelectedElementsInTableStructureAction();
+    PrintSelectedElementsInTableStructureAction la =
+        new PrintSelectedElementsInTableStructureAction();
     return la;
   }
 
@@ -289,7 +296,8 @@ public class WizardConfigurationProvider {
   @Bean
   @Named("StructureContentRelatedModelPaginatedDataLoader")
   public StructureContentRelatedModelPaginatedDataLoader structureContentRelatedModelPaginatedDataLoader() {
-    StructureContentRelatedModelPaginatedDataLoader la = new StructureContentRelatedModelPaginatedDataLoader();
+    StructureContentRelatedModelPaginatedDataLoader la =
+        new StructureContentRelatedModelPaginatedDataLoader();
     return la;
   }
 

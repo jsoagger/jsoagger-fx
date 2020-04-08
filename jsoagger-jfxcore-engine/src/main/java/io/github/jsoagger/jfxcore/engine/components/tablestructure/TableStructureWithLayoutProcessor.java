@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -26,7 +26,6 @@ import io.github.jsoagger.jfxcore.api.IComponentProcessor;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.services.Services;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-
 import javafx.scene.Node;
 
 /**
@@ -50,14 +49,14 @@ public class TableStructureWithLayoutProcessor implements IComponentProcessor {
     String componentLayoutManager = contentCfg.getPropertyValue("componentLayoutManager");
     String contentImpl = contentCfg.getPropertyValue("contentImpl");
 
-    // build the table
+    System.out.println("componentLayoutManager : " + componentLayoutManager);
+    System.out.println("contentImpl : " + contentImpl);
+
     AbstractTableStructure tableStructure = (AbstractTableStructure) Services.getBean(contentImpl);
-    // VLViewComponentXML rootConfiguration =
-    // contentCfg.getComponentById("TableStructureContentDefinition").orElse(null);
     tableStructure.buildFrom(controller, contentCfg);
 
-    // load the layout manager
-    SimpleTableStructureLayoutManager layoutManager = (SimpleTableStructureLayoutManager) Services.getBean(componentLayoutManager);
+    SimpleTableStructureLayoutManager layoutManager =
+        (SimpleTableStructureLayoutManager) Services.getBean(componentLayoutManager);
     layoutManager.layout(tableStructure);
 
     return layoutManager.getDisplay();

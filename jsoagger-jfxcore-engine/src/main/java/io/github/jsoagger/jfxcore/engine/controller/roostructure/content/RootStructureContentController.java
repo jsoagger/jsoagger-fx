@@ -22,7 +22,6 @@ package io.github.jsoagger.jfxcore.engine.controller.roostructure.content;
 
 
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -100,10 +99,12 @@ public class RootStructureContentController extends AbstractViewController {
     // build the InitialStructureContent when first time displayed
     final VLViewComponentXML rootComp = getRootComponent();
     if (rootComp != null) {
-      displayNavigationBar.set(rootComp.booleanPropertyValueOf("displayNavigationBar").orElse(true));
+      displayNavigationBar
+          .set(rootComp.booleanPropertyValueOf("displayNavigationBar").orElse(true));
       final String initialView = initialView();
       if (StringUtils.isNotBlank(initialView)) {
-        final PushStructureContentEvent ev = new PushStructureContentEvent.Builder().viewId(initialView).build();
+        final PushStructureContentEvent ev =
+            new PushStructureContentEvent.Builder().viewId(initialView).build();
         buildStructureContent(ev);
       }
     }
@@ -144,7 +145,8 @@ public class RootStructureContentController extends AbstractViewController {
    * displayed inside the current {@link RootStructureController} current controller.
    */
   protected void buildStructureContent(PushStructureContentEvent event) {
-    final StructureContentController structureContent = (StructureContentController) Services.getBean("StructureContentController");
+    final StructureContentController structureContent =
+        (StructureContentController) Services.getBean("StructureContentController");
     if (event != null) {
       structureContent.setSourceEvent(event);
       structureContent.setFormModelData((OperationData) event.getModel());
@@ -157,7 +159,8 @@ public class RootStructureContentController extends AbstractViewController {
     structureContent.build();
 
     if (event.getViewId().endsWith("Wizard")) {
-      final WizardViewController view = WizardViewUtils.forWizardId(this, structureContent, event.getViewId(), null);
+      final WizardViewController view =
+          WizardViewUtils.forWizardId(this, structureContent, event.getViewId(), null);
       structureContent.processedView(view.processedView());
       structureContent.setCurrentContent(view);
       event.setProcessedContent(structureContent);
@@ -176,16 +179,19 @@ public class RootStructureContentController extends AbstractViewController {
       }
     } else {
 
-      final StandardViewController view = StandardViewUtils.forId(rootStructure, structureContent, event.getViewId());
+      final StandardViewController view =
+          StandardViewUtils.forId(rootStructure, structureContent, event.getViewId());
       structureContent.setCurrentContent(view);
       structureContent.processedView(view.processedView());
       event.setProcessedContent(structureContent);
 
       Platform.runLater(() -> {
         if (view.getRootComponent() != null) {
-          final String rootStructureContentStyleClass = view.getRootComponent().getPropertyValue("rootStructureContentStyleClass");
+          final String rootStructureContentStyleClass =
+              view.getRootComponent().getPropertyValue("rootStructureContentStyleClass");
           if (StringUtils.isNotBlank(rootStructureContentStyleClass)) {
-            rootStructure.getContentRootPane().getStyleClass().setAll(rootStructureContentStyleClass.split(","));
+            rootStructure.getContentRootPane().getStyleClass()
+                .setAll(rootStructureContentStyleClass.split(","));
           } else {
             rootStructure.getContentRootPane().getStyleClass().clear();
           }
@@ -210,7 +216,8 @@ public class RootStructureContentController extends AbstractViewController {
     final boolean showBottomHeader = c.getBooleanProperty("showRootStructureHeader", true);
     event.setShowRootStructureHeader(showBottomHeader);
 
-    final StructureContentController sc = StructureContentUtils.forId((RootStructureContentController) obj, getRootStructure(), event, c);
+    final StructureContentController sc = StructureContentUtils
+        .forId((RootStructureContentController) obj, getRootStructure(), event, c);
 
     sc.setScIdentifier(event.getViewId());
     event.setProcessedContent(sc);
@@ -250,28 +257,25 @@ public class RootStructureContentController extends AbstractViewController {
   @Override
   public synchronized <T extends GenericEvent> void handle(T e) {
     super.handle(e);
-    if(e.isA(CoreEvent.RSBeginProcessing)) {
-    	if(Platform.isFxApplicationThread()) {
-    		setProcessing((RSBeginProcessing) e);
-    	}
-    	else {
-        	Platform.runLater(() -> {
-        		setProcessing((RSBeginProcessing) e);
-        	});
-    	}
-    }
-    else if(e.isA(CoreEvent.RSEndProcessing)) {
-    	Platform.runLater(() -> {
-    		endProcessing();
-    	});
-    }
-    else if (e.isA(CoreEvent.PushStructureContentEvent)) {
+    if (e.isA(CoreEvent.RSBeginProcessing)) {
+      if (Platform.isFxApplicationThread()) {
+        setProcessing((RSBeginProcessing) e);
+      } else {
+        Platform.runLater(() -> {
+          setProcessing((RSBeginProcessing) e);
+        });
+      }
+    } else if (e.isA(CoreEvent.RSEndProcessing)) {
+      Platform.runLater(() -> {
+        endProcessing();
+      });
+    } else if (e.isA(CoreEvent.PushStructureContentEvent)) {
       final PushStructureContentEvent event = (PushStructureContentEvent) e;
       final boolean redispatch = event.wasProcessed();
 
       // build new one
       if (!redispatch) {
-        Task<Void> pt=  new Task<Void>() {
+        Task<Void> pt = new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
@@ -296,7 +300,7 @@ public class RootStructureContentController extends AbstractViewController {
 
     // back
     else if (e.isA(CoreEvent.PopStructureContentEvent)) {
-      Task<Void> pt=  new Task<Void>() {
+      Task<Void> pt = new Task<Void>() {
 
         @Override
         protected Void call() throws Exception {
@@ -321,7 +325,7 @@ public class RootStructureContentController extends AbstractViewController {
         layout.getChildren().add(nextNode);
         nextNode.setOpacity(1);
 
-        if(AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
+        if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
           nextNode.translateXProperty().set(100);
           final Transition tte1 = NodeHelper.translateTo(100, 0, nextNode, Duration.millis(50));
           tte1.setInterpolator(cme);
@@ -343,6 +347,7 @@ public class RootStructureContentController extends AbstractViewController {
   }
 
   Node beforeProcessedNode = null;
+
   public void setProcessing(RSBeginProcessing e) {
     Node node = processingNode(e);
     layout.getChildren().add(node);
@@ -350,20 +355,19 @@ public class RootStructureContentController extends AbstractViewController {
   }
 
   protected Node processingNode(RSBeginProcessing e) {
-	  StackPane processing = new StackPane();
-	  processing.getStyleClass().add("ep-root-structure-processing-pane");
+    StackPane processing = new StackPane();
+    processing.getStyleClass().add("ep-root-structure-processing-pane");
 
-	  if(e != null && e.getContentNode() != null) {
-		  processing.getChildren().add(e.getContentNode());
-	  }
-	  else {
-		  Label op = new javafx.scene.control.Label("Processing...");
-		  processing.getChildren().add(op);
-		  op.getStyleClass().add("ep-root-structure-processing-pane-label");
-	  }
+    if (e != null && e.getContentNode() != null) {
+      processing.getChildren().add(e.getContentNode());
+    } else {
+      Label op = new javafx.scene.control.Label("Processing...");
+      processing.getChildren().add(op);
+      op.getStyleClass().add("ep-root-structure-processing-pane-label");
+    }
 
-	  e.processingProperty().set(true);
-	  return processing;
+    e.processingProperty().set(true);
+    return processing;
   }
 
   public void setError() {
@@ -375,12 +379,12 @@ public class RootStructureContentController extends AbstractViewController {
 
 
   public void endProcessing() {
-	  if (layout.getChildren().size() > 0) {
-		  layout.getChildren().remove(layout.getChildren().size() - 1);
-	  }
-	  if(beforeProcessedNode != null) {
-		  layout.getChildren().add(beforeProcessedNode);
-	  }
+    if (layout.getChildren().size() > 0) {
+      layout.getChildren().remove(layout.getChildren().size() - 1);
+    }
+    if (beforeProcessedNode != null) {
+      layout.getChildren().add(beforeProcessedNode);
+    }
   }
 
   /**
@@ -411,8 +415,9 @@ public class RootStructureContentController extends AbstractViewController {
     tte.setOnFinished(e -> {
       layout.getChildren().remove(0);
       layout.getChildren().add(todisp.getProcessedContent().processedView());
-      if(AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
-        final Transition tte1 = NodeHelper.translateYTo(100, 0, todisp.getProcessedContent().processedView(), Duration.millis(400));
+      if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
+        final Transition tte1 = NodeHelper.translateYTo(100, 0,
+            todisp.getProcessedContent().processedView(), Duration.millis(400));
         tte1.setInterpolator(cme);
         tte1.setOnFinished(q -> clean(torem));
         tte1.play();
@@ -452,7 +457,7 @@ public class RootStructureContentController extends AbstractViewController {
         }
       }
 
-      for(StructureContentController c : aware) {
+      for (StructureContentController c : aware) {
         c.handle(event);
       }
 
@@ -499,7 +504,7 @@ public class RootStructureContentController extends AbstractViewController {
   }
 
   /**
-   * @author Ramilafananana  VONJISOA
+   * @author Ramilafananana VONJISOA
    */
   private class UpdateLocationTask extends Task<Void> {
 
@@ -508,10 +513,10 @@ public class RootStructureContentController extends AbstractViewController {
       final StructureContentController current = views.get(views.size() - 1).getProcessedContent();
       final UpdateCurrentLocationEvent eve = new UpdateCurrentLocationEvent();
 
-      if(current.getCurrentContent() instanceof IRSHeaderHolder) {
+      if (current.getCurrentContent() instanceof IRSHeaderHolder) {
         IRSHeaderHolder h = (IRSHeaderHolder) current.getCurrentContent();
         Node header = h.getDisplayIdentity();
-        if(header != null) {
+        if (header != null) {
           eve.setLocationNode(header);
         }
       }

@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -26,16 +26,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.core.bridge.operation.IOperationResult;
 import io.github.jsoagger.core.bridge.result.MultipleResult;
 import io.github.jsoagger.core.bridge.result.OperationData;
 import io.github.jsoagger.core.bridge.result.SingleResult;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.IPaginatedDataProvider;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.utils.ComponentUtils;
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
+
 /**
  * Transforms xml to {@link IOperationResult} for displaying into listview.
  *
@@ -59,7 +60,8 @@ public class StaticListEntryLoader implements IPaginatedDataProvider {
    * @{inheritedDoc}
    */
   @Override
-  public void initFromConfiguration(IJSoaggerController controller, VLViewComponentXML listConfiguration) {
+  public void initFromConfiguration(IJSoaggerController controller,
+      VLViewComponentXML listConfiguration) {
     dataKey = listConfiguration.getPropertyValue("dataKey");
     rootData = ComponentUtils.resolveModel((AbstractViewController) controller, dataKey);
   }
@@ -69,7 +71,8 @@ public class StaticListEntryLoader implements IPaginatedDataProvider {
    * @{inheritedDoc}
    */
   @Override
-  public void count(IJSoaggerController controller, IOperationResult currentPage, Consumer<IOperationResult> consumer) {
+  public void count(IJSoaggerController controller, IOperationResult currentPage,
+      Consumer<IOperationResult> consumer) {
     IOperationResult operationResult = new SingleResult();
 
     if (rootData == null) {
@@ -94,19 +97,22 @@ public class StaticListEntryLoader implements IPaginatedDataProvider {
    * @{inheritedDoc}
    */
   @Override
-  public void navigate(IJSoaggerController controller, IOperationResult currentResult, Direction direction, Consumer<IOperationResult> consumer) {
+  public void navigate(IJSoaggerController controller, IOperationResult currentResult,
+      Direction direction, Consumer<IOperationResult> consumer) {
     MultipleResult multipleResult = new MultipleResult();
     List<OperationData> datas = new ArrayList<>();
 
-    // admin is on context of the root strcuture
+    // admin is on context of the root structure
     SingleResult res = (SingleResult) controller.getRootStructure().getModel();
 
     for (VLViewComponentXML componentXML : rootData.getSubcomponents()) {
       OperationData data = new OperationData();
-      data.getAttributes().put("fullId", ((OperationData) res.rootData()).getAttributes().get("fullId"));
-      data.getAttributes().put("name", NodeHelper.getTitle(componentXML, (AbstractViewController) controller));
+      data.getAttributes().put("fullId",
+          ((OperationData) res.rootData()).getAttributes().get("fullId"));
+      data.getAttributes().put("name",
+          NodeHelper.getTitle(componentXML, (AbstractViewController) controller));
 
-      for(String k: componentXML.getProperties().keySet()) {
+      for (String k : componentXML.getProperties().keySet()) {
         data.getAttributes().put(k, componentXML.getProperties().get(k));
       }
 
@@ -114,7 +120,6 @@ public class StaticListEntryLoader implements IPaginatedDataProvider {
       if (componentXML.hasSubComponent()) {
         data.getMeta().put("subComponents", componentXML.getSubcomponents());
       }
-
 
       datas.add(data);
     }

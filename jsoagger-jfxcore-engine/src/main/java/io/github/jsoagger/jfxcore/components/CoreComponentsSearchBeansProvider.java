@@ -22,12 +22,13 @@ import io.github.jsoagger.jfxcore.engine.components.list.impl.ModelSearchResultL
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.util.ParentResponsiveMatrix;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 @BeansProvider
 public class CoreComponentsSearchBeansProvider {
 
+  public CoreComponentsSearchBeansProvider() {}
 
   @Bean
   @Named("DefaultSearchPaginatedDataLoader")
@@ -76,14 +77,16 @@ public class CoreComponentsSearchBeansProvider {
   @Named("SearchFormLayoutContentManager")
   public SearchFormLayoutContentManager searchFormLayoutContentManager() {
     SearchFormLayoutContentManager p = new SearchFormLayoutContentManager();
-    p.setResponsiveMatrix((IParentResponsiveMatrix) BeanFactory.instance().getBean("SearchFormResponsiveMatrix"));
+    p.setResponsiveMatrix(
+        (IParentResponsiveMatrix) BeanFactory.instance().getBean("SearchFormResponsiveMatrix"));
     return p;
   }
 
   @Bean
   @Named("SearchFormResponsiveMatrix")
   public ParentResponsiveMatrix searchFormResponsiveMatrix() {
-    List<String> d = (List<String>) BeanFactory.instance().getBean("SearchFormResponsiveMatrixDefinition");
+    List<String> d =
+        (List<String>) BeanFactory.instance().getBean("SearchFormResponsiveMatrixDefinition");
     ParentResponsiveMatrix p = new ParentResponsiveMatrix(d);
     return p;
   }

@@ -80,7 +80,6 @@ public class DemoAppDesktopViewStructureBeansProvider {
     sheetsManager.getStyleSheetsPath().add("classpath:/css/color/primary/light-blue.css");
     sheetsManager.getStyleSheetsPath().add("classpath:/css/content/light/light-desktop.css");
     sheetsManager.getStyleSheetsPath().add("classpath:/css/undecorator/undecorator.css");
-    sheetsManager.getStyleSheetsPath().add("classpath:/io/github/jsoagger/jfxcore/controller/login/login.css");
     return sheetsManager;
   }
 

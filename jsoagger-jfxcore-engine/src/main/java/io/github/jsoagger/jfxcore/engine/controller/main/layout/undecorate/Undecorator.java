@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,14 +22,12 @@ package io.github.jsoagger.jfxcore.engine.controller.main.layout.undecorate;
 
 
 
-
 import java.net.URL;
 import java.util.Properties;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
-
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
@@ -75,7 +73,7 @@ import javafx.util.Duration;
  */
 public class Undecorator extends StackPane {
 
-  //public static final Logger LOGGER = Logger.getLogger("Undecorator");
+  // public static final Logger LOGGER = Logger.getLogger("Undecorator");
   public static final String STAGE_FXML_LOCATION = "stageTransparentDecoration.fxml";
 
   public static int SHADOW_WIDTH = 15;
@@ -86,7 +84,6 @@ public class Undecorator extends StackPane {
 
   @FXML
   private Button menu;
-
   @FXML
   private Button close;
   @FXML
@@ -95,7 +92,6 @@ public class Undecorator extends StackPane {
   private Button restore;
   @FXML
   private Button iconify;
-
   @FXML
   private Button resize;
   @FXML
@@ -165,17 +161,22 @@ public class Undecorator extends StackPane {
     // maximize and restore button
     // mutually exclusif, buttons
     maximizeProperty = new SimpleBooleanProperty(false);
-    maximize.managedProperty().bind(maximize.visibleProperty());
-    maximize.visibleProperty().bind(Bindings.not(maximizeProperty));
+    if (maximize != null) {
+      maximize.managedProperty().bind(maximize.visibleProperty());
+      maximize.visibleProperty().bind(Bindings.not(maximizeProperty));
+    }
 
-    restore.managedProperty().bind(restore.visibleProperty());
-    restore.visibleProperty().bind(maximizeProperty);
+    if (restore != null) {
+      restore.managedProperty().bind(restore.visibleProperty());
+      restore.visibleProperty().bind(maximizeProperty);
+    }
 
-    // iconify
-    iconify.managedProperty().bind(iconify.visibleProperty());
-
-    fullscreenProperty = new SimpleBooleanProperty(false);
-    fullscreenProperty.addListener((ChangeListener<Boolean>) (ov, t, t1) -> getController().setFullScreen(!stage.isFullScreen()));
+    if (iconify != null) {
+      iconify.managedProperty().bind(iconify.visibleProperty());
+      fullscreenProperty = new SimpleBooleanProperty(false);
+      fullscreenProperty.addListener((ChangeListener<Boolean>) (ov, t, t1) -> getController()
+          .setFullScreen(!stage.isFullScreen()));
+    }
 
     undecoratorController = new UndecoratorController(this);
     undecoratorController.setAsStageDraggable(stage, clientArea);
@@ -185,14 +186,15 @@ public class Undecorator extends StackPane {
     dsNotFocused = new DropShadow(BlurType.THREE_PASS_BOX, Color.DARKGREY, SHADOW_WIDTH, 0, 0, 0);
 
     shadowRectangle = new Rectangle();
-    shadowRectangle.layoutBoundsProperty().addListener((ChangeListener<Bounds>) (observable, oldBounds, newBounds) -> {
-      if (SHADOW_WIDTH != 0) {
-        shadowRectangle.setVisible(true);
-        setShadowClip(newBounds);
-      } else {
-        shadowRectangle.setVisible(false);
-      }
-    });
+    shadowRectangle.layoutBoundsProperty()
+        .addListener((ChangeListener<Bounds>) (observable, oldBounds, newBounds) -> {
+          if (SHADOW_WIDTH != 0) {
+            shadowRectangle.setVisible(true);
+            setShadowClip(newBounds);
+          } else {
+            shadowRectangle.setVisible(false);
+          }
+        });
 
     initDecoration();
 
@@ -226,10 +228,12 @@ public class Undecorator extends StackPane {
     backgroundRect.setMouseTransparent(true);
 
     // Add all layers
-    super.getChildren().addAll(shadowRectangle, backgroundRect, clientArea, stageDecoration, glassPane);
+    super.getChildren().addAll(shadowRectangle, backgroundRect, clientArea, stageDecoration,
+        glassPane);
 
     // Focused stage
-    stage.focusedProperty().addListener((ChangeListener<Boolean>) (ov, t, t1) -> setShadowFocused(t1.booleanValue()));
+    stage.focusedProperty()
+        .addListener((ChangeListener<Boolean>) (ov, t, t1) -> setShadowFocused(t1.booleanValue()));
 
     // Fullscreen
     // do not support this button for the moment
@@ -252,7 +256,7 @@ public class Undecorator extends StackPane {
       stage.fullScreenProperty().addListener((ChangeListener<Boolean>) (ov, t, fullscreenState) -> {
         setShadow(!fullscreenState.booleanValue());
         fullScreenMenuItem.setSelected(fullscreenState.booleanValue());
-        maximize.setVisible(!fullscreenState.booleanValue());
+        // maximize.setVisible(!fullscreenState.booleanValue());
         iconify.setVisible(!fullscreenState.booleanValue());
         resize.setVisible(!fullscreenState.booleanValue());
         if (fullscreenState.booleanValue()) {
@@ -331,10 +335,13 @@ public class Undecorator extends StackPane {
   public void installAccelerators(Scene scene) {
     // Accelerators
     if (stage.isResizable()) {
-      scene.getAccelerators().put(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN), () -> switchFullscreen());
+      scene.getAccelerators().put(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN,
+          KeyCombination.SHORTCUT_DOWN), () -> switchFullscreen());
     }
-    scene.getAccelerators().put(new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN), () -> iconify());
-    scene.getAccelerators().put(new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN), () -> switchClose());
+    scene.getAccelerators().put(new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN),
+        () -> iconify());
+    scene.getAccelerators().put(new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN),
+        () -> switchClose());
   }
 
 
@@ -465,7 +472,8 @@ public class Undecorator extends StackPane {
     // contextMenu.setAutoHide(true);
     if (iconify != null) { // Utility Stage
       minimizeMenuItem = new MenuItem("Minimize");
-      minimizeMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN));
+      minimizeMenuItem
+          .setAccelerator(new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN));
       minimizeMenuItem.setOnAction(e -> iconify());
       // contextMenu.getItems().add(minimizeMenuItem);
     }
@@ -483,7 +491,8 @@ public class Undecorator extends StackPane {
     if (stageStyle != StageStyle.UTILITY && stage.isResizable()) {
       fullScreenMenuItem = new CheckMenuItem("FullScreen");
       fullScreenMenuItem.setOnAction(e -> switchFullscreen());
-      fullScreenMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
+      fullScreenMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F,
+          KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
 
       // contextMenu.getItems().addAll(fullScreenMenuItem, new
       // SeparatorMenuItem());
@@ -502,10 +511,12 @@ public class Undecorator extends StackPane {
      */
 
     // Close button
-    close.setTooltip(new Tooltip("Close"));
-    close.setOnAction(t -> switchClose());
-    FontIcon closeicon = new FontIcon("mdi-close:18");
-    close.setGraphic(closeicon);
+    if (close != null) {
+      close.setTooltip(new Tooltip("Close"));
+      close.setOnAction(t -> switchClose());
+      FontIcon closeicon = new FontIcon("mdi-close:18");
+      close.setGraphic(closeicon);
+    }
 
     // Maximize button
     // If changed via contextual menu
@@ -545,10 +556,12 @@ public class Undecorator extends StackPane {
     });
 
     // Transfer stage title to undecorator tiltle label
-    title.setText(this.stage.getTitle());
+    if (title != null)
+      title.setText(this.stage.getTitle());
 
     // drag
-    undecoratorController.setStageResizableWith(stage, decorationRoot, RESIZE_PADDING, SHADOW_WIDTH);
+    undecoratorController.setStageResizableWith(stage, decorationRoot, RESIZE_PADDING,
+        SHADOW_WIDTH);
   }
 
 
@@ -668,7 +681,8 @@ public class Undecorator extends StackPane {
         backgroundRect.setX(SHADOW_WIDTH);
         backgroundRect.setY(SHADOW_WIDTH);
       } else if (node == stageDecoration) {
-        stageDecoration.resize(w - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2, h - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2);
+        stageDecoration.resize(w - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2,
+            h - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2);
         stageDecoration.setLayoutX(SHADOW_WIDTH + ROUNDED_DELTA);
         stageDecoration.setLayoutY(SHADOW_WIDTH + ROUNDED_DELTA);
       } // else if (node == resizeRect) {
@@ -678,7 +692,8 @@ public class Undecorator extends StackPane {
       // resizeRect.setLayoutY(SHADOW_WIDTH);
       // }
       else {
-        node.resize(w - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2, h - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2);
+        node.resize(w - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2,
+            h - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2);
         node.setLayoutX(SHADOW_WIDTH + ROUNDED_DELTA);
         node.setLayoutY(SHADOW_WIDTH + ROUNDED_DELTA);
         // node.resize(w - SHADOW_WIDTH * 2 - RESIZE_PADDING * 2, h -

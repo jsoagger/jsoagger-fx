@@ -96,7 +96,8 @@ public class NodeHelper {
   /*-----------------------------------------------------------------------------
   | HANDLING LOCATION PROPERTY
    *=============================================================================*/
-  public static String location(VLViewRootMenuRowXML configuration, AbstractViewController controller) {
+  public static String location(VLViewRootMenuRowXML configuration,
+      AbstractViewController controller) {
     String location = configuration.getPropertyValueByName("location");
     if (StringUtils.isNotBlank(location)) {
       location = controller.getLocalised(location);
@@ -106,7 +107,8 @@ public class NodeHelper {
   }
 
 
-  public static String location(VLViewComponentXML configuration, AbstractViewController controller) {
+  public static String location(VLViewComponentXML configuration,
+      AbstractViewController controller) {
     String location = configuration.getPropertyValue("location");
     if (StringUtils.isNotBlank(location)) {
       location = controller.getLocalised(location);
@@ -126,7 +128,8 @@ public class NodeHelper {
    * @param add if true use addAll instead of setAll
    * @param configuration
    */
-  private static void processStyleClass(Node node, VLViewComponentXML configuration, String defaultStyleClass, boolean add) {
+  private static void processStyleClass(Node node, VLViewComponentXML configuration,
+      String defaultStyleClass, boolean add) {
 
     final String styleClass = configuration.getPropertyValue("styleClass");
     if (StringUtils.isNotBlank(styleClass)) {
@@ -152,23 +155,24 @@ public class NodeHelper {
    * @param add if true use addAll instead of setAll
    * @param configuration
    */
-  private static void processStyleClass(Node node, VLViewComponentXML configuration, String styleClassName, String defaultStyleClass, boolean add) {
-    if(configuration != null) {
+  private static void processStyleClass(Node node, VLViewComponentXML configuration,
+      String styleClassName, String defaultStyleClass, boolean add) {
+    if (configuration != null) {
 
-	 final String styleClassNameDeclared = configuration.getPropertyValue(styleClassName);
-    if (StringUtils.isNotBlank(styleClassNameDeclared)) {
-      if (add) {
-        node.getStyleClass().addAll(styleClassNameDeclared.split(","));
-      } else {
-        node.getStyleClass().setAll(styleClassNameDeclared.split(","));
+      final String styleClassNameDeclared = configuration.getPropertyValue(styleClassName);
+      if (StringUtils.isNotBlank(styleClassNameDeclared)) {
+        if (add) {
+          node.getStyleClass().addAll(styleClassNameDeclared.split(","));
+        } else {
+          node.getStyleClass().setAll(styleClassNameDeclared.split(","));
+        }
+      } else if (StringUtils.isNotBlank(defaultStyleClass)) {
+        if (add) {
+          node.getStyleClass().addAll(defaultStyleClass.split(","));
+        } else {
+          node.getStyleClass().setAll(defaultStyleClass.split(","));
+        }
       }
-    } else if (StringUtils.isNotBlank(defaultStyleClass)) {
-      if (add) {
-        node.getStyleClass().addAll(defaultStyleClass.split(","));
-      } else {
-        node.getStyleClass().setAll(defaultStyleClass.split(","));
-      }
-    }
     }
   }
 
@@ -200,12 +204,14 @@ public class NodeHelper {
    * @param defaultStyleClassValue
    * @param configuration
    */
-  public static void styleClassSetAll(Node node, VLViewComponentXML configuration, String defaultStyleClassValue) {
+  public static void styleClassSetAll(Node node, VLViewComponentXML configuration,
+      String defaultStyleClassValue) {
     processStyleClass(node, configuration, defaultStyleClassValue, false);
   }
 
 
-  public static void setStyleClass(Node node, VLViewComponentXML configuration, String styleClassName, boolean add) {
+  public static void setStyleClass(Node node, VLViewComponentXML configuration,
+      String styleClassName, boolean add) {
     if (configuration != null && node != null) {
       final String styleClass = configuration.getPropertyValue(styleClassName);
       if (StringUtils.isNotBlank(styleClass)) {
@@ -224,7 +230,8 @@ public class NodeHelper {
    * @param styleClassName
    * @param configuration
    */
-  public static void styleClassAddAll(Node node, VLViewComponentXML configuration, String styleClassName) {
+  public static void styleClassAddAll(Node node, VLViewComponentXML configuration,
+      String styleClassName) {
     processStyleClass(node, configuration, styleClassName, null, true);
   }
 
@@ -234,7 +241,8 @@ public class NodeHelper {
    * @param styleClassName
    * @param configuration
    */
-  public static void styleClassAddAll(Node node, VLViewComponentXML configuration, String styleClassName, String defaultStyleClass) {
+  public static void styleClassAddAll(Node node, VLViewComponentXML configuration,
+      String styleClassName, String defaultStyleClass) {
     processStyleClass(node, configuration, styleClassName, defaultStyleClass, true);
   }
 
@@ -244,7 +252,8 @@ public class NodeHelper {
    * @param styleClassName
    * @param configuration
    */
-  public static void styleClassSetAll(Node node, VLViewComponentXML configuration, String styleClassName, String defaultStyleClassValue) {
+  public static void styleClassSetAll(Node node, VLViewComponentXML configuration,
+      String styleClassName, String defaultStyleClassValue) {
 
     final String styleClassNameDeclared = configuration.getPropertyValue(styleClassName);
     if (StringUtils.isNotBlank(styleClassNameDeclared)) {
@@ -258,7 +267,8 @@ public class NodeHelper {
   /*-----------------------------------------------------------------------------
   | PROCESSING TITLE OF LABELED
    *=============================================================================*/
-  public static void setTitle(Labeled labeled, VLViewComponentXML configuration, AbstractViewController controller) {
+  public static void setTitle(Labeled labeled, VLViewComponentXML configuration,
+      AbstractViewController controller) {
 
     // title
     final boolean uppercase = configuration.getBooleanProperty(XMLConstants.UPPERCASE, false);
@@ -278,7 +288,8 @@ public class NodeHelper {
   }
 
 
-  public static void setTitle(Labeled labeled, VLViewComponentXML configuration, AbstractViewController controller, boolean bind) {
+  public static void setTitle(Labeled labeled, VLViewComponentXML configuration,
+      AbstractViewController controller, boolean bind) {
     setTitle(labeled, configuration, controller);
     if (bind) {
       labeled.managedProperty().bind(labeled.visibleProperty());
@@ -287,7 +298,8 @@ public class NodeHelper {
   }
 
 
-  public static void setDescription(Labeled labeled, VLViewComponentXML configuration, AbstractViewController controller) {
+  public static void setDescription(Labeled labeled, VLViewComponentXML configuration,
+      AbstractViewController controller) {
     final String descLabel = configuration.getPropertyValue(XMLConstants.DESCRIPTION);
     if (StringUtils.isNotBlank(descLabel)) {
       final String translated = controller.getLocalised(descLabel, configuration);
@@ -298,7 +310,8 @@ public class NodeHelper {
   }
 
 
-  public static void setDescription(Labeled labeled, VLViewComponentXML configuration, AbstractViewController controller, boolean bind) {
+  public static void setDescription(Labeled labeled, VLViewComponentXML configuration,
+      AbstractViewController controller, boolean bind) {
     setDescription(labeled, configuration, controller);
     if (bind) {
       labeled.managedProperty().bind(labeled.visibleProperty());
@@ -307,7 +320,8 @@ public class NodeHelper {
   }
 
 
-  public static void setLabel(Labeled labeled, VLViewComponentXML configuration, AbstractViewController controller) {
+  public static void setLabel(Labeled labeled, VLViewComponentXML configuration,
+      AbstractViewController controller) {
     // title
     final boolean uppercase = configuration.getBooleanProperty(XMLConstants.UPPERCASE, false);
     final String titleLabel = configuration.getPropertyValue(XMLConstants.LABEL);
@@ -321,14 +335,16 @@ public class NodeHelper {
   }
 
 
-  public static void addLabel(TextFlow flow, VLViewComponentXML configuration, AbstractViewController controller) {
+  public static void addLabel(TextFlow flow, VLViewComponentXML configuration,
+      AbstractViewController controller) {
     final Label labeled = new Label();
     setLabel(labeled, configuration, controller);
     flow.getChildren().add(labeled);
   }
 
 
-  public static void addDescription(TextFlow flow, VLViewComponentXML configuration, AbstractViewController controller) {
+  public static void addDescription(TextFlow flow, VLViewComponentXML configuration,
+      AbstractViewController controller) {
     final Text labeled = new Text();
     final String descLabel = configuration.getPropertyValue(XMLConstants.DESCRIPTION);
     if (StringUtils.isNotBlank(descLabel)) {
@@ -344,14 +360,16 @@ public class NodeHelper {
   }
 
 
-  public static String getTitle(VLViewComponentXML configuration, AbstractViewController controller) {
+  public static String getTitle(VLViewComponentXML configuration,
+      AbstractViewController controller) {
     final String titleLabel = configuration.getPropertyValue(XMLConstants.TITLE);
     final String translated = controller.getLocalised(titleLabel, configuration);
     return translated;
   }
 
 
-  public static String getLabel(VLViewComponentXML configuration, AbstractViewController controller) {
+  public static String getLabel(VLViewComponentXML configuration,
+      AbstractViewController controller) {
     final String titleLabel = configuration.getPropertyValue(XMLConstants.LABEL);
     final String translated = controller.getLocalised(titleLabel, configuration);
     return translated;
@@ -375,8 +393,10 @@ public class NodeHelper {
       fxmlLoader.setController(controller);
       fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
 
+      // System.out.println(">>>> loading FXML on : " + controller + ", from url : " +
+      // fxmlLocation);
       result = fxmlLoader.load();
-    } catch (final Exception e) {
+    } catch (final Throwable e) {
       e.printStackTrace();
       throw new IllegalArgumentException(e);
     }
@@ -403,14 +423,17 @@ public class NodeHelper {
   }
 
 
-  public static TranslateTransition translateTo(double fromx, double tox, Node node, Duration millis) {
+  public static TranslateTransition translateTo(double fromx, double tox, Node node,
+      Duration millis) {
     final TranslateTransition translate = new TranslateTransition();
     translate.setNode(node);
     translate.setAutoReverse(false);
     translate.setToX(tox);
     translate.setFromX(fromx);
-    if(millis != null) translate.setDuration(millis);
-    if(millis == null) translate.setDuration(Duration.millis(300));
+    if (millis != null)
+      translate.setDuration(millis);
+    if (millis == null)
+      translate.setDuration(Duration.millis(300));
     return translate;
   }
 
@@ -429,15 +452,18 @@ public class NodeHelper {
     return translateYTo(fromY, y, node, null);
   }
 
-  public static TranslateTransition translateYTo(double fromY, double y, Node node, Duration duration) {
+  public static TranslateTransition translateYTo(double fromY, double y, Node node,
+      Duration duration) {
     final TranslateTransition translate = new TranslateTransition();
     translate.setNode(node);
     translate.setAutoReverse(false);
     translate.setFromY(fromY);
     translate.setToY(y);
 
-    if(duration == null) translate.setDuration(Duration.millis(400));
-    if(duration != null)translate.setDuration(duration);
+    if (duration == null)
+      translate.setDuration(Duration.millis(400));
+    if (duration != null)
+      translate.setDuration(duration);
 
     node.translateYProperty().set(fromY);
     return translate;
@@ -732,13 +758,15 @@ public class NodeHelper {
     scrollPane.setFitToHeight(false);
     scrollPane.setFitToWidth(true);
     scrollPane.setFocusTraversable(false);
-    scrollPane.setStyle("-fx-background-color:white;-fx-padding:0 0 0 0;" + "-fx-border-color:transparent;");
+    scrollPane.setStyle(
+        "-fx-background-color:white;-fx-padding:0 0 0 0;" + "-fx-border-color:transparent;");
     return scrollPane;
   }
 
 
   /**
-   * Wrap a node into a scrollpane, this scrollpane is attended to be in the center of the view. Because a padding of 32 is set in the right side of the scrollpane.
+   * Wrap a node into a scrollpane, this scrollpane is attended to be in the center of the view.
+   * Because a padding of 32 is set in the right side of the scrollpane.
    *
    * @param node
    * @return
@@ -751,7 +779,8 @@ public class NodeHelper {
     scrollPane.setFitToHeight(true);
     scrollPane.setFitToWidth(true);
     scrollPane.setFocusTraversable(false);
-    scrollPane.setStyle("-fx-background-color: transparent;" + "-fx-padding:0 ;" + "-fx-border-color:transparent;");
+    scrollPane.setStyle(
+        "-fx-background-color: transparent;" + "-fx-padding:0 ;" + "-fx-border-color:transparent;");
     return scrollPane;
   }
 
@@ -828,7 +857,7 @@ public class NodeHelper {
    *
    * @return
    */
-  public static  Node getSep() {
+  public static Node getSep() {
     Label separator = new Label();
     FontIcon icon = new FontIcon("fa-caret-square-o-right:14");
     separator.setGraphic(icon);
@@ -836,7 +865,7 @@ public class NodeHelper {
     return separator;
   }
 
-  public static  Node getSep(String iconStyleClass) {
+  public static Node getSep(String iconStyleClass) {
     Label separator = new Label();
     FontIcon icon = new FontIcon("fa-caret-square-o-right:14");
     separator.setGraphic(icon);
@@ -853,7 +882,7 @@ public class NodeHelper {
     mss.getStyleClass().add("ep-header-message");
 
     Label ic = new Label();
-    if(StringUtils.isNotBlank(icon)) {
+    if (StringUtils.isNotBlank(icon)) {
       IconUtils.setFontIcon(icon, ic);
       ic.getGraphic().getStyleClass().add("white-ikonli");
     }
@@ -862,35 +891,36 @@ public class NodeHelper {
     return messagebox;
   }
 
-  public static void showHeaderMessage(IJSoaggerController controller, String message, String icon) {
+  public static void showHeaderMessage(IJSoaggerController controller, String message,
+      String icon) {
     Node msg = headerMessage(message, icon);
-    ((RootStructureController)controller.getRootStructure()).showMessage(msg);
+    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
   }
 
   public static void showHeaderSuccessCreateMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Item successfully created", "gmi-cloud-done:32");
-    ((RootStructureController)controller.getRootStructure()).showMessage(msg);
+    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
   }
 
   public static void showHeaderErrorCreateMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Error occurs, object not created.", "gmi-error-outline:32");
-    ((RootStructureController)controller.getRootStructure()).showMessage(msg);
+    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
   }
 
 
   public static void showHeaderSuccessDeleteMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Item(s) successfully deleted", "gmi-delete-sweep:32");
-    ((RootStructureController)controller.getRootStructure()).showMessage(msg);
+    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
   }
 
   public static void showHeaderErrorDeleteMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Error occurs, object not deleted.", "gmi-error-outline:32");
-    ((RootStructureController)controller.getRootStructure()).showMessage(msg);
+    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
   }
 
   public static void showHeaderErrorMessage(IJSoaggerController controller, String message) {
     Node msg = headerMessage(message, "gmi-error-outline:32");
-    ((RootStructureController)controller.getRootStructure()).showMessage(msg);
+    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
   }
 
   /**
@@ -899,10 +929,8 @@ public class NodeHelper {
    * @param c
    */
   public static void showProcessingDialog(WizardViewController c) {
-    ProcessingDialog d = new ProcessingDialog.Builder()
-        .title("Processing")
-        .message("Please wait ...")
-        .buildPrimary(c);
+    ProcessingDialog d = new ProcessingDialog.Builder().title("Processing")
+        .message("Please wait ...").buildPrimary(c);
     c.setProcessingPane(d);
     d.show(true);
   }

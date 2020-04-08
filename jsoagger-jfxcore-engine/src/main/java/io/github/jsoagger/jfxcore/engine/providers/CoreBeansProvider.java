@@ -173,11 +173,13 @@ import io.github.jsoagger.jfxcore.engine.model.LinkableRoleBsLoader;
 
 /**
  *
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 @BeansProvider
 public class CoreBeansProvider {
+
+  public CoreBeansProvider() {}
 
   @Bean
   @Named("InputCheckbox")
@@ -1182,7 +1184,8 @@ public class CoreBeansProvider {
   @Named("SmallMasterNameItemInitialIconCircle")
   public SmallItemInitialIconCircle SmallMasterNameItemInitialIconCircle() {
     SmallItemInitialIconCircle p = new SmallItemInitialIconCircle();
-    p.setIdentityPresenter((ModelIdentityPresenter) Services.getBean("RCMasterNameIdentityPresenter"));
+    p.setIdentityPresenter(
+        (ModelIdentityPresenter) Services.getBean("RCMasterNameIdentityPresenter"));
     return p;
   }
 
@@ -1273,7 +1276,8 @@ public class CoreBeansProvider {
   @Bean
   @Named("DeleteLinksBetweenTwoObjectsButtonAccessRuleResolver")
   public IAccessRuleResolver deleteLinksBetweenTwoObjectsButtonAccessRuleResolver() {
-    DeleteLinksBetweenTwoObjectsButtonAccessRuleResolver p = new DeleteLinksBetweenTwoObjectsButtonAccessRuleResolver();
+    DeleteLinksBetweenTwoObjectsButtonAccessRuleResolver p =
+        new DeleteLinksBetweenTwoObjectsButtonAccessRuleResolver();
     return p;
   }
 
@@ -1281,21 +1285,24 @@ public class CoreBeansProvider {
   @Bean
   @Named("AddLinkBetweenTwoObjectsButtonAccessRuleResolver")
   public IAccessRuleResolver addLinkBetweenTwoObjectsButtonAccessRuleResolver() {
-    AddLinkBetweenTwoObjectsButtonAccessRuleResolver p = new AddLinkBetweenTwoObjectsButtonAccessRuleResolver();
+    AddLinkBetweenTwoObjectsButtonAccessRuleResolver p =
+        new AddLinkBetweenTwoObjectsButtonAccessRuleResolver();
     return p;
   }
 
   @Bean
   @Named("AddObjectToTableFromSearchAccessRuleResolver")
   public IAccessRuleResolver addObjectToTableFromSearchAccessRuleResolver() {
-    AddObjectToTableFromSearchAccessRuleResolver p = new AddObjectToTableFromSearchAccessRuleResolver();
+    AddObjectToTableFromSearchAccessRuleResolver p =
+        new AddObjectToTableFromSearchAccessRuleResolver();
     return p;
   }
 
   @Bean
   @Named("DeleteObjectFromTableFromSearchAccessRuleResolver")
   public IAccessRuleResolver deleteObjectFromTableFromSearchAccessRuleResolver() {
-    DeleteObjectFromTableFromSearchAccessRuleResolver p = new DeleteObjectFromTableFromSearchAccessRuleResolver();
+    DeleteObjectFromTableFromSearchAccessRuleResolver p =
+        new DeleteObjectFromTableFromSearchAccessRuleResolver();
     return p;
   }
 }

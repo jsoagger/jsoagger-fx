@@ -95,11 +95,11 @@ public class VLTabpane extends VBox implements IBuildable {
    * Select/update current tab
    */
   public void forUpdateCurrentSelection() {
-	  for (final VLTab tab : tabs) {
-		  if(tab.isSeleted()) {
-			  selectTab(tab);
-		  }
-	  }
+    for (final VLTab tab : tabs) {
+      if (tab.isSeleted()) {
+        selectTab(tab);
+      }
+    }
   }
 
   public void pushCurrentContent(AbstractViewController controller) {
@@ -228,7 +228,7 @@ public class VLTabpane extends VBox implements IBuildable {
     selectTab(0);
 
     VLTabPaneHeader header = new VLTabPaneHeader();
-    //header.buildFrom(controller, configuration);
+    // header.buildFrom(controller, configuration);
     getChildren().add(0, header);
   }
 
@@ -294,11 +294,11 @@ public class VLTabpane extends VBox implements IBuildable {
     pushedContents.clear();
 
     for (final VLTab styledTab : tabs) {
-	    if (!styledTab.equals(tab)) {
-	      styledTab.select(false);
-	    }
-	 }
-    
+      if (!styledTab.equals(tab)) {
+        styledTab.select(false);
+      }
+    }
+
     boolean animated = configuration.getBooleanProperty("animated");
 
     Node content = tab.getContent();
@@ -307,7 +307,8 @@ public class VLTabpane extends VBox implements IBuildable {
       tabContentContainer.getChildren().clear();
       tabContentContainer.getChildren().add(content);
 
-      if(animated && (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile())) {
+      if (animated
+          && (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile())) {
         final EasingInterpolator cme = new EasingInterpolator(EasingMode.OUT_CIRC);
         final Transition tte1 = NodeHelper.translateTo(100, 0, content, Duration.millis(500));
         tte1.setInterpolator(cme);
@@ -316,7 +317,8 @@ public class VLTabpane extends VBox implements IBuildable {
 
       String location = tab.getConfig().getPropertyValue("location");
       if (StringUtils.isNotBlank(location)) {
-        tab.getController().getStructureContent().contentLocationProperty().set(tab.getController().getLocalised(location));
+        tab.getController().getStructureContent().contentLocationProperty()
+            .set(tab.getController().getLocalised(location));
       }
     }
 

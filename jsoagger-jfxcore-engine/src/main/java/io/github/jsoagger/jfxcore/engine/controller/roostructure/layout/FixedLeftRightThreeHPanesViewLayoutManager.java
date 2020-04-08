@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,24 +22,27 @@ package io.github.jsoagger.jfxcore.engine.controller.roostructure.layout;
 
 
 
-
 import java.net.URL;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.api.IResponsiveAreaSize;
 import io.github.jsoagger.jfxcore.api.IResponsiveAware;
 import io.github.jsoagger.jfxcore.api.IResponsiveSizing;
 import io.github.jsoagger.jfxcore.api.ViewLayoutPosition;
+import io.github.jsoagger.jfxcore.api.components.annotation.GraalComponent;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManageable;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManager;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.utils.ReflectionUIUtils;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  * A layout where children are layed out in 3 horizontal panes. The center pane and the right pane
@@ -49,7 +52,9 @@ import javafx.scene.layout.Pane;
  * @mailto yvonjisoa@nexitia.com
  * @date 2019
  */
-public class FixedLeftRightThreeHPanesViewLayoutManager extends AbstractViewLayoutManager implements IViewLayoutManager {
+@GraalComponent
+public class FixedLeftRightThreeHPanesViewLayoutManager extends AbstractViewLayoutManager
+    implements IViewLayoutManager {
 
   private static final String FXML_LOCATION = "FixedLeftRightThreeHPanesViewLayout.fxml";
 
@@ -61,9 +66,13 @@ public class FixedLeftRightThreeHPanesViewLayoutManager extends AbstractViewLayo
   | FXML FIELDS
    *=============================================================================*/
   @FXML
+  protected Pane rootPane;
+  @FXML
+  protected Pane contentWrapper;
+  @FXML
   protected Pane leftFixedAreaSection;
   @FXML
-  protected Pane centerFixedAreaSection;
+  protected StackPane centerFixedAreaSection;
   @FXML
   protected Pane scrolledCenterFixedAreaSection;
   @FXML
@@ -88,6 +97,12 @@ public class FixedLeftRightThreeHPanesViewLayoutManager extends AbstractViewLayo
     super();
   }
 
+  @Override
+  public String toString() {
+    return "+++++===== " + rootPane + " , " + contentStructureAreaSection + " , "
+        + leftFixedAreaSection + ", " + centerFixedAreaSection + ", " + mainScrollPane;
+  }
+
   /**
    * @{inheritedDoc}
    */
@@ -95,8 +110,42 @@ public class FixedLeftRightThreeHPanesViewLayoutManager extends AbstractViewLayo
   public void layout(IViewLayoutManageable layoutManageable) {
     super.layout(layoutManageable);
 
+    // generated from FXML
+    if (getRootPane() == null) {
+      rootPane = new StackPane();
+      contentWrapper = new VBox();
+      contentStructureAreaSection = new HBox();
+      leftFixedAreaSection = new VBox();
+      mainScrollPane = new ScrollPane();
+      scrolledCenterFixedAreaSection = new StackPane();
+      rightFixedAreaSection = new StackPane();
+      centerFixedAreaSection = new StackPane();
+      editorStructureAreaSection = new HBox();
+
+      rootPane.getChildren().add(contentWrapper);
+      contentWrapper.getChildren().addAll(contentStructureAreaSection, editorStructureAreaSection);
+      contentStructureAreaSection.getChildren().addAll(leftFixedAreaSection, mainScrollPane,
+          centerFixedAreaSection, rightFixedAreaSection);
+
+      mainScrollPane.setContent(scrolledCenterFixedAreaSection);
+      mainScrollPane.setFitToHeight(true);
+      mainScrollPane.setFitToWidth(true);
+
+      contentWrapper.setPrefHeight(-1);
+      contentWrapper.setPrefWidth(-1);
+
+      centerFixedAreaSection.setAlignment(Pos.CENTER);
+      centerFixedAreaSection.setPrefHeight(-1);
+      centerFixedAreaSection.setPrefWidth(-1);
+      NodeHelper.setVgrow(contentStructureAreaSection);
+      postLayout();
+
+      toString();
+    }
+
     editorStructureAreaSection.managedProperty().bind(editorStructureAreaSection.visibleProperty());
-    contentStructureAreaSection.managedProperty().bind(contentStructureAreaSection.visibleProperty());
+    contentStructureAreaSection.managedProperty()
+        .bind(contentStructureAreaSection.visibleProperty());
     editorStructureAreaSection.setVisible(false);
 
     leftFixedAreaSection.managedProperty().bind(leftFixedAreaSection.visibleProperty());
@@ -108,22 +157,30 @@ public class FixedLeftRightThreeHPanesViewLayoutManager extends AbstractViewLayo
     centerFixedAreaSection.managedProperty().bind(centerFixedAreaSection.visibleProperty());
 
     if (verticalScroll) {
-      scrolledCenterFixedAreaSection.minWidthProperty().bind(scrolledCenterFixedAreaSection.maxWidthProperty());
-      NodeHelper.setStyleClass(scrolledCenterFixedAreaSection, layoutManageable.getConfiguration(), "centerSectionAreaStyleClass", false);
+      scrolledCenterFixedAreaSection.minWidthProperty()
+          .bind(scrolledCenterFixedAreaSection.maxWidthProperty());
+      NodeHelper.setStyleClass(scrolledCenterFixedAreaSection, layoutManageable.getConfiguration(),
+          "centerSectionAreaStyleClass", false);
       centerFixedAreaSection.setVisible(false);
     } else {
       mainScrollPane.setVisible(false);
       mainScrollPane.setManaged(false);
       centerFixedAreaSection.minWidthProperty().bind(centerFixedAreaSection.prefWidthProperty());
       centerFixedAreaSection.maxWidthProperty().bind(centerFixedAreaSection.prefWidthProperty());
-      NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(), "centerSectionAreaStyleClass", false);
+      NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(),
+          "centerSectionAreaStyleClass", false);
     }
 
-    NodeHelper.setStyleClass(getRootPane(), layoutManageable.getConfiguration(), "rootPaneStyleClass", true);
-    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(), "leftSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(), "rightSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(mainScrollPane, layoutManageable.getConfiguration(), "mainScrollPaneStyleClass", false);
-    NodeHelper.setStyleClass(editorStructureAreaSection, layoutManageable.getConfiguration(), "editorStructureAreaSectionStyleClass", false);
+    NodeHelper.setStyleClass(getRootPane(), layoutManageable.getConfiguration(),
+        "rootPaneStyleClass", true);
+    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(),
+        "leftSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(),
+        "rightSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(mainScrollPane, layoutManageable.getConfiguration(),
+        "mainScrollPaneStyleClass", false);
+    NodeHelper.setStyleClass(editorStructureAreaSection, layoutManageable.getConfiguration(),
+        "editorStructureAreaSectionStyleClass", false);
 
     Node leftNode = layoutManageable.getNodeOnPosition(ViewLayoutPosition.LEFT);
     Node centerNode = layoutManageable.getNodeOnPosition(ViewLayoutPosition.CENTER);
@@ -306,5 +363,14 @@ public class FixedLeftRightThreeHPanesViewLayoutManager extends AbstractViewLayo
   @Override
   public void setVerticalScroll(boolean verticalScroll) {
     this.verticalScroll = verticalScroll;
+  }
+
+  @Override
+  public Pane getRootPane() {
+    return rootPane;
+  }
+
+  public void setRootPane(Pane rootPane) {
+    this.rootPane = rootPane;
   }
 }

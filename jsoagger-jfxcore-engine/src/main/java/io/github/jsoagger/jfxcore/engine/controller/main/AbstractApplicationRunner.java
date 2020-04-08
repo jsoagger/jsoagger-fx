@@ -23,6 +23,7 @@ package io.github.jsoagger.jfxcore.engine.controller.main;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.engine.client.PlatformType;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.client.utils.VLExecutorService;
@@ -30,7 +31,6 @@ import io.github.jsoagger.jfxcore.engine.controller.main.layout.ViewStructure;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.application.Preloader.StateChangeNotification;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -83,38 +83,37 @@ public abstract class AbstractApplicationRunner extends Application {
   public void start(Stage primaryStage) throws Exception {
     AbstractApplicationRunner.primaryStage = primaryStage;
 
-    String platformType  = applicationParameters.getNamed().get("jsoagger.client.mode");
-    platformType(PlatformType.valueOf(platformType == null ? "MOBILE" : platformType.toUpperCase()));
+    String platformType = applicationParameters.getNamed().get("jsoagger-client-mode");
+    String mobileSplash = applicationParameters.getNamed().get("jsoagger-show-splash");
 
-    if(isMobile() || isSimulMobile()) {
+    platformType(PlatformType
+        .valueOf(StringUtils.isEmpty(platformType) ? "MOBILE" : platformType.toUpperCase()));
+
+    if ("true".equalsIgnoreCase(mobileSplash)) {
       showMobileSplash(primaryStage);
-
-      Task<Void> task = new Task<Void>() {
-
-        @Override
-        protected Void call() throws Exception {
-          initApplication();
-          Platform.runLater(() -> show());
-          return null;
-        }
-      };
-
-      new Thread(task).start();
     }
-    else {
-      initApplication();
-      Platform.runLater(() -> show());
-    }
+
+    Task<Void> task = new Task<Void>() {
+
+      @Override
+      protected Void call() throws Exception {
+        initApplication();
+        Platform.runLater(() -> show());
+        return null;
+      }
+    };
+
+    new Thread(task).start();
   }
 
 
-
   public void show() {
-	viewStructure.initFromPrimaryStage(primaryStage, applicationParameters);
-    notifyPreloader(new StateChangeNotification(StateChangeNotification.Type.BEFORE_START));
-    animateHideNode(pane);
+    viewStructure.initFromPrimaryStage(primaryStage, applicationParameters);
+    // notifyPreloader(new StateChangeNotification(StateChangeNotification.Type.BEFORE_START));
+    // animateHideNode(pane);
 
-    if(!isMobile() && !isSimulMobile()) primaryStage.show();
+    // if (!isMobile() && !isSimulMobile())
+    primaryStage.show();
   }
 
 
@@ -194,7 +193,7 @@ public abstract class AbstractApplicationRunner extends Application {
   public static String getArgs(String key, String[] args, String defaultValue) {
     for (String arg : args) {
       String[] splitted = arg.split("=");
-      if(splitted.length == 2) {
+      if (splitted.length == 2) {
         if (splitted[0].equals(key)) {
           return splitted[1];
         }

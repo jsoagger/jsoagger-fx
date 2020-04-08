@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,31 +22,29 @@ package io.github.jsoagger.jfxcore.engine.components.header;
 
 
 
-
-import java.net.URL;
-
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
-import io.github.jsoagger.core.utils.StringUtils;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.ICountableElements;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.IListViewPaneHeader;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.presenter.impl.quickactions.ViewActionFactory;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.utils.ComponentUtils;
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
 
 /**
@@ -58,20 +56,13 @@ public class ListViewPaneHeader implements IListViewPaneHeader, ICountableElemen
 
   protected static String dynMessageFormat = "(%s)";
 
-  @FXML
   private Pane rootContainer;
-  @FXML
-  protected Label mainLabel;
-  @FXML
-  protected Label totalElementsCountLabel;
-  @FXML
-  protected Pane leftContainer;
-
-  @FXML
-  protected TextFlow secondaryLabelFlow;
-
-  @FXML
-  protected Pane rightActionsContainer;
+  protected Label mainLabel = new Label();
+  protected Label totalElementsCountLabel = new Label();
+  protected Pane leftContainer = new VBox();
+  protected Pane mailLabelContainer = new HBox();
+  protected TextFlow secondaryLabelFlow = new TextFlow();
+  protected Pane rightActionsContainer = new HBox();
 
   protected SimpleIntegerProperty elementCountProperty = new SimpleIntegerProperty();
   protected AbstractViewController controller;
@@ -92,8 +83,14 @@ public class ListViewPaneHeader implements IListViewPaneHeader, ICountableElemen
    */
   public ListViewPaneHeader() {
     super();
-    URL location = ListViewPaneHeader.class.getResource("ListViewPaneHeader.fxml");
-    NodeHelper.loadFXML(location, this);
+    // URL location = ListViewPaneHeader.class.getResource("ListViewPaneHeader.fxml");
+    // NodeHelper.loadFXML(location, this);
+
+    rootContainer = new HBox();
+    rootContainer.getChildren().addAll(leftContainer, rightActionsContainer);
+    leftContainer.getChildren().addAll(mailLabelContainer, secondaryLabelFlow);
+    mailLabelContainer.getChildren().addAll(mainLabel, totalElementsCountLabel);
+    secondaryLabelFlow.getStyleClass().addAll("listview-pane-header-secondary-label-flow");
   }
 
 
@@ -118,33 +115,38 @@ public class ListViewPaneHeader implements IListViewPaneHeader, ICountableElemen
         NodeHelper.styleClassAddAll(rootContainer, configuration, "styleClass");
 
         if (StringUtils.isNotBlank(configuration.getPropertyValue("description"))) {
-          NodeHelper.addDescription(secondaryLabelFlow, configuration, (AbstractViewController) controller);
+          NodeHelper.addDescription(secondaryLabelFlow, configuration,
+              (AbstractViewController) controller);
         } else {
           secondaryLabelFlow.setManaged(false);
         }
 
-        // extract css from configuration
         String labelStyleClass = configuration.getPropertyValue("titleStyleClass");
         if (io.github.jsoagger.core.utils.StringUtils.isNotBlank(labelStyleClass)) {
           mainLabel.getStyleClass().addAll(labelStyleClass.split(","));
         } else {
-          mainLabel.getStyleClass().addAll("ep-listview-header-title-label", "ep-listview-title-label-medium");
+          mainLabel.getStyleClass().addAll("ep-listview-header-title-label",
+              "ep-listview-title-label-medium");
         }
 
-        elementsCountProperty().addListener((ChangeListener<Number>) (observable, oldValue, newValue) -> {
-          if (newValue.intValue() > 0) {
-            totalElementsCountLabel.textProperty().set("");
-          } else {
-            totalElementsCountLabel.textProperty().set(String.format(dynMessageFormat, newValue.intValue()));
-          }
-        });
+        elementsCountProperty()
+            .addListener((ChangeListener<Number>) (observable, oldValue, newValue) -> {
+              if (newValue.intValue() > 0) {
+                totalElementsCountLabel.textProperty().set("");
+              } else {
+                totalElementsCountLabel.textProperty()
+                    .set(String.format(dynMessageFormat, newValue.intValue()));
+              }
+            });
 
         if (collapsible) {
           buildCollpaseExpand();
         }
 
         // actions
-        VLViewComponentXML conf = ComponentUtils.resolveDefinition((AbstractViewController)getController(), "HeaderActions").orElse(null);
+        VLViewComponentXML conf = ComponentUtils
+            .resolveDefinition((AbstractViewController) getController(), "HeaderActions")
+            .orElse(null);
         if (conf != null) {
           Node actions = ViewActionFactory.viewActions((AbstractViewController) controller, conf);
           if (actions != null) {
@@ -276,7 +278,7 @@ public class ListViewPaneHeader implements IListViewPaneHeader, ICountableElemen
    */
   @Override
   public IJSoaggerController getController() {
-    return (IJSoaggerController) controller;
+    return controller;
   }
 
 

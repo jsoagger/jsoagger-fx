@@ -14,8 +14,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 
-<AnchorPane id="rootStructurex" fx:id="rootStructurex" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" style="-fx-background-color:-background-color;" minWidth="-1.0" pickOnBounds="false" snapToPixel="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-	<children>
+<AnchorPane id="rootStructurex" fx:id="rootStructurex" maxHeight="-1.0" maxWidth="-1.0" 
+	minHeight="-1.0" style="-fx-background-color:-background-color;" minWidth="-1.0" 
+	pickOnBounds="false" snapToPixel="true" 
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	
 		<HBox id="rootStructureWrapper" fx:id="rootStructureWrapper" prefHeight="-1.0" prefWidth="-1.0" styleClass="ep-root-structure-wrapper">
 			<StackPane id="rootStructure" fx:id="rootStructure" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
 				<ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" hbarPolicy="NEVER">
@@ -64,5 +67,4 @@
 		<StackPane fx:id="headerMessagePane" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" style="-fx-effect: dropshadow(three-pass-box,derive(black,40%),10.0,0,0,1.0);-fx-background-color:white;-fx-background-color:-accent-color"
         	minHeight="72" maxHeight="72" prefHeight="72" visible=" false" managed="false" alignment="CENTER">
         </StackPane>
-	</children>
 </AnchorPane>

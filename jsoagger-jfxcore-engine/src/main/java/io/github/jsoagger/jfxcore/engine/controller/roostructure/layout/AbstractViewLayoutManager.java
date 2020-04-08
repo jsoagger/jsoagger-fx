@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -24,12 +24,11 @@ package io.github.jsoagger.jfxcore.engine.controller.roostructure.layout;
 
 import java.net.URL;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.api.IParentResponsiveMatrix;
 import io.github.jsoagger.jfxcore.api.IResponsiveAreaSize;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManageable;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManager;
-
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -80,7 +79,18 @@ public abstract class AbstractViewLayoutManager implements IViewLayoutManager {
   public void layout(IViewLayoutManageable layoutManageable) {
     this.layoutManageable = layoutManageable;
 
-    NodeHelper.loadFXML(getFXMLLocation(), this);
+    try {
+      if (getFXMLLocation() != null)
+        NodeHelper.loadFXML(getFXMLLocation(), this);
+    } catch (Exception e) {
+    }
+
+    if (getRootPane() != null) {
+      postLayout();
+    }
+  }
+
+  protected void postLayout() {
     if (layoutManageable != null && layoutManageable.getResponsiveMatrix() != null) {
       responsiveMatrix = layoutManageable.getResponsiveMatrix();
     }
@@ -97,11 +107,10 @@ public abstract class AbstractViewLayoutManager implements IViewLayoutManager {
   /**
    * At the end of the resize time will call this method after 1 seconds.
    */
-  public void handleSceneWidthChangeEnd() {
+  public void handleSceneWidthChangeEnd() {}
 
-  }
-
-  public void handleSceneWidthChange(ObservableValue value, Number oldSceneWidth, Number newSceneWidth) {
+  public void handleSceneWidthChange(ObservableValue value, Number oldSceneWidth,
+      Number newSceneWidth) {
     if (responsiveMatrix != null) {
       final IResponsiveAreaSize areasSize = responsiveMatrix.getSizeOf(newSceneWidth.doubleValue());
       applyContentMatrix(areasSize);
@@ -111,7 +120,8 @@ public abstract class AbstractViewLayoutManager implements IViewLayoutManager {
 
   public void applyCurrentMatrix() {
     if (getRootPane().widthProperty().get() > 0) {
-      final IResponsiveAreaSize areasSize = responsiveMatrix.getSizeOf(getRootPane().widthProperty().get());
+      final IResponsiveAreaSize areasSize =
+          responsiveMatrix.getSizeOf(getRootPane().widthProperty().get());
       applyContentMatrix(areasSize);
     }
   }
@@ -170,7 +180,7 @@ public abstract class AbstractViewLayoutManager implements IViewLayoutManager {
     layoutManageable = null;
     responsiveMatrix = null;
     rootPane = null;
-    rootPane.getChildren().clear();
+    getRootPane().getChildren().clear();
   }
 
 

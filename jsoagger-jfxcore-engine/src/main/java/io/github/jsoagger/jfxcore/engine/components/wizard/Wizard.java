@@ -49,7 +49,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class Wizard extends AnchorPane implements IWizard {
 
-  //private static final Logger logR = LoggerFactory.getLogger(Wizard.class);
+  // private static final Logger logR = LoggerFactory.getLogger(Wizard.class);
 
   private static final String FOOTER_IMPL = "footerImpl";
   private static final String CONTENT_IMPL = "contentImpl";
@@ -70,9 +70,7 @@ public class Wizard extends AnchorPane implements IWizard {
   /**
    * Constructor
    */
-  public Wizard() {
-
-  }
+  public Wizard() {}
 
 
   /**
@@ -104,21 +102,24 @@ public class Wizard extends AnchorPane implements IWizard {
 
 
   private void layoutContent() {
-    //    center.getStyleClass().add("wizard-center-content-wrapper");
+    // center.getStyleClass().add("wizard-center-content-wrapper");
+    System.out.println("QQQQQQQQQQQQQ 1");
     boolean displayHeader = configuration.getBooleanProperty("displayHeader", true);
     Node centerContent = ((IBuildable) content).getDisplay();
     getChildren().add(centerContent);
+    System.out.println("QQQQQQQQQQQQQ 2");
     if (footer != null && !footer.getDisplay().isVisible()) {
+      System.out.println("QQQQQQQQQQQQQ 3");
       AnchorPane.setBottomAnchor(centerContent, 60.0);
       AnchorPane.setLeftAnchor(centerContent, 0.0);
       AnchorPane.setRightAnchor(centerContent, 0.0);
       AnchorPane.setTopAnchor(centerContent, displayHeader ? 60. : 0);
-    }
-    else {
+    } else {
       AnchorPane.setBottomAnchor(centerContent, 0.0);
       AnchorPane.setLeftAnchor(centerContent, 0.0);
       AnchorPane.setRightAnchor(centerContent, 0.0);
       AnchorPane.setTopAnchor(centerContent, displayHeader ? 60. : 0);
+      System.out.println("QQQQQQQQQQQQQ 4");
     }
   }
 
@@ -170,7 +171,8 @@ public class Wizard extends AnchorPane implements IWizard {
     }
 
     content = (IWizardContent) Services.getBean(contentImpl);
-    ((IBuildable) content).buildFrom(controller, configuration.getComponentById(STEPS_RELATIVE_PATH).orElse(null));
+    ((IBuildable) content).buildFrom(controller,
+        configuration.getComponentById(STEPS_RELATIVE_PATH).orElse(null));
   }
 
 

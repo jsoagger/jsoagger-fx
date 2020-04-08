@@ -17,23 +17,20 @@
 <?import javafx.scene.control.Button?>
 
 <StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
-	<AnchorPane>
+	<AnchorPane fx:id="rootAnchorPane">
 		<HBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" fx:id="internalWrapper">
-			<BorderPane HBox.hgrow="ALWAYS">
+			<BorderPane HBox.hgrow="ALWAYS" fx:id="rootBorderPane">
 				<left>
 					<StackPane fx:id="leftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"/>
 				</left>
 				<top>
 					<StackPane fx:id="headerAreaExternalSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" visible="false" managed="false">
-						<children>
 							<StackPane fx:id="headerAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0"/>
-						</children>
 					</StackPane>
 				</top>
 				<center>
 					<ScrollPane fx:id="mainScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
-						<content>
-							<HBox alignment="CENTER">
+							<HBox alignment="CENTER" fx:id="mainScrollPaneLayout">
 								<VBox HBox.hgrow="ALWAYS" fx:id="centerFixedAreaSection" spacing="16">
 									<StackPane fx:id="externalWrapper" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" style="">
 										<VBox fx:id="internalWrapperSection" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
@@ -44,7 +41,6 @@
 								</VBox>
 								<StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0"/>
 							</HBox>
-						</content>
 					</ScrollPane>
 				</center>
 			</BorderPane>

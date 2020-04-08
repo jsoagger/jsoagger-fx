@@ -10,11 +10,13 @@ import io.github.jsoagger.core.ioc.api.annotations.Named;
 import io.github.jsoagger.core.ioc.api.annotations.Singleton;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 @BeansProvider
 public class CoreI18NBeansProvider {
+
+  public CoreI18NBeansProvider() {}
 
   @Bean
   @Singleton

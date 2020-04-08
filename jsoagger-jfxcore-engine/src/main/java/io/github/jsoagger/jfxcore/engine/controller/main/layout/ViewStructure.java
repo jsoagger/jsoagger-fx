@@ -42,7 +42,6 @@ import io.github.jsoagger.jfxcore.engine.components.security.LoginSessionHolder;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
 import io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController;
 import io.github.jsoagger.jfxcore.engine.controller.main.layout.components.RSCLoadingPane;
-import io.github.jsoagger.jfxcore.engine.controller.main.layout.undecorate.UndecoratorScene;
 import io.github.jsoagger.jfxcore.engine.controller.utils.RootStructureUtils;
 import io.github.jsoagger.jfxcore.engine.events.LoginSuccessEvent;
 import io.github.jsoagger.jfxcore.engine.events.LogoutSuccessEvent;
@@ -106,13 +105,15 @@ public abstract class ViewStructure implements IViewStructure {
   static double screenEffectiveHeight = 0;
 
   /**
-   * The master structure is the main structure of the view. This one can no be removed from the view.
+   * The master structure is the main structure of the view. This one can no be removed from the
+   * view.
    */
   protected RootStructureController masterStructure = null;
 
   /** Previous one, if replace we will call its destroy method */
   protected RootStructureController previous = null;
-  protected ObjectProperty<ViewStructureStatus> status = new SimpleObjectProperty(ViewStructureStatus.BUILDING_STRUCTURE);
+  protected ObjectProperty<ViewStructureStatus> status =
+      new SimpleObjectProperty(ViewStructureStatus.BUILDING_STRUCTURE);
 
   /**
    * Current view displayed in the center area, whatever its building status
@@ -144,7 +145,8 @@ public abstract class ViewStructure implements IViewStructure {
 
 
   /**
-   * Build the view strcuture. In this method, do not use stage and scene because they are not avalaible yet at this level.
+   * Build the view structure. In this method, do not use stage and scene because they are not
+   * available yet at this level.
    */
   @Override
   public void buildStructure() {
@@ -154,7 +156,8 @@ public abstract class ViewStructure implements IViewStructure {
 
       currentView.addListener(this::currentViewChange);
 
-      final String applicationConnMode = platformProperties.getProperty(APPLICATION_CONNECTION_MODE);
+      final String applicationConnMode =
+          platformProperties.getProperty(APPLICATION_CONNECTION_MODE);
       if (ALLOW_ANONYMOUS.equalsIgnoreCase(applicationConnMode)) {
         // final String rootStructureName =
         // platformProperties.getProperty(PLATFORM_ROOT_STRUCTURE_ID);
@@ -164,7 +167,9 @@ public abstract class ViewStructure implements IViewStructure {
         final String viewId = platformProperties.getProperty(LOGIN_ROOT_STRUCTURE_ID);
         loadRootView(viewId);
       } else {
-        throw new IllegalArgumentException(MessageFormat.format("Unknown connection mode : {0}, should be {1} or {2}", applicationConnMode, ALLOW_ANONYMOUS, DISALLOW_ANONYMOUS));
+        throw new IllegalArgumentException(
+            MessageFormat.format("Unknown connection mode : {0}, should be {1} or {2}",
+                applicationConnMode, ALLOW_ANONYMOUS, DISALLOW_ANONYMOUS));
       }
     } catch (final Exception e) {
       e.printStackTrace();
@@ -181,7 +186,8 @@ public abstract class ViewStructure implements IViewStructure {
     // set root context of the view to /
     final IOperation stubLogin = (IOperation) Services.getBean("LoginOperation");
     stubLogin.doOperation(new JsonObject(), res -> {
-      final LoginSessionHolder loginContext = (LoginSessionHolder) Services.getBean("LoginSessionHolder");
+      final LoginSessionHolder loginContext =
+          (LoginSessionHolder) Services.getBean("LoginSessionHolder");
       loginContext.setSessionId(UUID.randomUUID().toString());
       loginContext.setLoginResult(res);
       loginContext.setMode(RootContextMode.Anonymous);
@@ -202,52 +208,101 @@ public abstract class ViewStructure implements IViewStructure {
    */
   public void initFromPrimaryStage(Stage stage, Parameters applicationParameters) {
     setPrimaryStage(stage);
+    steplatformType(applicationParameters);
+    setStagetTitle(stage);
 
-    // handle platform type if no initialized before
-    if(AbstractApplicationRunner.platformType() == null) {
-      String platformType  = applicationParameters.getNamed().get("jsoagger.client.mode");
-      if(StringUtils.isEmpty(platformType)) {
-        platformType = platformProperties.getProperty("platformType");
-      }
-      AbstractApplicationRunner.platformType(PlatformType.valueOf(platformType.toUpperCase()));
+    if (AbstractApplicationRunner.isDesktop()) {
+      manageDesktopSizing();
+    } else if (AbstractApplicationRunner.isSimulMobile()) {
+      manageSimuleMobileSizing();
+    } else if (AbstractApplicationRunner.isMobile()) {
+      manageMobileSizing();
     }
 
-    // set stage title
-    final String applicationName = platformProperties.getProperty(APPLICATION_WINDOW_NAME);
-    stage.setTitle(applicationName);
-
-    // set stage size if desktop
-    if(AbstractApplicationRunner.isDesktop() || AbstractApplicationRunner.isSimulMobile()) {
-      handleStageSize();
-    }
-
-    // scene = new UndecoratorScene(primaryStage(), getRootViewStructure());
-    if(!AbstractApplicationRunner.isMobile() || scene.get() == null) {
-      if(stage.getScene() == null) {
-        scene.set(new UndecoratorScene(primaryStage(), getRootViewStructure()));
-        stage.setScene(scene.get());
-      }
-      else {
-        scene.set(stage.getScene());
-        stage.getScene().setRoot(getRootViewStructure());
-      }
-    }
-
-    // if mobile, always go full screen
-    if(AbstractApplicationRunner.isMobile()) {
-      stage.setFullScreen(true);
-    }
-    else {
-      final String fullScreen = platformProperties.getProperty(FULL_SCREEN, FALSE);
-      stage.setFullScreen(Boolean.valueOf(fullScreen));
-      stage.setOnHiding(event -> Platform.exit());
-    }
-
-    if(listeners.size() > 0) {
-      for(ISceneSetListener sceneSetListener: listeners) {
+    if (listeners.size() > 0) {
+      for (ISceneSetListener sceneSetListener : listeners) {
         sceneSetListener.onSceneSet(stage.getScene());
       }
     }
+  }
+
+  private void steplatformType(Parameters applicationParameters) {
+    String platformType =
+        applicationParameters.getNamed().getOrDefault("jsoagger-client-mode", "simul_mobile");
+    if (StringUtils.isEmpty(platformType))
+      throw new RuntimeException("Platform type is mandatory, please provide!");
+    AbstractApplicationRunner.platformType(PlatformType.valueOf(platformType.toUpperCase()));
+  }
+
+  private void setStagetTitle(Stage stage) {
+    final String applicationName = platformProperties.getProperty(APPLICATION_WINDOW_NAME);
+    stage.setTitle(applicationName);
+  }
+
+  private void manageDesktopSizing() {
+    // !! when stage is rezisable buttons (close, minimize maximise are shown)
+    primaryStage().setResizable(true);
+    primaryStage().setMinHeight(screenMinHeight());
+    primaryStage().setMinWidth(screenMinWidth());
+    primaryStage().setWidth(screenWidth());
+    primaryStage().setHeight(screenHeight());
+    primaryStage().setOnHiding(event -> Platform.exit());
+  }
+
+  private void manageSimuleMobileSizing() {
+    primaryStage().setResizable(false);
+    primaryStage().setMinHeight(screenMinHeight());
+    primaryStage().setMinWidth(screenMinWidth());
+    primaryStage().setWidth(screenWidth());
+    primaryStage().setHeight(screenHeight());
+
+    double mx = screenMaxWidth();
+    if (mx > 0) {
+      primaryStage().setMaxWidth(mx);
+      screenEffectiveWidth = mx;
+    }
+
+    double mxh = screenMaxHeight();
+    if (mxh > 0) {
+      primaryStage().setMaxHeight(mxh);
+      screenEffectiveHeight = mxh;
+    }
+
+    Pane rootView = getRootViewStructure();
+    if (primaryStage().getScene() == null) {
+      // scene.set(new UndecoratorScene(primaryStage(), rootView));
+      System.out.println(">>>>>>>>> : + rootView 1");
+      scene.set(new Scene(rootView));
+      primaryStage().setScene(scene.get());
+    } else {
+      System.out.println(">>>>>>>>> : + rootView 2");
+      scene.set(primaryStage().getScene());
+      primaryStage().getScene().setRoot(rootView);
+    }
+
+    rootView.prefWidthProperty().bind(scene.get().getWindow().widthProperty());
+    rootView.prefHeightProperty().bind(scene.get().getWindow().heightProperty());
+    rootView.maxWidthProperty().bind(scene.get().getWindow().widthProperty());
+    rootView.maxHeightProperty().bind(scene.get().getWindow().heightProperty());
+  }
+
+  private void manageMobileSizing() {
+    primaryStage().setResizable(false);
+    primaryStage().setFullScreen(true);
+
+    Pane rootView = getRootViewStructure();
+    if (primaryStage().getScene() == null) {
+      scene.set(new Scene(rootView));
+      primaryStage().setScene(scene.get());
+    } else {
+      scene.set(primaryStage().getScene());
+      primaryStage().getScene().setRoot(rootView);
+    }
+
+    rootView.prefWidthProperty().bind(scene.get().getWindow().widthProperty());
+    rootView.prefHeightProperty().bind(scene.get().getWindow().heightProperty());
+    rootView.maxWidthProperty().bind(scene.get().getWindow().widthProperty());
+    rootView.maxHeightProperty().bind(scene.get().getWindow().heightProperty());
   }
 
   /**
@@ -280,7 +335,8 @@ public abstract class ViewStructure implements IViewStructure {
   }
 
 
-  public void currentViewChange(Object observable, RootStructureParam oldValue, RootStructureParam newValue) {
+  public void currentViewChange(Object observable, RootStructureParam oldValue,
+      RootStructureParam newValue) {
     if (newValue.status.get() == ViewStructureStatus.BUILDING_STRUCTURE) {
       setLoading();
     } else if (newValue.status.get() == ViewStructureStatus.ROOTSTRUCTURE_BUILDED_FAILED) {
@@ -312,18 +368,9 @@ public abstract class ViewStructure implements IViewStructure {
 
 
   /**
-   * Show login view as primary view when DISALLOW_ANONYMOUS is set.
-   */
-  protected void showPrimaryLoginView() {
-    final String viewId = platformProperties.getProperty(LOGIN_ROOT_STRUCTURE_ID);
-    loadRootView(viewId);
-  }
-
-
-  /**
    * @param e
    */
-  //@EventListener
+  // @EventListener
   public void lougoutSuccess(LogoutSuccessEvent e) {
     final String viewId = platformProperties.getProperty(LOGIN_ROOT_STRUCTURE_ID);
     loadRootView(viewId);
@@ -335,69 +382,52 @@ public abstract class ViewStructure implements IViewStructure {
    *
    * @param event
    */
-  //@EventListener
+  // @EventListener
   public void listenTo(LoginSuccessEvent event) {
     final String rootStructureName = platformProperties.getProperty(PLATFORM_ROOT_STRUCTURE_ID);
     loadRootView(rootStructureName);
 
-    // THESE KIND OF DATAS MUST BE MANAGED INSIDE LOCALSTORAGE
-    // load current user in cache
-    /*try {
-      IOperation op = (IOperation) Services.getBean("GetCurrentUserOperation");
-      if(op != null) op.doOperation(new JsonObject(), null);
-    }catch (Exception e) {
-      // bean does not exist
-    }
-
-    try {
-      // load all user preferences in cache
-      IOperation op2 = (IOperation) Services.getBean("LoadAllCurrentUserPreferencesValueOperation");
-      if(op2 != null) op2.doOperation(new JsonObject(), null);
-    }catch (Exception e) {
-      // bean does not exist
-    }*/
-
     // load stylesheets at last
     Platform.runLater(() -> {
-    	loadUserPreferredTheme();
+      loadUserPreferredTheme();
 
-    	String primary = "Indigo";
-    	String accent = "Orange";
+      String primary = "Indigo";
+      String accent = "Orange";
 
-       // ((StyleSheetsManager) styleSheetManager)
-        //.setDefaultTheme(ThemeUtils.getCssFromPrimaryColor(primary),
-          //  ThemeUtils.getCssFromAccentColor(accent));
+      // ((StyleSheetsManager) styleSheetManager)
+      // .setDefaultTheme(ThemeUtils.getCssFromPrimaryColor(primary),
+      // ThemeUtils.getCssFromAccentColor(accent));
 
     });
   }
 
-    private void loadUserPreferredTheme() {
-    	try {
-    		IOperation getPref = (IOperation) Services.getBean("GetPreferenceValueOperation");
+  private void loadUserPreferredTheme() {
+    try {
+      IOperation getPref = (IOperation) Services.getBean("GetPreferenceValueOperation");
 
-    	      JsonObject query = new JsonObject();
-    	      query.addProperty("key", "io.github.jsoagger.theme.primary.color");
-    	      getPref.doOperation(query, primaryColor -> {
-    	        query.addProperty("key", "io.github.jsoagger.theme.accent.color");
-    	        getPref.doOperation(query, accentColor -> {
+      JsonObject query = new JsonObject();
+      query.addProperty("key", "io.github.jsoagger.theme.primary.color");
+      getPref.doOperation(query, primaryColor -> {
+        query.addProperty("key", "io.github.jsoagger.theme.accent.color");
+        getPref.doOperation(query, accentColor -> {
 
-    	          String primary = (String) ((MultipleResult)primaryColor).getData().get(0).getAttributes().get("savedValue");
-    	          String accent = (String) ((MultipleResult)accentColor).getData().get(0).getAttributes().get("savedValue");
+          String primary = (String) ((MultipleResult) primaryColor).getData().get(0).getAttributes()
+              .get("savedValue");
+          String accent = (String) ((MultipleResult) accentColor).getData().get(0).getAttributes()
+              .get("savedValue");
 
-    	          ((StyleSheetsManager) styleSheetManager)
-    	          .setDefaultTheme(ThemeUtils.getCssFromPrimaryColor(primary),
-    	              ThemeUtils.getCssFromAccentColor(accent));
-    	        });
-    	      });
-    	}catch (Exception e) {
-		}
+          ((StyleSheetsManager) styleSheetManager).setDefaultTheme(
+              ThemeUtils.getCssFromPrimaryColor(primary), ThemeUtils.getCssFromAccentColor(accent));
+        });
+      });
+    } catch (Exception e) {
     }
+  }
 
 
   /**
    * @param setRootStructureEvent
    */
-  //@EventListener
   public void listenTo(SetRootStructureEvent setRootStructureEvent) {
     final String rootStructureName = setRootStructureEvent.getViewId();
     loadRootView(rootStructureName);
@@ -405,59 +435,64 @@ public abstract class ViewStructure implements IViewStructure {
 
 
   public void updateRootStructureTo(RootStructureController rootStructure) {
-
     if (previous != null) {
       previous.destroy();
     }
     previous = rootStructure;
-    //ReflectionUIUtils.setMaxWidth(rootStructure.processedView(), 300);
-    //ReflectionUIUtils.setPrefWidth(rootStructure.processedView(), 300);
+
+    Pane newView = (Pane) rootStructure.processedView();
+    newView.prefWidthProperty().set(screenMaxWidth());
+    newView.prefHeightProperty().set(screenMaxHeight());
+    newView.maxWidthProperty().set(screenMaxWidth());
+    newView.maxHeightProperty().set(screenMaxHeight());
+
     Platform.runLater(() -> {
-      getRootViewStructureContentArea().getChildren().add(rootStructure.processedView());
-      // FadeTransition fadeTransition =
-      // NodeHelper.fadeOut(getRootViewStructureContentArea().getChildren().remove(0),
-      // Duration.millis(500));
-      // fadeTransition.setOnFinished(e -> {
+      getRootViewStructureContentArea().getChildren().add(newView);
       getRootViewStructureContentArea().getChildren().remove(0);
-      // });
     });
   }
 
 
   /**
-   * The application initialization method. This method is called immediately after the Application class is loaded and constructed. An application may override this method to perform initialization prior to the actual starting of the application.
+   * The application initialization method. This method is called immediately after the Application
+   * class is loaded and constructed. An application may override this method to perform
+   * initialization prior to the actual starting of the application.
    *
    * <p>
    * The implementation of this method provided by the Application class does nothing.
    * </p>
    *
    * <p>
-   * NOTE: This method is not called on the JavaFX Application Thread. An application must not construct a Scene or a Stage in this method. An application may construct other JavaFX objects in this method.
+   * NOTE: This method is not called on the JavaFX Application Thread. An application must not
+   * construct a Scene or a Stage in this method. An application may construct other JavaFX objects
+   * in this method.
    * </p>
    */
   public void init() {
     // Check mandatory folder paths
     final File tempFolderPath = new File(platformProperties.getProperty(TEMP_FOLDER_PATH));
     if (!tempFolderPath.exists()) {
-      //  final boolean created = tempFolderPath.mkdir();
+      // final boolean created = tempFolderPath.mkdir();
       final boolean created = false;
       if (!created) {
         // log error creating temp folder
       }
     }
 
-    final File applicationDataFolderPath = new File(platformProperties.getProperty(APPLICATION_DATA_FOLDER_PATH));
+    final File applicationDataFolderPath =
+        new File(platformProperties.getProperty(APPLICATION_DATA_FOLDER_PATH));
     if (!applicationDataFolderPath.exists()) {
-      //final boolean created = applicationDataFolderPath.mkdir();
+      // final boolean created = applicationDataFolderPath.mkdir();
       final boolean created = false;
       if (!created) {
         // log error creating temp folder
       }
     }
 
-    final File localNotificationsFolderPath = new File(platformProperties.getProperty(LOCAL_NOTIFS_FOLDER_PATH_FOLDER_PATH));
+    final File localNotificationsFolderPath =
+        new File(platformProperties.getProperty(LOCAL_NOTIFS_FOLDER_PATH_FOLDER_PATH));
     if (!localNotificationsFolderPath.exists()) {
-      //final boolean created = localNotificationsFolderPath.mkdir();
+      // final boolean created = localNotificationsFolderPath.mkdir();
       final boolean created = false;
       if (!created) {
         // log error creating temp folder
@@ -465,7 +500,8 @@ public abstract class ViewStructure implements IViewStructure {
     }
 
     // mode inline off fine
-    applicationViewConfigMode = platformProperties.getProperty("applicationViewConfigMode", "offline");
+    applicationViewConfigMode =
+        platformProperties.getProperty("applicationViewConfigMode", "offline");
   }
 
 
@@ -478,69 +514,6 @@ public abstract class ViewStructure implements IViewStructure {
     return primaryStage;
   }
 
-
-  /**
-   * Size are only done in desktop, in othe platform, screen is full screened.
-   */
-  private void handleStageSize() {
-    if (AbstractApplicationRunner.isDesktop()) {
-      // !! when stage is rezisable buttons (close, minimize and maximise
-      // are shown)
-      primaryStage().setResizable(true);
-      primaryStage().setMinHeight(screenMinHeight());
-      primaryStage().setMinWidth(screenMinWidth());
-      primaryStage().setWidth(screenWidth());
-      primaryStage().setHeight(screenHeight());
-
-      double mx = screenMaxWidth();
-      if (mx > 0 && mx > screenMinWidth()) {
-        // primaryStage().setMaxWidth(mx);
-      }
-
-      double mxh = screenMaxHeight();
-      if (mxh > 0 && mxh > screenMinHeight()) {
-        // primaryStage().setMaxHeight(mxh);
-      }
-
-    } else if (AbstractApplicationRunner.isSimulMobile()) {
-      primaryStage().setResizable(false);
-      primaryStage().setMinHeight(screenMinHeight());
-      primaryStage().setMinWidth(screenMinWidth());
-      primaryStage().setWidth(screenWidth());
-      primaryStage().setHeight(screenHeight());
-
-      double mx = screenMaxWidth();
-      if (mx > 0) {
-        primaryStage().setMaxWidth(mx);
-        screenEffectiveWidth = mx;
-      }
-
-      double mxh = screenMaxHeight();
-      if (mxh > 0) {
-        primaryStage().setMaxHeight(mxh);
-        screenEffectiveHeight = mxh;
-      }
-    }
-    // mobiles or pax, embedded go fullscreen
-    else {
-      primaryStage().setResizable(false);
-    }
-  }
-
-  public void handleMobileStageSize() {
-	  screenEffectiveWidth = screenWidth();
-      screenEffectiveHeight = screenHeight();
-
-      double mx = screenMaxWidth();
-      if (mx > 0) {
-        screenEffectiveWidth = mx;
-      }
-
-      double mxh = screenMaxHeight();
-      if (mxh > 0) {
-        screenEffectiveHeight = mxh;
-      }
-  }
 
 
   private double screenWidth() {
@@ -671,7 +644,9 @@ public abstract class ViewStructure implements IViewStructure {
 
 
   public static boolean isViewConfigOffLine() {
-    return applicationViewConfigMode == null || "offline".equalsIgnoreCase(applicationViewConfigMode) || !"online".equalsIgnoreCase(applicationViewConfigMode);
+    return applicationViewConfigMode == null
+        || "offline".equalsIgnoreCase(applicationViewConfigMode)
+        || !"online".equalsIgnoreCase(applicationViewConfigMode);
   }
 
 
@@ -689,7 +664,7 @@ public abstract class ViewStructure implements IViewStructure {
     this.scene.set(scene);
   }
 
-  public SimpleObjectProperty<Scene> sceneProperty(){
+  public SimpleObjectProperty<Scene> sceneProperty() {
     return scene;
   }
 
@@ -752,13 +727,13 @@ public abstract class ViewStructure implements IViewStructure {
           }
           break;
 
-          //JavaFX maps the back press to the ESC key.
-          //It's the programmers decision, whether or not to handle key events
-          //and whether or not to forward them to the OS.
+        // JavaFX maps the back press to the ESC key.
+        // It's the programmers decision, whether or not to handle key events
+        // and whether or not to forward them to the OS.
         case ESCAPE:
-          if(!AbstractApplicationRunner.isDesktop()) {
+          if (!AbstractApplicationRunner.isDesktop()) {
             // The application is asked to go background
-            //Platform.exit();
+            // Platform.exit();
           }
         default:
           break;
@@ -767,11 +742,11 @@ public abstract class ViewStructure implements IViewStructure {
   }
 
   public static double screenEffectiveWidth() {
-	  return screenEffectiveWidth;
+    return screenEffectiveWidth;
   }
 
   public static double screenEffectiveHeight() {
-	  return screenEffectiveHeight;
+    return screenEffectiveHeight;
   }
 
   /**

@@ -12,4 +12,5 @@ import io.github.jsoagger.core.ioc.api.annotations.BeansProvider;
 @BeansProvider
 public class CoreComponentsFlowItemsBeansProvider {
 
+  public CoreComponentsFlowItemsBeansProvider() {}
 }

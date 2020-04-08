@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -24,6 +24,7 @@ package io.github.jsoagger.jfxcore.engine.controller.main;
 
 import java.net.URL;
 
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewConfigXML;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -34,7 +35,7 @@ import javafx.scene.layout.Pane;
  * {@link RootStructureController} have only one header, this controller handles additionnal header.
  * <p>
  *
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 public class DoubleHeaderRootStructureController extends RootStructureController {
@@ -46,29 +47,11 @@ public class DoubleHeaderRootStructureController extends RootStructureController
   protected Pane defaultActionNodeWrapper;
 
 
-  /**
-   * Constructor
-   */
   public DoubleHeaderRootStructureController() {
     super();
   }
 
 
-  @Override
-  public void displayMainView() {
-    super.displayMainView();
-  }
-
-
-  @Override
-  public void displayPushedView() {
-    super.displayPushedView();
-  }
-
-
-  /**
-   * {@inheritDoc}
-   */
   @Override
   protected void process() {
     super.process();
@@ -76,10 +59,13 @@ public class DoubleHeaderRootStructureController extends RootStructureController
     secondaryHeaderStack.setVisible(false);
   }
 
+  @Override
+  public VLViewConfigXML config() {
+    VLViewConfigXML config = super.config();
+    return config;
+  }
 
-  /**
-   * {@inheritDoc}
-   */
+
   @Override
   public void setMaterialNode(Node materialNode) {
     this.materialNode = materialNode;
@@ -122,7 +108,7 @@ public class DoubleHeaderRootStructureController extends RootStructureController
 
   private void _doHideSecondaryheader() {
     secondaryHeaderStack.setVisible(false);
-    //secondaryHeaderStack.getChildren().clear();
+    // secondaryHeaderStack.getChildren().clear();
   }
 
   public void _doSetSecondaryheader(Node node) {
@@ -130,10 +116,11 @@ public class DoubleHeaderRootStructureController extends RootStructureController
     secondaryHeaderStack.getChildren().clear();
     secondaryHeaderStack.getChildren().add(node);
 
-    secondaryHeaderStack.heightProperty().addListener((ChangeListener<Number>) (observable, oldValue, newValue) -> {
-      pushedContentWrapper.translateYProperty().set(newValue.doubleValue() + 2);
-      rootStructureWrapper.translateYProperty().set(newValue.doubleValue() + 2);
-    });
+    secondaryHeaderStack.heightProperty()
+        .addListener((ChangeListener<Number>) (observable, oldValue, newValue) -> {
+          pushedContentWrapper.translateYProperty().set(newValue.doubleValue() + 2);
+          rootStructureWrapper.translateYProperty().set(newValue.doubleValue() + 2);
+        });
   }
 
 
@@ -148,5 +135,16 @@ public class DoubleHeaderRootStructureController extends RootStructureController
   @Override
   protected URL getFXMLFileName() {
     return RootStructureController.class.getResource("DoubleHeaderRootStructureView.fxml");
+  }
+
+  @Override
+  public void displayMainView() {
+    super.displayMainView();
+  }
+
+
+  @Override
+  public void displayPushedView() {
+    super.displayPushedView();
   }
 }

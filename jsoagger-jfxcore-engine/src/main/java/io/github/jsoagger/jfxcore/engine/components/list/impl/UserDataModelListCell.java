@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,15 +22,16 @@ package io.github.jsoagger.jfxcore.engine.components.list.impl;
 
 
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.core.bridge.result.OperationData;
-import io.github.jsoagger.jfxcore.api.IJSoaggerController;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  * List cell where the item presented is not {@link OperationData} but the userData associated to
@@ -55,12 +56,42 @@ public class UserDataModelListCell<T> extends AbstractListCell<T> {
   @FXML
   private Pane rightActionsContainer;
 
+  private HBox rootContainer2;
 
   /**
    * Default Constructor
    */
   public UserDataModelListCell() {
-    NodeHelper.loadFXML(DefaultModelListCell.class.getResource("UserDataModelListCell.fxml"), this);
+    try {
+      NodeHelper.loadFXML(DefaultModelListCell.class.getResource("UserDataModelListCell.fxml"),
+          this);
+    } catch (Exception e) {
+    }
+
+    if (rootContainer == null) {
+      rootContainer = new StackPane();
+      rootContainer2 = new HBox();
+      iconContainer = new HBox();
+      centerContainer = new VBox();
+      mainLabelContainer = new HBox();
+      secondaryLabelContainer = new HBox();
+      rightActionsContainer = new HBox();
+
+      rootContainer.getChildren().add(rootContainer2);
+      rootContainer2.getChildren().addAll(iconContainer, centerContainer, rightActionsContainer);
+      centerContainer.getChildren().addAll(mainLabelContainer, secondaryLabelContainer);
+
+      NodeHelper.setHgrow(centerContainer);
+
+      rootContainer.getStyleClass().add("default-list-cellpresenter-external-container");
+      iconContainer.getStyleClass().add("default-list-cellpresenter-icon-container");
+      centerContainer.getStyleClass().add("default-list-cellpresenter-center-container");
+      mainLabelContainer.getStyleClass().add("default-list-cellpresenter-primarylabel-container");
+      secondaryLabelContainer.getStyleClass()
+          .add("default-list-cellpresenter-secondarylabel-container");
+      rightActionsContainer.getStyleClass()
+          .add("default-list-cellpresenter-rightactions-container");
+    }
   }
 
 
@@ -82,7 +113,7 @@ public class UserDataModelListCell<T> extends AbstractListCell<T> {
 
       // The icon, may be set to null and build it in presenter
       if (presenter.getIconPresenter() != null) {
-        Node icon = presenter.getIconPresenter().provideIcon((IJSoaggerController) controller, configuration, userData);
+        Node icon = presenter.getIconPresenter().provideIcon(controller, configuration, userData);
         if (icon != null) {
           iconContainer.getChildren().clear();
           iconContainer.getChildren().add(icon);
@@ -91,7 +122,8 @@ public class UserDataModelListCell<T> extends AbstractListCell<T> {
 
       // The identity information
       if (presenter.getIconPresenter() != null) {
-        Node cell = presenter.getIdentityPresenter().provideIdentityOf((IJSoaggerController) controller, configuration, userData);
+        Node cell =
+            presenter.getIdentityPresenter().provideIdentityOf(controller, configuration, userData);
         if (cell != null) {
           mainLabelContainer.getChildren().clear();
           mainLabelContainer.getChildren().add(cell);
@@ -100,7 +132,8 @@ public class UserDataModelListCell<T> extends AbstractListCell<T> {
 
       // the secondary label
       if (presenter.getSecondaryLabelPresenter() != null) {
-        Node secondaryLabel = presenter.getSecondaryLabelPresenter().provideLabel((IJSoaggerController) controller, configuration, userData);
+        Node secondaryLabel = presenter.getSecondaryLabelPresenter().provideLabel(controller,
+            configuration, userData);
         if (secondaryLabel != null) {
           secondaryLabelContainer.getChildren().clear();
           secondaryLabelContainer.getChildren().add(secondaryLabel);

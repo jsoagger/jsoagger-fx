@@ -65,7 +65,7 @@
 }
 
 .app-header-profile-button{
-	-fx-content-display:RIGHT;
+	-fx-content-display:BASELINE_RIGHT;
 }
 
 .app-header-profile-button .text{

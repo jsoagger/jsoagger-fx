@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.ResourceUtils;
 import io.github.jsoagger.jfxcore.api.services.CommonComponentsServices;
@@ -17,15 +18,17 @@ import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewContextFilterXML;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewFilterXML;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  */
-public class CommonCompsServices  implements CommonComponentsServices {
+public class CommonCompsServices implements CommonComponentsServices {
 
   boolean debug = true;
   boolean loaded = false;
   private List<String> files = new ArrayList<>();
 
-  VLViewConfigXML allLoadedComps= new VLViewConfigXML();
+  VLViewConfigXML allLoadedComps = new VLViewConfigXML();
+
+  public CommonCompsServices() {}
 
   /**
    * {@inheritDoc}
@@ -45,13 +48,13 @@ public class CommonCompsServices  implements CommonComponentsServices {
 
 
   public void loadFiles() {
-    if(!loaded) {
-      for(String file : files) {
-        try(InputStream io = ResourceUtils.getStream(getClass(), file)){
+    if (!loaded) {
+      for (String file : files) {
+        try (InputStream io = ResourceUtils.getStream(getClass(), file)) {
           Gson gson1 = new Gson();
-          VLViewConfigXML c  = gson1.fromJson(new InputStreamReader(io), VLViewConfigXML.class);
+          VLViewConfigXML c = gson1.fromJson(new InputStreamReader(io), VLViewConfigXML.class);
           allLoadedComps.getComponents().addAll(c.getComponents());
-        }catch (Exception e) {
+        } catch (Exception e) {
         }
       }
 

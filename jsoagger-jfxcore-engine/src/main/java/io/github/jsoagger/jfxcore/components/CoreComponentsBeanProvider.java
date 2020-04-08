@@ -84,66 +84,85 @@ import io.github.jsoagger.jfxcore.engine.controller.roostructure.header.ToolbarC
 @BeansProvider
 public class CoreComponentsBeanProvider {
 
+  public CoreComponentsBeanProvider() {}
+
   @Bean
   @Named("ManageObjectInSecondaryRSView")
-  @View(locations= {"/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSView.xml"},
-  outputFilePath="/io/github/jsoagger/jfxcore/components/manage/")
+  @View(
+      locations = {
+          "/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSView.xml"},
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/manage/")
   public DoubleHeaderRootStructureController ManageObjectInSecondaryRSView() {
     DoubleHeaderRootStructureController p = new DoubleHeaderRootStructureController();
     p.setMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
     p.setModelProvider((IModelProvider) BeanFactory.instance().getBean("RootStructureModelLoader"));
-    p.addViewDefinition("/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSView.json");
+    p.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSView.json");
     return p;
   }
 
   @Bean
   @Named("ManageObjectInSecondaryRSContentView")
-  @View(locations= {"/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSContentView.xml"},
-  outputFilePath="/io/github/jsoagger/jfxcore/components/manage/")
+  @View(
+      locations = {
+          "/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSContentView.xml"},
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/manage/")
   public RootStructureContentController ManageObjectInSecondaryRSContentView() {
     RootStructureContentController p = new RootStructureContentController();
     p.setMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
-    p.addViewDefinition("/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSContentView.json");
+    p.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/manage/ManageObjectInSecondaryRSContentView.json");
     return p;
   }
 
 
   @Bean
   @Named("SearchSecondaryRSHeaderToolbarView")
-  @View(locations = {"/io/github/jsoagger/jfxcore/components/header/SearchSecondaryRSHeaderToolbarView.xml",
-  "/io/github/jsoagger/jfxcore/engine/controller/HeaderToolbar.xml"},
-  outputFilePath = "/io/github/jsoagger/jfxcore/components/header/")
-  public ToolbarController  SearchSecondaryRSHeaderToolbarView() {
+  @View(
+      locations = {
+          "/io/github/jsoagger/jfxcore/components/header/SearchSecondaryRSHeaderToolbarView.xml",
+          "/io/github/jsoagger/jfxcore/engine/controller/HeaderToolbar.xml"},
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/header/")
+  public ToolbarController SearchSecondaryRSHeaderToolbarView() {
     ToolbarController tbc = new ToolbarController();
     tbc.setMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
-    tbc.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("SecondaryHeaderToolbarResponsiveMatrix"));
-    tbc.addViewDefinition("/io/github/jsoagger/jfxcore/components/header/SearchSecondaryRSHeaderToolbarView.json");
+    tbc.setResponsiveMatrix(
+        (IParentResponsiveMatrix) Services.getBean("SecondaryHeaderToolbarResponsiveMatrix"));
+    tbc.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/header/SearchSecondaryRSHeaderToolbarView.json");
     return tbc;
   }
 
   @Bean
   @Named("SecondaryRSHeaderToolbarView")
-  @View(locations = {"/io/github/jsoagger/jfxcore/components/header/SecondaryRSHeaderToolbarView.xml",
-  "/io/github/jsoagger/jfxcore/engine/controller/HeaderToolbar.xml"},
-  outputFilePath = "/io/github/jsoagger/jfxcore/components/header/")
-  public ToolbarController  SecondaryRSHeaderToolbarView() {
+  @View(
+      locations = {"/io/github/jsoagger/jfxcore/components/header/SecondaryRSHeaderToolbarView.xml",
+          "/io/github/jsoagger/jfxcore/engine/controller/HeaderToolbar.xml"},
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/header/")
+  public ToolbarController SecondaryRSHeaderToolbarView() {
     ToolbarController tbc = new ToolbarController();
     tbc.setMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
-    tbc.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("SecondaryHeaderToolbarResponsiveMatrix"));
-    tbc.addViewDefinition("/io/github/jsoagger/jfxcore/components/header/SecondaryRSHeaderToolbarView.json");
+    tbc.setResponsiveMatrix(
+        (IParentResponsiveMatrix) Services.getBean("SecondaryHeaderToolbarResponsiveMatrix"));
+    tbc.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/header/SecondaryRSHeaderToolbarView.json");
     return tbc;
   }
 
   @Bean
   @Named("SearchFiltersRSHeaderToolbarView")
-  @View(locations = {"/io/github/jsoagger/jfxcore/components/header/SearchFiltersRSHeaderToolbarView.xml",
-  "/io/github/jsoagger/jfxcore/engine/controller/HeaderToolbar.xml"},
-  outputFilePath = "/io/github/jsoagger/jfxcore/components/header/")
-  public ToolbarController  SearchFiltersRSHeaderToolbarView() {
+  @View(
+      locations = {
+          "/io/github/jsoagger/jfxcore/components/header/SearchFiltersRSHeaderToolbarView.xml",
+          "/io/github/jsoagger/jfxcore/engine/controller/HeaderToolbar.xml"},
+      outputFilePath = "/io/github/jsoagger/jfxcore/components/header/")
+  public ToolbarController SearchFiltersRSHeaderToolbarView() {
     ToolbarController tbc = new ToolbarController();
     tbc.setMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
-    tbc.setResponsiveMatrix((IParentResponsiveMatrix) Services.getBean("SearchFiltersToolbarResponsiveMatrix"));
-    tbc.addViewDefinition("/io/github/jsoagger/jfxcore/components/header/SearchFiltersRSHeaderToolbarView.json");
+    tbc.setResponsiveMatrix(
+        (IParentResponsiveMatrix) Services.getBean("SearchFiltersToolbarResponsiveMatrix"));
+    tbc.addViewDefinition(
+        "/io/github/jsoagger/jfxcore/components/header/SearchFiltersRSHeaderToolbarView.json");
     return tbc;
   }
 
@@ -154,7 +173,8 @@ public class CoreComponentsBeanProvider {
     MessageSource messageSource = new MessageSource();
     messageSource.setUseCodeAsDefaultMessage(true);
     messageSource.setDefaultEncoding("UTF-8");
-    messageSource.setParentMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
+    messageSource
+        .setParentMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.components.message");
     return messageSource;
   }
@@ -166,7 +186,8 @@ public class CoreComponentsBeanProvider {
     MessageSource messageSource = new MessageSource();
     messageSource.setUseCodeAsDefaultMessage(true);
     messageSource.setDefaultEncoding("UTF-8");
-    messageSource.setParentMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
+    messageSource
+        .setParentMessageSource((MessageSource) Services.getBean("CoreGeneralMessageSource"));
     messageSource.getBasenames().add("io.github.jsoagger.jfxcore.components.message");
     return messageSource;
   }
@@ -595,7 +616,6 @@ public class CoreComponentsBeanProvider {
   public LifecycleManagedFiltersContext lifecycleManagedFiltersContext() {
     return new LifecycleManagedFiltersContext();
   }
-
 
 
 

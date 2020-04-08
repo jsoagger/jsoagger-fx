@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,19 +22,18 @@ package io.github.jsoagger.jfxcore.engine.controller.roostructure.layout;
 
 
 
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.api.IResponsiveAreaSize;
 import io.github.jsoagger.jfxcore.api.IResponsiveAware;
 import io.github.jsoagger.jfxcore.api.IResponsiveSizing;
 import io.github.jsoagger.jfxcore.api.ViewLayoutPosition;
+import io.github.jsoagger.jfxcore.api.components.annotation.GraalComponent;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManageable;
 import io.github.jsoagger.jfxcore.api.view.IViewLayoutManager;
-
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -49,7 +48,9 @@ import javafx.scene.layout.Pane;
  * @mailto yvonjisoa@nexitia.com
  * @date 2019
  */
-public class FixedLeftThreeHPanesViewLayoutManager extends AbstractViewLayoutManager implements IViewLayoutManager {
+@GraalComponent
+public class FixedLeftThreeHPanesViewLayoutManager extends AbstractViewLayoutManager
+    implements IViewLayoutManager {
 
   private static final String FXML_LOCATION = "FixedLeftThreeHPanesViewLayout.fxml";
 
@@ -61,6 +62,8 @@ public class FixedLeftThreeHPanesViewLayoutManager extends AbstractViewLayoutMan
   /*-----------------------------------------------------------------------------
   | FXML FIELDS
    *=============================================================================*/
+  @FXML
+  protected Pane rootPane;
   @FXML
   protected Pane leftFixedAreaSection;
   @FXML
@@ -103,10 +106,14 @@ public class FixedLeftThreeHPanesViewLayoutManager extends AbstractViewLayoutMan
 
     centerFixedAreaSection.minWidthProperty().bind(centerFixedAreaSection.maxWidthProperty());
 
-    NodeHelper.setStyleClass(getRootPane(), layoutManageable.getConfiguration(), "rootPaneStyleClass", true);
-    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(), "leftSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(), "centerSectionAreaStyleClass", false);
-    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(), "rightSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(getRootPane(), layoutManageable.getConfiguration(),
+        "rootPaneStyleClass", true);
+    NodeHelper.setStyleClass(leftFixedAreaSection, layoutManageable.getConfiguration(),
+        "leftSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(centerFixedAreaSection, layoutManageable.getConfiguration(),
+        "centerSectionAreaStyleClass", false);
+    NodeHelper.setStyleClass(rightFixedAreaSection, layoutManageable.getConfiguration(),
+        "rightSectionAreaStyleClass", false);
 
     Node leftNode = layoutManageable.getNodeOnPosition(ViewLayoutPosition.LEFT);
     Node centerNode = layoutManageable.getNodeOnPosition(ViewLayoutPosition.CENTER);
@@ -211,7 +218,7 @@ public class FixedLeftThreeHPanesViewLayoutManager extends AbstractViewLayoutMan
       contentWrapper.setVisible(true);
       pushedContent.clear();
     } else {
-      if(pushedContent.size() > 1) {
+      if (pushedContent.size() > 1) {
         editorStructureAreaSection.getChildren().clear();
         pushedContent.remove(pushedContent.size() - 1);
         editorStructureAreaSection.getChildren().add(pushedContent.get(pushedContent.size() - 1));

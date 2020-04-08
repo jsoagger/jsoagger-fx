@@ -33,7 +33,7 @@ public class DemoApplicationLauncher {
    */
   public static void main(String[] args) {
     boolean withPreloader = Boolean.valueOf(getArgs("--jsoagger.preloader", args, "false"));
-    String mode = getArgs("--jsoagger.client.mode", args, "desktop");
+    String mode = getArgs("--jsoagger-client-mode", args, "desktop");
 
     if (withPreloader) {
       if("desktop".equalsIgnoreCase(mode)) {

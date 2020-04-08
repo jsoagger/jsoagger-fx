@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,18 +22,16 @@ package io.github.jsoagger.jfxcore.engine.controller.utils;
 
 
 
-
 import java.text.MessageFormat;
 
 import io.github.jsoagger.core.bridge.result.OperationData;
 import io.github.jsoagger.core.utils.Assert;
-import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.IModelProvider;
 import io.github.jsoagger.jfxcore.api.services.Services;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewConfigXML;
 import io.github.jsoagger.jfxcore.engine.components.security.RootContext;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController;
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewConfigXML;
 
 /**
  * Utility for building {@link RootStructureController}.
@@ -44,7 +42,7 @@ import io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController
  */
 public class RootStructureUtils {
 
-  //private static final Logger //LogR = LogManager.getLogger(RootStructureUtils.class);
+  // private static final Logger //LogR = LogManager.getLogger(RootStructureUtils.class);
 
 
   /**
@@ -55,7 +53,7 @@ public class RootStructureUtils {
   private static void loadModel(AbstractViewController controller) {
     if (controller.getModelProvider() != null) {
       final IModelProvider modelProvider = controller.getModelProvider();
-      modelProvider.loadModel((IJSoaggerController) controller, null);
+      modelProvider.loadModel(controller, null);
     }
   }
 
@@ -84,11 +82,13 @@ public class RootStructureUtils {
   }
 
 
-  public static RootStructureController forId(String identifier, RootContext context, OperationData data) {
+  public static RootStructureController forId(String identifier, RootContext context,
+      OperationData data) {
     Assert.notNull(identifier);
     Assert.notNull(context);
 
-    final RootStructureController controller = (RootStructureController) Services.getBean(identifier);
+    final RootStructureController controller =
+        (RootStructureController) Services.getBean(identifier);
     if (data != null) {
       controller.relativeToProperty().set(data);
     }
@@ -100,13 +100,15 @@ public class RootStructureUtils {
       return controller;
     }
     try {
-      final VLViewConfigXML configXML = Services.getConfigurationFile((IJSoaggerController) controller);
+
+      final VLViewConfigXML configXML = Services.getConfigurationFile(controller);
       controller.initViewContext(configXML, context);
       controller.build();
       controller.setInitialized(true);
+
       return controller;
     } catch (final SecurityException | IllegalArgumentException e) {
-      //LogR.error(e);
+      // LogR.error(e);
       e.printStackTrace();
     }
 

@@ -26,7 +26,7 @@
 	</modules>
 
 	<properties>
-		<internal.core.project.version>1.0.3</internal.core.project.version><!-- todo move to 1.0.3 -->
+		<internal.core.project.version>1.0.16-SNAPSHOT</internal.core.project.version><!-- todo move to 1.0.3 -->
 		<internal.cloudservices.version>1.0.2</internal.cloudservices.version>
 		
 		<project.scm.id>jsoaggercore.repo</project.scm.id>
@@ -755,7 +755,7 @@
 		<profile>
 			<id>javafx11</id>
 			<properties>
-				<javafx.version>11</javafx.version>
+				<javafx.version>13.0.1</javafx.version>
 				<ikonli.version>11.0.0</ikonli.version>
 				<ikonli.kordamp.version>11.0.0</ikonli.kordamp.version>
 				<jphoenix.version>9.0.6</jphoenix.version>

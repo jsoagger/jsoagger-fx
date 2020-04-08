@@ -11,13 +11,14 @@ import io.github.jsoagger.jfxcore.api.detailsview.IEmptyDetailsview;
 import io.github.jsoagger.jfxcore.engine.controller.detailsview.layout.EmptyDetailsView;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  *
  */
 @BeansProvider
 @ConvertViewToJson
 public class CoreDetailsBeansProvider {
 
+  public CoreDetailsBeansProvider() {}
 
   @Bean
   @Named("EmptyDetailsView")

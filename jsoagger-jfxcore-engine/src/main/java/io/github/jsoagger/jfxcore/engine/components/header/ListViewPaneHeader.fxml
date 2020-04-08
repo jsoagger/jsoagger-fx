@@ -15,20 +15,13 @@
 
 <HBox fx:id="rootContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0"
      styleClass="listview-pane-header-container">
-
-     <children>
           <VBox fx:id="leftContainer" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
-               <children>
-                    <HBox fx:id="mailLabelContainer" alignment="CENTER_LEFT">
-                         <children>
-                              <Label fx:id="mainLabel"/>
-                              <Label fx:id="totalElementsCountLabel"/>
-                         </children>
-                    </HBox>
-                    <TextFlow fx:id="secondaryLabelFlow" styleClass="listview-pane-header-secondary-label-flow" />
-               </children>
+                  <HBox fx:id="mailLabelContainer" alignment="CENTER_LEFT">
+                            <Label fx:id="mainLabel"/>
+                            <Label fx:id="totalElementsCountLabel"/>
+                  </HBox>
+                  <TextFlow fx:id="secondaryLabelFlow" styleClass="listview-pane-header-secondary-label-flow" />
           </VBox>
-
           <HBox fx:id="rightActionsContainer"/>
      </children>
 </HBox>

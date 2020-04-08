@@ -18,15 +18,12 @@
 		<HBox VBox.vgrow="ALWAYS" fx:id="contentStructureAreaSection">
 			<VBox fx:id="leftFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
 			<ScrollPane fitToHeight="true" fitToWidth="true" fx:id="mainScrollPane" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
-				<content>
 					<StackPane fx:id="scrolledCenterFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
-				</content>
 			</ScrollPane>
 
 			<StackPane fx:id="centerFixedAreaSection" BorderPane.alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" />
 			<StackPane fx:id="rightFixedAreaSection" BorderPane.alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0" />
 		</HBox>
-
 		<HBox fx:id="editorStructureAreaSection" alignment="TOP_CENTER" visible="false" managed="false"/>
 	</VBox>
 </StackPane>

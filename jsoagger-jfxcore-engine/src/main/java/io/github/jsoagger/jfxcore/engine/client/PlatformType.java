@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,7 +22,6 @@ package io.github.jsoagger.jfxcore.engine.client;
 
 
 
-
 /**
  * @author Ramilafananana VONJISOA
  * @mailto yvonjisoa@nexitia.com
@@ -30,6 +29,4 @@ package io.github.jsoagger.jfxcore.engine.client;
  */
 public enum PlatformType {
   MOBILE, XPAD, DESKTOP, SIMUL_MOBILE;
-
-
 }

@@ -9,5 +9,6 @@ package io.github.jsoagger.jfxcore.engine.providers;
  */
 public class ActionConfigurationProvider {
 
-
+	public ActionConfigurationProvider() {
+	}
 }
