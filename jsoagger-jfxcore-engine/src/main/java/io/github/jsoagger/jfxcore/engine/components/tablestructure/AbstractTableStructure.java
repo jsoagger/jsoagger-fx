@@ -378,9 +378,6 @@ public abstract class AbstractTableStructure
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void listCellSelected() {}
 
@@ -391,19 +388,15 @@ public abstract class AbstractTableStructure
 
 
   public Optional<Node> getToolbar() {
-    if (toolbar == null) {
+    if (toolbar == null)
       return Optional.empty();
-    }
-    return Optional.of(toolbar.getDisplay());
+    return Optional.ofNullable(toolbar.getDisplay());
   }
 
-
   public Optional<Node> getPagination() {
-    if (pagination == null) {
+    if (pagination == null)
       return Optional.empty();
-    }
-
-    return Optional.of(pagination.getDisplay());
+    return Optional.ofNullable(pagination.getDisplay());
   }
 
 

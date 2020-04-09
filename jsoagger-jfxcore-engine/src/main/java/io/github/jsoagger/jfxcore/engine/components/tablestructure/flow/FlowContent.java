@@ -23,6 +23,7 @@ package io.github.jsoagger.jfxcore.engine.components.tablestructure.flow;
 
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import io.github.jsoagger.core.bridge.result.MultipleResult;
@@ -189,6 +190,7 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
   /**
    * @{inheritedDoc}
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void buildContent() {
     super.buildContent();
@@ -206,14 +208,24 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
 
     getFilteredDatas().addListener((ListChangeListener<OperationData>) c -> {
 
-      // TODO build only removed/added items
-      // no all items all time!!!!
-      if (Platform.isFxApplicationThread()) {
-        buildItems();
-      } else {
-        Platform.runLater(() -> {
-          buildItems();
-        });
+      if (c.next()) {
+        if (c.wasAdded()) {
+          if (Platform.isFxApplicationThread()) {
+            addItems((List<OperationData>) c.getAddedSubList());
+          } else {
+            Platform.runLater(() -> {
+              addItems((List<OperationData>) c.getAddedSubList());
+            });
+          }
+        } else if (c.wasRemoved()) {
+          if (Platform.isFxApplicationThread()) {
+            removeItems((List<OperationData>) c.getAddedSubList());
+          } else {
+            Platform.runLater(() -> {
+              removeItems((List<OperationData>) c.getAddedSubList());
+            });
+          }
+        }
       }
     });
 
@@ -266,8 +278,6 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
   public void setData(MultipleResult multipleResult) {
     try {
 
-      System.out.println(">>>>>>>>>>>>>>>> + Flow content setData begin");
-
       content.pseudoClassStateChanged(PseudoClass.getPseudoClass("nocontent"), false);
 
       final int elementsCount = multipleResult.totaElements();
@@ -286,13 +296,7 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
         items.clear();
       }
 
-      System.out.println(">>>>>>>>>>>>>>>> + Flow content setData clearing");
-
-      content.getChildren().clear();
       items.addAll(multipleResult.getData());
-
-      System.out.println(">>>>>>>>>>>>>>>> + Flow content setData end");
-
     } catch (Throwable e) {
       e.printStackTrace();
     }
@@ -301,10 +305,9 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
   int rowIndex = 0;
   int colIndex = 0;
 
-  private void buildItems() {
-    content.getChildren().clear();
-    Iterator<OperationData> it = getFilteredDatas().iterator();
+  private void addItems(List<OperationData> items) {
 
+    Iterator<OperationData> it = items.iterator();
     while (it.hasNext()) {
       OperationData c = it.next();
 
@@ -318,7 +321,6 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
             rowIndex += 1;
           }
 
-          System.out.println(">>>>>>>>>>>>>>>> + Flow content buildItems, build one item---");
           content.getChildren().add(d.getDisplay());
         } else {
           content.getChildren().add(d.getDisplay());
@@ -333,9 +335,10 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
 
     content.requestFocus();
     content.toFront();
-    if (alwaysShowNoContentPane) {
-      // content.getChildren().add(noContentPane.getDisplay());
-    }
+  }
+
+  private void removeItems(List<OperationData> items) {
+
   }
 
 
