@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -38,7 +38,6 @@ import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.event.U
 import io.github.jsoagger.jfxcore.engine.controller.utils.StandardViewUtils;
 import io.github.jsoagger.jfxcore.engine.events.CoreEvent;
 import io.github.jsoagger.jfxcore.engine.events.GenericEvent;
-
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
 
@@ -53,9 +52,6 @@ public class StandardTabPaneController extends StandardViewController {
   private IBuildable buildable;
   private List<AbstractViewController> buildedTabsController = new ArrayList<>();
 
-  /**
-   * Default Constructor
-   */
   public StandardTabPaneController() {
     super();
     registerListener(CoreEvent.PushTabContentEvent);
@@ -76,7 +72,8 @@ public class StandardTabPaneController extends StandardViewController {
       if (ev.getParentController() == this || ev.getParentController() == null) {
         String viewId = ev.getProperty("viewId");
         if (StringUtils.isNotBlank(viewId)) {
-          final StandardViewController view = StandardViewUtils.forId(rootStructure, viewId, (OperationData) ev.getModel());
+          final StandardViewController view =
+              StandardViewUtils.forId(rootStructure, viewId, (OperationData) ev.getModel());
           view.setParent(this);
           tabpane.pushCurrentContent(view);
 
@@ -91,9 +88,6 @@ public class StandardTabPaneController extends StandardViewController {
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public Node getNodeOnPosition(ViewLayoutPosition position) {
     if (position == ViewLayoutPosition.CENTER) {
@@ -104,9 +98,6 @@ public class StandardTabPaneController extends StandardViewController {
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   protected void process() {
     String contentImpl = getRootComponent().getPropertyValue("contentImpl", "VLTabPane");
@@ -142,16 +133,9 @@ public class StandardTabPaneController extends StandardViewController {
     return null;
   }
 
-
-  /**
-   * Getter of initialSelectedTabId
-   *
-   * @return the initialSelectedTabId
-   */
   public String getInitialSelectedTabId() {
     return initialSelectedTabId;
   }
-
 
   /**
    * Setter of initialSelectedTabId
@@ -191,20 +175,18 @@ public class StandardTabPaneController extends StandardViewController {
   public void addBuildedTabsController(AbstractViewController tabController) {
     buildedTabsController.add(tabController);
     if (tabController instanceof StandardViewController) {
-      ((StandardViewController) tabController).selectedElementProperty().addListener((ChangeListener<OperationData>) (observable, oldValue, newValue) -> {
-        this.selectedElementProperty().set(newValue);
-      });
+      ((StandardViewController) tabController).selectedElementProperty()
+          .addListener((ChangeListener<OperationData>) (observable, oldValue, newValue) -> {
+            this.selectedElementProperty().set(newValue);
+          });
     }
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void destroy() {
     super.destroy();
-    for(AbstractViewController c: buildedTabsController) {
+    for (AbstractViewController c : buildedTabsController) {
       c.destroy();
     }
     VLTabpane tabpane = (VLTabpane) buildable;

@@ -35,6 +35,7 @@ import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.controller.SecondaryMenuController;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
+import io.github.jsoagger.jfxcore.engine.controller.main.DoubleHeaderRootStructureController;
 import io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController;
 import io.github.jsoagger.jfxcore.engine.controller.main.StandardViewController;
 import io.github.jsoagger.jfxcore.engine.controller.main.WizardViewController;
@@ -153,13 +154,10 @@ public class RootStructureContentController extends AbstractViewController {
       structureContent.setForModelId(event.getModelFullId());
     }
 
-    System.out.println(">>>>>>>>>> +++++ : 1111 : " + event.getViewId());
     structureContent.setRootStructure(rootStructure);
     structureContent.initViewContext(new VLViewConfigXML(), rootStructure.getRootContext());
     structureContent.setInitialized(true);
     structureContent.build();
-
-    System.out.println(">>>>>>>>>> +++++ : XXXXXx");
 
     if (event.getViewId().endsWith("Wizard")) {
       final WizardViewController view =
@@ -169,7 +167,6 @@ public class RootStructureContentController extends AbstractViewController {
       event.setProcessedContent(structureContent);
 
       if (view.isDialog()) {
-        System.out.println(">>>>>>>>>> +++++ : isDialog : " + view.isDialog());
         Platform.runLater(() -> view.show());
       } else {
         if (view.getRootComponent() != null) {
@@ -179,11 +176,7 @@ public class RootStructureContentController extends AbstractViewController {
           }
         }
 
-        System.out.println(">>>>>>>>>> +++++ : 22222");
-
         Platform.runLater(() -> display(event));
-
-        System.out.println(">>>>>>>>>> +++++ : 222222");
       }
     } else {
 
@@ -327,8 +320,6 @@ public class RootStructureContentController extends AbstractViewController {
   public void display(PushStructureContentEvent event) {
     try {
 
-      System.out.println("++++++++++++++++ 1111");
-
       final StructureContentController sc = event.getProcessedContent();
       final Node nextNode = sc.processedView();
 
@@ -340,8 +331,6 @@ public class RootStructureContentController extends AbstractViewController {
           layout.getChildren().remove(0);
           layout.getChildren().add(nextNode);
           nextNode.setOpacity(1);
-
-          System.out.println("++++++++++++++++ 33333333");
 
           if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
             nextNode.translateXProperty().set(100);
@@ -361,11 +350,14 @@ public class RootStructureContentController extends AbstractViewController {
         tte.play();
       }
 
-      System.out.println("++++++++++++++++ 2222");
-
       rootStructure.displayMainView();
-
-      System.out.println("++++++++++++++++ 1111");
+      if (rootStructure instanceof DoubleHeaderRootStructureController) {
+        String hideDoubleHeader =
+            rootStructure.getRootComponent().getPropertyValue("hideDoubleHeader");
+        if ("true".equalsIgnoreCase(hideDoubleHeader)) {
+          ((DoubleHeaderRootStructureController) rootStructure).hideHeader();
+        }
+      }
 
     } catch (Throwable e) {
       e.printStackTrace();

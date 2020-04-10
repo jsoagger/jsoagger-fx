@@ -324,8 +324,10 @@ public class VLTabpane extends VBox implements IBuildable {
 
     // reinit header each time we change tab
     controller.dispatchEvent(new ReinitHeaderNavigationEvent());
+    manageHeader(tab);
   }
 
+  protected void manageHeader(VLTab tab) {}
 
   public void selectTab(String id) {
     for (final VLTab styledTab : tabs) {

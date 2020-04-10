@@ -34,9 +34,8 @@ public class MobileVLTabpane extends VLTabpane {
     centerTabItemsContainer.prefWidthProperty()
         .bind(tabItemsContainer.prefWidthProperty().multiply(0.9));
 
-    // todo handle with max according to running platform
     if (ViewStructure.instance().platformSceneWidth().get() > 100) {
-      double w = ViewStructure.instance().platformSceneWidth().get();
+      ViewStructure.instance().platformSceneWidth().get();
       updateTabsSize();
     }
 
@@ -84,16 +83,19 @@ public class MobileVLTabpane extends VLTabpane {
   @Override
   public void selectTab(VLTab tab) {
     super.selectTab(tab);
+  }
+
+  @Override
+  public void selectTab(String id) {
+    super.selectTab(id);
+  }
+
+  protected void manageHeader(VLTab tab) {
     String showHeader = tab.getConfig().getPropertyValue("showHeader");
     if ("false".equalsIgnoreCase(showHeader)) {
       hideHeader(tab.getController());
     } else {
       showHeader(tab.getController());
     }
-  }
-
-  @Override
-  public void selectTab(String id) {
-    super.selectTab(id);
   }
 }
