@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -21,18 +21,16 @@
 package io.github.jsoagger.jfxcore.engine.components.input;
 
 
-import com.jfoenix.controls.JFXButton;
 import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.InjectableComponent;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.XMLConstants;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import io.github.jsoagger.jfxcore.engine.client.components.ComponentToLabeledHelper;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
 import io.github.jsoagger.jfxcore.engine.utils.IconUtils;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.XMLConstants;
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -49,7 +47,7 @@ public class SimpleButton extends ActionableComp implements InjectableComponent 
   protected static final String SIMPLE_BUTTON = "simple-button";
   protected static final String REGEX = ",";
 
-  protected Button button = null;
+  protected Button button = NodeHelper.jfxButton("");
 
 
   /**
@@ -57,11 +55,8 @@ public class SimpleButton extends ActionableComp implements InjectableComponent 
    */
   public SimpleButton() {
     super();
-    button = new JFXButton();
     button.addEventFilter(ActionEvent.ACTION, this::handle);
     button.setCursor(Cursor.HAND);
-    button.getStyleClass().removeAll("button","jfx-button");
-    button.getStyleClass().add("ep-button");
   }
 
 
@@ -82,24 +77,25 @@ public class SimpleButton extends ActionableComp implements InjectableComponent 
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     super.buildFrom(controller, configuration);
 
-    button.setDefaultButton(configuration.booleanPropertyValueOf(XMLConstants.DEFAULT).orElse(false));
+    button
+        .setDefaultButton(configuration.booleanPropertyValueOf(XMLConstants.DEFAULT).orElse(false));
     ComponentToLabeledHelper.setTooltip(configuration, button, (AbstractViewController) controller);
     IconUtils.setIcon(button, configuration);
 
     NodeHelper.styleClassAddAll(button, configuration);
-    button.getStyleClass().add("ep-button");
 
-    // content display
     final String upperCase = configuration.getPropertyValue("upperCase");
-    ComponentToLabeledHelper.setText(configuration, button, "true".equalsIgnoreCase(upperCase), (AbstractViewController) controller);
+    ComponentToLabeledHelper.setText(configuration, button, "true".equalsIgnoreCase(upperCase),
+        (AbstractViewController) controller);
 
-    if(AbstractApplicationRunner.isDesktop()) {
-      final String displayMode = configuration.getPropertyValue(XMLConstants.HYPERLINK_DISPLAY_MODE, "LEFT");
+    if (AbstractApplicationRunner.isDesktop()) {
+      final String displayMode =
+          configuration.getPropertyValue(XMLConstants.HYPERLINK_DISPLAY_MODE, "LEFT");
       button.setContentDisplay(ContentDisplay.valueOf(displayMode));
-    }
-    else {
-      final String displayMode = configuration.getPropertyValue(XMLConstants.HYPERLINK_DISPLAY_MODE);
-      if(StringUtils.isNotBlank(displayMode)) {
+    } else {
+      final String displayMode =
+          configuration.getPropertyValue(XMLConstants.HYPERLINK_DISPLAY_MODE);
+      if (StringUtils.isNotBlank(displayMode)) {
         button.setContentDisplay(ContentDisplay.valueOf(displayMode));
       }
     }

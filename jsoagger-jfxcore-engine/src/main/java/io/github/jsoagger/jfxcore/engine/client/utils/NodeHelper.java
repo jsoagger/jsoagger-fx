@@ -26,6 +26,7 @@ import java.net.URL;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
 
 import io.github.jsoagger.core.bridge.result.OperationData;
@@ -56,6 +57,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ProgressIndicator;
@@ -519,18 +521,18 @@ public class NodeHelper {
   }
 
 
-  /**
-   * Wrap the given node in hbox
-   *
-   * @param node
-   * @return
-   */
   public static HBox wrapInHbox(Node node) {
     final HBox wrapper = new HBox();
     wrapper.getChildren().add(node);
     return wrapper;
   }
 
+  public static StackPane wrapInStackPane(Node node) {
+    final StackPane wrapper = new StackPane();
+    wrapper.setAlignment(Pos.CENTER);
+    wrapper.getChildren().add(node);
+    return wrapper;
+  }
 
   /**
    * Add growing pane arround a node to make in centered on view.
@@ -558,10 +560,6 @@ public class NodeHelper {
     return stackPane;
   }
 
-
-  /**
-   * Generates a processing indicator
-   */
   public static Node getProcessingIndicator() {
     final StackPane pane = new StackPane();
     final JFXSpinner indicator = new JFXSpinner();
@@ -933,5 +931,14 @@ public class NodeHelper {
         .message("Please wait ...").buildPrimary(c);
     c.setProcessingPane(d);
     d.show(true);
+  }
+
+
+  public static Button jfxButton(String label) {
+    Button button = new JFXButton(label);
+    button.getStyleClass().remove(0);
+    button.getStyleClass().removeAll("jfx-button", "button");
+    button.getStyleClass().addAll("ep-button", "button");
+    return button;
   }
 }

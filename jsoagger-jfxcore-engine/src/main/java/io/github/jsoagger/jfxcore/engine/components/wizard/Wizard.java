@@ -67,24 +67,15 @@ public class Wizard extends AnchorPane implements IWizard {
   protected VLViewComponentXML configuration;
 
 
-  /**
-   * Constructor
-   */
   public Wizard() {}
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public Node getDisplay() {
     return this;
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     this.configuration = configuration;
@@ -102,14 +93,10 @@ public class Wizard extends AnchorPane implements IWizard {
 
 
   private void layoutContent() {
-    // center.getStyleClass().add("wizard-center-content-wrapper");
-    System.out.println("QQQQQQQQQQQQQ 1");
     boolean displayHeader = configuration.getBooleanProperty("displayHeader", true);
     Node centerContent = ((IBuildable) content).getDisplay();
     getChildren().add(centerContent);
-    System.out.println("QQQQQQQQQQQQQ 2");
     if (footer != null && !footer.getDisplay().isVisible()) {
-      System.out.println("QQQQQQQQQQQQQ 3");
       AnchorPane.setBottomAnchor(centerContent, 60.0);
       AnchorPane.setLeftAnchor(centerContent, 0.0);
       AnchorPane.setRightAnchor(centerContent, 0.0);
@@ -119,7 +106,6 @@ public class Wizard extends AnchorPane implements IWizard {
       AnchorPane.setLeftAnchor(centerContent, 0.0);
       AnchorPane.setRightAnchor(centerContent, 0.0);
       AnchorPane.setTopAnchor(centerContent, displayHeader ? 60. : 0);
-      System.out.println("QQQQQQQQQQQQQ 4");
     }
   }
 

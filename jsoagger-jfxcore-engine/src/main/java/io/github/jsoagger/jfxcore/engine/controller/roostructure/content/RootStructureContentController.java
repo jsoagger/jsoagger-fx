@@ -153,10 +153,13 @@ public class RootStructureContentController extends AbstractViewController {
       structureContent.setForModelId(event.getModelFullId());
     }
 
+    System.out.println(">>>>>>>>>> +++++ : 1111 : " + event.getViewId());
     structureContent.setRootStructure(rootStructure);
     structureContent.initViewContext(new VLViewConfigXML(), rootStructure.getRootContext());
     structureContent.setInitialized(true);
     structureContent.build();
+
+    System.out.println(">>>>>>>>>> +++++ : XXXXXx");
 
     if (event.getViewId().endsWith("Wizard")) {
       final WizardViewController view =
@@ -166,6 +169,7 @@ public class RootStructureContentController extends AbstractViewController {
       event.setProcessedContent(structureContent);
 
       if (view.isDialog()) {
+        System.out.println(">>>>>>>>>> +++++ : isDialog : " + view.isDialog());
         Platform.runLater(() -> view.show());
       } else {
         if (view.getRootComponent() != null) {
@@ -175,7 +179,11 @@ public class RootStructureContentController extends AbstractViewController {
           }
         }
 
+        System.out.println(">>>>>>>>>> +++++ : 22222");
+
         Platform.runLater(() -> display(event));
+
+        System.out.println(">>>>>>>>>> +++++ : 222222");
       }
     } else {
 
@@ -279,7 +287,11 @@ public class RootStructureContentController extends AbstractViewController {
 
           @Override
           protected Void call() throws Exception {
-            buildStructureContent(event);
+            try {
+              buildStructureContent(event);
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
             return null;
           }
         };
@@ -313,37 +325,51 @@ public class RootStructureContentController extends AbstractViewController {
   }
 
   public void display(PushStructureContentEvent event) {
-    final StructureContentController sc = event.getProcessedContent();
-    final Node nextNode = sc.processedView();
+    try {
 
-    if (layout.getChildren().size() > 0) {
-      final EasingInterpolator cme = new EasingInterpolator(EasingMode.OUT_CIRC);
-      final Transition tte = NodeHelper.fadeOut(layout.getChildren().get(0), Duration.millis(50));
-      tte.setInterpolator(cme);
-      tte.setOnFinished(e -> {
-        layout.getChildren().remove(0);
+      System.out.println("++++++++++++++++ 1111");
+
+      final StructureContentController sc = event.getProcessedContent();
+      final Node nextNode = sc.processedView();
+
+      if (layout.getChildren().size() > 0) {
+        final EasingInterpolator cme = new EasingInterpolator(EasingMode.OUT_CIRC);
+        final Transition tte = NodeHelper.fadeOut(layout.getChildren().get(0), Duration.millis(50));
+        tte.setInterpolator(cme);
+        tte.setOnFinished(e -> {
+          layout.getChildren().remove(0);
+          layout.getChildren().add(nextNode);
+          nextNode.setOpacity(1);
+
+          System.out.println("++++++++++++++++ 33333333");
+
+          if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
+            nextNode.translateXProperty().set(100);
+            final Transition tte1 = NodeHelper.translateTo(100, 0, nextNode, Duration.millis(50));
+            tte1.setInterpolator(cme);
+            tte1.play();
+          }
+        });
+        tte.play();
+
+      } else {
+        nextNode.setOpacity(0);
         layout.getChildren().add(nextNode);
-        nextNode.setOpacity(1);
+        final EasingInterpolator cme = new EasingInterpolator(EasingMode.IN_EXPO);
+        final Transition tte = NodeHelper.fadeIn(nextNode, Duration.millis(50));
+        tte.setInterpolator(cme);
+        tte.play();
+      }
 
-        if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
-          nextNode.translateXProperty().set(100);
-          final Transition tte1 = NodeHelper.translateTo(100, 0, nextNode, Duration.millis(50));
-          tte1.setInterpolator(cme);
-          tte1.play();
-        }
-      });
-      tte.play();
+      System.out.println("++++++++++++++++ 2222");
 
-    } else {
-      nextNode.setOpacity(0);
-      layout.getChildren().add(nextNode);
-      final EasingInterpolator cme = new EasingInterpolator(EasingMode.IN_EXPO);
-      final Transition tte = NodeHelper.fadeIn(nextNode, Duration.millis(50));
-      tte.setInterpolator(cme);
-      tte.play();
+      rootStructure.displayMainView();
+
+      System.out.println("++++++++++++++++ 1111");
+
+    } catch (Throwable e) {
+      e.printStackTrace();
     }
-
-    rootStructure.displayMainView();
   }
 
   Node beforeProcessedNode = null;
