@@ -2,6 +2,7 @@ package io.github.jsoagger.jfxcore.engine.components.tab;
 
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.engine.controller.main.DoubleHeaderRootStructureController;
 import io.github.jsoagger.jfxcore.engine.controller.main.layout.ViewStructure;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.beans.value.ChangeListener;
@@ -48,6 +49,18 @@ public class MobileVLTabpane extends VLTabpane {
     });
   }
 
+  private void showHeader(IJSoaggerController controller) {
+    DoubleHeaderRootStructureController dhs =
+        (DoubleHeaderRootStructureController) controller.getRootStructure();
+    dhs.showHeader();
+  }
+
+  private void hideHeader(IJSoaggerController controller) {
+    DoubleHeaderRootStructureController dhs =
+        (DoubleHeaderRootStructureController) controller.getRootStructure();
+    dhs.hideHeader();
+  }
+
   protected void updateTabsSize() {
     double w = ViewStructure.instance().platformSceneWidth().get();
     double d = 0.9 * (w / getTabs().size());
@@ -71,6 +84,12 @@ public class MobileVLTabpane extends VLTabpane {
   @Override
   public void selectTab(VLTab tab) {
     super.selectTab(tab);
+    String showHeader = tab.getConfig().getPropertyValue("showHeader");
+    if ("false".equalsIgnoreCase(showHeader)) {
+      hideHeader(tab.getController());
+    } else {
+      showHeader(tab.getController());
+    }
   }
 
   @Override

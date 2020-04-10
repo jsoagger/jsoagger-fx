@@ -29,6 +29,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -78,6 +79,29 @@ public class DoubleHeaderRootStructureController extends RootStructureController
     }
   }
 
+  public void hideHeader() {
+    if (Platform.isFxApplicationThread()) {
+      headerStack.setVisible(false);
+      AnchorPane.setTopAnchor(rootStructureWrapper, 0.0);
+    } else {
+      Platform.runLater(() -> {
+        headerStack.setVisible(false);
+        AnchorPane.setTopAnchor(rootStructureWrapper, 0.0);
+      });
+    }
+  }
+
+  public void showHeader() {
+    if (Platform.isFxApplicationThread()) {
+      headerStack.setVisible(true);
+      setAnchors();
+    } else {
+      Platform.runLater(() -> {
+        headerStack.setVisible(true);
+        setAnchors();
+      });
+    }
+  }
 
   /*-----------------------------------------------------------------------------
   |
