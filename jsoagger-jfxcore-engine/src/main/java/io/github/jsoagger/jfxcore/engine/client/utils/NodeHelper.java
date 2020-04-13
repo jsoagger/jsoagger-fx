@@ -921,6 +921,11 @@ public class NodeHelper {
     ((RootStructureController) controller.getRootStructure()).showMessage(msg);
   }
 
+  public static void showHeaderSuccessMessage(IJSoaggerController controller, String message) {
+    Node msg = headerMessage(message, "gmi-cloud-done:32");
+    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+  }
+
   /**
    * Use only when wizard is processing (Finish button)
    *

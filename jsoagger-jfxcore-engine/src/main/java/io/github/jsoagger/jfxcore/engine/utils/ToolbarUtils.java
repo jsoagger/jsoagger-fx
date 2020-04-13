@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -25,17 +25,15 @@ import java.util.List;
 import java.util.Optional;
 
 import io.github.jsoagger.core.utils.Assert;
-import io.github.jsoagger.jfxcore.api.IBuildable;
 import io.github.jsoagger.jfxcore.api.IToolbarHolder;
 import io.github.jsoagger.jfxcore.api.services.Services;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import io.github.jsoagger.jfxcore.engine.components.contextmenu.EllipsisActionButton;
 import io.github.jsoagger.jfxcore.engine.components.form.FormFieldsetRow;
 import io.github.jsoagger.jfxcore.engine.components.security.CriteriaContext;
 import io.github.jsoagger.jfxcore.engine.components.toolbar.AbstractToolbar;
 import io.github.jsoagger.jfxcore.engine.components.toolbar.inline.FormInlineToobar;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.scene.Node;
 
 /**
@@ -50,13 +48,8 @@ public class ToolbarUtils {
   private static final String TOOLBAR_IMPL = "toolbarImpl";
 
 
-  /**
-   * Build Toolbar from model
-   *
-   * @param config
-   * @return {@link IBuildable}
-   */
-  public static Optional<AbstractToolbar> buildToolbar(AbstractViewController controller, IToolbarHolder toolbarHolder) {
+  public static Optional<AbstractToolbar> buildToolbar(AbstractViewController controller,
+      IToolbarHolder toolbarHolder) {
     Assert.notNull(controller);
     Assert.notNull(toolbarHolder);
 
@@ -72,10 +65,25 @@ public class ToolbarUtils {
   }
 
 
+  public static AbstractToolbar buildToolbar(AbstractViewController controller,
+      VLViewComponentXML toolbarConfig) {
+    Assert.notNull(controller);
+    Assert.notNull(toolbarConfig);
+
+
+    String toolBarImpl = toolbarConfig.getPropertyValue(TOOLBAR_IMPL, "BasicHToolbar");
+    AbstractToolbar toolbar = (AbstractToolbar) Services.getBean(toolBarImpl);
+    toolbar.setConfiguration(toolbarConfig);
+    toolbar.buildFrom(controller, null);
+    return toolbar;
+  }
+
+
   /**
    * Generates an hyperlink with ELLIPSIS_V.
    */
-  public static EllipsisActionButton ellipsisVActionsButton(VLViewComponentXML moreActionConfig, final AbstractViewController controller, final CriteriaContext criteriaContext) {
+  public static EllipsisActionButton ellipsisVActionsButton(VLViewComponentXML moreActionConfig,
+      final AbstractViewController controller, final CriteriaContext criteriaContext) {
     final EllipsisActionButton ellipsisButton = new EllipsisActionButton();
     ellipsisButton.setVerlical();
     if (moreActionConfig != null && moreActionConfig.hasSubComponent()) {
@@ -88,7 +96,8 @@ public class ToolbarUtils {
   /**
    * Generates an hyperlink with ELLIPSIS_H.
    */
-  public static Node ellipsisHActionsButton(final VLViewComponentXML moreActionConfig, final AbstractViewController controller, final CriteriaContext criteriaContext) {
+  public static Node ellipsisHActionsButton(final VLViewComponentXML moreActionConfig,
+      final AbstractViewController controller, final CriteriaContext criteriaContext) {
     final EllipsisActionButton ellipsisButton = new EllipsisActionButton();
     ellipsisButton.setHorizontal();
     ellipsisButton.build(moreActionConfig, controller, criteriaContext);
@@ -102,8 +111,8 @@ public class ToolbarUtils {
    * @param dvAttrListFieldset
    * @return
    */
-  public static Node ellipsisActionsButton(List<VLViewComponentXML> moreActionsConfig, AbstractViewController controller, final CriteriaContext criteriaContext, Node contextualTo) {
-
+  public static Node ellipsisActionsButton(List<VLViewComponentXML> moreActionsConfig,
+      AbstractViewController controller, final CriteriaContext criteriaContext, Node contextualTo) {
     final EllipsisActionButton ellipsisButton = new EllipsisActionButton();
     ellipsisButton.setVerlical();
 
@@ -123,7 +132,8 @@ public class ToolbarUtils {
    * @param vlInputComponentWrapper
    * @return {@link Node}
    */
-  public static FormInlineToobar formInlineToolbar(AbstractViewController controller, VLViewComponentXML inlineActionsCfg, FormFieldsetRow row, int indexInRow) {
+  public static FormInlineToobar formInlineToolbar(AbstractViewController controller,
+      VLViewComponentXML inlineActionsCfg, FormFieldsetRow row, int indexInRow) {
     FormInlineToobar formInlineToolbar = (FormInlineToobar) Services.getBean("FormInlineToobar");
     formInlineToolbar.setForRow(row);
     formInlineToolbar.setForIndex(indexInRow);

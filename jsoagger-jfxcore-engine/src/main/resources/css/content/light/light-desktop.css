@@ -47,8 +47,9 @@
 }
 
 .ep-navbar-top-toolbar-back-icon-container{
-	-fx-alignment:CENTER_LEFT;
+	-fx-alignment:CENTER_RIGHT;
 	-fx-padding:16 0 14 0;
+	-fx-translate-x:10px;
 }
 
 .ep-primary-menu-with-navbar-bottom-toolbar{

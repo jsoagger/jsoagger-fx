@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -23,12 +23,13 @@ package io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.menu;
 
 import java.util.List;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.api.IBuildable;
+import io.github.jsoagger.jfxcore.api.IDisplayable;
 import io.github.jsoagger.jfxcore.api.IFieldset;
 import io.github.jsoagger.jfxcore.api.IFieldsetGroupLayout;
 import io.github.jsoagger.jfxcore.api.ISelectableComponent;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -93,6 +94,17 @@ public class FieldsetWithMenuLayout extends HBox implements IFieldsetGroupLayout
     fieldsets.add(fieldset);
   }
 
+  @Override
+  public void addComponent(IDisplayable displayable) {
+    getChildren().add(displayable.getDisplay());
+  }
+
+  @Override
+  public void addComponents(List<IBuildable> buildables) {
+    for (IBuildable buildable : buildables) {
+      throw new IllegalArgumentException();
+    }
+  }
 
   /**
    * @{inheritedDoc}

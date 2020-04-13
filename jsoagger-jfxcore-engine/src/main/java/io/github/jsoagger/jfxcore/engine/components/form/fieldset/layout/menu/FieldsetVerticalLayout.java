@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -21,11 +21,14 @@
 package io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.menu;
 
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import java.util.List;
+
+import io.github.jsoagger.jfxcore.api.IBuildable;
+import io.github.jsoagger.jfxcore.api.IDisplayable;
 import io.github.jsoagger.jfxcore.api.IFieldset;
 import io.github.jsoagger.jfxcore.api.IFieldsetGroupLayout;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -50,10 +53,7 @@ public class FieldsetVerticalLayout extends StackPane implements IFieldsetGroupL
   /**
    * Constructor
    */
-  public FieldsetVerticalLayout() {
-
-  }
-
+  public FieldsetVerticalLayout() {}
 
   /**
    * @{inheritedDoc}
@@ -71,6 +71,17 @@ public class FieldsetVerticalLayout extends StackPane implements IFieldsetGroupL
     content.getChildren().add(fieldset.getDisplay());
   }
 
+  @Override
+  public void addComponents(List<IBuildable> buildables) {
+    for (IBuildable buildable : buildables) {
+      content.getChildren().add(buildable.getDisplay());
+    }
+  }
+
+  @Override
+  public void addComponent(IDisplayable displayable) {
+    content.getChildren().add(displayable.getDisplay());
+  }
 
   /**
    * @{inheritedDoc}
@@ -112,6 +123,7 @@ public class FieldsetVerticalLayout extends StackPane implements IFieldsetGroupL
    */
   @Override
   public void setRootConfig(VLViewComponentXML fieldsetListConfig) {
-    NodeHelper.styleClassAddAll(content, fieldsetListConfig, "contentLayoutStyleClass", "fieldset-vertical-layout-pane");
+    NodeHelper.styleClassAddAll(content, fieldsetListConfig, "contentLayoutStyleClass",
+        "fieldset-vertical-layout-pane");
   }
 }

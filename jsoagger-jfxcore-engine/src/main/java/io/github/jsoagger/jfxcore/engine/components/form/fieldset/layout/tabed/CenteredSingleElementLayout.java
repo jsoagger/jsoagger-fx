@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,11 +22,12 @@ package io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.tabed;
 
 
 
+import io.github.jsoagger.jfxcore.api.IBuildable;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
-
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  * This layout can be used inside tab pane which need its center element to be always on the center
@@ -40,19 +41,14 @@ public class CenteredSingleElementLayout extends HBox {
 
   private StackPane leftSpacer = new StackPane();
   private StackPane rightSpacer = new StackPane();
-  private StackPane centerContainer = new StackPane();
+  private VBox centerContainer = new VBox();
 
 
   /**
    * Default Constructor
    */
   public CenteredSingleElementLayout() {
-    //NodeHelper.setHVGrow(leftSpacer);
     NodeHelper.setHVGrow(centerContainer);
-
-    //centerContainer.maxWidthProperty().bind(centerContainer.prefWidthProperty());
-    //centerContainer.setPrefWidth(800);
-
     getChildren().addAll(leftSpacer, centerContainer, rightSpacer);
   }
 
@@ -60,5 +56,15 @@ public class CenteredSingleElementLayout extends HBox {
   public void setCenterElement(Node element) {
     centerContainer.getChildren().clear();
     centerContainer.getChildren().add(element);
+  }
+
+  public void addCenterElement(IBuildable buildable) {
+    if (buildable != null) {
+      centerContainer.getChildren().add(buildable.getDisplay());
+    }
+  }
+
+  public void addCenterElement(Node node) {
+    centerContainer.getChildren().add(node);
   }
 }

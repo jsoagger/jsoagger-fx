@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,14 +22,16 @@ package io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.tabed;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.api.IBuildable;
+import io.github.jsoagger.jfxcore.api.IDisplayable;
 import io.github.jsoagger.jfxcore.api.IFieldset;
 import io.github.jsoagger.jfxcore.api.IFieldsetGroupLayout;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.form.fieldset.FormFieldset;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -73,6 +75,8 @@ public class FieldsetTopTabedLayout extends StackPane implements IFieldsetGroupL
   /** All fieldsets of this group */
   private ObservableList<IFieldset> fieldsets = FXCollections.observableArrayList();
 
+  List<IDisplayable> othersElements = new ArrayList<>();
+
 
   /**
    * Constructor
@@ -100,14 +104,17 @@ public class FieldsetTopTabedLayout extends StackPane implements IFieldsetGroupL
       scrollPane.setFitToWidth(true);
       scrollPane.setContent(contentLayout);
       scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
-      NodeHelper.styleClassAddAll(scrollPane, fieldsetListConfig, "contentStyleClass", "fieldset-group-selector-top-tabed-content");
+      NodeHelper.styleClassAddAll(scrollPane, fieldsetListConfig, "contentStyleClass",
+          "fieldset-group-selector-top-tabed-content");
       NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "contentLayoutStyleClass");
     } else {
-      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "contentLayoutStyleClass", "fieldset-group-selector-top-tabed-content");
+      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "contentLayoutStyleClass",
+          "fieldset-group-selector-top-tabed-content");
       fieldsetTopLayoutCenter.getChildren().add(contentLayout);
     }
 
-    NodeHelper.styleClassAddAll(header, fieldsetConfiguration, "headerStyleClass", "fieldset-group-selector-top-tabed-header");
+    NodeHelper.styleClassAddAll(header, fieldsetConfiguration, "headerStyleClass",
+        "fieldset-group-selector-top-tabed-header");
   }
 
 
@@ -138,7 +145,7 @@ public class FieldsetTopTabedLayout extends StackPane implements IFieldsetGroupL
    * @param fieldsets
    */
   public void setFieldsets(List<FormFieldset> fieldsets) {
-    for(FormFieldset e: fieldsets) {
+    for (FormFieldset e : fieldsets) {
       addFieldset(e);
     }
   }
@@ -152,7 +159,8 @@ public class FieldsetTopTabedLayout extends StackPane implements IFieldsetGroupL
     fieldsets.add(fieldset);
 
     FieldsetTopTabedItem groupItem = new FieldsetTopTabedItem(fieldset);
-    NodeHelper.styleClassAddAll(groupItem, fieldsetConfiguration, "tabItemStyleClass", "fieldset-top-tabed-item");
+    NodeHelper.styleClassAddAll(groupItem, fieldsetConfiguration, "tabItemStyleClass",
+        "fieldset-top-tabed-item");
     header.addItem(groupItem);
 
     groupItem.setOnMouseClicked(e -> {
@@ -164,6 +172,17 @@ public class FieldsetTopTabedLayout extends StackPane implements IFieldsetGroupL
     });
   }
 
+  @Override
+  public void addComponents(List<IBuildable> buildables) {
+    for (IBuildable buildable : buildables) {
+      contentLayout.addCenterElement(buildable);
+    }
+  }
+
+  @Override
+  public void addComponent(IDisplayable displayable) {
+    othersElements.add(displayable);
+  }
 
   /**
    * @return
@@ -181,10 +200,15 @@ public class FieldsetTopTabedLayout extends StackPane implements IFieldsetGroupL
   public void displayAll() {
     selectFirst();
     VBox center = new VBox();
-    for(FieldsetTopTabedItem it : header.items()) {
+    for (FieldsetTopTabedItem it : header.items()) {
       center.getChildren().add(it.getContent().getDisplay());
     }
     contentLayout.setCenterElement(center);
+
+    if (!othersElements.isEmpty()) {
+      for (IDisplayable displayable : othersElements)
+        contentLayout.addCenterElement(displayable.getDisplay());
+    }
   }
 
 

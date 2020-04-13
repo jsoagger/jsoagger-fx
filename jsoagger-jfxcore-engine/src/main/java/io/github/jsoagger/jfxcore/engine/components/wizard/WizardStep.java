@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,8 +22,6 @@ package io.github.jsoagger.jfxcore.engine.components.wizard;
 
 
 
-
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.services.Services;
@@ -31,10 +29,10 @@ import io.github.jsoagger.jfxcore.api.wizard.IWizardStep;
 import io.github.jsoagger.jfxcore.api.wizard.IWizardStepContent;
 import io.github.jsoagger.jfxcore.api.wizard.IWizardStepFooter;
 import io.github.jsoagger.jfxcore.api.wizard.IWizardStepHeader;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.XMLConstants;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
-
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -50,7 +48,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class WizardStep extends AnchorPane implements IWizardStep {
 
-  //private static final Logger logR = LoggerFactory.getLogger(WizardStep.class);
+  // private static final Logger logR = LoggerFactory.getLogger(WizardStep.class);
 
   private static final String WIZARD_STEP_CONTENT = "WizardStepContent";
   private static final String WIZARD_STEP_FOOTER = "WizardStepFooter";
@@ -74,7 +72,7 @@ public class WizardStep extends AnchorPane implements IWizardStep {
   protected String description;
 
   protected SimpleBooleanProperty valid = new SimpleBooleanProperty(true);
-
+  protected ScrollPane contentPane = new ScrollPane();
 
   /**
    * @{inheritedDoc}
@@ -147,13 +145,19 @@ public class WizardStep extends AnchorPane implements IWizardStep {
       footerImpl = WIZARD_STEP_FOOTER;
     }
 
-    stepFooter = (IWizardStepFooter) Services.getBean(footerImpl);
-    stepFooter.buildFrom(controller, configuration);
-    Node bottom = stepFooter.getDisplay();
-    getChildren().add(bottom);
-    AnchorPane.setBottomAnchor(bottom, 0.);
-    AnchorPane.setLeftAnchor(bottom, 0.);
-    AnchorPane.setRightAnchor(bottom, 0.);
+    boolean displayFooter =
+        Boolean.valueOf(configuration.propertyValueOf("displayFooter", "true").orElse("true"));
+    if (displayFooter == Boolean.TRUE) {
+      stepFooter = (IWizardStepFooter) Services.getBean(footerImpl);
+      stepFooter.buildFrom(controller, configuration);
+      Node bottom = stepFooter.getDisplay();
+      getChildren().add(bottom);
+      AnchorPane.setBottomAnchor(bottom, 0.);
+      AnchorPane.setLeftAnchor(bottom, 0.);
+      AnchorPane.setRightAnchor(bottom, 0.);
+    } else {
+      AnchorPane.setBottomAnchor(contentPane, 0.);
+    }
   }
 
 
@@ -192,25 +196,29 @@ public class WizardStep extends AnchorPane implements IWizardStep {
     stepContent.buildFrom(controller, configuration);
 
     Node setCenter = stepContent.getDisplay();
-    ScrollPane pane  = new ScrollPane();
-    pane.setContent(setCenter);
-    pane.setFitToHeight(true);
-    pane.setFitToWidth(true);
+    contentPane.setContent(setCenter);
+    contentPane.setFitToHeight(true);
+    contentPane.setFitToWidth(true);
 
-    pane.setVbarPolicy(ScrollBarPolicy.NEVER);
-    pane.setHbarPolicy(ScrollBarPolicy.NEVER);
+    contentPane.setVbarPolicy(ScrollBarPolicy.NEVER);
+    contentPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 
-    getChildren().add(pane);
-    AnchorPane.setBottomAnchor(pane, 100.);
-    AnchorPane.setLeftAnchor(pane, 0.);
-    AnchorPane.setRightAnchor(pane, 0.);
+    getChildren().add(contentPane);
+    AnchorPane.setLeftAnchor(contentPane, 0.);
+    AnchorPane.setRightAnchor(contentPane, 0.);
 
     boolean displayHeader = configuration.booleanPropertyValueOf("displayHeader").orElse(true);
-    if(displayHeader) {
-      AnchorPane.setTopAnchor(pane, 120.);
+    if (displayHeader) {
+      AnchorPane.setTopAnchor(contentPane, 120.);
+    } else {
+      AnchorPane.setTopAnchor(contentPane, 0.);
     }
-    else {
-      AnchorPane.setTopAnchor(pane, 0.);
+
+    boolean displayFooter = configuration.booleanPropertyValueOf("displayFooter").orElse(true);
+    if (displayFooter) {
+      AnchorPane.setBottomAnchor(contentPane, 100.);
+    } else {
+      AnchorPane.setBottomAnchor(contentPane, 0.);
     }
   }
 

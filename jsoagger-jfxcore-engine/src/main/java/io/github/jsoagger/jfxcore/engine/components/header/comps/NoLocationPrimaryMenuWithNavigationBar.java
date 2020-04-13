@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,11 +22,10 @@ package io.github.jsoagger.jfxcore.engine.components.header.comps;
 
 
 
-
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.event.SetCurrentLocationEvent;
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.event.UpdateCurrentLocationEvent;
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 
 /**
  * * A header toolbar where primary menu is displayed in the top right side, just on its left is
@@ -44,7 +43,8 @@ import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.event.U
  * @mailto yvonjisoa@nexitia.com
  * @date 2019
  */
-public class NoLocationPrimaryMenuWithNavigationBar extends SingleLocationPrimaryMenuWithNavigationBar {
+public class NoLocationPrimaryMenuWithNavigationBar
+    extends SingleLocationPrimaryMenuWithNavigationBar {
 
   /**
    * Constructor
@@ -62,6 +62,8 @@ public class NoLocationPrimaryMenuWithNavigationBar extends SingleLocationPrimar
     super.buildFrom(controller, configuration);
     locationContainer.managedProperty().bind(locationContainer.visibleProperty());
     locationContainer.setVisible(false);
+    primaryMenuButton.getDisplay().setVisible(false);
+    managedProperty().bind(backIcon.visibleProperty());
   }
 
   @Override

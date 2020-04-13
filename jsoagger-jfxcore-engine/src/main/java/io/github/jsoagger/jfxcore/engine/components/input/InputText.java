@@ -66,7 +66,8 @@ public class InputText extends AbstractInputComponent {
     textField.setId(id);
     configure();
     textField.setText(owner.getInitialInternalValue());
-    Bindings.bindBidirectional(owner.currentInternalValueProperty(), textField.textProperty(), owner.getConverter());
+    Bindings.bindBidirectional(owner.currentInternalValueProperty(), textField.textProperty(),
+        owner.getConverter());
   }
 
 
@@ -94,12 +95,12 @@ public class InputText extends AbstractInputComponent {
       textField = new JFXPasswordField();
       textField.getStyleClass().remove("custom-text-field");
       textField.getStyleClass().remove("jfx-text-field");
-      //textField.getStyleClass().remove("text-field");
+      // textField.getStyleClass().remove("text-field");
       textField.getStyleClass().remove("text-input");
     } else {
       textField = new JFXTextField();
       textField.getStyleClass().remove("custom-text-field");
-      //textField.getStyleClass().remove("text-field");
+      // textField.getStyleClass().remove("text-field");
       textField.getStyleClass().remove("text-input");
     }
   }
@@ -117,7 +118,8 @@ public class InputText extends AbstractInputComponent {
 
   public void configure() {
     final Optional<String> prompt = configuration.propertyValueOf(XMLConstants.PROMPT);
-    final Optional<Boolean> isAttributeGenerated = configuration.booleanPropertyValueOf(XMLConstants.GENERATED);
+    final Optional<Boolean> isAttributeGenerated =
+        configuration.booleanPropertyValueOf(XMLConstants.GENERATED);
     final Optional<Boolean> isFocused = configuration.booleanPropertyValueOf(XMLConstants.FOCUSED);
 
     // focus
@@ -134,12 +136,16 @@ public class InputText extends AbstractInputComponent {
 
     // prompt
     prompt.ifPresent(e -> {
-      final String val = controller.getLocalised(prompt.get());
-      textField.setPromptText(val);
+      String p = prompt.get();
+      if (StringUtils.isNotBlank(p)) {
+        final String val = controller.getLocalised(prompt.get());
+        textField.setPromptText(val);
+      }
     });
 
     // process DisplayConfig
-    final Optional<VLViewComponentXML> displayConfig = configuration.getComponentById(DISPLAY_CONFIG);
+    final Optional<VLViewComponentXML> displayConfig =
+        configuration.getComponentById(DISPLAY_CONFIG);
     displayConfig.ifPresent(e -> {
       e.booleanPropertyValueOf(XMLConstants.READ_ONLY).ifPresent(f -> {
         textField.setDisable(f.booleanValue());
@@ -177,13 +183,15 @@ public class InputText extends AbstractInputComponent {
 
         if (StringUtils.isNotBlank(capitalize)) {
           if (StringUtils.isNotBlank(owner.getCurrentInternalValue())) {
-            owner.currentInternalValueProperty().set(StringUtils.capitalize(owner.getCurrentInternalValue()));
+            owner.currentInternalValueProperty()
+                .set(StringUtils.capitalize(owner.getCurrentInternalValue()));
           }
         }
 
         if (StringUtils.isNotBlank(capitalizeAll)) {
           if (StringUtils.isNotBlank(owner.getCurrentInternalValue())) {
-            owner.currentInternalValueProperty().set(StringUtils.capitalize(owner.getCurrentInternalValue()));
+            owner.currentInternalValueProperty()
+                .set(StringUtils.capitalize(owner.getCurrentInternalValue()));
           }
         }
 

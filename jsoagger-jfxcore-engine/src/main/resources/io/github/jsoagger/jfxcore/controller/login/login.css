@@ -136,3 +136,8 @@
 	-fx-background-color:white;
 	-fx-border-width:0;
 }
+.wizard-error-label{
+	-fx-text-fill: red;
+	-fx-fill:red;
+	-fx-font-weight:bold;
+}

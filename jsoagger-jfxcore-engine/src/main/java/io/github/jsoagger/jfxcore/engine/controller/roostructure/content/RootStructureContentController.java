@@ -35,7 +35,6 @@ import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.controller.SecondaryMenuController;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
-import io.github.jsoagger.jfxcore.engine.controller.main.DoubleHeaderRootStructureController;
 import io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController;
 import io.github.jsoagger.jfxcore.engine.controller.main.StandardViewController;
 import io.github.jsoagger.jfxcore.engine.controller.main.WizardViewController;
@@ -351,14 +350,6 @@ public class RootStructureContentController extends AbstractViewController {
       }
 
       rootStructure.displayMainView();
-      if (rootStructure instanceof DoubleHeaderRootStructureController) {
-        String hideDoubleHeader =
-            rootStructure.getRootComponent().getPropertyValue("hideDoubleHeader");
-        if ("true".equalsIgnoreCase(hideDoubleHeader)) {
-          ((DoubleHeaderRootStructureController) rootStructure).hideHeader();
-        }
-      }
-
     } catch (Throwable e) {
       e.printStackTrace();
     }

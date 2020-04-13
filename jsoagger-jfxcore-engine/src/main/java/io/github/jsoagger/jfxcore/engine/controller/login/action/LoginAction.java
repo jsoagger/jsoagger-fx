@@ -35,6 +35,8 @@ import io.github.jsoagger.jfxcore.api.security.ILoginSessionHolder;
 import io.github.jsoagger.jfxcore.api.services.Services;
 import io.github.jsoagger.jfxcore.engine.client.apiimpl.AbstractAction;
 import io.github.jsoagger.jfxcore.engine.client.apiimpl.ActionResult;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.controller.main.layout.ViewStructure;
 import io.github.jsoagger.jfxcore.engine.controller.utils.WizardViewUtils;
 import io.github.jsoagger.jfxcore.engine.events.LoginSuccessEvent;
@@ -48,62 +50,66 @@ import io.github.jsoagger.jfxcore.engine.events.LoginSuccessEvent;
  */
 public class LoginAction extends AbstractAction implements IAction {
 
-	// needs LoginOperation
-	private IOperation loginOperation;
+  // needs LoginOperation
+  private IOperation loginOperation;
 
-	/**
-	 * @{inheritedDoc}
-	 */
-	@Override
-	public void execute(IActionRequest actionRequest, Optional<IActionResult> previousActionResult) {
-		// no bean declared, runtime error!!
-		if (loginOperation == null) {
-			resultProperty.set(ActionResult.error());
-		}
+  /**
+   * @{inheritedDoc}
+   */
+  @Override
+  public void execute(IActionRequest actionRequest, Optional<IActionResult> previousActionResult) {
+    // no bean declared, runtime error!!
+    if (loginOperation == null) {
+      resultProperty.set(ActionResult.error());
+    }
 
-		SingleResult sr = (SingleResult) actionRequest.getController().getModel();
-		JsonObject model = new JsonObject();
-		WizardViewUtils.copyAllAttributesFrom(sr, model);
-		loginOperation.doOperation(model.toString(), this::handleResult);
-	}
+    this.controller = (AbstractViewController) actionRequest.getController();
 
-	/**
-	 * @param result
-	 */
-	public synchronized void handleResult(IOperationResult result) {
-		if (result.hasBusinessError()) {
-			ActionResult actionresult = new ActionResult.ActionResultBuilder().operationMessage(result.getMessages())
-					.status(ActionResultStatus.ERROR).build();
-			resultProperty.set(actionresult);
-		} else {
+    SingleResult sr = (SingleResult) actionRequest.getController().getModel();
+    JsonObject model = new JsonObject();
+    WizardViewUtils.copyAllAttributesFrom(sr, model);
+    loginOperation.doOperation(model.toString(), this::handleResult);
+  }
 
-			// set root context of the view to
-			// client must handle and manage session holder like LocalStorage
-			// and manage session data inside it after success login
-			ILoginSessionHolder loginContext = (ILoginSessionHolder) Services.getBean("LoginSessionHolder");
-			loginContext.setSessionId((String) result.getMetaData().get("session_id"));
+  /**
+   * @param result
+   */
+  public synchronized void handleResult(IOperationResult result) {
+    if (result.hasBusinessError()) {
+      ActionResult actionresult = new ActionResult.ActionResultBuilder()
+          .operationMessage(result.getMessages()).status(ActionResultStatus.ERROR).build();
+      resultProperty.set(actionresult);
+      NodeHelper.showHeaderErrorMessage(controller, "Invalid username or password");
+    } else {
 
-			// redirect to welcome view
-			LoginSuccessEvent loginSuccessEvent = new LoginSuccessEvent();
-			Services.dispatchEvent(loginSuccessEvent);
-			ViewStructure.instance().listenTo(loginSuccessEvent);
-			ActionResult actionresult = new ActionResult.ActionResultBuilder().operationMessage(result.getMessages())
-					.status(ActionResultStatus.SUCCESS).build();
-			resultProperty.set(actionresult);
-		}
-	}
+      // set root context of the view to
+      // client must handle and manage session holder like LocalStorage
+      // and manage session data inside it after success login
+      ILoginSessionHolder loginContext =
+          (ILoginSessionHolder) Services.getBean("LoginSessionHolder");
+      loginContext.setSessionId((String) result.getMetaData().get("session_id"));
 
-	/**
-	 * @return the loginOperation
-	 */
-	public IOperation getLoginOperation() {
-		return loginOperation;
-	}
+      // redirect to welcome view
+      LoginSuccessEvent loginSuccessEvent = new LoginSuccessEvent();
+      Services.dispatchEvent(loginSuccessEvent);
+      ViewStructure.instance().listenTo(loginSuccessEvent);
+      ActionResult actionresult = new ActionResult.ActionResultBuilder()
+          .operationMessage(result.getMessages()).status(ActionResultStatus.SUCCESS).build();
+      resultProperty.set(actionresult);
+    }
+  }
 
-	/**
-	 * @param loginOperation the loginOperation to set
-	 */
-	public void setLoginOperation(IOperation loginOperation) {
-		this.loginOperation = loginOperation;
-	}
+  /**
+   * @return the loginOperation
+   */
+  public IOperation getLoginOperation() {
+    return loginOperation;
+  }
+
+  /**
+   * @param loginOperation the loginOperation to set
+   */
+  public void setLoginOperation(IOperation loginOperation) {
+    this.loginOperation = loginOperation;
+  }
 }

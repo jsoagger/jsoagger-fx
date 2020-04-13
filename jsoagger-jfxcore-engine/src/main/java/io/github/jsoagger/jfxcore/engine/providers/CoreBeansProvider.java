@@ -92,6 +92,7 @@ import io.github.jsoagger.jfxcore.engine.components.layoutproc.FormFieldsetListP
 import io.github.jsoagger.jfxcore.engine.components.layoutproc.FormFieldsetProcessor;
 import io.github.jsoagger.jfxcore.engine.components.layoutproc.SimpleDetailsViewAllFieldsetsProcessor;
 import io.github.jsoagger.jfxcore.engine.components.layoutproc.SingleBlobBlocsFieldsetProcessor;
+import io.github.jsoagger.jfxcore.engine.components.layoutproc.ToolBarProcessor;
 import io.github.jsoagger.jfxcore.engine.components.layoutproc.UserBigChipsListProcessor;
 import io.github.jsoagger.jfxcore.engine.components.listform.BooleanListFormCellFactory;
 import io.github.jsoagger.jfxcore.engine.components.listform.LegalMentionItemPresenter;
@@ -193,6 +194,11 @@ public class CoreBeansProvider {
     return new InputCombobox();
   }
 
+  @Bean
+  @Named("ToolBarProcessor")
+  public ToolBarProcessor ToolBarProcessor() {
+    return new ToolBarProcessor();
+  }
 
   @Bean
   @Named("InputDataImportProcessingPane")

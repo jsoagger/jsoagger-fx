@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -24,11 +24,12 @@ package io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.tabed;
 import java.net.URL;
 import java.util.List;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.api.IBuildable;
+import io.github.jsoagger.jfxcore.api.IDisplayable;
 import io.github.jsoagger.jfxcore.api.IFieldset;
 import io.github.jsoagger.jfxcore.api.IFieldsetGroupLayout;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -72,7 +73,8 @@ public class SimpleFieldsetTopTabedLayout extends StackPane implements IFieldset
    * Constructor
    */
   public SimpleFieldsetTopTabedLayout() {
-    URL location = SimpleFieldsetTopTabedLayout.class.getResource("SimpleFieldsetTopTabedLayout.fxml");
+    URL location =
+        SimpleFieldsetTopTabedLayout.class.getResource("SimpleFieldsetTopTabedLayout.fxml");
     NodeHelper.loadFXML(location, this);
 
     fieldsetTopLayoutHeader.getChildren().add(header);
@@ -94,13 +96,16 @@ public class SimpleFieldsetTopTabedLayout extends StackPane implements IFieldset
       scrollPane.setFitToWidth(true);
       scrollPane.setContent(contentLayout);
       scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
-      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "contentStyleClass", "fieldset-group-selector-top-tabed-content");
+      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "contentStyleClass",
+          "fieldset-group-selector-top-tabed-content");
     } else {
-      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "contentStyleClass", "fieldset-group-selector-top-tabed-content");
+      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "contentStyleClass",
+          "fieldset-group-selector-top-tabed-content");
       fieldsetTopLayoutCenter.getChildren().add(contentLayout);
     }
 
-    NodeHelper.styleClassAddAll(header, fieldsetConfiguration, "headerStyleClass", "fieldset-group-selector-top-tabed-header");
+    NodeHelper.styleClassAddAll(header, fieldsetConfiguration, "headerStyleClass",
+        "fieldset-group-selector-top-tabed-header");
   }
 
 
@@ -132,7 +137,7 @@ public class SimpleFieldsetTopTabedLayout extends StackPane implements IFieldset
    * @param fieldsets
    */
   public void setFieldsets(List<IFieldset> fieldsets) {
-    for(IFieldset e: fieldsets) {
+    for (IFieldset e : fieldsets) {
       addFieldset(e);
     }
   }
@@ -146,7 +151,8 @@ public class SimpleFieldsetTopTabedLayout extends StackPane implements IFieldset
     fieldsets.add(fieldset);
 
     FieldsetTopTabedItem groupItem = new FieldsetTopTabedItem(fieldset);
-    NodeHelper.styleClassAddAll(groupItem, fieldsetConfiguration, "tabItemStyleClass", "fieldset-top-tabed-item");
+    NodeHelper.styleClassAddAll(groupItem, fieldsetConfiguration, "tabItemStyleClass",
+        "fieldset-top-tabed-item");
     header.addItem(groupItem);
 
     groupItem.setOnMouseClicked(e -> {
@@ -159,6 +165,17 @@ public class SimpleFieldsetTopTabedLayout extends StackPane implements IFieldset
     });
   }
 
+  @Override
+  public void addComponents(List<IBuildable> buildables) {
+    for (IBuildable buildable : buildables) {
+      contentLayout.getChildren().add(buildable.getDisplay());
+    }
+  }
+
+  @Override
+  public void addComponent(IDisplayable displayable) {
+    contentLayout.getChildren().add(displayable.getDisplay());
+  }
 
   /**
    * @return

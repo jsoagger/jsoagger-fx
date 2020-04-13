@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -21,12 +21,15 @@
 package io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.menu;
 
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import java.util.List;
+
 import io.github.jsoagger.core.utils.StringUtils;
+import io.github.jsoagger.jfxcore.api.IBuildable;
+import io.github.jsoagger.jfxcore.api.IDisplayable;
 import io.github.jsoagger.jfxcore.api.IFieldset;
 import io.github.jsoagger.jfxcore.api.IFieldsetGroupLayout;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -43,26 +46,16 @@ public class FieldsetFlowLayout extends FlowPane implements IFieldsetGroupLayout
   private ObservableList<IFieldset> fieldsets = FXCollections.observableArrayList();
 
 
-  /**
-   * Constructor
-   */
   public FieldsetFlowLayout() {
     getStyleClass().add("fieldset-flow-layout-pane");
     setOrientation(Orientation.HORIZONTAL);
-    //setPrefWrapLength(600);
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void setDisplaySelectors(Boolean displayGroupSelector) {}
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void addFieldset(IFieldset fieldset) {
     fieldsets.add(fieldset);
@@ -70,6 +63,17 @@ public class FieldsetFlowLayout extends FlowPane implements IFieldsetGroupLayout
     NodeHelper.setHgrow(fieldset.getDisplay());
   }
 
+  @Override
+  public void addComponents(List<IBuildable> buildables) {
+    for (IBuildable buildable : buildables) {
+      getChildren().add(buildable.getDisplay());
+    }
+  }
+
+  @Override
+  public void addComponent(IDisplayable displayable) {
+    getChildren().add(displayable.getDisplay());
+  }
 
   /**
    * @{inheritedDoc}

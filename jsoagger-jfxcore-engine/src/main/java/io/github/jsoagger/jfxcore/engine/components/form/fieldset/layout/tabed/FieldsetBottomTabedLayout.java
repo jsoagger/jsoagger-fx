@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -24,12 +24,13 @@ package io.github.jsoagger.jfxcore.engine.components.form.fieldset.layout.tabed;
 import java.net.URL;
 import java.util.List;
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.api.IBuildable;
+import io.github.jsoagger.jfxcore.api.IDisplayable;
 import io.github.jsoagger.jfxcore.api.IFieldset;
 import io.github.jsoagger.jfxcore.api.IFieldsetGroupLayout;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.form.fieldset.FormFieldset;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -91,7 +92,8 @@ public class FieldsetBottomTabedLayout extends StackPane implements IFieldsetGro
       scrollPane.setFitToWidth(true);
       scrollPane.setContent(contentLayout);
     } else {
-      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "styleClass", "fieldset-group-selector-top-tabed-content");
+      NodeHelper.styleClassAddAll(contentLayout, fieldsetListConfig, "styleClass",
+          "fieldset-group-selector-top-tabed-content");
       fieldsetBottomLayoutCenter.getChildren().add(contentLayout);
     }
   }
@@ -123,7 +125,7 @@ public class FieldsetBottomTabedLayout extends StackPane implements IFieldsetGro
    * @param fieldsets
    */
   public void setFieldsets(List<FormFieldset> fieldsets) {
-    for(FormFieldset e: fieldsets) {
+    for (FormFieldset e : fieldsets) {
       addFieldset(e);
     }
   }
@@ -148,6 +150,17 @@ public class FieldsetBottomTabedLayout extends StackPane implements IFieldsetGro
     });
   }
 
+  @Override
+  public void addComponents(List<IBuildable> buildables) {
+    for (IBuildable buildable : buildables) {
+      contentLayout.addCenterElement(buildable);
+    }
+  }
+
+  @Override
+  public void addComponent(IDisplayable displayable) {
+    contentLayout.addCenterElement(displayable.getDisplay());
+  }
 
   /**
    * @return

@@ -22,10 +22,7 @@ package io.github.jsoagger.jfxcore.engine.components.header.comps;
 
 
 
-
 import java.util.List;
-
-import com.jfoenix.controls.JFXButton;
 
 import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.IBuildable;
@@ -47,22 +44,26 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
- * * A header toolbar where primary menu is displayed in the top right side, just on its left is displayed the previous location label and below the primary button is displayed the current location.
+ * * A header toolbar where primary menu is displayed in the top right side, just on its left is
+ * displayed the previous location label and below the primary button is displayed the current
+ * location.
  * <p>
  * This navigation bar should be used only in the top header right of the application.
  * <p>
  * For nomwn, this toolbar is not minimizable, but should be in future.
  * <p>
- * The configuration file must declare only one button that is supposed to be the primary button. This button will be layed out automatically on the primary button location.
+ * The configuration file must declare only one button that is supposed to be the primary button.
+ * This button will be layed out automatically on the primary button location.
  *
  * @author Ramilafananana VONJISOA
  * @mailto yvonjisoa@nexitia.com
  * @date 2019
  */
-public class SingleLocationPrimaryMenuWithNavigationBar extends VBox implements IBuildable, NavigableToolbar, IHeaderToolbar {
+public class SingleLocationPrimaryMenuWithNavigationBar extends VBox
+    implements IBuildable, NavigableToolbar, IHeaderToolbar {
 
   protected final StackPane locationContainer = new StackPane();
-  protected Button backIcon = new JFXButton();
+  protected Button backIcon = NodeHelper.jfxButton("");
   protected AbstractViewController controller;
   protected IBuildable primaryMenuButton;
 
@@ -78,8 +79,7 @@ public class SingleLocationPrimaryMenuWithNavigationBar extends VBox implements 
 
     IconUtils.setHeaderNavigationBack(backIcon);
     backIcon.setOnAction(e -> goBack());
-    backIcon.getStyleClass().remove("jfx-button");
-    backIcon.getStyleClass().remove("button");
+    backIcon.getStyleClass().removeAll("button", "jfx-button", "ep-back-button-on-header");
     backIcon.managedProperty().bind(backIcon.visibleProperty());
     backIcon.setVisible(false);
 
@@ -117,7 +117,8 @@ public class SingleLocationPrimaryMenuWithNavigationBar extends VBox implements 
     this.controller = (AbstractViewController) controller;
     NodeHelper.styleClassSetAll(backIcon, configuration, "backIconStyleClass", "app-header-button");
     backIcon.getStyleClass().add("hand-hover");
-    final List<IBuildable> links = ComponentUtils.resolveAndGenerate((AbstractViewController) controller, configuration.getSubcomponents());
+    final List<IBuildable> links = ComponentUtils
+        .resolveAndGenerate((AbstractViewController) controller, configuration.getSubcomponents());
     if (links.size() > 1) {
       // prohibited!!!! but ..
     }
@@ -141,7 +142,9 @@ public class SingleLocationPrimaryMenuWithNavigationBar extends VBox implements 
         locationContainer.getChildren().add(location);
       });
     } else {
-      final String locationString = c != null && c.getRootComponent()!= null ? c.getRootComponent().getPropertyValue("location") : "";
+      final String locationString = c != null && c.getRootComponent() != null
+          ? c.getRootComponent().getPropertyValue("location")
+          : "";
       if (StringUtils.isNotBlank(locationString)) {
         String translated = c.getLocalised(locationString);
         Label label = new Label(translated);

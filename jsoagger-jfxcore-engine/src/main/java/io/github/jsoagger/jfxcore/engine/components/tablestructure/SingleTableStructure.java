@@ -161,11 +161,6 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
 
   @Override
   public void onModelUpdated(IOperationResult newValue) {
-
-    System.out.println("SingleTableStructure On model updated :  " + newValue);
-    System.out.println(
-        "SingleTableStructure On model updated :  " + ((MultipleResult) newValue).getData().size());
-
     if (newValue == null || ((MultipleResult) newValue).getData().size() < 1) {
       items.clear();
       elementsCount.set(0);
@@ -188,7 +183,6 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
       // ((StandardViewController)controller).selectedElementProperty().set(null);
     } else {
 
-      System.out.println("[DEBUG] On model updated : >>>>>>>>> 22222222222222");
 
       final MultipleResult multipleResult = (MultipleResult) newValue;
       elementsCount.set(multipleResult.totaElements());
@@ -201,8 +195,6 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
 
       // force select first element
       // ((StandardViewController)controller).selectedElementProperty().set(multipleResult.getData().get(0));
-      System.out.println("[DEBUG] On model updated : >>>>>>>>> 33");
-
       if (Platform.isFxApplicationThread()) {
         setData(multipleResult);
       } else {
@@ -250,17 +242,13 @@ public abstract class SingleTableStructure extends AbstractTableStructure {
 
                 dataProvider.navigate(controller, zero, Direction.NEXT, result -> {
                   model.set(null);
-
-                  System.out.println(">>>>>>>>> LoadDataTask result: " + result);
                   model.set(result);
                 });
               } else {
-                System.out.println(">>>>>>> LoadDataTask no content");
                 setNoContent();
               }
             } else {
               setNoContent();
-              System.out.println(">>>>>>> LoadDataTask no content 2222222");
             }
           }
 

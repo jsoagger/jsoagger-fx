@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -27,11 +27,10 @@ import java.util.List;
 import io.github.jsoagger.jfxcore.api.IBuildable;
 import io.github.jsoagger.jfxcore.api.IDisplayable;
 import io.github.jsoagger.jfxcore.api.IToolbarHolder;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.utils.ComponentUtils;
 import io.github.jsoagger.jfxcore.engine.utils.ToolbarUtils;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.scene.Node;
 
 /**
@@ -70,6 +69,11 @@ import javafx.scene.Node;
  */
 public abstract class AbstractToolbar implements IDisplayable {
 
+  public VLViewComponentXML getConfiguration() {
+    return configuration;
+  }
+
+
   /*-----------------------------------------------------------------------------
   | STATIC ATTRIBUTES
    *=============================================================================*/
@@ -104,21 +108,20 @@ public abstract class AbstractToolbar implements IDisplayable {
   public void buildFrom(AbstractViewController controller, IToolbarHolder toolbarHolder) {
     this.controller = controller;
     this.toolbarHolder = toolbarHolder;
-    this.configuration = toolbarHolder.getToolbarConfiguration();
-
-    // load subconfigrations
-    this.ellypsisMenuConfiguration = configuration.getComponentById(ELLYPSISMENUACTIONS).orElse(null);
-    this.modifyMenuConfiguration = configuration.getComponentById(MODIFYMENUACTIONS).orElse(null);
-    this.rootMenuconfiguration = configuration.getComponentById(ROOTMENUACTIONS).orElse(null);
+    if (toolbarHolder != null) {
+      this.configuration = toolbarHolder.getToolbarConfiguration();
+      this.ellypsisMenuConfiguration =
+          configuration.getComponentById(ELLYPSISMENUACTIONS).orElse(null);
+      this.modifyMenuConfiguration = configuration.getComponentById(MODIFYMENUACTIONS).orElse(null);
+      this.rootMenuconfiguration = configuration.getComponentById(ROOTMENUACTIONS).orElse(null);
+    }
   }
 
 
-  /**
-   *
-   */
   protected void buildEllypsisMenu() {
     if ((this.ellypsisMenuConfiguration != null) && ellypsisMenuConfiguration.hasSubComponent()) {
-      ellypisMenu = ToolbarUtils.ellipsisVActionsButton(ellypsisMenuConfiguration, controller, null);
+      ellypisMenu =
+          ToolbarUtils.ellipsisVActionsButton(ellypsisMenuConfiguration, controller, null);
     }
   }
 
@@ -134,10 +137,19 @@ public abstract class AbstractToolbar implements IDisplayable {
       return new ArrayList<>();
     }
 
-    List<IBuildable> buildables = ComponentUtils.resolveAndGenerate(controller, groupDefinition.getSubcomponents());
+    List<IBuildable> buildables =
+        ComponentUtils.resolveAndGenerate(controller, groupDefinition.getSubcomponents());
     if (buildables == null) {
       return new ArrayList<>();
     }
     return buildables;
+  }
+
+  public void setConfiguration(VLViewComponentXML configuration) {
+    this.configuration = configuration;
+    this.ellypsisMenuConfiguration =
+        configuration.getComponentById(ELLYPSISMENUACTIONS).orElse(null);
+    this.modifyMenuConfiguration = configuration.getComponentById(MODIFYMENUACTIONS).orElse(null);
+    this.rootMenuconfiguration = configuration.getComponentById(ROOTMENUACTIONS).orElse(null);
   }
 }

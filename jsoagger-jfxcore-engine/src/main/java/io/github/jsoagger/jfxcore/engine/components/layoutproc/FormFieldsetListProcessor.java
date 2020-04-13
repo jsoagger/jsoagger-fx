@@ -30,8 +30,10 @@ import io.github.jsoagger.jfxcore.api.IForwardEditor;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.services.Services;
 import io.github.jsoagger.jfxcore.engine.components.form.fieldset.FormFieldset;
+import io.github.jsoagger.jfxcore.engine.components.toolbar.AbstractToolbar;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.utils.ComponentUtils;
+import io.github.jsoagger.jfxcore.engine.utils.ToolbarUtils;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
@@ -52,6 +54,7 @@ public class FormFieldsetListProcessor implements IForwardEditableFieldsetsProce
   private static final String FORM_FIELDSET_PROCESSOR = "FormFieldsetProcessor";
   private static final String FIELDSET_IMPL = "fieldsetImpl";
   private final static String ACTIONS = "Actions";
+  private final static String EARLY_ACTIONS = "EarlyActions";
 
 
   /**
@@ -68,13 +71,15 @@ public class FormFieldsetListProcessor implements IForwardEditableFieldsetsProce
    * @{inheritedDoc}
    */
   @Override
-  public Node process(IJSoaggerController controller, VLViewComponentXML fieldsetListConfig, IForwardEditor editor) {
+  public Node process(IJSoaggerController controller, VLViewComponentXML fieldsetListConfig,
+      IForwardEditor editor) {
     String layoutImpl = fieldsetListConfig.getPropertyValue("layoutImpl");
     if (StringUtils.isEmpty(layoutImpl)) {
       layoutImpl = "FieldsetTopTabedLayout";
     }
 
-    Boolean displayGroupSelector = fieldsetListConfig.getBooleanProperty("displayGroupSelector", true);
+    Boolean displayGroupSelector =
+        fieldsetListConfig.getBooleanProperty("displayGroupSelector", true);
     IFieldsetGroupLayout layoutManager = (IFieldsetGroupLayout) Services.getBean(layoutImpl);
     layoutManager.setRootConfig(fieldsetListConfig);
 
@@ -83,21 +88,31 @@ public class FormFieldsetListProcessor implements IForwardEditableFieldsetsProce
 
       VLViewComponentXML realConfig = fieldsetConfig;
       if (StringUtils.isNotBlank(fieldsetConfig.getReference())) {
-        realConfig = ComponentUtils.resolveDefinition((AbstractViewController)controller, fieldsetConfig.getReference()).orElse(null);
+        realConfig = ComponentUtils
+            .resolveDefinition((AbstractViewController) controller, fieldsetConfig.getReference())
+            .orElse(null);
       }
 
       if (realConfig != null && !ACTIONS.equals(realConfig.getId())) {
+
 
         String componentProcessorName = realConfig.getProcessor();
         if (StringUtils.isEmpty(componentProcessorName)) {
           componentProcessorName = FORM_FIELDSET_PROCESSOR;
         }
 
-        IFieldsetProcessor fieldsetProcessor = (IFieldsetProcessor) Services.getBean(componentProcessorName);
+        IFieldsetProcessor fieldsetProcessor =
+            (IFieldsetProcessor) Services.getBean(componentProcessorName);
         IFieldset fieldset = fieldsetProcessor.processFieldset(controller, realConfig);
         fieldset.setForwardEditor(editor);
         layoutManager.addFieldset(fieldset);
-        //NodeHelper.setHVGrow(fieldset.getDisplay());
+      }
+
+
+      if (realConfig != null && EARLY_ACTIONS.equals(realConfig.getId())) {
+        AbstractToolbar toolbar =
+            ToolbarUtils.buildToolbar((AbstractViewController) controller, realConfig);
+        layoutManager.addComponent(toolbar);
       }
     }
 

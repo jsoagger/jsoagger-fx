@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -28,8 +28,8 @@ import java.util.Optional;
 
 import io.github.jsoagger.core.utils.Assert;
 import io.github.jsoagger.core.utils.StringUtils;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+// import org.apache.logging.log4j.LogManager;
+// import org.apache.logging.log4j.Logger;
 import io.github.jsoagger.jfxcore.api.IBuildable;
 import io.github.jsoagger.jfxcore.api.IComponentProcessor;
 import io.github.jsoagger.jfxcore.api.IForwardEditableFieldsetsProcessor;

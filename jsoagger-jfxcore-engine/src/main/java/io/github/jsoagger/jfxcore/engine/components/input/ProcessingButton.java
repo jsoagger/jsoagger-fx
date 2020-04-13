@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -24,16 +24,14 @@ package io.github.jsoagger.jfxcore.engine.components.input;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 
-import io.github.jsoagger.jfxcore.engine.client.components.ComponentToLabeledHelper;
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.core.utils.StringUtils;
-
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.InjectableComponent;
+import io.github.jsoagger.jfxcore.engine.client.components.ComponentToLabeledHelper;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.XMLConstants;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
-
 import javafx.beans.value.ChangeListener;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
@@ -85,7 +83,8 @@ public class ProcessingButton extends ActionableComp implements InjectableCompon
       button.setGraphic(fakewaiting);
     }
 
-    button.setDefaultButton(configuration.booleanPropertyValueOf(XMLConstants.DEFAULT).orElse(false));
+    button
+        .setDefaultButton(configuration.booleanPropertyValueOf(XMLConstants.DEFAULT).orElse(false));
     ComponentToLabeledHelper.setTooltip(configuration, button, (AbstractViewController) controller);
     NodeHelper.styleClassAddAll(button, configuration, XMLConstants.STYLE_CLASS);
   }
@@ -103,11 +102,12 @@ public class ProcessingButton extends ActionableComp implements InjectableCompon
 
     // waiting.visibleProperty().bind(task.runningProperty());
     taskProgress.progressProperty().bind(task.progressProperty());
-    for(ChangeListener<Worker.State> l: listeners) {
+    for (ChangeListener<Worker.State> l : listeners) {
       task.stateProperty().addListener(l);
     }
 
-    CompletableFuture.runAsync(task, Executors.newSingleThreadExecutor()).whenComplete(this::taskCompleted);
+    CompletableFuture.runAsync(task, Executors.newSingleThreadExecutor())
+        .whenComplete(this::taskCompleted);
   }
 
 

@@ -1987,14 +1987,15 @@ multiple-flow-title:selected{
 }
 
 .wizard-validation-message-wrapper{
-	-fx-background-color:-accent-color-900;
+	-fx-background-color:transparent;
 	-fx-alignment:CENTER;
 	-fx-padding:8.0 16.0 8.0 16.0;	
 }
 
 .wizard-error-label{
-	-fx-text-fill:white;	
-	-fx-fill:white;	
+	-fx-text-fill:red;	
+	-fx-fill:red;
+	-fx-font-weight:bold;	
 }
 
 

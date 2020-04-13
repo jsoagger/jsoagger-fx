@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -25,7 +25,6 @@ package io.github.jsoagger.jfxcore.engine.components.toolbar.htoolbar;
 import io.github.jsoagger.jfxcore.api.IModifiableToolbarHolder;
 import io.github.jsoagger.jfxcore.api.IToolbarHolder;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
-
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.CheckBox;
 
@@ -71,6 +70,8 @@ public class BasicHToolbar extends AbstractHToolbar {
     boolean selectableProp = configuration.getBooleanProperty("selectable");
     this.selectable.set(selectableProp);
 
+
+    System.out.println(">>>>>>>>>> 11111111");
     if (ellypisMenu != null) {
       allOverWrapper.getChildren().add(ellypisMenu);
     }
