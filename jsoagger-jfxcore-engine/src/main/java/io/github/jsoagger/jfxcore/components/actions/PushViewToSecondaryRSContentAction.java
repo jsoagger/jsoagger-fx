@@ -39,128 +39,128 @@ import javafx.concurrent.Task;
 
 public class PushViewToSecondaryRSContentAction extends AbstractAction {
 
-	/**
-	 * Constructor
-	 */
-	public PushViewToSecondaryRSContentAction() {
-		super();
-	}
+  /**
+   * Constructor
+   */
+  public PushViewToSecondaryRSContentAction() {
+    super();
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void execute(IActionRequest actionRequest, Optional<IActionResult> previousActionResult) {
-		try {
-			StandardViewController controller = (StandardViewController) actionRequest.getController();
-			String viewId = (String) actionRequest.getProperty("viewId");
-			OperationData data = (OperationData) actionRequest.getProperty("sourceData");
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void execute(IActionRequest actionRequest, Optional<IActionResult> previousActionResult) {
+    try {
+      StandardViewController controller = (StandardViewController) actionRequest.getController();
+      String viewId = (String) actionRequest.getProperty("viewId");
+      OperationData data = (OperationData) actionRequest.getProperty("sourceData");
 
-			// if any dataloader, i.e, data to load is relative to this one
-			IOperation op = getOperation(actionRequest);
-			if (op != null) {
-				JsonObject query = new JsonObject();
-				query.addProperty("oid", data.getAttributes().get("fullId").toString());
-				op.doOperation(query, r -> {
-					setData(((SingleResult) r).getData());
+      // if any dataloader, i.e, data to load is relative to this one
+      IOperation op = getOperation(actionRequest);
+      if (op != null) {
+        JsonObject query = new JsonObject();
+        query.addProperty("oid", data.getAttributes().get("fullId").toString());
+        op.doOperation(query, r -> {
+          setData(((SingleResult) r).getData());
 
-					Object rd = controller.getModel();
-					OperationData rootdata = null;
-					if (rd instanceof OperationData) {
-						rootdata = (OperationData) rd;
-					}
+          Object rd = controller.getModel();
+          OperationData rootdata = null;
+          if (rd instanceof OperationData) {
+            rootdata = (OperationData) rd;
+          }
 
-					RootStructureController rsc = RootStructureUtils.forId(viewId, rootdata);
-					Platform.runLater(() -> {
-						rsc.sourceRootStructure(controller.getRootStructure());
-						controller.getRootStructure().setSecondaryRootStructureContent(rsc.processedView());
-					});
+          RootStructureController rsc = RootStructureUtils.forId(viewId, rootdata);
+          Platform.runLater(() -> {
+            rsc.sourceRootStructure(controller.getRootStructure());
+            controller.getRootStructure().setSecondaryRootStructureContent(rsc.processedView());
+          });
 
-					BuildRSContentTask task = new BuildRSContentTask(rsc, actionRequest);
-					new Thread(task).start();
-				}, ex -> {
-					ex.printStackTrace();
-				});
-			} else {
+          BuildRSContentTask task = new BuildRSContentTask(rsc, actionRequest);
+          new Thread(task).start();
+        }, ex -> {
+          ex.printStackTrace();
+        });
+      } else {
 
-				Object rd = controller.getModel();
-				OperationData rootdata = null;
-				if (rd instanceof OperationData) {
-					rootdata = (OperationData) rd;
-				}
+        Object rd = controller.getModel();
+        OperationData rootdata = null;
+        if (rd instanceof OperationData) {
+          rootdata = (OperationData) rd;
+        }
 
-				RootStructureController rsc = RootStructureUtils.forId(viewId, rootdata);
-				Platform.runLater(() -> {
-					rsc.sourceRootStructure(controller.getRootStructure());
-					controller.getRootStructure().setSecondaryRootStructureContent(rsc.processedView());
-				});
+        RootStructureController rsc = RootStructureUtils.forId(viewId, rootdata);
+        Platform.runLater(() -> {
+          rsc.sourceRootStructure(controller.getRootStructure());
+          controller.getRootStructure().setSecondaryRootStructureContent(rsc.processedView());
+        });
 
-				BuildRSContentTask task = new BuildRSContentTask(rsc, actionRequest);
-				new Thread(task).start();
-			}
+        BuildRSContentTask task = new BuildRSContentTask(rsc, actionRequest);
+        new Thread(task).start();
+      }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
-	private void buildRSContent(RootStructureController rsc, IActionRequest actionRequest) {
-		// Building the content of the RootStructureController
-		String contentId = (String) actionRequest.getProperty("contentId");
+  private void buildRSContent(RootStructureController rsc, IActionRequest actionRequest) {
+    // Building the content of the RootStructureController
+    String contentId = (String) actionRequest.getProperty("contentId");
 
-		// @formatter:off
-		PushStructureContentEvent ev = new PushStructureContentEvent.Builder().model(getData()).viewId(contentId)
-				.build();
-		// @formatter:on
+    // @formatter:off
+    PushStructureContentEvent ev =
+        new PushStructureContentEvent.Builder().model(getData()).viewId(contentId).build();
+    // @formatter:on
 
-		ev.processedContentProperty().addListener((a, b, c) -> updateRSCHeader(rsc, c));
-		rsc.dispatchEvent(ev);
-	}
+    ev.processedContentProperty().addListener((a, b, c) -> updateRSCHeader(rsc, c));
+    rsc.dispatchEvent(ev);
+  }
 
-	/**
-	 * @author Ramilafananana VONJISOA
-	 */
-	private class BuildRSContentTask extends Task<Void> {
+  /**
+   * @author Ramilafananana VONJISOA
+   */
+  private class BuildRSContentTask extends Task<Void> {
 
-		RootStructureController rsc;
-		IActionRequest actionRequest;
+    RootStructureController rsc;
+    IActionRequest actionRequest;
 
-		BuildRSContentTask(String rscuid, OperationData data, IActionRequest actionRequest) {
+    BuildRSContentTask(String rscuid, OperationData data, IActionRequest actionRequest) {
 
-		}
+    }
 
-		/**
-		 * @param rsc
-		 * @param actionRequest
-		 */
-		BuildRSContentTask(RootStructureController rsc, IActionRequest actionRequest) {
-			this.rsc = rsc;
-			this.actionRequest = actionRequest;
-		}
+    /**
+     * @param rsc
+     * @param actionRequest
+     */
+    BuildRSContentTask(RootStructureController rsc, IActionRequest actionRequest) {
+      this.rsc = rsc;
+      this.actionRequest = actionRequest;
+    }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected Void call() throws Exception {
-			buildRSContent(rsc, actionRequest);
-			return null;
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Void call() throws Exception {
+      buildRSContent(rsc, actionRequest);
+      return null;
+    }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected void failed() {
-			super.failed();
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void failed() {
+      super.failed();
+    }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected void running() {
-			super.running();
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void running() {
+      super.running();
+    }
+  }
 }

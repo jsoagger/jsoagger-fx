@@ -895,41 +895,49 @@ public class NodeHelper {
     return messagebox;
   }
 
+  private static RootStructureController getRsc(IJSoaggerController controller) {
+    if (controller instanceof RootStructureController) {
+      return (RootStructureController) controller;
+    } else {
+      return (RootStructureController) controller.getRootStructure();
+    }
+  }
+
   public static void showHeaderMessage(IJSoaggerController controller, String message,
       String icon) {
     Node msg = headerMessage(message, icon);
-    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+    getRsc(controller).showMessage(msg);
   }
 
   public static void showHeaderSuccessCreateMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Item successfully created", "gmi-cloud-done:32");
-    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+    getRsc(controller).showMessage(msg);
   }
 
   public static void showHeaderErrorCreateMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Error occurs, object not created.", "gmi-error-outline:32");
-    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+    getRsc(controller).showMessage(msg);
   }
 
 
   public static void showHeaderSuccessDeleteMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Item(s) successfully deleted", "gmi-delete-sweep:32");
-    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+    getRsc(controller).showMessage(msg);
   }
 
   public static void showHeaderErrorDeleteMessage(IJSoaggerController controller) {
     Node msg = headerMessage("Error occurs, object not deleted.", "gmi-error-outline:32");
-    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+    getRsc(controller).showMessage(msg);
   }
 
   public static void showHeaderErrorMessage(IJSoaggerController controller, String message) {
     Node msg = headerMessage(message, "gmi-error-outline:32");
-    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+    getRsc(controller).showMessage(msg);
   }
 
   public static void showHeaderSuccessMessage(IJSoaggerController controller, String message) {
     Node msg = headerMessage(message, "gmi-cloud-done:32");
-    ((RootStructureController) controller.getRootStructure()).showMessage(msg);
+    getRsc(controller).showMessage(msg);
   }
 
   /**
