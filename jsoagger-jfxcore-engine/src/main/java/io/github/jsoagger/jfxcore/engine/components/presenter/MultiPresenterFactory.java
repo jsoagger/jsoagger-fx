@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.github.jsoagger.core.bridge.result.OperationData;
+import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.IBuildable;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.presenter.ModelContextMenuPresenter;
@@ -34,13 +35,12 @@ import io.github.jsoagger.jfxcore.api.presenter.ModelHeaderIdentityPresenter;
 import io.github.jsoagger.jfxcore.api.presenter.ModelIconPresenter;
 import io.github.jsoagger.jfxcore.api.presenter.ModelIdentityPresenter;
 import io.github.jsoagger.jfxcore.api.presenter.ModelSecondaryLabelPresenter;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import io.github.jsoagger.jfxcore.engine.client.components.ComponentToButtonBaseHelper;
 import io.github.jsoagger.jfxcore.engine.components.contextmenu.EllipsisActionButton;
 import io.github.jsoagger.jfxcore.engine.components.tablestructure.AbstractTableStructure;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
 import io.github.jsoagger.jfxcore.engine.controller.main.StandardViewController;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
@@ -100,7 +100,16 @@ public class MultiPresenterFactory extends CellPresenterFactory implements IBuil
     super();
   }
 
-
+  public String getIdentifier() {
+    String id = (String) forData.getAttributes().get("fullId");
+    if (StringUtils.isEmpty(id)) {
+      id = (String) forData.getAttributes().get("oid");
+      if (StringUtils.isEmpty(id)) {
+        id = (String) forData.getAttributes().get("id");
+      }
+    }
+    return id;
+  }
 
   public void init() {
     selectableProperty().addListener((ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
@@ -350,22 +359,12 @@ public class MultiPresenterFactory extends CellPresenterFactory implements IBuil
   }
 
 
-  /**
-   * Getter of forData
-   *
-   * @return the forData
-   */
   @Override
   public OperationData getForData() {
     return forData;
   }
 
 
-  /**
-   * Setter of forData
-   *
-   * @param forData the forData to set
-   */
   @Override
   public void setForData(OperationData forData) {
     this.forData = forData;
@@ -392,7 +391,7 @@ public class MultiPresenterFactory extends CellPresenterFactory implements IBuil
   @Override
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     super.buildFrom(controller, configuration);
-    if(selectionContainer != null) {
+    if (selectionContainer != null) {
       selectionContainer.managedProperty().bind(selectionContainer.visibleProperty());
       selectionContainer.setVisible(false);
     }
@@ -409,7 +408,7 @@ public class MultiPresenterFactory extends CellPresenterFactory implements IBuil
     }
 
     // when icon is clicked
-    if(iconClickHandler != null) {
+    if (iconClickHandler != null) {
       buildIconClickHandler();
     }
 
@@ -422,22 +421,25 @@ public class MultiPresenterFactory extends CellPresenterFactory implements IBuil
     if (iconClickHandler != null && iconContainer != null) {
       iconContainer.getStyleClass().add("hand-mouse-hover");
 
-      if(AbstractApplicationRunner.isMobile()) {
+      if (AbstractApplicationRunner.isMobile()) {
         // avoid multiple touch loading same view multiple times!!
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1500), ae -> isLoadingChild = false));
+        Timeline timeline =
+            new Timeline(new KeyFrame(Duration.millis(1500), ae -> isLoadingChild = false));
 
         iconContainer.addEventFilter(TouchEvent.TOUCH_RELEASED, e -> {
-          if (iconClickHandler != null && !AbstractApplicationRunner.isApplicationScrolling() && !isLoadingChild && e.getTouchCount() == 1) {
+          if (iconClickHandler != null && !AbstractApplicationRunner.isApplicationScrolling()
+              && !isLoadingChild && e.getTouchCount() == 1) {
             isLoadingChild = true;
             timeline.play();
-            ComponentToButtonBaseHelper.setButtonActions(controller, iconClickHandler, iconContainer, e, getForData());
+            ComponentToButtonBaseHelper.setButtonActions(controller, iconClickHandler,
+                iconContainer, e, getForData());
           }
         });
-      }
-      else {
+      } else {
         iconContainer.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
           if (iconClickHandler != null && e.getClickCount() == 2) {
-            ComponentToButtonBaseHelper.setButtonActions(controller, iconClickHandler, iconContainer, e, getForData());
+            ComponentToButtonBaseHelper.setButtonActions(controller, iconClickHandler,
+                iconContainer, e, getForData());
           }
         });
       }
@@ -446,27 +448,31 @@ public class MultiPresenterFactory extends CellPresenterFactory implements IBuil
 
   protected void buildIdentityClickHandler() {
     Node identityContainer = getIdentityContainer();
-    if(tableConfig != null) {
-      VLViewComponentXML identityClickHandler = tableConfig.getComponentById("IdentityClickHandler").orElse(null);
+    if (tableConfig != null) {
+      VLViewComponentXML identityClickHandler =
+          tableConfig.getComponentById("IdentityClickHandler").orElse(null);
       if (identityClickHandler != null && identityContainer != null) {
         identityContainer.getStyleClass().add("hand-mouse-hover");
 
-        if(AbstractApplicationRunner.isMobile()) {
+        if (AbstractApplicationRunner.isMobile()) {
 
-          Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1500), ae -> isLoadingChild = false));
+          Timeline timeline =
+              new Timeline(new KeyFrame(Duration.millis(1500), ae -> isLoadingChild = false));
 
           identityContainer.addEventFilter(TouchEvent.TOUCH_RELEASED, e -> {
-            if (iconClickHandler != null && !AbstractApplicationRunner.isApplicationScrolling() && !isLoadingChild && e.getTouchCount() == 1) {
+            if (iconClickHandler != null && !AbstractApplicationRunner.isApplicationScrolling()
+                && !isLoadingChild && e.getTouchCount() == 1) {
               isLoadingChild = true;
               timeline.play();
-              ComponentToButtonBaseHelper.setButtonActions(controller, iconClickHandler, identityContainer, e, getForData());
+              ComponentToButtonBaseHelper.setButtonActions(controller, iconClickHandler,
+                  identityContainer, e, getForData());
             }
           });
-        }
-        else {
+        } else {
           identityContainer.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             if (identityClickHandler != null && e.getClickCount() == 2) {
-              ComponentToButtonBaseHelper.setButtonActions(controller, identityClickHandler, identityContainer, e, getForData());
+              ComponentToButtonBaseHelper.setButtonActions(controller, identityClickHandler,
+                  identityContainer, e, getForData());
             }
           });
         }

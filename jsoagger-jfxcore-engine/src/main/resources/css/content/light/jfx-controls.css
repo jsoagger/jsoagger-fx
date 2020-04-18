@@ -105,27 +105,25 @@
  * TOGGLE BUTTON
  ******************************************************************************/
 .toggle-button {
-	-fx-text-fill: -fx-link-color;
+	-fx-text-fill: black;
 	-fx-background-insets: 0.0;
 	-fx-padding: 0.5em;
 	-fx-alignment: CENTER;
-	-fx-border-color: -accent-color;
-	-fx-font-size: 1.0em;
-	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.3), 0.0, 0.3, 1.0,
-		1.0);
+	-fx-border-color: white;
+	-fx-font-size: 12px;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.3), 0.0, 0.3, 1.0,1.0);
 	-fx-border-width: 0.0 2.0 0.0 2.0;
 	-fx-border-color: transparent;
-	-fx-opacity: 0.64;
+	-fx-opacity: 1;
 }
 
 .toggle-button:selected {
 	-fx-background-radius: 0.0;
-	-fx-background-color: -fx-link-color;
+	-fx-background-color: -fx-primary-color;
 	-fx-text-fill: -white-color;
 	-fx-graphic-text-gap: 16.0;
 	-icons-color: white;
-	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.6), 5.0, 0.3, 0.0,
-		1.0);
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.6), 5.0, 0.3, 0.0,1.0);
 	-fx-border-width: 0.0 2.0 0.0 2.0;
 	-fx-opacity: 1.0;
 }
@@ -136,8 +134,7 @@
 	-fx-text-fill: -white-color;
 	-fx-graphic-text-gap: 16.0;
 	-icons-color: -white-color;
-	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.6), 5.0, 0.3, 0.0,
-		1.0);
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.6), 5.0, 0.3, 0.0,1.0);
 	-fx-border-width: 0.0 2.0 0.0 2.0;
 	-fx-opacity: 1.0;
 }

@@ -51,13 +51,13 @@ public class MobileVLTabpane extends VLTabpane {
   private void showHeader(IJSoaggerController controller) {
     DoubleHeaderRootStructureController dhs =
         (DoubleHeaderRootStructureController) controller.getRootStructure();
-    dhs.showHeader();
+    dhs.showAllHeader();
   }
 
   private void hideHeader(IJSoaggerController controller) {
     DoubleHeaderRootStructureController dhs =
         (DoubleHeaderRootStructureController) controller.getRootStructure();
-    dhs.hideHeader();
+    dhs.hideAllHeader();
   }
 
   protected void updateTabsSize() {

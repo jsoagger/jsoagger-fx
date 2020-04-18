@@ -527,6 +527,12 @@ public class NodeHelper {
     return wrapper;
   }
 
+  public static VBox wrapInVbox(Node node) {
+    final VBox wrapper = new VBox();
+    wrapper.getChildren().add(node);
+    return wrapper;
+  }
+
   public static StackPane wrapInStackPane(Node node) {
     final StackPane wrapper = new StackPane();
     wrapper.setAlignment(Pos.CENTER);

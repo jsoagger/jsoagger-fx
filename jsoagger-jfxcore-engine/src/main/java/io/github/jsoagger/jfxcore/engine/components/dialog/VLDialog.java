@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -20,14 +20,11 @@
 
 package io.github.jsoagger.jfxcore.engine.components.dialog;
 
-
-
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.api.IBuildable;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.services.Services;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -48,7 +45,6 @@ public abstract class VLDialog extends BorderPane implements IBuildable {
   protected boolean hideFooter = false;
   protected StackPane pane = new StackPane();
 
-
   /**
    * Constructor
    */
@@ -58,9 +54,6 @@ public abstract class VLDialog extends BorderPane implements IBuildable {
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     String dialogHeaderImpl = configuration.getPropertyValue("headerImpl", "DialogHeader");
@@ -92,20 +85,18 @@ public abstract class VLDialog extends BorderPane implements IBuildable {
       dialogStage.setMinWidth(340);
       dialogStage.setMaxWidth(340);
 
-      if(hideFooter) {
+      if (hideFooter) {
         dialogStage.setMinHeight(164);
         dialogStage.setMaxHeight(164);
-      }
-      else {
+      } else {
         dialogStage.setMinHeight(236);
         dialogStage.setMaxHeight(236);
       }
 
 
-      if(autoHide) {
+      if (autoHide) {
         dialogStageWrapper.show(autoHide);
-      }
-      else {
+      } else {
         dialogStageWrapper.show();
       }
     });

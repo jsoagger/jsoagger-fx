@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,7 +22,6 @@ package io.github.jsoagger.jfxcore.engine.components.header;
 
 
 
-
 import io.github.jsoagger.jfxcore.api.IBuildable;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.IParentResponsiveMatrix;
@@ -30,7 +29,6 @@ import io.github.jsoagger.jfxcore.api.IResponsiveAreaSize;
 import io.github.jsoagger.jfxcore.api.IResponsiveAware;
 import io.github.jsoagger.jfxcore.api.IResponsiveSizing;
 import io.github.jsoagger.jfxcore.api.services.Services;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.header.comps.HeaderRightToolbar;
 import io.github.jsoagger.jfxcore.engine.components.header.comps.IHeaderToolbar;
@@ -41,10 +39,11 @@ import io.github.jsoagger.jfxcore.engine.components.header.event.HeaderNavbarSet
 import io.github.jsoagger.jfxcore.engine.components.header.event.HeaderNavbarSetStandardRightActions;
 import io.github.jsoagger.jfxcore.engine.components.tab.ReinitHeaderNavigationEvent;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
+import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.event.SetCurrentLocationEvent;
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.event.UpdateCurrentLocationEvent;
 import io.github.jsoagger.jfxcore.engine.utils.ComponentUtils;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.css.PseudoClass;
@@ -88,10 +87,12 @@ public abstract class Toolbar extends HBox implements IBuildable {
     if (configuration != null) {
       NodeHelper.setStyleClass(this, configuration, "styleClass", true);
 
-      final VLViewComponentXML leftActionsComponents = ComponentUtils.resolveComponent(configuration, "LeftComponents");
+      final VLViewComponentXML leftActionsComponents =
+          ComponentUtils.resolveComponent(configuration, "LeftComponents");
       buildLeftItems((AbstractViewController) controller, leftActionsComponents);
 
-      final VLViewComponentXML centerActionsComponents = ComponentUtils.resolveComponent(configuration, "CenterComponents");
+      final VLViewComponentXML centerActionsComponents =
+          ComponentUtils.resolveComponent(configuration, "CenterComponents");
       buildCenterItems((AbstractViewController) controller, centerActionsComponents);
 
       rightActionsComponents = ComponentUtils.resolveComponent(configuration, "RightComponents");
@@ -104,47 +105,62 @@ public abstract class Toolbar extends HBox implements IBuildable {
     rightToolbar = getContentImpl(rightActionsComponents, "HeaderRightToolbar");
     if (rightActionsComponents != null) {
       build(rightToolbar, controller, rightActionsComponents);
+      getChildren().add(rightToolbar.getDisplay());
+
+      if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
+        NodeHelper.setHgrow(rightToolbar.getDisplay());
+      }
+
     } else {
       rightToolbar.getDisplay().getStyleClass().add("ep-header-right-area-container");
     }
-
-    getChildren().add(rightToolbar.getDisplay());
   }
 
 
-  public void buildCenterItems(AbstractViewController controller, VLViewComponentXML centerActionsComponents) {
+  public void buildCenterItems(AbstractViewController controller,
+      VLViewComponentXML centerActionsComponents) {
     centerToolBar = getContentImpl(centerActionsComponents, "HeaderCenterToolBar");
-    if (centerActionsComponents != null) {
+    if (centerActionsComponents != null && centerActionsComponents.hasSubComponent()) {
       build(centerToolBar, controller, centerActionsComponents);
+      getChildren().add(centerToolBar.getDisplay());
+
+      if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
+        NodeHelper.setHgrow(centerToolBar.getDisplay());
+      }
     } else {
       centerToolBar.getDisplay().getStyleClass().add("ep-header-center-area-container");
     }
-
-    getChildren().add(centerToolBar.getDisplay());
   }
 
 
-  public void buildLeftItems(AbstractViewController controller, VLViewComponentXML leftActionsComponents) {
+  public void buildLeftItems(AbstractViewController controller,
+      VLViewComponentXML leftActionsComponents) {
     leftToolBar = getContentImpl(leftActionsComponents, "HeaderLeftToolBar");
     if (leftActionsComponents != null) {
       build(leftToolBar, controller, leftActionsComponents);
+      getChildren().add(leftToolBar.getDisplay());
+
+      if (AbstractApplicationRunner.isMobile() || AbstractApplicationRunner.isSimulMobile()) {
+        NodeHelper.setHgrow(leftToolBar.getDisplay());
+      }
     } else {
       leftToolBar.getDisplay().getStyleClass().add("ep-header-left-area-container");
     }
-
-    getChildren().add(leftToolBar.getDisplay());
   }
 
 
-  protected void build(IBuildable buildable, AbstractViewController controller, VLViewComponentXML actionsComponents) {
+  protected void build(IBuildable buildable, AbstractViewController controller,
+      VLViewComponentXML actionsComponents) {
     buildable.buildFrom(controller, actionsComponents);
   }
 
 
-  protected void handleParentWidthChange(ObservableValue value, Number oldParentWidth, Number newParentWidth) {
-    if (responsiveMatrix != null ) {
-      final IResponsiveAreaSize areasSize = responsiveMatrix.getSizeOf(newParentWidth.doubleValue());
-      if(areasSize != null) {
+  protected void handleParentWidthChange(ObservableValue value, Number oldParentWidth,
+      Number newParentWidth) {
+    if (responsiveMatrix != null) {
+      final IResponsiveAreaSize areasSize =
+          responsiveMatrix.getSizeOf(newParentWidth.doubleValue());
+      if (areasSize != null) {
         final IResponsiveSizing leftSize = areasSize.getSizeOf(0);
         final IResponsiveSizing centerSize = areasSize.getSizeOf(1);
         final IResponsiveSizing rightSize = areasSize.getSizeOf(2);
@@ -261,7 +277,8 @@ public abstract class Toolbar extends HBox implements IBuildable {
 
 
   /**
-   * Right toolbar should not be a {@link NavigableToolbar}. Navigable toolbar should be either the left or the center one.
+   * Right toolbar should not be a {@link NavigableToolbar}. Navigable toolbar should be either the
+   * left or the center one.
    *
    * @return
    */

@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,11 +22,10 @@ package io.github.jsoagger.jfxcore.engine.components.dialog;
 
 
 
-
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
@@ -39,35 +38,21 @@ public class DialogFooter extends StackPane implements IDialogFooter {
 
   VLViewComponentXML footerCfg;
 
-
-  /**
-   * Constructor
-   */
   public DialogFooter() {}
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public Node getDisplay() {
     return this;
   }
 
-
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     footerCfg = configuration.getComponentById("Footer").orElse(null);
     NodeHelper.styleClassSetAll(this, footerCfg);
+    setAlignment(Pos.CENTER);
   }
 
-
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void setActions(Node actions) {
     IDialogFooter.super.setActions(actions);

@@ -22,8 +22,6 @@ package io.github.jsoagger.jfxcore.components.list.utils;
 
 
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Set;
 
 import javafx.beans.Observable;
@@ -60,19 +58,6 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
     // registerChangeListener(listView.fillWidthProperty(), e -> updateFillWidth());
   }
 
-
-  /*
-   * private void updateFillWidth() { if (scrollBarHorizontal != null && scrollBarVertical != null
-   * && fillWidthCache != listView.isFillWidth()) { if (listView.isFillWidth() && !fillWidthCache) {
-   * scrollBarHorizontal.visibleProperty().addListener(this::updateCellsPrefWidth);
-   * scrollBarVertical.visibleProperty().addListener(this::updateCellsPrefWidth); } else {
-   * scrollBarHorizontal.visibleProperty().removeListener(this::updateCellsPrefWidth);
-   * scrollBarVertical.visibleProperty().removeListener(this::updateCellsPrefWidth); }
-   * 
-   * fillWidthCache = listView.isFillWidth(); } }
-   */
-
-
   private void updateCellsPrefWidth(Observable o) {
     final Insets insets = getSkinnable().getInsets();
     final double prefWidth = getSkinnable().getWidth() + insets.getLeft() + insets.getRight()
@@ -96,7 +81,6 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
 
     if (getItemCount() == 0) {
       if (placeholderRegion == null) {
-        // updatePlaceholderRegionVisibility9();
         final Object obj = getChildren().get(getChildren().size() - 1);
         if (obj instanceof Node && ((Region) obj).getStyleClass().contains("placeholder")) {
           placeholderRegion = (Region) obj;
@@ -241,18 +225,5 @@ public class FixedSizeListViewSkin<T extends ListView> extends ListViewSkin {
    */
   public void setScrollableVertically(boolean scrollableVertically) {
     this.scrollableVertically = scrollableVertically;
-  }
-
-  public void updatePlaceholderRegionVisibility9() {
-    try {
-      Method method = this.getClass().getSuperclass().getSuperclass()
-          .getDeclaredMethod("updatePlaceholderRegionVisibility", new Class[0]);
-      // final Method updatePlaceholderRegionVisibility =
-      // getClass().getMethod("updatePlaceholderRegionVisibility");
-      method.setAccessible(true);
-      method.invoke(this);
-    } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-      throw new RuntimeException("Cannot add UserAgentStylesheet as the method is not accessible");
-    }
   }
 }

@@ -45,6 +45,9 @@ public class DoubleHeaderRootStructureController extends RootStructureController
   protected Pane secondaryHeaderStack;
 
   @FXML
+  protected Pane allHeaderStack;
+
+  @FXML
   protected Pane defaultActionNodeWrapper;
 
 
@@ -79,25 +82,25 @@ public class DoubleHeaderRootStructureController extends RootStructureController
     }
   }
 
-  public void hideHeader() {
+  public void hideAllHeader() {
     if (Platform.isFxApplicationThread()) {
-      headerStack.setVisible(false);
+      allHeaderStack.setVisible(false);
       AnchorPane.setTopAnchor(rootStructureWrapper, 0.0);
     } else {
       Platform.runLater(() -> {
-        headerStack.setVisible(false);
+        allHeaderStack.setVisible(false);
         AnchorPane.setTopAnchor(rootStructureWrapper, 0.0);
       });
     }
   }
 
-  public void showHeader() {
+  public void showAllHeader() {
     if (Platform.isFxApplicationThread()) {
-      headerStack.setVisible(true);
+      allHeaderStack.setVisible(true);
       setAnchors();
     } else {
       Platform.runLater(() -> {
-        headerStack.setVisible(true);
+        allHeaderStack.setVisible(true);
         setAnchors();
       });
     }

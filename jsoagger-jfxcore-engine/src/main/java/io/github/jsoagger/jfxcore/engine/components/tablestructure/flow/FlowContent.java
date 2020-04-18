@@ -296,6 +296,14 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
         items.clear();
       }
 
+      if (isFirst) {
+        // sometimes node like nocontent pane can be
+        // still inside tha pane because threads!!
+        // so force and ensure that pane is cleared
+        // after new data have been loaded
+        removeAllNodesInContentPane();
+      }
+
       items.addAll(multipleResult.getData());
     } catch (Throwable e) {
       e.printStackTrace();
@@ -304,6 +312,7 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
 
   int rowIndex = 0;
   int colIndex = 0;
+
 
   private void addItems(List<OperationData> items) {
 
@@ -341,6 +350,16 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
 
   }
 
+  @Override
+  public void removeAllNodesInContentPane() {
+    if (Platform.isFxApplicationThread()) {
+      content.getChildren().clear();
+    } else {
+      Platform.runLater(() -> {
+        content.getChildren().clear();
+      });
+    }
+  }
 
   /**
    * @{inheritedDoc}
@@ -393,9 +412,11 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
     p.setId("LoadingPane");
     p.setStyle("-fx-background-color:white;-fx-alignment:CENTER");
     NodeHelper.setHVGrow(p);
-    // content.getChildren().clear();
+
+    /// content.getChildren().clear();
     // content.getChildren().add(p);
     // p.getChildren().add(NodeHelper.getProcessingIndicator());
+
     if (pagination != null) {
       if (!pagination.getDisplay().visibleProperty().isBound())
         pagination.getDisplay().setVisible(false);

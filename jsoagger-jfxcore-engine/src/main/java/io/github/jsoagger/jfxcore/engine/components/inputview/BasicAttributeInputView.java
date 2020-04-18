@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,11 +22,11 @@ package io.github.jsoagger.jfxcore.engine.components.inputview;
 
 
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
+import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.IInputComponentWrapper;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.converter.StringConverter;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
-
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -56,15 +56,25 @@ public class BasicAttributeInputView extends AbstractViewInputComponent {
   public void build(IInputComponentWrapper inputComponentWrapper) {
     super.build(inputComponentWrapper);
     NodeHelper.styleClassAddAll(label, getConfiguration(), "viewStyleClass", "form-info-value");
-    label.setText(((StringConverter) inputComponentWrapper.getConverter()).toDisplay(inputComponentWrapper.getCurrentInternalValue()));
 
-    if(AbstractApplicationRunner.isDesktop()) {
-      // TODO HANDLE TOOLTIP
+    String localised = getConfiguration().getPropertyValue("localised");
+
+    if (StringUtils.isNotBlank(localised) && "true".equalsIgnoreCase(localised)) {
+      label.setText(controller.getLocalised(inputComponentWrapper.getCurrentInternalValue()));
+    } else {
+      label.setText(((StringConverter) inputComponentWrapper.getConverter())
+          .toDisplay(inputComponentWrapper.getCurrentInternalValue()));
+    }
+
+    if (AbstractApplicationRunner.isDesktop()) {
       label.setMaxWidth(400);
     }
-    inputComponentWrapper.currentInternalValueProperty().addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
-      label.setText(((StringConverter) inputComponentWrapper.getConverter()).toDisplay(newValue));
-    });
+
+    inputComponentWrapper.currentInternalValueProperty()
+        .addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
+          label.setText(
+              ((StringConverter) inputComponentWrapper.getConverter()).toDisplay(newValue));
+        });
   }
 
 

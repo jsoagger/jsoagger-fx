@@ -414,8 +414,11 @@ public abstract class AbstractTableStructure
   public void maximize() {}
 
 
-  public abstract Node getTableStructure();
+  public void removeAllNodesInContentPane() {
 
+  }
+
+  public abstract Node getTableStructure();
 
   public abstract void setNoContent();
 

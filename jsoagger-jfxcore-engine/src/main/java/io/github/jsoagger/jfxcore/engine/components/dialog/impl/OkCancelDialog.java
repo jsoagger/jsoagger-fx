@@ -25,6 +25,7 @@ import java.util.function.Function;
 
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.services.Services;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.dialog.DialogStageWrapper;
 import io.github.jsoagger.jfxcore.engine.components.dialog.VLDialog;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
@@ -32,7 +33,7 @@ import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * @author Ramilafananana Vonjisoa
@@ -41,8 +42,8 @@ import javafx.scene.layout.HBox;
  */
 public class OkCancelDialog extends VLDialog {
 
-  private final Button okButton = new Button("OK");
-  private final Button cancelButton = new Button("CANCEL");
+  private final Button okButton = NodeHelper.jfxButton("OK");
+  private final Button cancelButton = NodeHelper.jfxButton("CANCEL");
   private Function<Object, Object> okCallBack;
   private Function<Object, Object> cancelCallBack;
 
@@ -59,6 +60,8 @@ public class OkCancelDialog extends VLDialog {
   @Override
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     super.buildFrom(controller, configuration);
+    okButton.getStyleClass().addAll("button-primary-border", "button-xl", "button-xl-rounded");
+    cancelButton.getStyleClass().addAll("button-xl", "button-xl-rounded");
   }
 
 
@@ -75,7 +78,6 @@ public class OkCancelDialog extends VLDialog {
   @Override
   protected DialogStageWrapper _beforeShow() {
     dialogStageWrapper = new DialogStageWrapper();
-    okButton.getStyleClass().add("ep-button");
     okButton.addEventFilter(ActionEvent.ACTION, e -> {
       dialogStageWrapper.hide();
       if (okCallBack != null) {
@@ -83,7 +85,7 @@ public class OkCancelDialog extends VLDialog {
       }
     });
 
-    okButton.getStyleClass().add("ep-button");
+    cancelButton.requestFocus();
     cancelButton.addEventFilter(ActionEvent.ACTION, e -> {
       dialogStageWrapper.hide();
       if (cancelCallBack != null) {
@@ -91,8 +93,8 @@ public class OkCancelDialog extends VLDialog {
       }
     });
 
-    final HBox c = new HBox(cancelButton, okButton);
-    c.setStyle("-fx-alignment:CENTER_RIGHT;-fx-spacing:8");
+    final VBox c = new VBox(okButton, cancelButton);
+    c.setStyle("-fx-alignment:CENTER;-fx-spacing:16;-fx-padding:8");
     dialogFooter.setActions(c);
 
     dialogStageWrapper.setContent(this.getDisplay());
@@ -169,7 +171,8 @@ public class OkCancelDialog extends VLDialog {
     }
 
 
-    private OkCancelDialog _build(OkCancelDialog dialog, Node content2, AbstractViewController controller, VLViewComponentXML vlViewComponentXML) {
+    private OkCancelDialog _build(OkCancelDialog dialog, Node content2,
+        AbstractViewController controller, VLViewComponentXML vlViewComponentXML) {
       if (content != null) {
         dialog.setContent(content);
         dialog.buildFrom(controller, getInputDialogConfig());
@@ -183,58 +186,56 @@ public class OkCancelDialog extends VLDialog {
       dialog.okCallBack = okCallBack;
       dialog.cancelCallBack = cancelCallBack;
 
-      dialog.okButton.getStyleClass().addAll("button-primary-border-transparent");
-      dialog.cancelButton.getStyleClass().addAll("button-primary-border-transparent");
       return dialog;
     }
   }
 
   private static VLViewComponentXML jojo() {
-	  VLViewComponentXML xml = new VLViewComponentXML();
+    VLViewComponentXML xml = new VLViewComponentXML();
 
-	  VLViewComponentXML content = new VLViewComponentXML();
-	  content.setId("Content");
-	  xml.getSubcomponents().add(xml);
-	  content.addProperty("ikonli", "fa-info-circle:32");
-	  content.addProperty("iconStyleClass", "blue-ikonli");
-	  content.addProperty("styleClass", "ep-dialog-content,ep-dialog-white-content");
-	  content.addProperty("messageStyleClass", "ep-dialog-message,ep-dialog-white-content-message");
+    VLViewComponentXML content = new VLViewComponentXML();
+    content.setId("Content");
+    xml.getSubcomponents().add(xml);
+    content.addProperty("ikonli", "fa-info-circle:32");
+    content.addProperty("iconStyleClass", "blue-ikonli");
+    content.addProperty("styleClass", "ep-dialog-content,ep-dialog-white-content");
+    content.addProperty("messageStyleClass", "ep-dialog-message,ep-dialog-white-content-message");
 
-	  VLViewComponentXML footer = new VLViewComponentXML();
-	  footer.setId("Footer");
-	  footer.addProperty("styleClass", "ep-dialog-footer,ep-dialog-white-footer");
-	  xml.getSubcomponents().add(footer);
+    VLViewComponentXML footer = new VLViewComponentXML();
+    footer.setId("Footer");
+    footer.addProperty("styleClass", "ep-dialog-footer,ep-dialog-white-footer");
+    xml.getSubcomponents().add(footer);
 
 
-	  VLViewComponentXML header = new VLViewComponentXML();
-	  header.setId("Header");
-	  header.addProperty("titleStyleClass", "ep-dialog-title");
-	  header.addProperty("styleClass", "ep-dialog-header");
-	  xml.getSubcomponents().add(header);
+    VLViewComponentXML header = new VLViewComponentXML();
+    header.setId("Header");
+    header.addProperty("titleStyleClass", "ep-dialog-title");
+    header.addProperty("styleClass", "ep-dialog-header");
+    xml.getSubcomponents().add(header);
 
-	  return xml;
+    return xml;
   }
 
   private static VLViewComponentXML getDialogConfig() {
-    //return Services.getDialogConfig("okCancelDialog.xml");
-	  return jojo();
+    // return Services.getDialogConfig("okCancelDialog.xml");
+    return jojo();
   }
 
 
   private static VLViewComponentXML getPrimaryDialogConfig() {
-    //return Services.getDialogConfig("okCancelDialog.xml");
-	  return jojo();
+    // return Services.getDialogConfig("okCancelDialog.xml");
+    return jojo();
   }
 
 
   private static VLViewComponentXML getAccentDialogConfig() {
-    //return Services.getDialogConfig("okCancelDialog.xml");
-	  return jojo();
+    // return Services.getDialogConfig("okCancelDialog.xml");
+    return jojo();
   }
 
 
   private static VLViewComponentXML getInputDialogConfig() {
-    //return Services.getDialogConfig("InputOkCancelDialog.xml");
-	  return jojo();
+    // return Services.getDialogConfig("InputOkCancelDialog.xml");
+    return jojo();
   }
 }

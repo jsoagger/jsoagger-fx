@@ -23,6 +23,7 @@ package io.github.jsoagger.jfxcore.engine.components.input;
 
 import java.util.Optional;
 
+import io.github.jsoagger.core.utils.StringUtils;
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.AbstractComponent;
@@ -39,7 +40,7 @@ import javafx.scene.control.Labeled;
  */
 public abstract class AbstractInputComponent extends AbstractComponent {
 
-  //private static final Logger logR = LoggerFactory.getLogger(AbstractInputComponent.class);
+  // private static final Logger logR = LoggerFactory.getLogger(AbstractInputComponent.class);
   protected Optional<String> prompt = null;
 
 
@@ -58,7 +59,7 @@ public abstract class AbstractInputComponent extends AbstractComponent {
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     super.buildFrom(controller, configuration);
     prompt = configuration.propertyValueOf(XMLConstants.PROMPT);
-    if(getDisplay() != null) {
+    if (getDisplay() != null) {
       NodeHelper.styleClassAddAll(getDisplay(), configuration, "styleClass", "jsoagger-control");
     }
   }
@@ -94,7 +95,13 @@ public abstract class AbstractInputComponent extends AbstractComponent {
   public void setText(String value) {
     if (getComponent() instanceof Labeled) {
       final Labeled labeled = (Labeled) getComponent();
-      labeled.setText(value);
+
+      String localised = getConfiguration().getPropertyValue("localised");
+      if (StringUtils.isNotBlank(localised) && "true".equalsIgnoreCase(localised)) {
+        labeled.setText(controller.getLocalised(localised));
+      } else {
+        labeled.setText(value);
+      }
     }
   }
 
@@ -113,7 +120,7 @@ public abstract class AbstractInputComponent extends AbstractComponent {
    */
   public void addCurrentValueChangeListener(ChangeListener changeListener) {
     if (owner != null) {
-    	owner.currentInternalValueProperty().addListener(changeListener);
+      owner.currentInternalValueProperty().addListener(changeListener);
     }
   }
 

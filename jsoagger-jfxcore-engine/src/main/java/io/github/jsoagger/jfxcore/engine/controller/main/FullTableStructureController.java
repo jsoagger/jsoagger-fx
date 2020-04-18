@@ -31,7 +31,7 @@ import io.github.jsoagger.jfxcore.engine.events.GenericEvent;
 import javafx.scene.Node;
 
 /**
- * @author Ramilafananana  VONJISOA
+ * @author Ramilafananana VONJISOA
  */
 public abstract class FullTableStructureController extends StandardViewController {
 
@@ -44,21 +44,18 @@ public abstract class FullTableStructureController extends StandardViewControlle
    * Constructor
    */
   public FullTableStructureController() {
-	  registerListener(CoreEvent.ScrollReachTopScreenEvent);
+    registerListener(CoreEvent.ScrollReachTopScreenEvent);
   }
 
   @Override
-	public synchronized <T extends GenericEvent> void handle(T e) {
-		super.handle(e);
-		if(e.isA(CoreEvent.ScrollReachTopScreenEvent)) {
-			System.out.println(">>>>>>>>>>><<<  : " + "ScrollReachTopScreenEvent");
-		}
-	}
+  public synchronized <T extends GenericEvent> void handle(T e) {
+    super.handle(e);
+    if (e.isA(CoreEvent.ScrollReachTopScreenEvent)) {
+      System.out.println(">>>>>>>>>>><<<  : " + "ScrollReachTopScreenEvent");
+    }
+  }
 
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void beforePop() {
     super.beforePop();
@@ -85,18 +82,12 @@ public abstract class FullTableStructureController extends StandardViewControlle
   }
 
 
-  /**
-   * {@inheritDoc}
-   */
   public void forceLoadFirstPage() {
     AbstractTableStructure table = (AbstractTableStructure) processedElement();
     table.forceLoadFirstPage();
   }
 
 
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void refreshDatas() {
     AbstractTableStructure table = (AbstractTableStructure) processedElement();
@@ -157,9 +148,6 @@ public abstract class FullTableStructureController extends StandardViewControlle
 
   /**
    * Compares by attributes fullID
-   *
-   * @param roleB
-   * @return
    */
   public boolean containsModel(OperationData roleB) {
     AbstractTableStructure table = (AbstractTableStructure) processedElement();
@@ -174,9 +162,6 @@ public abstract class FullTableStructureController extends StandardViewControlle
 
   /**
    * Compares by master fullID
-   *
-   * @param roleB
-   * @return
    */
   public boolean containsModelByMasterFullId(OperationData roleB) {
     AbstractTableStructure table = (AbstractTableStructure) processedElement();
@@ -189,22 +174,11 @@ public abstract class FullTableStructureController extends StandardViewControlle
     return false;
   }
 
-
-  /**
-   * Add an item to this table structure
-   *
-   * @param data
-   */
   public void addItem(OperationData data) {
     getTableStructure().getItems().add(data);
   }
 
 
-  /**
-   * Remove item from table
-   *
-   * @param data
-   */
   public void removeItem(OperationData data) {
     getTableStructure().getItems().remove(data);
   }

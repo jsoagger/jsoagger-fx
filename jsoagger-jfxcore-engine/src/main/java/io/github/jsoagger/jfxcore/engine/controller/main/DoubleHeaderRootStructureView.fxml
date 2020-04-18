@@ -60,7 +60,7 @@
             </AnchorPane>
         </StackPane>
 
-        <VBox AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" styleClass="ep-double-header-root-structure">
+        <VBox  fx:id="allHeaderStack" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" styleClass="ep-double-header-root-structure">
             <children>
                 <StackPane id="" fx:id="headerStack" styleClass="rootStructure-header-stack" BorderPane.alignment="CENTER" />
                 <StackPane id="" fx:id="secondaryHeaderStack" styleClass="rs-secondary-header-stack" BorderPane.alignment="CENTER" />

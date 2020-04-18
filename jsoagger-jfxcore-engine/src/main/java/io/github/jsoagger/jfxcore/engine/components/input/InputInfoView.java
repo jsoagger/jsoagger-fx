@@ -21,8 +21,6 @@
 package io.github.jsoagger.jfxcore.engine.components.input;
 
 
-
-
 import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
@@ -38,19 +36,12 @@ import javafx.scene.control.Label;
 public class InputInfoView extends AbstractInputComponent {
 
 
-	private Label label = new Label();
+  private Label label = new Label();
 
-  /**
-   * Constructor
-   */
   public InputInfoView() {
     super();
   }
 
-
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public void buildFrom(IJSoaggerController controller, VLViewComponentXML configuration) {
     super.buildFrom(controller, configuration);
@@ -59,19 +50,11 @@ public class InputInfoView extends AbstractInputComponent {
     NodeHelper.styleClassSetAll(this.label, configuration, "titleStyleClass", "");
   }
 
-
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public Node getDisplay() {
     return label;
   }
 
-
-  /**
-   * @{inheritedDoc}
-   */
   @Override
   public Node getComponent() {
     return label;
