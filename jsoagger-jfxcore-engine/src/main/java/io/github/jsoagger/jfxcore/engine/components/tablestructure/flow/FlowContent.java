@@ -38,18 +38,14 @@ import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.presenter.MultiPresenterFactory;
 import io.github.jsoagger.jfxcore.engine.components.tablestructure.SingleTableStructure;
 import io.github.jsoagger.jfxcore.engine.controller.main.AbstractApplicationRunner;
-import io.github.jsoagger.jfxcore.engine.events.ScrollReachTopScreenEvent;
 import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
-import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.css.PseudoClass;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -126,55 +122,18 @@ public class FlowContent extends SingleTableStructure implements IBuildable, ICo
 
     if (content != null) {
       updatetimeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10)));
-      content.setOnScroll(new EventHandler<ScrollEvent>() {
-        // deltaY > 0 means going up
-        //
-
-        @Override
-        public void handle(ScrollEvent event) {
-          // System.out.println("-------------------");
-          // System.out.println("getVvalue : " + scrollPane.getVvalue());
-          // System.out.println("getHvalue : " + scrollPane.getHvalue());
-          // System.out.println("getDeltaX : " + event.getDeltaX());
-          // System.out.println("getDeltaY : " + event.getDeltaY());
-          // System.out.println("getTotalDeltaY : " + event.getTotalDeltaY());
-          // System.out.println("getScreenX : " + event.getScreenX());
-          // System.out.println("getScreenY : " + event.getScreenY());
-          // System.out.println("getX : " + event.getX());
-          // System.out.println("getY : " + event.getY());
-        }
-      });
-      // HANDLE MOBILE SCROLL ON TOUCH EVENT
       if (AbstractApplicationRunner.isMobile()) {
         content.setOnScrollStarted(s -> AbstractApplicationRunner.setApplicationScrolling(true));
         content.setOnScrollFinished(s -> AbstractApplicationRunner.setApplicationScrolling(false));
       }
     }
 
-    // extract css from configuration
     final String styleClass = contentConfiguration.getPropertyValue("flowContentStyleClass");
     if (io.github.jsoagger.core.utils.StringUtils.isNotBlank(styleClass)) {
       content.getStyleClass().addAll(styleClass.split(","));
     }
   }
 
-  private void manageUpdateData() {
-    if (updatetimeline.getStatus() == Status.STOPPED) {
-      updatetimeline.playFromStart();
-
-      ScrollReachTopScreenEvent event = new ScrollReachTopScreenEvent();
-      event.setSourceController(controller);
-      controller.dispatchEvent(event);
-    }
-  }
-
-
-  /**
-   * Result must be identifiable in order to able to be filtered.
-   *
-   * @param data
-   * @return
-   */
   private IBuildable buildItem(OperationData data) {
     flowItemImpl = getFlowItemId();
 

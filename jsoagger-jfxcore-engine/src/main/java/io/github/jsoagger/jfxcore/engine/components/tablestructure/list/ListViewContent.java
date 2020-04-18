@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -22,8 +22,6 @@ package io.github.jsoagger.jfxcore.engine.components.tablestructure.list;
 
 
 
-
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.core.bridge.result.MultipleResult;
 import io.github.jsoagger.core.bridge.result.OperationData;
 import io.github.jsoagger.core.utils.StringUtils;
@@ -31,7 +29,7 @@ import io.github.jsoagger.jfxcore.api.IJSoaggerController;
 import io.github.jsoagger.jfxcore.api.IListviewPaneContent;
 import io.github.jsoagger.jfxcore.api.IPaginatedDataProvider.Direction;
 import io.github.jsoagger.jfxcore.api.services.Services;
-import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.components.list.impl.AbstractListCell;
 import io.github.jsoagger.jfxcore.engine.components.list.utils.AbstractListView;
 import io.github.jsoagger.jfxcore.engine.components.list.utils.FixedSizeListView;
@@ -41,7 +39,7 @@ import io.github.jsoagger.jfxcore.engine.components.security.CriteriaContext;
 import io.github.jsoagger.jfxcore.engine.components.tablestructure.SingleTableStructure;
 import io.github.jsoagger.jfxcore.engine.controller.main.StandardListViewController;
 import io.github.jsoagger.jfxcore.engine.utils.IconUtils;
-
+import io.github.jsoagger.jfxcore.viewdef.json.xml.model.VLViewComponentXML;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -60,7 +58,8 @@ import javafx.scene.layout.StackPane;
  * @mailto yvonjisoa@nexitia.com
  * @date 2019
  */
-public class ListViewContent extends SingleTableStructure implements IListviewPaneContent, IPageable {
+public class ListViewContent extends SingleTableStructure
+    implements IListviewPaneContent, IPageable {
 
   /*-----------------------------------------------------------------------------
   | static fields
@@ -95,21 +94,26 @@ public class ListViewContent extends SingleTableStructure implements IListviewPa
    */
   @Override
   public void setData(MultipleResult multipleResult) {
-    items.addAll(multipleResult.getData());
-    Platform.runLater(() -> {
-      contentWrapper.getChildren().clear();
-      contentWrapper.getChildren().add(listView);
-    });
+    try {
 
-    // contentWrapper.setStyle("-fx-background-color:red;-fx-min-height:400;-fx-alignment:TOP");
-    contentWrapper.layout();
+      items.addAll(multipleResult.getData());
+      Platform.runLater(() -> {
+        contentWrapper.getChildren().clear();
+        contentWrapper.getChildren().add(listView);
+      });
 
-    if (pagination == null || !pagination.isLoadMorePagination()) {
-      // listView.getItems().clear();
-    }
+      contentWrapper.layout();
+      if (pagination == null || !pagination.isLoadMorePagination()) {
+        // listView.getItems().clear();
+      }
 
-    if (pagination != null && pagination.isLoadMorePagination() && pagination.currentDirection() == Direction.PREVIOUS) {
-      // listView.getItems().clear();
+      if (pagination != null && pagination.isLoadMorePagination()
+          && pagination.currentDirection() == Direction.PREVIOUS) {
+        // listView.getItems().clear();
+      }
+
+    } catch (Throwable e) {
+      e.printStackTrace();
     }
   }
 
@@ -160,9 +164,10 @@ public class ListViewContent extends SingleTableStructure implements IListviewPa
 
       if (controller instanceof StandardListViewController) {
         ((StandardListViewController) controller).setListView(listView);
-        listView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<OperationData>) (observable, oldValue, newValue) -> {
-          ((StandardListViewController) controller).setSelectedModel(newValue);
-        });
+        listView.getSelectionModel().selectedItemProperty()
+            .addListener((ChangeListener<OperationData>) (observable, oldValue, newValue) -> {
+              ((StandardListViewController) controller).setSelectedModel(newValue);
+            });
       }
     }
   }

@@ -39,16 +39,10 @@ import javafx.concurrent.Task;
 
 public class PushViewToSecondaryRSContentAction extends AbstractAction {
 
-  /**
-   * Constructor
-   */
   public PushViewToSecondaryRSContentAction() {
     super();
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void execute(IActionRequest actionRequest, Optional<IActionResult> previousActionResult) {
     try {
@@ -56,7 +50,6 @@ public class PushViewToSecondaryRSContentAction extends AbstractAction {
       String viewId = (String) actionRequest.getProperty("viewId");
       OperationData data = (OperationData) actionRequest.getProperty("sourceData");
 
-      // if any dataloader, i.e, data to load is relative to this one
       IOperation op = getOperation(actionRequest);
       if (op != null) {
         JsonObject query = new JsonObject();
