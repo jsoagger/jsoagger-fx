@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * JSoagger 
+ * JSoagger
  * %%
  * Copyright (C) 2019 JSOAGGER
  * %%
@@ -21,7 +21,6 @@
 package io.github.jsoagger.jfxcore.engine.client.apiimpl;
 
 
-import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.core.bridge.operation.IOperation;
 import io.github.jsoagger.core.bridge.operation.IOperationResult;
 import io.github.jsoagger.core.bridge.result.OperationData;
@@ -32,11 +31,11 @@ import io.github.jsoagger.jfxcore.api.IActionRequest;
 import io.github.jsoagger.jfxcore.api.IActionResult;
 import io.github.jsoagger.jfxcore.api.IRSHeaderHolder;
 import io.github.jsoagger.jfxcore.api.services.Services;
+import io.github.jsoagger.jfxcore.engine.client.utils.NodeHelper;
 import io.github.jsoagger.jfxcore.engine.controller.AbstractViewController;
 import io.github.jsoagger.jfxcore.engine.controller.main.RootStructureController;
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.StructureContentController;
 import io.github.jsoagger.jfxcore.engine.controller.roostructure.content.event.SetCurrentLocationEvent;
-
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
@@ -48,11 +47,12 @@ import javafx.scene.Node;
  */
 public abstract class AbstractAction implements IAction {
 
-  protected SimpleObjectProperty<IActionResult> resultProperty = new SimpleObjectProperty<IActionResult>();
+  protected SimpleObjectProperty<IActionResult> resultProperty =
+      new SimpleObjectProperty<IActionResult>();
 
   protected String id;
   protected OperationData data;
-  protected  AbstractViewController controller;
+  protected AbstractViewController controller;
 
 
   /**
@@ -106,27 +106,22 @@ public abstract class AbstractAction implements IAction {
   }
 
 
-  /**
-   * @param actionRequest
-   * @return
-   */
   public boolean isForwardAndReplaceView(IActionRequest actionRequest) {
     boolean isForwardAndReplaceView = false;
     final String isForwardAndReplaceViewString = (String) actionRequest.getProperty("replace");
-    isForwardAndReplaceView = StringUtils.hasText(isForwardAndReplaceViewString) && "true".equalsIgnoreCase(isForwardAndReplaceViewString);
+    isForwardAndReplaceView = StringUtils.hasText(isForwardAndReplaceViewString)
+        && "true".equalsIgnoreCase(isForwardAndReplaceViewString);
     return isForwardAndReplaceView;
   }
 
 
-  /**
-   * Show general error message
-   */
   public void onActionGeneralError(Throwable ex) {
     final ActionResult ar = new ActionResult.ActionResultBuilder()
         .message("Oups, your request can not be processed due to internal error.")
         .status(ActionResultStatus.ERROR).build();
     resultProperty.set(ar);
-    NodeHelper.showHeaderErrorMessage(controller, "Oups, your request can not be processed due to internal error.");
+    NodeHelper.showHeaderErrorMessage(controller,
+        "Oups, your request can not be processed due to internal error.");
   }
 
 
@@ -161,9 +156,8 @@ public abstract class AbstractAction implements IAction {
       resultProperty.set(ActionResult.success());
       NodeHelper.showHeaderSuccessCreateMessage(controller);
     } else {
-      ActionResult ar = new ActionResult
-          .ActionResultBuilder()
-          .operationMessage(operationResult != null ? operationResult.getMessages(): null)
+      ActionResult ar = new ActionResult.ActionResultBuilder()
+          .operationMessage(operationResult != null ? operationResult.getMessages() : null)
           .status(ActionResultStatus.ERROR).build();
       resultProperty.set(ar);
       NodeHelper.showHeaderErrorCreateMessage(controller);
@@ -176,7 +170,8 @@ public abstract class AbstractAction implements IAction {
    * @param rsc
    * @param currentContent
    */
-  protected void updateRSCHeader(RootStructureController rsc, StructureContentController currentContent) {
+  protected void updateRSCHeader(RootStructureController rsc,
+      StructureContentController currentContent) {
     AbstractViewController c = currentContent.getCurrentContent();
     if (c instanceof IRSHeaderHolder) {
       Node ident = ((IRSHeaderHolder) c).getDisplayIdentity();
