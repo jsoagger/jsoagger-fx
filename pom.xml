@@ -24,8 +24,8 @@
 	</modules>
 
 	<properties>
-		<internal.core.project.version>1.0.16-SNAPSHOT</internal.core.project.version><!-- todo move to 1.0.3 -->
-		<internal.cloudservices.version>1.0.2</internal.cloudservices.version>
+		<internal.core.project.version>1.0.17</internal.core.project.version>
+		<internal.cloudservices.version>1.0.8</internal.cloudservices.version>
 		
 		<project.scm.id>jsoaggercore.repo</project.scm.id>
 		
