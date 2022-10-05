@@ -68,7 +68,7 @@
 		<hibernate.version>5.4.0.Final</hibernate.version>
 		<hibernate.orm.version>5.4.0.Final</hibernate.orm.version>
 		<jackson.annotations.version>2.9.9</jackson.annotations.version>
-		<jackson.databinding.version>2.9.9.3</jackson.databinding.version>
+		<jackson.databinding.version>2.12.6.1</jackson.databinding.version>
 		<apache.shiro.version>1.3.2</apache.shiro.version>
 		<eh.cache.version>2.10.4</eh.cache.version>
 		<tomcat.version>8.0.8</tomcat.version>
